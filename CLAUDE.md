@@ -1,50 +1,45 @@
 # CLAUDE.md
 
 ## Project Overview
-This is [PROJECT NAME], a [brief description of what it does].
-Built with [primary tech stack].
+TPS Ventilatie website — a professional brochure site for a ventilation specialist in Zoetermeer.
+Built with Next.js 15, TypeScript, and Tailwind CSS v4.
 
 ## Tech Stack
-- Language: [e.g., TypeScript, Python, Go]
-- Framework: [e.g., Next.js, FastAPI, Express]
-- Database: [e.g., PostgreSQL, MongoDB, Supabase]
-- Styling: [e.g., Tailwind CSS, styled-components]
-- Testing: [e.g., Jest, Pytest, Vitest]
-- Package Manager: [e.g., npm, pnpm, bun, uv]
+- Language: TypeScript
+- Framework: Next.js 15 (App Router, static export)
+- Styling: Tailwind CSS v4 (CSS-first config via `@theme inline`)
+- Fonts: Plus Jakarta Sans (headlines), Inter (body), Material Symbols Outlined (icons)
+- Package Manager: npm
+- Deployment: Vercel (static export to `out/`)
 
 ## Project Structure
-- src/ — Main application source code
-- src/components/ — Reusable UI components
-- src/lib/ — Utility functions and shared logic
-- src/api/ — API routes and handlers
-- tests/ — Test files
-- docs/ — Documentation
+- app/ — Pages and layouts (App Router)
+- app/page-sections/ — Home page section components
+- components/ — Reusable UI components (Navbar, Footer, CTABanner, etc.)
+- lib/ — Constants and utilities (forms.ts, constants.ts)
+- public/ — Static assets and images
+- docs/plans/ — Implementation plans
 
 ## Commands
-- Dev server: npm run dev
-- Build: npm run build
-- Test: npm test
-- Lint: npm run lint
-- Type check: npx tsc --noEmit
+- Dev server: `npm run dev`
+- Build: `npm run build`
+- Lint: `npm run lint`
 
 ## Code Conventions
-- Use [functional components / class-based] approach
-- Prefer [named exports / default exports]
-- File naming: [kebab-case / camelCase / PascalCase]
-- Use [single quotes / double quotes] for strings
+- Functional components with named exports
+- File naming: PascalCase for components, camelCase for utilities
+- Double quotes for strings
+- `"use client"` only on interactive components (forms, menus, tabs)
+- Design system: "Atmospheric Clarity" — see `.stitch/aura_flow/DESIGN.md`
 
 ## Important Patterns
-- Error handling: [describe your approach]
-- State management: [describe your approach]
-- API calls: [describe your approach]
-- Authentication: [describe your approach]
+- Forms: Use `lib/forms.ts` `submitForm()` — pre-wired for GoHighLevel webhook
+- Icons: Use `components/Icon.tsx` wrapper for Material Symbols
+- Colors: Full Material Design 3 token set in `app/globals.css` `@theme inline`
+- No border lines: Use background color shifts for visual separation (design system rule)
 
 ## Things To Avoid
-- Never modify [specific files or directories]
-- Don't use [deprecated patterns or libraries]
-- Avoid [anything specific to your project]
-
-## Additional Context
-- [Links to relevant docs]
-- [Known issues or quirks]
-- [Deployment process notes]
+- Never use 1px solid borders for sectioning (use tonal layering)
+- Never use 100% black text (use `on-surface` #141D1F)
+- Don't modify `.stitch/` or `.firecrawl/` — reference-only files
+- Don't add dark mode (not in scope)
