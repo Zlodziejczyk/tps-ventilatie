@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -46,7 +48,9 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-on-surface font-body">
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
