@@ -44,7 +44,7 @@ export function useParticleEngine(
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef<{ x: number; y: number } | null>(null);
   const animFrameRef = useRef<number>(0);
-  const lastSpawnRef = useRef<number>(0);
+  const spawnAccumulatorRef = useRef<number>(0);
   const seededRef = useRef(false);
 
   const spawnParticle = useCallback(
@@ -69,7 +69,7 @@ export function useParticleEngine(
       return {
         x: -8 + Math.random() * width * 0.06,
         y: height * 0.08 + Math.random() * height * 0.84,
-        vx: 0.6 + Math.random() * 0.8,
+        vx: 0.5 + Math.random() * 1.0,
         vy: (Math.random() - 0.5) * 0.4,
         radius: 3.5 + Math.random() * 3.5,
         opacity: 0,
@@ -77,7 +77,7 @@ export function useParticleEngine(
         color: randomFrom(DIRTY_COLORS),
         phase: "dirty",
         life: 0,
-        maxLife: 1200 + Math.random() * 600,
+        maxLife: 900 + Math.random() * 1200,
       };
     },
     [config.mode]
@@ -151,7 +151,7 @@ export function useParticleEngine(
         if (p.life >= p.maxLife) {
           p.phase = "clean";
           p.life = 0;
-          p.maxLife = 500 + Math.random() * 400;
+          p.maxLife = 400 + Math.random() * 600;
           p.color = randomFrom(CLEAN_COLORS);
           p.radius = 1.5 + Math.random() * 2;
           p.opacity = 0.5 + Math.random() * 0.3;
@@ -323,7 +323,7 @@ export function useParticleEngine(
             p.vx = 0.6 + Math.random() * 0.8;
             p.vy = (Math.random() - 0.5) * 0.3;
             p.life = Math.floor(Math.random() * 150);
-            p.maxLife = 500 + Math.random() * 400;
+            p.maxLife = 400 + Math.random() * 600;
           }
         } else {
           p.x = Math.random() * w;
@@ -343,15 +343,19 @@ export function useParticleEngine(
       const width = rect.width;
       const height = rect.height;
 
-      // Batch spawn to maintain density
-      const spawnInterval = 1000 / config.spawnRate;
-      if (timestamp - lastSpawnRef.current > spawnInterval) {
-        const deficit = config.maxParticles - particlesRef.current.length;
-        const batchSize = Math.min(deficit, Math.ceil(config.spawnRate / 6));
-        for (let i = 0; i < batchSize; i++) {
-          particlesRef.current.push(spawnParticle(width, height));
+      // Continuous spawning — accumulate fractional particles per frame
+      const deficit = config.maxParticles - particlesRef.current.length;
+      if (deficit > 0) {
+        // ~60fps assumed, spawn evenly across frames
+        spawnAccumulatorRef.current += config.spawnRate / 60;
+        const toSpawn = Math.min(Math.floor(spawnAccumulatorRef.current), deficit);
+        for (let i = 0; i < toSpawn; i++) {
+          const p = spawnParticle(width, height);
+          // Stagger spawn positions slightly so they don't cluster at the edge
+          p.x += Math.random() * width * 0.03 * i;
+          particlesRef.current.push(p);
         }
-        lastSpawnRef.current = timestamp;
+        spawnAccumulatorRef.current -= toSpawn;
       }
 
       // Update
@@ -381,6 +385,7 @@ export function useParticleEngine(
       observer.disconnect();
       particlesRef.current = [];
       seededRef.current = false;
+      spawnAccumulatorRef.current = 0;
     };
   }, [canvasRef, config, spawnParticle, updateParticle]);
 }
