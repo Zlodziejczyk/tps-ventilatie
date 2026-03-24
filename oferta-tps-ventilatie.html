@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oferta dla TPS Ventilatie — Pushly.nl</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #030712; --surface: #0a1120; --surface2: #111827; --border: rgba(255,255,255,0.08);
+    --blue: #3b82f6; --sky: #38bdf8; --emerald: #34d399; --violet: #8b5cf6;
+    --amber: #f59e0b; --rose: #f43f5e; --text: #f1f5f9; --muted: #94a3b8; --dim: #64748b;
+    --radius: 14px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--sky); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ::selection { background: rgba(56,189,248,0.3); }
+
+  .w { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.03em; }
+  h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.02em; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; }
+  h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+  .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; max-width: 700px; }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; }
+  .tag-b { background: rgba(56,189,248,0.1); color: var(--sky); border: 1px solid rgba(56,189,248,0.25); }
+  .tag-g { background: rgba(52,211,153,0.1); color: var(--emerald); border: 1px solid rgba(52,211,153,0.25); }
+  .tag-v { background: rgba(139,92,246,0.1); color: var(--violet); border: 1px solid rgba(139,92,246,0.25); }
+  .tag-a { background: rgba(245,158,11,0.1); color: var(--amber); border: 1px solid rgba(245,158,11,0.25); }
+  .tag-r { background: rgba(244,63,94,0.1); color: var(--rose); border: 1px solid rgba(244,63,94,0.25); }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .grid { display: grid; gap: 14px; }
+  .g2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+  .pkg { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; position: relative; overflow: hidden; }
+  .pkg.pop { border-color: rgba(56,189,248,0.35); background: linear-gradient(135deg, rgba(56,189,248,0.06), rgba(99,102,241,0.04)); }
+  .pkg .price { font-size: 2.4rem; font-weight: 800; color: white; }
+  .pkg .price span { font-size: 0.8rem; font-weight: 400; color: var(--dim); }
+  .pkg .price .old { font-size: 1.2rem; color: var(--dim); text-decoration: line-through; margin-right: 8px; font-weight: 500; }
+  .pkg ul { list-style: none; margin-top: 16px; }
+  .pkg li { font-size: 0.85rem; color: var(--muted); padding: 6px 0; padding-left: 24px; position: relative; }
+  .pkg li::before { content: '\2713'; position: absolute; left: 0; color: var(--sky); font-weight: 700; }
+  .pop-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; background: linear-gradient(135deg, var(--sky), var(--blue)); color: white; padding: 3px 12px; border-radius: 999px; display: inline-block; margin-bottom: 12px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--dim); font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  td { color: var(--muted); }
+  .tw { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+
+  .note { border-radius: var(--radius); padding: 20px 24px; margin-top: 16px; }
+  .note p, .note li { font-size: 0.85rem; color: var(--muted); }
+  .note strong { color: var(--text); }
+  .note-blue { background: rgba(56,189,248,0.05); border: 1px solid rgba(56,189,248,0.15); }
+  .note-amber { background: rgba(245,158,11,0.05); border: 1px solid rgba(245,158,11,0.15); }
+  .note-green { background: rgba(52,211,153,0.05); border: 1px solid rgba(52,211,153,0.15); }
+  .note-rose { background: rgba(244,63,94,0.05); border: 1px solid rgba(244,63,94,0.15); }
+
+  ul.plain { list-style: disc; padding-left: 20px; }
+  ul.plain li { font-size: 0.85rem; color: var(--muted); padding: 3px 0; }
+  ul.plain strong { color: var(--text); }
+
+  .sep { display: flex; align-items: center; gap: 14px; margin: 32px 0 20px; }
+  .sep::before, .sep::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .sep span { color: var(--dim); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .service-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+  .service-card h4 { color: var(--text); margin-bottom: 8px; }
+  .service-card p { font-size: 0.82rem; color: var(--muted); }
+  .service-icon { font-size: 1.5rem; margin-bottom: 10px; }
+
+  .cta-block { text-align: center; padding: 48px 24px; }
+  .cta-btn { display: inline-block; padding: 14px 40px; border-radius: 12px; font-size: 1rem; font-weight: 700; color: white; background: linear-gradient(135deg, var(--sky), var(--blue)); text-decoration: none; transition: transform 0.2s; }
+  .cta-btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+  .highlight-row td:first-child { color: var(--text); font-weight: 500; }
+
+  .vision-feature { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; }
+  .vision-feature .icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); }
+  .vision-feature .content h4 { color: var(--text); font-size: 0.88rem; margin-bottom: 2px; }
+  .vision-feature .content p { font-size: 0.82rem; color: var(--muted); }
+
+  @media print {
+    body { background: white; color: #1a1a1a; }
+    .card, .pkg, .tw, .note, .service-card { border-color: #e5e7eb; background: #fafafa; }
+    h1, h2, h3, h4, .price { color: #111; }
+    section { break-inside: avoid; }
+    a { color: #2563eb; }
+    .tag { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+  @media (max-width: 640px) {
+    section { padding: 36px 0; }
+    .g2, .services-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HEADER -->
+<header style="padding: 64px 0 40px; border-bottom: 1px solid var(--border);">
+  <div class="w">
+    <p style="color: var(--dim); font-size: 0.75rem; margin-bottom: 12px;">OFERTA &mdash; Pushly.nl &middot; Marzec 2026</p>
+    <h1 style="line-height: 1.2;">Oferta Cyfrowego Wzrostu<br><span style="color: var(--sky);">dla TPS Ventilatie</span></h1>
+    <p style="color: var(--muted); margin-top: 12px; max-width: 640px; font-size: 0.95rem;">
+      Cze&#347;&#263; Tomasz! Oskar z Pushly.nl tutaj. Zostali&#347;my sobie poleceni przez naszego wsp&oacute;lnego znajomego. Przeanalizowa&#322;em Twoj&#261; obecn&#261; stron&#281; internetow&#261; i dzia&#322;alno&#347;&#263; online &mdash; widz&#281; ogromny potencja&#322; wzrostu dla TPS Ventilatie. Poni&#380;ej znajdziesz szczeg&oacute;&#322;ow&#261; ofert&#281; tego, co mog&#281; dla Ciebie zrobi&#263;.
+    </p>
+  </div>
+</header>
+
+
+<!-- SECTION 1: CURRENT SITUATION -->
+<section>
+  <div class="w">
+    <div class="tag tag-r">Obecna sytuacja</div>
+    <h2>Analiza Twojej Obecno&#347;ci Online</h2>
+    <p class="sub">TPS Ventilatie to solidna firma z doskona&#322;ymi opiniami klient&oacute;w. Ale Twoja obecno&#347;&#263; online nie odzwierciedla jako&#347;ci us&#322;ug, kt&oacute;re &#347;wiadczysz.</p>
+
+    <div class="grid g3" style="margin-bottom: 20px;">
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 2rem; font-weight: 800; color: var(--amber);">4,9 / 5</p>
+        <p style="color: var(--muted); font-size: 0.82rem;">Google &mdash; 34 opinie</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 2rem; font-weight: 800; color: var(--emerald);">4,7 / 5</p>
+        <p style="color: var(--muted); font-size: 0.82rem;">Werkspot &mdash; 65 opinii</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 2rem; font-weight: 800; color: var(--sky);">od 2009</p>
+        <p style="color: var(--muted); font-size: 0.82rem;">17 lat do&#347;wiadczenia</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3 style="color: var(--rose);">Co mo&#380;na poprawi&#263;</h3>
+        <ul class="plain" style="margin-top: 10px;">
+          <li>Strona na WordPress &mdash; wolna, przestarza&#322;y design</li>
+          <li>Brak optymalizacji mobilnej (wi&#281;kszo&#347;&#263; klient&oacute;w szuka z telefonu)</li>
+          <li>Facebook: <strong>58 obserwuj&#261;cych</strong> &mdash; ogromny potencja&#322; wzrostu</li>
+          <li>Brak automatyzacji &mdash; ka&#380;dy lead wymaga r&#281;cznej obs&#322;ugi</li>
+          <li>Brak automatycznego zbierania nowych opinii po ka&#380;dej us&#322;udze</li>
+          <li>Brak systemu rezerwacji online</li>
+          <li>Brak kampanii reklamowych (Google/Meta)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="color: var(--emerald);">Twoje mocne strony</h3>
+        <ul class="plain" style="margin-top: 10px;">
+          <li><strong>Google: 4,9/5 (34 opinie)</strong> &mdash; wybitna reputacja online</li>
+          <li><strong>Werkspot: 4,7/5 (65 opinii)</strong> &mdash; zweryfikowane recenzje klient&oacute;w</li>
+          <li><strong>Dzia&#322;alno&#347;&#263; od 2009</strong> &mdash; 17 lat do&#347;wiadczenia w bran&#380;y</li>
+          <li><strong>Szeroki zakres us&#322;ug</strong> &mdash; wentylacja, klimatyzacja, pompy ciep&#322;a</li>
+          <li><strong>Konkurencyjne ceny</strong> &mdash; od &#8364;105 do &#8364;3500</li>
+          <li><strong>Brak koszt&oacute;w dojazdu</strong> &mdash; do 60km od Zoetermeer</li>
+          <li><strong>Szybka obs&#322;uga</strong> &mdash; kr&oacute;tkie terminy realizacji</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note note-blue">
+      <p><strong>Wniosek:</strong> Masz fantastyczne opinie &mdash; 4,9 na Google i 4,7 na Werkspot. Twoje us&#322;ugi s&#261; na najwy&#380;szym poziomie. Ale Twoja strona internetowa i cyfrowa obecno&#347;&#263; nie oddaj&#261; tej jako&#347;ci. Z odpowiednimi narz&#281;dziami mo&#380;esz podwoi&#263; ilo&#347;&#263; zapyta&#324;. Pushly.nl mo&#380;e to zrobi&#263;.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 2: WHAT WE DELIVER -->
+<section>
+  <div class="w">
+    <div class="tag tag-g">Co dostarczamy</div>
+    <h2>Kompletny System Cyfrowego Wzrostu</h2>
+    <p class="sub">Wszystko, czego potrzebuje TPS Ventilatie, aby dominowa&#263; online w regionie Zoetermeer i okolic.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">&#127760;</div>
+        <h4>W&#322;asna Strona Internetowa</h4>
+        <p>W pe&#322;ni niestandardowa aplikacja webowa zbudowana w <strong>Node.js / Next.js</strong>. &#379;adnych szablon&oacute;w WordPress &mdash; szybka, animowana, profesjonalna strona, kt&oacute;ra wygl&#261;da jak projekt za &#8364;5.000+. PageSpeed: 99/100.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#9968;&#65039;</div>
+        <h4>Hosting i Utrzymanie</h4>
+        <p>Pushly.nl w pe&#322;ni zarz&#261;dza hostingiem Twojej strony. Szybkie serwery, certyfikat SSL, regularne aktualizacje i monitorowanie &mdash; Ty nie musisz si&#281; niczym martwi&#263;.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128200;</div>
+        <h4>CRM i Zarz&#261;dzanie Klientami</h4>
+        <p>System do zarz&#261;dzania kontaktami i pipeline&rsquo;em sprzeda&#380;owym. Ka&#380;dy lead jest &#347;ledzony, &#380;aden potencjalny klient nie zostanie pomini&#281;ty.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128640;</div>
+        <h4>Kampanie Google &amp; Meta</h4>
+        <p>Profesjonalne zarz&#261;dzanie kampaniami reklamowymi. Docieramy do klient&oacute;w szukaj&#261;cych us&#322;ug wentylacyjnych w Twoim regionie. Optymalizacja i raportowanie w cenie.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#9889;</div>
+        <h4>Automatyczne Kontaktowanie Lead&oacute;w</h4>
+        <p>Ka&#380;dy nowy lead otrzymuje automatyczn&#261; odpowied&#378; w ci&#261;gu 60 sekund przez SMS i e-mail. Nigdy wi&#281;cej utraconych szans.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#11088;</div>
+        <h4>Automatyzacja Opinii Google</h4>
+        <p>Po ka&#380;dej uko&#324;czonej us&#322;udze system automatycznie wysy&#322;a pro&#347;b&#281; o opini&#281;. Wi&#281;cej opinii = wi&#281;cej zaufania = wi&#281;cej klient&oacute;w.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128197;</div>
+        <h4>System Rezerwacji Online</h4>
+        <p>Klienci mog&#261; rezerwowa&#263; us&#322;ugi bezpo&#347;rednio przez stron&#281;. Automatyczne potwierdzenia i przypomnienia &mdash; mniej dzwonienia, wi&#281;cej zlece&#324;.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">&#128202;</div>
+        <h4>Miesi&#281;czny Raport &amp; Wsparcie</h4>
+        <p>Co miesi&#261;c otrzymujesz raport z wynikami: ruch na stronie, leady, konwersje, kampanie. Plus sta&#322;e wsparcie od naszego zespo&#322;u.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 3: WEBSITE VISION -->
+<section>
+  <div class="w">
+    <div class="tag tag-v">Wizja strony</div>
+    <h2>Nowa Strona tpsventilatie.nl</h2>
+    <p class="sub">W pe&#322;ni na zam&oacute;wienie, zbudowana specjalnie dla TPS Ventilatie. Oto co b&#281;dzie zawiera&#263;:</p>
+
+    <div class="card">
+      <div class="vision-feature">
+        <div class="icon">&#127968;</div>
+        <div class="content">
+          <h4>Animowana Strona G&#322;&oacute;wna</h4>
+          <p>Profesjonalny hero z animacjami, kt&oacute;ry natychmiast buduje zaufanie. Przycisk WhatsApp i telefon zawsze widoczny.</p>
+        </div>
+      </div>
+      <div class="vision-feature">
+        <div class="icon">&#128736;</div>
+        <div class="content">
+          <h4>Wszystkie Us&#322;ugi z Cenami</h4>
+          <p>WTW Unit (wymiana, konserwacja, regulacja) + Wentylacja Mechaniczna (konserwacja, wymiana, wentylatory dachowe) + Klimatyzacja + Pompy Ciep&#322;a. Ka&#380;da us&#322;uga z cenami i szczeg&oacute;&#322;ami pakiet&oacute;w.</p>
+        </div>
+      </div>
+      <div class="vision-feature">
+        <div class="icon">&#128172;</div>
+        <div class="content">
+          <h4>Opinie Klient&oacute;w</h4>
+          <p>Integracja z Google (4,9/5) i Werkspot (4,7/5). Prezentacja 99 opinii w atrakcyjnym formacie, kt&oacute;ry natychmiast buduje zaufanie u nowych klient&oacute;w.</p>
+        </div>
+      </div>
+      <div class="vision-feature">
+        <div class="icon">&#128221;</div>
+        <div class="content">
+          <h4>Formularz Kontaktowy &amp; Rezerwacja</h4>
+          <p>Inteligentny formularz z wyborem us&#322;ugi, dat&#261; i lokalizacj&#261;. Automatyczne potwierdzenie &mdash; klient wie, &#380;e jego zg&#322;oszenie dotar&#322;o.</p>
+        </div>
+      </div>
+      <div class="vision-feature">
+        <div class="icon">&#128241;</div>
+        <div class="content">
+          <h4>Mobile-First &amp; Ultraszybka</h4>
+          <p>80%+ ludzi szuka z telefonu. Strona b&#281;dzie perfekcyjna na ka&#380;dym urz&#261;dzeniu. PageSpeed 99/100 &mdash; b&#322;yskawiczne &#322;adowanie.</p>
+        </div>
+      </div>
+      <div class="vision-feature">
+        <div class="icon">&#128178;</div>
+        <div class="content">
+          <h4>WhatsApp &amp; Telefon CTA</h4>
+          <p>Przyciski WhatsApp i telefonu na ka&#380;dej stronie. Klient mo&#380;e skontaktowa&#263; si&#281; jednym klikni&#281;ciem.</p>
+        </div>
+      </div>
+      <div class="vision-feature">
+        <div class="icon">&#128506;</div>
+        <div class="content">
+          <h4>Dane Firmy &amp; Mapa</h4>
+          <p>Adres (Industrieweg 6 B, Zoetermeer), KvK, numer telefonu, e-mail &mdash; wszystko przejrzy&#347;cie i profesjonalnie. Mapa Google z lokalizacj&#261;.</p>
+        </div>
+      </div>
+      <div class="vision-feature">
+        <div class="icon">&#128270;</div>
+        <div class="content">
+          <h4>SEO &amp; Lokalna Widoczno&#347;&#263;</h4>
+          <p>Zoptymalizowana pod k&#261;tem wyszukiwarek. Gdy kto&#347; w Zoetermeer szuka &bdquo;ventilatie onderhoud&rdquo; &mdash; TPS Ventilatie pojawia si&#281; na g&oacute;rze.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note note-green">
+      <p><strong>Technologia:</strong> Node.js / Next.js / React &mdash; ta sama technologia, kt&oacute;r&#261; u&#380;ywaj&#261; Netflix, TikTok i Uber. &#379;adnego wolnego WordPressa &mdash; czysta, szybka, profesjonalna aplikacja webowa.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 4: PRICING -->
+<section id="pricing">
+  <div class="w">
+    <div class="tag tag-a">Specjalna oferta</div>
+    <h2>Pakiet Basis &mdash; Specjalna Cena dla Ciebie</h2>
+    <p class="sub">Jako &#380;e zostali&#347;my sobie poleceni, chc&#281; Ci zaoferowa&#263; specjaln&#261; cen&#281; na start wsp&oacute;&#322;pracy.</p>
+
+    <div style="max-width: 480px; margin: 0 auto;">
+      <div class="pkg pop">
+        <div class="pop-tag">Oferta Specjalna</div>
+        <p style="color: var(--sky); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Pakiet Basis</p>
+        <div class="price">
+          <span class="old">&euro;297</span>&euro;150<span>/mies.</span>
+        </div>
+        <p style="color: var(--emerald); font-size: 0.82rem; font-weight: 600; margin-top: 6px;">Oszcz&#281;dzasz &euro;147 miesi&#281;cznie!</p>
+        <ul>
+          <li>W&#322;asna strona Next.js (animowana, szybka)</li>
+          <li>Hosting &amp; utrzymanie strony</li>
+          <li>CRM z zarz&#261;dzaniem kontaktami</li>
+          <li>Zarz&#261;dzanie kampaniami Google &amp; Meta</li>
+          <li>Automatyczne kontaktowanie lead&oacute;w (SMS &amp; e-mail)</li>
+          <li>Automatyzacja opinii Google</li>
+          <li>System rezerwacji online</li>
+          <li>Formularz kontaktowy</li>
+          <li>WhatsApp &amp; telefon CTA</li>
+          <li>Miesi&#281;czny raport &amp; wsparcie</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top: 24px;">
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 1.8rem; font-weight: 800; color: var(--emerald);">&euro;0</p>
+        <p style="color: var(--muted); font-size: 0.82rem;">Koszty konfiguracji</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 1.8rem; font-weight: 800; color: var(--sky);">30 dni</p>
+        <p style="color: var(--muted); font-size: 0.82rem;">Gwarancja zwrotu pieni&#281;dzy</p>
+      </div>
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 1.8rem; font-weight: 800; color: var(--amber);">0 mies.</p>
+        <p style="color: var(--muted); font-size: 0.82rem;">Minimalny kontrakt &mdash; rezygnacja w ka&#380;dej chwili</p>
+      </div>
+    </div>
+
+    <div class="note note-amber">
+      <p><strong>Uwaga dot. reklam:</strong> Bud&#380;et reklamowy (Google/Meta) jest op&#322;acany bezpo&#347;rednio przez Ciebie do Google/Meta. Zalecany minimalny bud&#380;et: &euro;300-500/mies. na Google, &euro;200-400/mies. na Meta. Zarz&#261;dzanie kampaniami jest w cenie pakietu.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 5: COMPARISON -->
+<section>
+  <div class="w">
+    <div class="tag tag-b">Por&oacute;wnanie</div>
+    <h2>Pushly.nl vs. Tradycyjna Agencja</h2>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th></th><th style="color: var(--sky);">Pushly.nl</th><th>Tradycyjna agencja</th></tr></thead>
+        <tbody>
+          <tr class="highlight-row"><td>Koszty konfiguracji</td><td style="color:var(--emerald); font-weight:600;">&euro;0</td><td>&euro;1.500 &ndash; &euro;5.000+</td></tr>
+          <tr class="highlight-row"><td>Kontrakt</td><td style="color:var(--emerald); font-weight:600;">Miesi&#281;czna rezygnacja</td><td>6&ndash;12 miesi&#281;cy</td></tr>
+          <tr class="highlight-row"><td>Strona gotowa</td><td style="color:var(--emerald); font-weight:600;">24&ndash;48 godzin</td><td>4&ndash;8 tygodni</td></tr>
+          <tr class="highlight-row"><td>Technologia</td><td style="color:var(--emerald); font-weight:600;">Next.js / React</td><td>WordPress / Wix</td></tr>
+          <tr class="highlight-row"><td>PageSpeed</td><td style="color:var(--emerald); font-weight:600;">99/100</td><td>40&ndash;70</td></tr>
+          <tr class="highlight-row"><td>Obs&#322;uga lead&oacute;w</td><td style="color:var(--emerald); font-weight:600;">Automatyczna &lt; 60 sek.</td><td>R&#281;czna (mo&#380;e)</td></tr>
+          <tr class="highlight-row"><td>Opinie Google</td><td style="color:var(--emerald); font-weight:600;">Automatyzacja w cenie</td><td>Nie</td></tr>
+          <tr class="highlight-row"><td>CRM</td><td style="color:var(--emerald); font-weight:600;">W cenie</td><td>Dodatkowy koszt</td></tr>
+          <tr class="highlight-row"><td>System rezerwacji</td><td style="color:var(--emerald); font-weight:600;">W cenie</td><td>Dodatkowy koszt</td></tr>
+          <tr class="highlight-row"><td>Gwarancja</td><td style="color:var(--emerald); font-weight:600;">30 dni zwrotu</td><td>Nie</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 6: FACEBOOK GROWTH -->
+<section>
+  <div class="w">
+    <div class="tag tag-v">Strategia wzrostu</div>
+    <h2>Facebook: od 58 do Setek Obserwuj&#261;cych</h2>
+    <p class="sub">Twoja strona na Facebooku ma solidne fundamenty. Oto jak j&#261; rozwiniemy:</p>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3>Etap 1: Optymalizacja</h3>
+        <ul class="plain" style="margin-top: 10px;">
+          <li>Profesjonalne zdj&#281;cie profilowe i ok&#322;adka</li>
+          <li>Kompletne informacje firmowe</li>
+          <li>Link do nowej strony internetowej</li>
+          <li>Przycisk CTA (WhatsApp / Rezerwacja)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Etap 2: Content &amp; Reklamy</h3>
+        <ul class="plain" style="margin-top: 10px;">
+          <li>Regularne posty: zdj&#281;cia przed/po, porady</li>
+          <li>Targetowane reklamy na region Zoetermeer</li>
+          <li>Kampanie na generowanie lead&oacute;w</li>
+          <li>Opinie klient&oacute;w jako social proof</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FREE MOCKUP OFFER -->
+<section>
+  <div class="w">
+    <div style="background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(139,92,246,0.08)); border: 1px solid rgba(56,189,248,0.25); border-radius: var(--radius); padding: 40px 32px; text-align: center;">
+      <div class="pop-tag" style="margin-bottom: 16px;">Bez Zobowi&#261;za&#324;</div>
+      <h2 style="margin-bottom: 12px; font-size: 1.6rem;">Darmowy Mockup Twojej Nowej Strony</h2>
+      <p style="color: var(--muted); font-size: 0.95rem; max-width: 600px; margin: 0 auto 24px;">
+        Zanim podejmiesz jakiekolwiek decyzje &mdash; przygotuj&#281; dla Ciebie <strong style="color: var(--text);">darmowy mockup aplikacji webowej</strong> TPS Ventilatie. Zobaczysz z g&oacute;ry, jak b&#281;dzie wygl&#261;da&#263; Twoja nowa strona i jakie ma mo&#380;liwo&#347;ci. Ca&#322;kowicie za darmo i bez zobowi&#261;za&#324;.
+      </p>
+      <div class="grid g3" style="max-width: 660px; margin: 0 auto 24px;">
+        <div class="card" style="text-align: center; padding: 16px;">
+          <p style="font-size: 1.2rem; margin-bottom: 4px;">&#127912;</p>
+          <p style="color: var(--text); font-size: 0.82rem; font-weight: 600;">Pe&#322;ny design</p>
+          <p style="color: var(--dim); font-size: 0.75rem;">Zobaczysz dok&#322;adnie jak b&#281;dzie wygl&#261;da&#263; strona</p>
+        </div>
+        <div class="card" style="text-align: center; padding: 16px;">
+          <p style="font-size: 1.2rem; margin-bottom: 4px;">&#128176;</p>
+          <p style="color: var(--text); font-size: 0.82rem; font-weight: 600;">100% za darmo</p>
+          <p style="color: var(--dim); font-size: 0.75rem;">&#379;adnych ukrytych koszt&oacute;w, &#380;adnych zobowi&#261;za&#324;</p>
+        </div>
+        <div class="card" style="text-align: center; padding: 16px;">
+          <p style="font-size: 1.2rem; margin-bottom: 4px;">&#9889;</p>
+          <p style="color: var(--text); font-size: 0.82rem; font-weight: 600;">Gotowy w 48h</p>
+          <p style="color: var(--dim); font-size: 0.75rem;">Szybka realizacja, bez czekania</p>
+        </div>
+      </div>
+      <p style="color: var(--dim); font-size: 0.82rem;">Podoba si&#281;? Ruszamy dalej. Nie podoba si&#281;? &#379;adnego problemu &mdash; zero presji.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION 7: NEXT STEPS / CTA -->
+<section>
+  <div class="w">
+    <div class="tag tag-g">Nast&#281;pne kroki</div>
+    <h2>Jak Zaczynamy?</h2>
+
+    <div class="grid g2" style="margin-top: 8px;">
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; background: rgba(56,189,248,0.15); color: var(--sky);">1</div>
+          <h3 style="margin-bottom: 0;">Darmowy Mockup</h3>
+        </div>
+        <p style="color: var(--muted); font-size: 0.85rem;">Odezwij si&#281; do mnie &mdash; przygotuj&#281; niezobowi&#261;zuj&#261;cy mockup Twojej nowej strony. Zobaczysz mo&#380;liwo&#347;ci bez &#380;adnych zobowi&#261;za&#324;.</p>
+      </div>
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; background: rgba(52,211,153,0.15); color: var(--emerald);">2</div>
+          <h3 style="margin-bottom: 0;">Omawiamy &amp; Dopasowujemy</h3>
+        </div>
+        <p style="color: var(--muted); font-size: 0.85rem;">Przegl&#261;damy mockup razem. Twoje uwagi, pomys&#322;y i poprawki &mdash; dopasowujemy wszystko do Twoich potrzeb.</p>
+      </div>
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; background: rgba(139,92,246,0.15); color: var(--violet);">3</div>
+          <h3 style="margin-bottom: 0;">Decyzja nale&#380;y do Ciebie</h3>
+        </div>
+        <p style="color: var(--muted); font-size: 0.85rem;">Podoba si&#281;? Startujemy z pakietem Basis za &euro;150/mies. Nie jeste&#347; przekonany? &#379;aden problem &mdash; mockup jest Tw&oacute;j za darmo.</p>
+      </div>
+      <div class="card">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; background: rgba(245,158,11,0.15); color: var(--amber);">4</div>
+          <h3 style="margin-bottom: 0;">Startujemy!</h3>
+        </div>
+        <p style="color: var(--muted); font-size: 0.85rem;">Strona live w 24&ndash;48h, kampanie w&#322;&#261;czone, automatyzacja aktywna. TPS Ventilatie zaczyna rosn&#261;&#263; online.</p>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <p style="color: var(--text); font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">Chcesz zobaczy&#263; darmowy mockup?</p>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 24px;">Odezwij si&#281; &mdash; bez zobowi&#261;za&#324;, po prostu poka&#380;&#281; Ci co mog&#281; zrobi&#263;.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;">
+        <a href="tel:+31684474399" class="cta-btn" style="background: linear-gradient(135deg, var(--emerald), #059669);">Zadzwo&#324; do Oskara</a>
+        <a href="mailto:business@pushly.nl" class="cta-btn">business@pushly.nl</a>
+      </div>
+      <p style="color: var(--dim); font-size: 0.78rem; margin-top: 20px;">Pushly.nl &mdash; Digital Growth Systems</p>
+    </div>
+
+    <div class="note note-green">
+      <p><strong>Bez ryzyka:</strong> Darmowy mockup, &euro;0 konfiguracji, miesi&#281;czna rezygnacja, 30 dni gwarancji zwrotu. Je&#347;li nie b&#281;dziesz zadowolony &mdash; nie p&#322;acisz.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
