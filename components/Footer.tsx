@@ -4,7 +4,7 @@ import { SITE } from "@/lib/constants";
 export function Footer() {
   return (
     <footer className="bg-surface-container-low w-full py-16 px-6 mt-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Brand */}
         <div className="space-y-6">
           <div className="font-headline font-bold text-2xl text-primary">
@@ -93,7 +93,7 @@ export function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant/20 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
         <div>&copy; {new Date().getFullYear()} {SITE.name}. {SITE.tagline}.</div>
         <div className="flex gap-6">
           <span>KvK: {SITE.kvk}</span>

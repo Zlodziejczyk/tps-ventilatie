@@ -1,23 +1,28 @@
 import { Icon } from "@/components/Icon";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 
 export function ServicesSection() {
   return (
     <section className="py-24 bg-surface-container-low">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div className="max-w-2xl">
-            <h2 className="text-4xl font-extrabold font-headline mb-4 tracking-tight">
-              Onze Diensten
-            </h2>
-            <p className="text-on-surface-variant text-lg leading-relaxed">
-              Wij bieden gespecialiseerde oplossingen voor elk type woning, van renovatie tot nieuwbouw.
-            </p>
+        <AnimateOnScroll>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl font-extrabold font-headline mb-4 tracking-tight">
+                Onze Diensten
+              </h2>
+              <p className="text-on-surface-variant text-lg leading-relaxed">
+                Wij bieden gespecialiseerde oplossingen voor elk type woning, van renovatie tot nieuwbouw.
+              </p>
+            </div>
           </div>
-        </div>
+        </AnimateOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-12 gap-6">
           {/* WTW */}
-          <div className="md:col-span-6 bg-surface-container-lowest p-10 rounded-4xl shadow-sm flex flex-col justify-between group hover:shadow-md transition-shadow">
+          <StaggerItem className="md:col-span-6">
+          <div className="bg-surface-container-lowest p-10 rounded-4xl shadow-sm flex flex-col justify-between group hover:shadow-md transition-shadow h-full">
             <div>
               <div className="inline-flex items-center gap-2 mb-6 text-tertiary">
                 <Icon name="heat_pump" filled />
@@ -41,9 +46,11 @@ export function ServicesSection() {
               </ul>
             </div>
           </div>
+          </StaggerItem>
 
           {/* MV */}
-          <div className="md:col-span-6 bg-primary p-10 rounded-4xl text-on-primary flex flex-col justify-between overflow-hidden relative">
+          <StaggerItem className="md:col-span-6">
+          <div className="bg-primary p-10 rounded-4xl text-on-primary flex flex-col justify-between overflow-hidden relative h-full">
             <div className="relative z-10">
               <div className="inline-flex items-center gap-2 mb-6 text-primary-fixed">
                 <Icon name="cyclone" filled />
@@ -59,9 +66,11 @@ export function ServicesSection() {
             </div>
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
           </div>
+          </StaggerItem>
 
           {/* Airco */}
-          <div className="md:col-span-12 bg-white p-10 rounded-4xl border-2 border-primary/10 shadow-sm flex flex-col md:flex-row gap-8 items-center group hover:shadow-md transition-shadow overflow-hidden relative">
+          <StaggerItem className="md:col-span-12">
+          <div className="bg-white p-10 rounded-4xl border-2 border-primary/10 shadow-sm flex flex-col md:flex-row gap-8 items-center group hover:shadow-md transition-shadow overflow-hidden relative">
             <div className="flex-1 relative z-10">
               <div className="inline-flex items-center gap-2 mb-6 text-primary">
                 <Icon name="ac_unit" filled />
@@ -82,24 +91,31 @@ export function ServicesSection() {
             </div>
             <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
           </div>
+          </StaggerItem>
 
           {/* Small features */}
-          <div className="md:col-span-4 bg-surface-container-highest p-8 rounded-4xl">
+          <StaggerItem className="md:col-span-4">
+          <div className="bg-surface-container-highest p-8 rounded-4xl">
             <span className="material-symbols-outlined text-primary mb-4 text-4xl block">cleaning_services</span>
             <h4 className="text-xl font-bold mb-2">Kanaalreiniging</h4>
             <p className="text-on-surface-variant text-sm">Verwijder stof, schimmels en bacteriën uit uw luchtslangen voor optimale hygiëne.</p>
           </div>
-          <div className="md:col-span-4 bg-surface-container-highest p-8 rounded-4xl">
+          </StaggerItem>
+          <StaggerItem className="md:col-span-4">
+          <div className="bg-surface-container-highest p-8 rounded-4xl">
             <span className="material-symbols-outlined text-primary mb-4 text-4xl block">settings_input_component</span>
             <h4 className="text-xl font-bold mb-2">Onderhoud</h4>
             <p className="text-on-surface-variant text-sm">Periodieke controles voor een levenslange optimale werking van uw systemen.</p>
           </div>
-          <div className="md:col-span-4 bg-tertiary p-8 rounded-4xl text-on-tertiary">
+          </StaggerItem>
+          <StaggerItem className="md:col-span-4">
+          <div className="bg-tertiary p-8 rounded-4xl text-on-tertiary">
             <Icon name="insights" filled className="mb-4 text-4xl block" />
             <h4 className="text-xl font-bold mb-2">Advies op maat</h4>
             <p className="opacity-80 text-sm">Altijd de beste oplossing voor uw specifieke woonsituatie en budget.</p>
           </div>
-        </div>
+          </StaggerItem>
+        </StaggerChildren>
       </div>
     </section>
   );
