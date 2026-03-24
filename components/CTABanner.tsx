@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE } from "@/lib/constants";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 interface CTABannerProps {
   heading: string;
@@ -8,7 +9,7 @@ interface CTABannerProps {
 
 export function CTABanner({ heading, description }: CTABannerProps) {
   return (
-    <section className="max-w-7xl mx-auto px-6 mb-20">
+    <AnimateOnScroll as="section" className="max-w-7xl mx-auto px-6 mb-20">
       <div className="bg-on-primary-fixed text-white rounded-3xl p-10 md:p-16 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-12">
         {/* Decorative blur */}
         <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-primary/20 rounded-full blur-3xl" />
@@ -21,7 +22,7 @@ export function CTABanner({ heading, description }: CTABannerProps) {
           <div className="flex flex-wrap gap-4 justify-center md:justify-start">
             <a
               href={`tel:${SITE.phone}`}
-              className="flex items-center gap-3 bg-white text-on-primary-fixed px-6 py-3 rounded-xl font-bold hover:bg-primary-fixed transition-colors"
+              className="btn-hover flex items-center gap-3 bg-surface-container-lowest text-on-primary-fixed px-6 py-3 rounded-xl font-bold hover:bg-primary-fixed transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
               <span className="material-symbols-outlined">phone</span>
               {SITE.phoneDisplay}
@@ -30,7 +31,7 @@ export function CTABanner({ heading, description }: CTABannerProps) {
               href={SITE.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-opacity"
+              className="btn-hover flex items-center gap-3 bg-[#25D366] text-white px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
             >
               <span className="material-symbols-outlined">chat</span>
               WhatsApp
@@ -53,6 +54,6 @@ export function CTABanner({ heading, description }: CTABannerProps) {
           </div>
         </div>
       </div>
-    </section>
+    </AnimateOnScroll>
   );
 }

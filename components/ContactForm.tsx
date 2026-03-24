@@ -22,7 +22,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-tertiary-fixed/20 border border-tertiary/20 rounded-2xl p-8 text-center">
+      <div className="bg-tertiary-fixed/20 rounded-2xl p-8 text-center">
         <span className="material-symbols-outlined text-tertiary text-4xl mb-4 block">check_circle</span>
         <h3 className="text-xl font-bold font-headline mb-2">Bericht Verzonden</h3>
         <p className="text-on-surface-variant">Bedankt voor uw bericht. Wij nemen zo snel mogelijk contact met u op.</p>
@@ -97,7 +97,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full signature-gradient text-on-primary py-4 rounded-xl font-bold text-lg shadow-md hover:shadow-lg transition-all active:scale-[0.98] disabled:opacity-60"
+        className="w-full signature-gradient text-on-primary py-4 rounded-xl font-bold text-lg shadow-md hover:shadow-lg transition-all active:scale-[0.98] disabled:opacity-60 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer"
       >
         {status === "sending" ? "Verzenden..." : "Bericht Versturen"}
       </button>

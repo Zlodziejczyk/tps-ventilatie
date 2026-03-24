@@ -35,7 +35,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             </span>
             <button
               onClick={onClose}
-              className="p-2 text-on-surface-variant"
+              className="p-3 text-on-surface-variant cursor-pointer"
               aria-label="Sluit menu"
             >
               <span className="material-symbols-outlined">close</span>

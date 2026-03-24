@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { CTABanner } from "@/components/CTABanner";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 
 export const metadata: Metadata = {
   title: "Over Ons",
@@ -35,6 +37,7 @@ export default function OverOnsPage() {
     <main className="pt-28 pb-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Breadcrumb */}
+        <AnimateOnScroll>
         <nav className="flex items-center gap-2 text-sm text-on-surface-variant mb-8 font-label">
           <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <span className="material-symbols-outlined text-xs">chevron_right</span>
@@ -44,9 +47,11 @@ export default function OverOnsPage() {
         <h1 className="text-5xl md:text-6xl font-extrabold font-headline tracking-tight text-on-surface mb-8">
           Over <span className="text-primary">Ons</span>
         </h1>
+        </AnimateOnScroll>
 
         {/* About Section */}
         <div className="grid lg:grid-cols-2 gap-16 mb-24">
+          <AnimateOnScroll>
           <div className="space-y-6">
             <p className="text-lg text-on-surface-variant leading-relaxed">
               TPS Ventilatie is opgericht door Thomas, een ervaren en gecertificeerde ventilatiespecialist gevestigd in Zoetermeer. Met jarenlange ervaring in de branche bieden wij hoogwaardige oplossingen voor ventilatie, mechanische afzuiging en airconditioning.
@@ -58,15 +63,17 @@ export default function OverOnsPage() {
               Ons werkgebied strekt zich uit over de regio Zoetermeer en omstreken, inclusief Den Haag, Leiden, Delft en Rotterdam. Wij staan bekend om onze snelle service, transparante tarieven en eerlijk advies.
             </p>
           </div>
+          </AnimateOnScroll>
 
-          <div className="space-y-6">
+          <StaggerChildren className="space-y-6">
             {[
               { icon: "workspace_premium", title: "Gecertificeerd", desc: "Opgeleid volgens de nieuwste normen voor ventilatie en koeltechniek." },
               { icon: "speed", title: "Snel & Betrouwbaar", desc: "Wij streven naar een afspraak binnen 48 uur." },
               { icon: "handshake", title: "Persoonlijk Contact", desc: "U heeft altijd rechtstreeks contact met Thomas." },
               { icon: "payments", title: "Transparante Prijzen", desc: "Geen verborgen kosten — wat u ziet is wat u betaalt." },
             ].map((item) => (
-              <div key={item.title} className="flex gap-4 items-start">
+              <StaggerItem key={item.title}>
+              <div className="flex gap-4 items-start">
                 <div className="shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                   <Icon name={item.icon} className="text-primary" />
                 </div>
@@ -75,12 +82,14 @@ export default function OverOnsPage() {
                   <p className="text-on-surface-variant text-sm">{item.desc}</p>
                 </div>
               </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerChildren>
         </div>
 
         {/* Reviews */}
         <section className="mb-24">
+          <AnimateOnScroll>
           <div className="text-center mb-12">
             <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-bold text-sm mb-4">
               KLANTVERTELLEN
@@ -89,10 +98,12 @@ export default function OverOnsPage() {
               Wat klanten over ons zeggen
             </h2>
           </div>
+          </AnimateOnScroll>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <StaggerChildren className="grid md:grid-cols-3 gap-8">
             {REVIEWS.map((review) => (
-              <div key={review.name} className="bg-surface-container-low p-8 rounded-3xl">
+              <StaggerItem key={review.name}>
+              <div className="bg-surface-container-low p-8 rounded-3xl">
                 <div className="flex text-yellow-500 mb-6">
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Icon key={i} name="star" filled />
@@ -113,8 +124,9 @@ export default function OverOnsPage() {
                   </div>
                 </div>
               </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerChildren>
         </section>
       </div>
 

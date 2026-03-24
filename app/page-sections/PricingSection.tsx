@@ -1,19 +1,24 @@
 import Link from "next/link";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
+import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 
 export function PricingSection() {
   return (
     <section className="py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-6">
+        <AnimateOnScroll>
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold font-headline mb-4">Transparante Tarieven</h2>
           <p className="text-on-surface-variant text-lg">
             Geen verrassingen achteraf. Duidelijke prijzen voor topkwaliteit en installatie.
           </p>
         </div>
+        </AnimateOnScroll>
 
         {/* Ventilatie Pricing */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+        <StaggerChildren className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
           {/* WTW */}
+          <StaggerItem>
           <div className="bg-surface-container-lowest border-2 border-transparent hover:border-primary/20 transition-all rounded-5xl p-10 shadow-sm relative overflow-hidden group">
             <div className="mb-8">
               <h3 className="text-2xl font-bold mb-2">WTW Vervanging</h3>
@@ -36,11 +41,13 @@ export function PricingSection() {
               href="/contact"
               className="block w-full text-center py-4 bg-primary text-on-primary rounded-xl font-bold hover:bg-primary-container transition-colors"
             >
-              Vraag Offerte Aan
+              Offerte Aanvragen
             </Link>
           </div>
+          </StaggerItem>
 
           {/* MV */}
+          <StaggerItem>
           <div className="bg-surface-container-lowest border-2 border-transparent hover:border-primary/20 transition-all rounded-5xl p-10 shadow-sm relative overflow-hidden group">
             <div className="mb-8">
               <h3 className="text-2xl font-bold mb-2">MV Vervanging</h3>
@@ -63,20 +70,23 @@ export function PricingSection() {
               href="/contact"
               className="block w-full text-center py-4 border-2 border-primary text-primary rounded-xl font-bold hover:bg-primary/5 transition-colors"
             >
-              Plan Afspraak
+              Plan Adviesgesprek
             </Link>
           </div>
-        </div>
+          </StaggerItem>
+        </StaggerChildren>
 
         {/* Airco Pricing */}
+        <AnimateOnScroll>
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-8">
             <div className="h-px bg-outline-variant flex-1" />
             <h3 className="text-2xl font-bold font-headline text-on-surface-variant">Airconditioning Systemen</h3>
             <div className="h-px bg-outline-variant flex-1" />
           </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <StaggerChildren className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Single-split */}
+            <StaggerItem>
             <div className="bg-surface-container-low border-2 border-primary/10 hover:border-primary/40 transition-all rounded-5xl p-10 shadow-sm">
               <div className="mb-8">
                 <h3 className="text-2xl font-bold mb-2">Single-split Systeem</h3>
@@ -102,8 +112,10 @@ export function PricingSection() {
                 Offerte Aanvragen
               </Link>
             </div>
+            </StaggerItem>
 
             {/* Multi-split */}
+            <StaggerItem>
             <div className="bg-surface-container-low border-2 border-primary/10 hover:border-primary/40 transition-all rounded-5xl p-10 shadow-sm">
               <div className="mb-8">
                 <h3 className="text-2xl font-bold mb-2">Multi-split Systeem</h3>
@@ -129,12 +141,16 @@ export function PricingSection() {
                 Plan Adviesgesprek
               </Link>
             </div>
-          </div>
+            </StaggerItem>
+          </StaggerChildren>
         </div>
+        </AnimateOnScroll>
 
+        <AnimateOnScroll>
         <p className="text-center mt-12 text-on-surface-variant text-sm font-medium italic">
           * Alle prijzen zijn inclusief BTW, voorrijkosten en klein materiaal. Montageprijzen zijn indicatief.
         </p>
+        </AnimateOnScroll>
       </div>
     </section>
   );

@@ -22,14 +22,14 @@ export function PricingCard({
 }: PricingCardProps) {
   return (
     <div
-      className={`relative rounded-2xl p-6 transition-shadow ${
+      className={`hover-lift relative rounded-2xl p-6 transition-shadow ${
         popular
-          ? "bg-surface-container-lowest border-2 border-primary shadow-2xl scale-105"
+          ? "bg-surface-container-lowest ring-2 ring-primary shadow-2xl scale-105"
           : "bg-surface-container-lowest shadow-[0_20px_40px_rgba(0,31,41,0.06)] hover:shadow-[0_20px_40px_rgba(0,31,41,0.1)]"
       }`}
     >
       {popular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-xs font-bold px-4 py-1 rounded-full">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-xs font-bold px-4 py-1 rounded-full shadow-md">
           Populaire keuze
         </div>
       )}
@@ -67,10 +67,10 @@ export function PricingCard({
 
       <Link
         href={ctaHref}
-        className={`block text-center px-5 py-3 rounded-xl font-semibold text-sm transition-all ${
+        className={`block text-center px-5 py-3 rounded-xl font-semibold text-sm transition-all focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
           popular
             ? "signature-gradient text-on-primary shadow-md active:scale-95"
-            : "bg-surface-container-high text-on-surface hover:bg-surface-container-highest"
+            : "bg-surface-container-high text-on-surface hover:bg-surface-container-highest hover:shadow-md"
         }`}
       >
         {ctaLabel}

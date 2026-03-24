@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { ContactForm } from "@/components/ContactForm";
 import { SITE } from "@/lib/constants";
+import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -15,6 +16,7 @@ export default function ContactPage() {
     <main className="pt-28 pb-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Breadcrumb */}
+        <AnimateOnScroll>
         <nav className="flex items-center gap-2 text-sm text-on-surface-variant mb-8 font-label">
           <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <span className="material-symbols-outlined text-xs">chevron_right</span>
@@ -27,15 +29,19 @@ export default function ContactPage() {
         <p className="text-xl text-on-surface-variant max-w-2xl mb-16 leading-relaxed">
           Heeft u een vraag of wilt u een afspraak maken? Neem gerust contact met ons op.
         </p>
+        </AnimateOnScroll>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Form */}
+          <AnimateOnScroll>
           <div>
             <h2 className="text-2xl font-bold font-headline mb-6">Stuur ons een bericht</h2>
             <ContactForm />
           </div>
+          </AnimateOnScroll>
 
           {/* Contact Info */}
+          <AnimateOnScroll delay={0.15}>
           <div className="space-y-8">
             <h2 className="text-2xl font-bold font-headline mb-6">Contactgegevens</h2>
 
@@ -93,15 +99,21 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="bg-surface-container-high rounded-2xl h-64 flex items-center justify-center">
-              <div className="text-center text-on-surface-variant">
-                <Icon name="map" className="text-4xl mb-2 block mx-auto text-primary/30" />
-                <p className="text-sm">Google Maps</p>
-                <p className="text-xs">{SITE.address}, {SITE.postcode} {SITE.city}</p>
-              </div>
+            {/* Google Maps embed */}
+            <div className="rounded-2xl overflow-hidden h-64">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2448.5!2d4.4932!3d52.0623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b0e4c3e3b9a1%3A0x0!2sIndustrieweg%206B%2C%202712%20LB%20Zoetermeer!5e0!3m2!1sen!2snl!4v1"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="TPS Ventilatie locatie - Industrieweg 6 B, 2712LB Zoetermeer"
+              />
             </div>
           </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </main>

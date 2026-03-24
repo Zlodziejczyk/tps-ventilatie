@@ -19,7 +19,7 @@ export function ServiceCard({
   secondaryAction,
 }: ServiceCardProps) {
   return (
-    <div className="bg-surface-container-lowest rounded-xl p-6 shadow-[0_20px_40px_rgba(0,31,41,0.06)] hover:shadow-[0_20px_40px_rgba(0,31,41,0.1)] transition-shadow relative group">
+    <div className="hover-lift bg-surface-container-lowest rounded-xl p-6 shadow-[0_20px_40px_rgba(0,31,41,0.06)] hover:shadow-[0_20px_40px_rgba(0,31,41,0.1)] transition-shadow relative group cursor-pointer">
       {/* Green corner glow */}
       <div className="absolute top-0 right-0 w-24 h-24 bg-tertiary/5 rounded-bl-[3rem] opacity-0 group-hover:opacity-100 transition-opacity" />
 
@@ -58,7 +58,7 @@ export function ServiceCard({
             {primaryAction && (
               <Link
                 href={primaryAction.href}
-                className="signature-gradient text-on-primary px-5 py-2.5 rounded-lg font-semibold text-sm transition-transform active:scale-95"
+                className="signature-gradient text-on-primary px-5 py-2.5 rounded-lg font-semibold text-sm transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 {primaryAction.label}
               </Link>
