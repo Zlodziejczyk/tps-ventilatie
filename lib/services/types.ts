@@ -166,43 +166,75 @@ export const publishedContentSchema = contentShellSchema.superRefine((c, ctx) =>
   }
 });
 
-// One page node: structure always; content quality upgraded for review/published.
-export const pageSchema = z
-  .object({
-    type: z.enum(["hub", "pillar", "service", "static"]),
-    status: z.enum(["draft", "review", "published"]),
-    primaryKeyword: z.string().min(1),
-    searchIntent: z.enum([
-      "informationeel",
-      "commercieel",
-      "transactioneel",
-      "navigationeel",
-    ]),
-    secondaryKeywords: z.array(z.string()).optional(),
-    navTitle: z.string().min(1),
-    navDescription: z.string().min(1),
-    icon: z.string().min(1),
-    segment: z.string().optional(),
-    pillarSlug: z.string().optional(),
-    serviceSlug: z.string().optional(),
-    pathSegment: z.string().optional(),
-    brandIds: z.array(z.string()).optional(),
-    content: contentShellSchema,
-  })
-  .superRefine((node, ctx) => {
-    if (node.status === "review" || node.status === "published") {
-      const result = publishedContentSchema.safeParse(node.content);
-      if (!result.success) {
-        for (const issue of result.error.issues) {
-          ctx.addIssue({
-            code: "custom",
-            path: ["content", ...issue.path],
-            message: issue.message,
-          });
-        }
+// Fields shared by every node variant (mirrors PageBase).
+const baseNodeFields = {
+  status: z.enum(["draft", "review", "published"]),
+  primaryKeyword: z.string().min(1),
+  searchIntent: z.enum([
+    "informationeel",
+    "commercieel",
+    "transactioneel",
+    "navigationeel",
+  ]),
+  secondaryKeywords: z.array(z.string()).optional(),
+  navTitle: z.string().min(1),
+  navDescription: z.string().min(1),
+  icon: z.string().min(1),
+  content: contentShellSchema,
+};
+
+// Per-variant node schemas, discriminated by `type`. This is the RUNTIME
+// enforcement of the PageNode contract: a service node MUST carry pillarSlug +
+// serviceSlug, a pillar MUST carry pillarSlug, the hub MUST be segment
+// "diensten". A missing/empty slug now fails the gate, so canonicalPath can
+// never emit a `/diensten/undefined` URL (the slug fields are required, not
+// loosely-optional).
+const hubNodeSchema = z.object({
+  type: z.literal("hub"),
+  segment: z.literal("diensten"),
+  ...baseNodeFields,
+});
+const pillarNodeSchema = z.object({
+  type: z.literal("pillar"),
+  pillarSlug: z.string().min(1),
+  ...baseNodeFields,
+});
+const serviceNodeSchema = z.object({
+  type: z.literal("service"),
+  pillarSlug: z.string().min(1),
+  serviceSlug: z.string().min(1),
+  brandIds: z.array(z.string()).optional(),
+  ...baseNodeFields,
+});
+const staticNodeSchema = z.object({
+  type: z.literal("static"),
+  pathSegment: z.string(),
+  ...baseNodeFields,
+});
+
+const pageVariantSchema = z.discriminatedUnion("type", [
+  hubNodeSchema,
+  pillarNodeSchema,
+  serviceNodeSchema,
+  staticNodeSchema,
+]);
+
+// One page node: per-variant structure (discriminated union) always; content
+// quality upgraded for review/published.
+export const pageSchema = pageVariantSchema.superRefine((node, ctx) => {
+  if (node.status === "review" || node.status === "published") {
+    const result = publishedContentSchema.safeParse(node.content);
+    if (!result.success) {
+      for (const issue of result.error.issues) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["content", ...issue.path],
+          message: issue.message,
+        });
       }
     }
-  });
+  }
+});
 
 // The full taxonomy: an array of nodes + cross-record uniqueness (IA-09 anti-
 // cannibalization). Duplicate canonical URL or duplicate primaryKeyword fails.
