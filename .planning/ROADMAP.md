@@ -30,7 +30,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. Every page type has typed required content fields (unique intro ≥120 words, service-specific steps, 3-6 FAQs, brand paragraphs, local angle) such that a missing field is visible/blocking
   4. The service radius reads one corrected value from `lib/constants.ts` — the 50 km / 100 km inconsistency no longer exists anywhere in the codebase
   5. NAP (name, address, phone, service area) resolves from one constants source, ready to feed both visible copy and structured data
-**Plans**: TBD
+**Plans**: 6 plans (4 waves)
+- [ ] 01-01-PLAN.md — Build foundation: add zod + tsx (supply-chain gated), wire prebuild gate, add trailingSlash: false [wave 1]
+- [ ] 01-02-PLAN.md — Extend SITE into the full structured NAP source (name, radius 60, geo, serviceAreas) + SITE-shape assertion [wave 1]
+- [ ] 01-03-PLAN.md — Fix the 50/100 km radius literals to read from SITE.serviceRadiusKm (QA-03) [wave 2]
+- [ ] 01-04-PLAN.md — Taxonomy types: PageNode discriminated union + ContentShell + Zod schemas (structure + status-gated + uniqueness) [wave 2]
+- [ ] 01-05-PLAN.md — Taxonomy data: normalized brands + 4 pillar files (keyword map) + registry (PAGES, urlFor, validateTaxonomy) [wave 3]
+- [ ] 01-06-PLAN.md — Prebuild gate + negative fixture (proves blocking) + Crit-4 radius grep + green npm run build [wave 4]
 
 ### Phase 2: Routes & Service-Page Templates
 **Goal**: Turn the taxonomy into visible, navigable pages — the `/diensten` hub, 4 pillar pages, and ~17 sub-service pages — all generated from the data-driven template with stable URLs, so later SEO and content work has fixed targets.
@@ -92,7 +98,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Taxonomy & Data Model | 0/TBD | Not started | - |
+| 1. Taxonomy & Data Model | 0/6 | Planned | - |
 | 2. Routes & Service-Page Templates | 0/TBD | Not started | - |
 | 3. SEO Infrastructure | 0/TBD | Not started | - |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
