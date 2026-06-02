@@ -42,7 +42,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Wave 2** *(blocked on Wave 1 completion)*
 
 - [x] 01-03-PLAN.md — Fix the 50/100 km radius literals to read from SITE.serviceRadiusKm (QA-03) [wave 2]
-- [ ] 01-04-PLAN.md — Taxonomy types: PageNode discriminated union + ContentShell + Zod schemas (structure + status-gated + uniqueness) [wave 2]
+- [x] 01-04-PLAN.md — Taxonomy types: PageNode discriminated union + ContentShell + Zod schemas (structure + status-gated + uniqueness) [wave 2]
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Taxonomy & Data Model | 3/6 | In Progress|  |
+| 1. Taxonomy & Data Model | 4/6 | In Progress|  |
 | 2. Routes & Service-Page Templates | 0/TBD | Not started | - |
 | 3. SEO Infrastructure | 0/TBD | Not started | - |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
