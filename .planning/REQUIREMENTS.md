@@ -101,21 +101,61 @@ Explicitly excluded for this milestone.
 
 ## Traceability
 
-Populated during roadmap creation (gsd-roadmapper maps each requirement to exactly one phase).
+Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for phase goals and success criteria.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| IA-01 → IA-09 | — | Pending |
-| CONT-01 → CONT-10 | — | Pending |
-| LEAD-01 → LEAD-06 | — | Pending |
-| SEO-01 → SEO-10 | — | Pending |
-| QA-01 → QA-08 | — | Pending |
+| IA-01 | Phase 1 | Pending |
+| IA-02 | Phase 2 | Pending |
+| IA-03 | Phase 2 | Pending |
+| IA-04 | Phase 2 | Pending |
+| IA-05 | Phase 2 | Pending |
+| IA-06 | Phase 2 | Pending |
+| IA-07 | Phase 2 | Pending |
+| IA-08 | Phase 1 | Pending |
+| IA-09 | Phase 1 | Pending |
+| CONT-01 | Phase 4 | Pending |
+| CONT-02 | Phase 4 | Pending |
+| CONT-03 | Phase 4 | Pending |
+| CONT-04 | Phase 4 | Pending |
+| CONT-05 | Phase 4 | Pending |
+| CONT-06 | Phase 4 | Pending |
+| CONT-07 | Phase 4 | Pending |
+| CONT-08 | Phase 4 | Pending |
+| CONT-09 | Phase 4 | Pending |
+| CONT-10 | Phase 4 | Pending |
+| LEAD-01 | Phase 5 | Pending |
+| LEAD-02 | Phase 5 | Pending |
+| LEAD-03 | Phase 5 | Pending |
+| LEAD-04 | Phase 5 | Pending |
+| LEAD-05 | Phase 5 | Pending |
+| LEAD-06 | Phase 5 | Pending |
+| SEO-01 | Phase 3 | Pending |
+| SEO-02 | Phase 3 | Pending |
+| SEO-03 | Phase 3 | Pending |
+| SEO-04 | Phase 3 | Pending |
+| SEO-05 | Phase 3 | Pending |
+| SEO-06 | Phase 3 | Pending |
+| SEO-07 | Phase 3 | Pending |
+| SEO-08 | Phase 1 | Pending |
+| SEO-09 | Phase 3 | Pending |
+| SEO-10 | Phase 5 | Pending |
+| QA-01 | Phase 5 | Pending |
+| QA-02 | Phase 5 | Pending |
+| QA-03 | Phase 1 | Pending |
+| QA-04 | Phase 5 | Pending |
+| QA-05 | Phase 5 | Pending |
+| QA-06 | Phase 5 | Pending |
+| QA-07 | Phase 5 | Pending |
+| QA-08 | Phase 5 | Pending |
+
+**Phase totals:** Phase 1 = 5 · Phase 2 = 6 · Phase 3 = 8 · Phase 4 = 10 · Phase 5 = 14
 
 **Coverage:**
 - v1 requirements: 43 total (IA 9, CONT 10, LEAD 6, SEO 10, QA 8)
-- Mapped to phases: 0 (roadmap pending)
-- Unmapped: 43 ⚠️ (resolved by roadmap)
+- Mapped to phases: 43 ✓ (every requirement in exactly one phase)
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-06-02*
-*Last updated: 2026-06-02 after initial definition*
+*Last updated: 2026-06-02 after roadmap creation (traceability populated)*
