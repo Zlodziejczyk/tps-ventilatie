@@ -27,6 +27,12 @@ Built with Next.js 16 (App Router, static export), TypeScript, and Tailwind CSS 
 - ✓ Animation system: Framer Motion (AnimateOnScroll, StaggerChildren), WebGL aurora, canvas particles — existing
 - ✓ Single source of truth for business data and navigation (`lib/constants.ts`) — existing
 
+<!-- Delivered by GSD phases (proven in-codebase, build-verified). -->
+
+- ✓ **Taxonomy data model** — typed single source of truth in `lib/services/`: a `PageNode` discriminated union + Zod-validated registry of 27 nodes (1 hub + 4 pillars + 17 sub-services + 5 static), the sole `urlFor()` href builder, a normalized brand registry, and the IA-09 keyword map — with a build-blocking prebuild gate enforcing URL/keyword uniqueness and the anti-thin-content bar — _Validated in Phase 1 (IA-01, IA-08, IA-09)_
+- ✓ **NAP single source of truth** — `SITE` extended with the full structured field set (brand name corrected to "TPS klimaattechniek", address/postcode/city/province/country, geo, serviceAreas, serviceRadiusKm) — _Validated in Phase 1 (SEO-08)_
+- ✓ **Service-radius inconsistency fixed at the source** — `SITE.serviceRadiusKm = 60`; all visible copy (tarieven, PricingTabs, WhyTPSSection) derives from it; a grep gate guards against regressions — _Validated in Phase 1 (QA-03)_
+
 ### Active
 
 <!-- This milestone: take the proposal to launch-ready as a full climate-tech, SEO-driven lead site. -->
@@ -57,7 +63,7 @@ Built with Next.js 16 (App Router, static export), TypeScript, and Tailwind CSS 
 - [ ] Measurement: GA4 (or Vercel Analytics) + Google Search Console + sitemap submission (can't run aggressive SEO blind)
 
 **QA & hardening (launch blockers)**
-- [ ] Fix service-area radius inconsistency (50 km vs 100 km across pages)
+- [x] Fix service-area radius inconsistency (50 km vs 100 km across pages) — Phase 1 (QA-03) ✓
 - [ ] Add network error handling to form submit (no silent "sending" hang)
 - [ ] Fix placeholder Google Maps pin to the verified business location
 - [ ] Add form input validation (schema) + honeypot anti-spam
@@ -128,4 +134,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-02 after initialization*
+*Last updated: 2026-06-02 — Phase 1 (Taxonomy & Data Model) complete*
