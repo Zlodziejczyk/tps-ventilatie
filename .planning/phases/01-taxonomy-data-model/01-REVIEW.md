@@ -218,3 +218,24 @@ At minimum add `50 km` and `100km` to the alternation so both spacings of both n
 _Reviewed: 2026-06-02_
 _Reviewer: Claude (gsd-code-reviewer)_
 _Depth: standard_
+
+---
+
+## Orchestrator Remediation (post-review, 2026-06-02)
+
+Findings touching the phase's own must-haves (D-04 discriminated-union contract, QA-03 single-source radius) were fixed before phase verification; the rest are deferred with rationale. After the fixes, `npm run build`, `assert-gate-blocks` (now 3 cases incl. missing-slug), `assert-registry`, and the broadened `check-radius-literals` are all green.
+
+| Finding | Disposition | Commit / Note |
+|---------|-------------|---------------|
+| CR-01 (BLOCKER) — pageSchema not a discriminated union | **FIXED** | `dfdb8e4` — now `z.discriminatedUnion("type", …)` (matches the fix this review suggested). Per-variant slugs required; a service node missing a slug now fails the gate (new `assert-gate-blocks` case proves it). No more `/diensten/undefined`. |
+| WR-02 — home secondary == over-ons primary | **FIXED** | `f0eef32` — dropped `"TPS klimaattechniek"` from home's secondaryKeywords (option a). |
+| WR-03 — urlFor/canonicalPath drift | **FIXED** | `f0eef32` — `urlFor` now delegates to `canonicalPath`; `assert-registry` keeps the equality guard. |
+| WR-04 — radius guard missed spaced/60 forms | **FIXED** | `9d1bffc` — pattern broadened to `straal van [0-9]` + `50/60/100 *km`. |
+| WR-05 — WhyTPSSection hardcoded "60 km" | **FIXED** | `07dd167` — now `${SITE.serviceRadiusKm}`. The broadened guard now catches this class. |
+| WR-01 — brandIds not validated vs BRANDS keys | **DEFERRED** | Phase 2 BrandGrid resolves id→BRANDS and can guard unknowns; gate-level referential validation couples the contract to brand data — a deliberate later decision. Not a phase-1 must-have. |
+| WR-06 — only validate-taxonomy runs in prebuild | **DEFERRED (by design)** | Other assert scripts are on-demand per plan design (recorded explicitly here, as WR-06 requested). Wiring `check-radius-literals` into `prebuild` is worthwhile future hardening. |
+| IN-01 — findByType/findBySlug/validateTaxonomy unused | **ACCEPTED** | Forward-looking scaffolding for Phase 2 nav/sitemap; intentionally retained. |
+| IN-02 — draftShell duplicated ×5 | **ACCEPTED** | In-scope tradeoff (avoided modifying 01-04's types.ts); consolidate when a shared helper module lands. |
+| IN-03/04/05 — magic count, ?tab fallback, ogImage shape | **ACCEPTED** | Minor / pre-existing; ogImage tightening tracked for Phase 3 OG wiring. |
+
+Note: brand-name "TPS Ventilatie" → "TPS klimaattechniek" propagation across visible copy (e.g. WhyTPSSection h2) is intentionally **out of phase-1 scope** — 01-02 corrected the `SITE` source; visible-copy propagation is a later content phase.
