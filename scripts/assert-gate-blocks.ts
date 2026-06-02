@@ -30,6 +30,20 @@ assert.equal(
   "a published node with a <120-word intro must make the gate fail (thin content)",
 );
 
+// (C) Missing slug — a service node stripped of its serviceSlug must fail the
+//     discriminated-union gate (it would otherwise yield a /…/undefined URL).
+const noSlugClone = structuredClone(PAGES) as unknown as Record<string, unknown>[];
+const service = noSlugClone.find((node) => node.type === "service");
+if (service) {
+  delete service.serviceSlug;
+}
+const noSlugResult = pagesSchema.safeParse(noSlugClone);
+assert.equal(
+  noSlugResult.success,
+  false,
+  "a service node missing serviceSlug must fail the discriminated-union gate",
+);
+
 // Sanity — the unmodified, committed all-draft taxonomy still validates.
 assert.equal(
   pagesSchema.safeParse(PAGES).success,
@@ -38,5 +52,5 @@ assert.equal(
 );
 
 console.log(
-  "✅ Gate blocks both failure modes (duplicate primaryKeyword + short published intro); committed taxonomy validates.",
+  "✅ Gate blocks all three failure modes (duplicate primaryKeyword + short published intro + missing slug); committed taxonomy validates.",
 );

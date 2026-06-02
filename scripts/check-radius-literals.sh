@@ -8,7 +8,11 @@
 # numeric radius literal, so it is correctly out of the match set).
 set -uo pipefail
 
-PATTERN='straal van 50\|straal van 100\|100 km\|50km'
+# Catches the old literals (50/100) AND the current value (60), in both the
+# spaced and unspaced forms, plus any "straal van <n>" radius phrasing. The
+# legitimate "{SITE.serviceRadiusKm} km" interpolation has no digit before "km"
+# so it is never matched.
+PATTERN='straal van [0-9]\|50 *km\|60 *km\|100 *km'
 
 if MATCHES=$(grep -rn "$PATTERN" app components 2>/dev/null); then
   echo "✗ Stale service-radius literal(s) found (QA-03 / Crit 4 violation):" >&2
