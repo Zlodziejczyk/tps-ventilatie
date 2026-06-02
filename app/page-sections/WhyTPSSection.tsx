@@ -1,5 +1,6 @@
 import { Icon } from "@/components/Icon";
 import Image from "next/image";
+import { SITE } from "@/lib/constants";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 
@@ -17,7 +18,7 @@ const USPs = [
   {
     icon: "local_shipping",
     title: "Geen Voorrijkosten",
-    description: "Werkgebied tot 60 km vanuit Zoetermeer. Voorrijkosten? Daar doen wij niet aan. Wat u ziet is wat u betaalt.",
+    description: `Werkgebied tot ${SITE.serviceRadiusKm} km vanuit Zoetermeer. Voorrijkosten? Daar doen wij niet aan. Wat u ziet is wat u betaalt.`,
   },
   {
     icon: "bolt",
