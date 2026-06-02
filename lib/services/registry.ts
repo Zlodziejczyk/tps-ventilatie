@@ -6,12 +6,14 @@
 // validation. It deliberately does NOT re-export the pillar files wholesale;
 // only `PAGES`, `urlFor`, the lookups, and `validateTaxonomy` are exported.
 //
-// `urlFor` mirrors `canonicalPath` in ./types (the primitive the Zod uniqueness
-// schema uses). Both are exhaustive switches enforcing D-03 (lowercase, leading
-// slash, no trailing slash); scripts/assert-registry.ts asserts they agree for
-// every node, so the two cannot drift.
+// `urlFor` delegates to the `canonicalPath` primitive in ./types (the same
+// function the Zod uniqueness schema uses), so URL derivation has exactly ONE
+// implementation — the schema's view of a node's URL and the app's can never
+// drift. canonicalPath is the exhaustive switch enforcing D-03 (lowercase,
+// leading slash, no trailing slash); scripts/assert-registry.ts still asserts
+// urlFor(node) === canonicalPath(node) for every node as a regression guard.
 
-import { pagesSchema, type PageNode, type PageType } from "./types";
+import { canonicalPath, pagesSchema, type PageNode, type PageType } from "./types";
 import { AIRCONDITIONING_PAGES } from "./airconditioning";
 import { WARMTEPOMPEN_PAGES } from "./warmtepompen";
 import { WTW_PAGES } from "./wtw";
@@ -63,7 +65,9 @@ const STATIC_PAGES: PageNode[] = [
     status: "draft",
     primaryKeyword: "airco warmtepomp ventilatie Zoetermeer",
     searchIntent: "commercieel",
-    secondaryKeywords: ["klimaattechniek", "TPS klimaattechniek"],
+    // "TPS klimaattechniek" is over-ons's primaryKeyword — keep it off home's
+    // secondaries so the two pages don't compete for the brand term (WR-02).
+    secondaryKeywords: ["klimaattechniek", "klimaatinstallateur Zoetermeer"],
     navTitle: "Home",
     navDescription: "TPS klimaattechniek — specialist in schone lucht",
     icon: "home",
@@ -147,19 +151,11 @@ export const PAGES: PageNode[] = [
   ...STATIC_PAGES,
 ];
 
-// The ONLY href builder. Exhaustive switch over the discriminant; enforces D-03
-// (lowercase, leading slash, no trailing slash). Mirrors ./types canonicalPath.
+// The ONLY public href builder. Delegates to the canonicalPath primitive in
+// ./types so URL logic lives in exactly one place (enforcing D-03: lowercase,
+// leading slash, no trailing slash). Nav, sitemap, and JSON-LD all call this.
 export function urlFor(node: PageNode): string {
-  switch (node.type) {
-    case "hub":
-      return `/${node.segment}`;
-    case "pillar":
-      return `/diensten/${node.pillarSlug}`;
-    case "service":
-      return `/diensten/${node.pillarSlug}/${node.serviceSlug}`;
-    case "static":
-      return node.pathSegment === "" ? "/" : `/${node.pathSegment}`;
-  }
+  return canonicalPath(node);
 }
 
 // Small pure lookups (kept tiny, in the getInitials/lerp style).
