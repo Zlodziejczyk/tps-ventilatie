@@ -10,6 +10,8 @@
 // No concrete page data lives here (that is `lib/services/*` data files + the
 // `PAGES` aggregation in `registry.ts`, plan 01-05).
 
+import { z } from "zod";
+
 // ── Discriminant + classification unions (mirror the in-repo `type Tab` idiom) ──
 
 export type PageType = "hub" | "pillar" | "service" | "static";
@@ -85,3 +87,151 @@ export interface StaticPage extends PageBase {
 }
 
 export type PageNode = HubPage | PillarPage | ServicePage | StaticPage;
+
+// ── Canonical URL derivation — the single source `registry.ts urlFor()`
+//    delegates to (see header note). Pure function of a node's discriminant +
+//    slug fields, so `pagesSchema`'s uniqueness check needs no registry import. ──
+
+export function canonicalPath(node: {
+  type: PageType;
+  segment?: string;
+  pillarSlug?: string;
+  serviceSlug?: string;
+  pathSegment?: string;
+}): string {
+  switch (node.type) {
+    case "hub":
+      return `/${node.segment ?? "diensten"}`;
+    case "pillar":
+      return `/diensten/${node.pillarSlug}`;
+    case "service":
+      return `/diensten/${node.pillarSlug}/${node.serviceSlug}`;
+    case "static":
+      return node.pathSegment ? `/${node.pathSegment}` : "/";
+  }
+}
+
+// ── Zod schemas. Zod 4 idioms only: array length is enforced via explicit
+//    length refinements (the deprecated Zod-3 array shortcut is avoided);
+//    `ctx.addIssue` uses the write-side `path` property; `z.prettifyError()` is
+//    reserved for the 01-06 prebuild gate. Structure is validated always;
+//    content-quality rules are status-gated so empty `draft` shells pass. ──
+
+export const faqSchema = z.object({
+  question: z.string().min(1),
+  answer: z.string().min(1),
+});
+
+export const stepSchema = z.object({
+  title: z.string().min(1),
+  body: z.string().min(1),
+});
+
+// Structure only — an empty `draft` shell passes this.
+export const contentShellSchema = z.object({
+  h1: z.string().min(1),
+  intro: z.string(),
+  steps: z.array(stepSchema),
+  faqs: z.array(faqSchema),
+  localAngle: z.string(),
+  metaTitle: z.string().min(1),
+  metaDescription: z.string().min(1),
+  ogImage: z.string().optional(),
+});
+
+// Status-gated content rules (anti-thin-content — IA-08, D-07/D-08). Applied
+// only to review/published nodes (see `pageSchema`).
+export const publishedContentSchema = contentShellSchema.superRefine((c, ctx) => {
+  const introWords = c.intro.trim().split(/\s+/).filter(Boolean).length;
+  if (introWords < 120) {
+    ctx.addIssue({
+      code: "custom",
+      path: ["intro"],
+      message: `intro must be >= 120 words for review/published pages (got ${introWords})`,
+    });
+  }
+  if (c.steps.length < 1) {
+    ctx.addIssue({
+      code: "custom",
+      path: ["steps"],
+      message: "steps must be a non-empty list for review/published pages",
+    });
+  }
+  if (c.faqs.length < 3 || c.faqs.length > 6) {
+    ctx.addIssue({
+      code: "custom",
+      path: ["faqs"],
+      message: `faqs must contain 3-6 items for review/published pages (got ${c.faqs.length})`,
+    });
+  }
+});
+
+// One page node: structure always; content quality upgraded for review/published.
+export const pageSchema = z
+  .object({
+    type: z.enum(["hub", "pillar", "service", "static"]),
+    status: z.enum(["draft", "review", "published"]),
+    primaryKeyword: z.string().min(1),
+    searchIntent: z.enum([
+      "informationeel",
+      "commercieel",
+      "transactioneel",
+      "navigationeel",
+    ]),
+    secondaryKeywords: z.array(z.string()).optional(),
+    navTitle: z.string().min(1),
+    navDescription: z.string().min(1),
+    icon: z.string().min(1),
+    segment: z.string().optional(),
+    pillarSlug: z.string().optional(),
+    serviceSlug: z.string().optional(),
+    pathSegment: z.string().optional(),
+    brandIds: z.array(z.string()).optional(),
+    content: contentShellSchema,
+  })
+  .superRefine((node, ctx) => {
+    if (node.status === "review" || node.status === "published") {
+      const result = publishedContentSchema.safeParse(node.content);
+      if (!result.success) {
+        for (const issue of result.error.issues) {
+          ctx.addIssue({
+            code: "custom",
+            path: ["content", ...issue.path],
+            message: issue.message,
+          });
+        }
+      }
+    }
+  });
+
+// The full taxonomy: an array of nodes + cross-record uniqueness (IA-09 anti-
+// cannibalization). Duplicate canonical URL or duplicate primaryKeyword fails.
+export const pagesSchema = z.array(pageSchema).superRefine((pages, ctx) => {
+  const urlSeen = new Map<string, number>();
+  const keywordSeen = new Map<string, number>();
+  pages.forEach((node, i) => {
+    const url = canonicalPath(node);
+    const priorUrl = urlSeen.get(url);
+    if (priorUrl !== undefined) {
+      ctx.addIssue({
+        code: "custom",
+        path: [i, "slug"],
+        message: `Duplicate canonical URL "${url}" — also produced by page #${priorUrl}`,
+      });
+    } else {
+      urlSeen.set(url, i);
+    }
+    const keyword = node.primaryKeyword.trim().toLowerCase();
+    const priorKeyword = keywordSeen.get(keyword);
+    if (priorKeyword !== undefined) {
+      ctx.addIssue({
+        code: "custom",
+        path: [i, "primaryKeyword"],
+        message: `Duplicate primaryKeyword "${node.primaryKeyword}" — keyword cannibalization with page #${priorKeyword}`,
+      });
+    } else {
+      keywordSeen.set(keyword, i);
+    }
+  });
+});
+
