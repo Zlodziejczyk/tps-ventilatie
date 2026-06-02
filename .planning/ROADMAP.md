@@ -46,7 +46,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-05-PLAN.md — Taxonomy data: normalized brands + 4 pillar files (keyword map) + registry (PAGES, urlFor, validateTaxonomy) [wave 3]
+- [x] 01-05-PLAN.md — Taxonomy data: normalized brands + 4 pillar files (keyword map) + registry (PAGES, urlFor, validateTaxonomy) [wave 3]
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Taxonomy & Data Model | 4/6 | In Progress|  |
+| 1. Taxonomy & Data Model | 5/6 | In Progress|  |
 | 2. Routes & Service-Page Templates | 0/TBD | Not started | - |
 | 3. SEO Infrastructure | 0/TBD | Not started | - |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
