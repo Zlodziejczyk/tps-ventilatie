@@ -58,7 +58,7 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 
 - [ ] **QA-01**: Resolve and log the static-export-vs-hybrid decision (recommended: drop `output: "export"` → Vercel hybrid) in PROJECT.md
 - [ ] **QA-02**: Secure form path — server-only webhook secret (no `NEXT_PUBLIC_`), Zod validation, honeypot, rate limiting
-- [ ] **QA-03**: Fix the service-area radius inconsistency (50 km vs 100 km) at the source
+- [x] **QA-03**: Fix the service-area radius inconsistency (50 km vs 100 km) at the source
 - [ ] **QA-04**: Add network error handling to form submission
 - [ ] **QA-05**: Fix the placeholder Google Maps pin to the verified business location
 - [ ] **QA-06**: Gate the WebGL aurora + canvas particles on mobile / `prefers-reduced-motion` (CWV)
@@ -142,7 +142,7 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | SEO-10 | Phase 5 | Pending |
 | QA-01 | Phase 5 | Pending |
 | QA-02 | Phase 5 | Pending |
-| QA-03 | Phase 1 | Pending |
+| QA-03 | Phase 1 | Complete |
 | QA-04 | Phase 5 | Pending |
 | QA-05 | Phase 5 | Pending |
 | QA-06 | Phase 5 | Pending |
