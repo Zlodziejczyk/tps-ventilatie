@@ -13,7 +13,7 @@ The TPS site already exists as a 6-page pre-launch proposal. This milestone expa
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Taxonomy & Data Model** - One typed source of truth for routes, nav, sitemap, and JSON-LD; fixed NAP/radius; keyword map; uniqueness bar
+- [x] **Phase 1: Taxonomy & Data Model** - One typed source of truth for routes, nav, sitemap, and JSON-LD; fixed NAP/radius; keyword map; uniqueness bar (completed 2026-06-02)
 - [ ] **Phase 2: Routes & Service-Page Templates** - Data-driven hub + pillar + sub-service pages (~22) generated from the taxonomy with taxonomy-derived nav
 - [ ] **Phase 3: SEO Infrastructure** - Sitemap, robots, JSON-LD, canonical/OG, GBP alignment, and analytics + Search Console across every page
 - [ ] **Phase 4: Content Fill & Editorial Gate** - Unique, accurate, owner-reviewed Dutch copy on every page (the launch quality gate)
@@ -50,7 +50,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 01-06-PLAN.md — Prebuild gate + negative fixture (proves blocking) + Crit-4 radius grep + green npm run build [wave 4]
+- [x] 01-06-PLAN.md — Prebuild gate + negative fixture (proves blocking) + Crit-4 radius grep + green npm run build [wave 4]
 
 ### Phase 2: Routes & Service-Page Templates
 
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Taxonomy & Data Model | 5/6 | In Progress|  |
+| 1. Taxonomy & Data Model | 6/6 | Complete   | 2026-06-02 |
 | 2. Routes & Service-Page Templates | 0/TBD | Not started | - |
 | 3. SEO Infrastructure | 0/TBD | Not started | - |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
