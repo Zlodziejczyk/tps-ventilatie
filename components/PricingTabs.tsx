@@ -4,6 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { SITE } from "@/lib/constants";
 import { Icon } from "./Icon";
 
 type Tab = "wtw" | "mv" | "airco";
@@ -439,7 +440,7 @@ export function PricingTabs() {
           <div className="bg-surface-container-low rounded-2xl p-6 flex items-center gap-4">
             <Icon name="info" className="text-2xl text-primary shrink-0" />
             <p className="text-sm text-on-surface-variant">
-              Alle prijzen zijn inclusief BTW, voorrijkosten en klein materiaal. Werkgebied: straal van 100 km vanuit Zoetermeer.
+              Alle prijzen zijn inclusief BTW, voorrijkosten en klein materiaal. Werkgebied: tot {SITE.serviceRadiusKm} km vanuit Zoetermeer.
             </p>
           </div>
 
@@ -516,7 +517,7 @@ export function PricingTabs() {
           <div className="bg-surface-container-low rounded-2xl p-6 flex items-center gap-4">
             <Icon name="info" className="text-2xl text-primary shrink-0" />
             <p className="text-sm text-on-surface-variant">
-              Alle prijzen zijn inclusief BTW, voorrijkosten en klein materiaal. Werkgebied: straal van 100 km vanuit Zoetermeer.
+              Alle prijzen zijn inclusief BTW, voorrijkosten en klein materiaal. Werkgebied: tot {SITE.serviceRadiusKm} km vanuit Zoetermeer.
             </p>
           </div>
 
