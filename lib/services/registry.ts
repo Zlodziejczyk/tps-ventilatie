@@ -173,9 +173,15 @@ export function findBySlug(url: string): PageNode | undefined {
 
 // Validate the taxonomy WITHOUT throwing — returns the project ok-result
 // convention (mirrors lib/forms.ts). The 01-06 prebuild script owns process.exit.
+// The error type is derived from safeParse so it tracks Zod's own type exactly.
+type TaxonomyError = Extract<
+  ReturnType<typeof pagesSchema.safeParse>,
+  { success: false }
+>["error"];
+
 export type TaxonomyValidation =
   | { ok: true }
-  | { ok: false; error: import("zod").ZodError };
+  | { ok: false; error: TaxonomyError };
 
 export function validateTaxonomy(pages: PageNode[] = PAGES): TaxonomyValidation {
   const result = pagesSchema.safeParse(pages);
