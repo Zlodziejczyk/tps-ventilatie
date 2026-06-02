@@ -578,7 +578,9 @@ console.log(`✅ Taxonomy OK — ${PAGES.length} pages validated.`);
 
 **This table is non-empty — the Keyword Map (A1) is the key item needing tool-based validation before it becomes locked content.**
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+> All three resolved at planning time and encoded in the Phase 1 plans: Q1 → model both advies nodes with regional long-tail primaries (plan 01-05), Phase 4 decides publish/merge; Q2 → hub keeps `klimaattechniek Zoetermeer`, home takes `airco warmtepomp ventilatie Zoetermeer` (plan 01-05); Q3 → `app/over-ons/page.tsx` has no numeric radius literal, intentionally left out of the Crit-4 grep target (plan 01-03).
 
 1. **One `advies` page per pillar, or fold advies into the pillar page?**
    - What we know: "airco advies" / "warmtepomp advies" demand is low and competitors bundle it into broader advisory/pillar pages.
