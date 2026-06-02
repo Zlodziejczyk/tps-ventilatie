@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-06-02T12:05:19.470Z"
-last_activity: 2026-06-02 -- Phase 1 planning complete
+last_updated: "2026-06-02T13:59:29.869Z"
+last_activity: 2026-06-02
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 6
-  completed_plans: 0
-  percent: 0
+  completed_plans: 1
+  percent: 17
 ---
 
 # Project State
@@ -20,16 +20,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-02)
 
 **Core value:** Turn local search demand into contacted leads — a prospect in the Zoetermeer region finds TPS, trusts it, reaches out, and the owner is notified instantly.
-**Current focus:** Phase 1 — Taxonomy & Data Model
+**Current focus:** Phase 01 — taxonomy-data-model
 
 ## Current Position
 
-Phase: 1 of 5 (Taxonomy & Data Model)
-Plan: 0 of TBD in current phase
+Phase: 01 (taxonomy-data-model) — EXECUTING
+Plan: 2 of 6
 Status: Ready to execute
-Last activity: 2026-06-02 -- Phase 1 planning complete
+Last activity: 2026-06-02
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██░░░░░░░░] 17%
 
 ## Performance Metrics
 
@@ -51,6 +51,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01 P01 | 30 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -63,6 +64,8 @@ Recent decisions affecting current work:
 - Service IA = `/diensten` hub + pillar + ~22 sub-service pages from a data-driven template
 - Claude drafts content, owner reviews before publish (hard editorial gate in Phase 4)
 - ⚠️ OPEN: Static-export vs hybrid for a secure form route — decision gate owned by Phase 5 (recommended: drop `output: "export"` → Vercel hybrid)
+- [Phase 01]: D-07: zod (runtime) + tsx (dev) + npm prebuild hook installed; taxonomy validation now build-blocking via pre<script>
+- [Phase 01]: D-03: trailingSlash: false locked in next.config.ts; output: export left untouched (Phase 5 decision gate)
 
 ### Pending Todos
 
@@ -89,6 +92,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-02T11:20:57.502Z
+Last session: 2026-06-02T13:59:23.630Z
 Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-taxonomy-data-model/01-CONTEXT.md
+Resume file: None

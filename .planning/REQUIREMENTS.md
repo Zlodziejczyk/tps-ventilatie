@@ -16,8 +16,8 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 - [ ] **IA-05**: Reusable service-template components (ServiceHero, ServiceSteps, ServiceFAQ, BrandGrid, RelatedServices, Breadcrumbs) as server components
 - [ ] **IA-06**: Brand sections (Daikin, Mitsubishi Electric, Mitsubishi Heavy, Mitsubishi Ecodan) rendered within the relevant Installatie pages via BrandGrid
 - [ ] **IA-07**: Navbar diensten dropdown and DienstenNav derived from the taxonomy (no hardcoded nav)
-- [ ] **IA-08**: Per-page uniqueness bar enforced via typed required content fields (anti-thin-content gate)
-- [ ] **IA-09**: Keyword map assigning one primary keyword/intent per URL (anti-cannibalization)
+- [x] **IA-08**: Per-page uniqueness bar enforced via typed required content fields (anti-thin-content gate)
+- [x] **IA-09**: Keyword map assigning one primary keyword/intent per URL (anti-cannibalization)
 
 ### Content (Claude drafts, owner reviews)
 
@@ -112,8 +112,8 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | IA-05 | Phase 2 | Pending |
 | IA-06 | Phase 2 | Pending |
 | IA-07 | Phase 2 | Pending |
-| IA-08 | Phase 1 | Pending |
-| IA-09 | Phase 1 | Pending |
+| IA-08 | Phase 1 | Complete |
+| IA-09 | Phase 1 | Complete |
 | CONT-01 | Phase 4 | Pending |
 | CONT-02 | Phase 4 | Pending |
 | CONT-03 | Phase 4 | Pending |

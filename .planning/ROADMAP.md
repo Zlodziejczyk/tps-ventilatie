@@ -36,7 +36,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Build foundation: add zod + tsx (supply-chain gated), wire prebuild gate, add trailingSlash: false [wave 1]
+- [x] 01-01-PLAN.md — Build foundation: add zod + tsx (supply-chain gated), wire prebuild gate, add trailingSlash: false [wave 1]
 - [ ] 01-02-PLAN.md — Extend SITE into the full structured NAP source (name, radius 60, geo, serviceAreas) + SITE-shape assertion [wave 1]
 
 **Wave 2** *(blocked on Wave 1 completion)*
@@ -124,7 +124,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Taxonomy & Data Model | 0/6 | Planned | - |
+| 1. Taxonomy & Data Model | 1/6 | In Progress|  |
 | 2. Routes & Service-Page Templates | 0/TBD | Not started | - |
 | 3. SEO Infrastructure | 0/TBD | Not started | - |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
