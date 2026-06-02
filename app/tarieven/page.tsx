@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
+import { SITE } from "@/lib/constants";
 import { Icon } from "@/components/Icon";
 import { CTABanner } from "@/components/CTABanner";
 import { PricingTabs } from "@/components/PricingTabs";
@@ -59,7 +60,7 @@ export default function TarievenPage() {
       <div className="max-w-7xl mx-auto px-6 text-center">
         <div className="text-sm text-on-surface-variant max-w-2xl mx-auto space-y-2">
           <p>* Alle genoemde prijzen zijn inclusief 21% BTW, voorrijkosten en klein materiaal.</p>
-          <p>Wij zijn werkzaam in een straal van 50km rondom onze hoofdlocatie. Buiten deze regio geldt een kleine toeslag.</p>
+          <p>Wij zijn werkzaam tot {SITE.serviceRadiusKm} km vanuit Zoetermeer. Buiten deze regio geldt een kleine toeslag.</p>
         </div>
       </div>
       </AnimateOnScroll>
