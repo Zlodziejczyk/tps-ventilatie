@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "TPS Ventilatie",
+  name: "TPS klimaattechniek",
   tagline: "Specialist in Schone Lucht",
   phone: "+31 6 29403450",
   phoneDisplay: "06 - 29 40 34 50",
@@ -7,6 +7,25 @@ export const SITE = {
   address: "Industrieweg 6 B",
   postcode: "2712LB",
   city: "Zoetermeer",
+  province: "Zuid-Holland",
+  country: "NL",
+  // owner-verify-pending: placeholder coordinates (Zoetermeer centroid).
+  // Today's Maps pin is a placeholder (CONCERNS.md / A3); Phase 5 QA-05 sets the
+  // verified business-location lat/lng. Do NOT render as a confirmed pin until then.
+  geo: { lat: 52.0607, lng: 4.4940 },
+  serviceRadiusKm: 60,
+  // owner-review-pending: seed coverage list (D-11 / A2). Owner curates before
+  // publish — never claim an unserved area. Phase 3+ JSON-LD areaServed reads this.
+  serviceAreas: [
+    "Zoetermeer",
+    "Den Haag",
+    "Leidschendam-Voorburg",
+    "Pijnacker-Nootdorp",
+    "Lansingerland",
+    "Delft",
+    "Gouda",
+    "Leiden",
+  ],
   kvk: "73722650",
   btw: "NL862655889B01",
   whatsappUrl: "https://wa.me/31629403450",
