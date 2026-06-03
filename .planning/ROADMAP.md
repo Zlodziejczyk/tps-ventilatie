@@ -18,6 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: SEO Infrastructure** - Sitemap, robots, JSON-LD, canonical/OG, GBP alignment, and analytics + Search Console across every page
 - [ ] **Phase 4: Content Fill & Editorial Gate** - Unique, accurate, owner-reviewed Dutch copy on every page (the launch quality gate)
 - [ ] **Phase 5: Lead Capture, Form Security & Launch QA** - Secure lead path with instant owner notification, the static-vs-hybrid decision gate, and the launch-readiness QA pass
+- [ ] **Phase 6: Homepage conversion uplift** - Premium conversion-optimized home page (proof-forward hero, equal 4-pillar grid, trust/contact band) built from the validated sketch findings
 
 ## Phase Details
 
@@ -65,7 +66,29 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Reusable server-component building blocks (ServiceHero, ServiceSteps, ServiceFAQ, BrandGrid, RelatedServices, Breadcrumbs) render every service page consistently
   5. The Navbar diensten dropdown and DienstenNav reflect the live taxonomy with no hardcoded navigation entries
 
-**Plans**: TBD
+**Plans**: 6 plans (5 waves)
+
+**Wave 1**
+
+- [ ] 02-01-PLAN.md — Registry lookups + render helpers (pillars, childrenOf, siblingsOf, brandsForPillar, trailFor, pillarTarievenTab) + assert-registry extension [wave 1]
+
+**Wave 2** *(blocked on Wave 1)*
+
+- [ ] 02-02-PLAN.md — Six IA-05 server components: ServiceHero, ServiceSteps, ServiceFAQ, Breadcrumbs, BrandGrid, RelatedServices (graceful omit, text brand chips, cheap motion) [wave 2]
+
+**Wave 3** *(blocked on Wave 2)*
+
+- [ ] 02-03-PLAN.md — Pillar + sub-service dynamic routes: generateStaticParams (4 + 17), async params, dynamicParams=false, generateMetadata (D-13) [wave 3]
+- [ ] 02-04-PLAN.md — Lean /diensten hub (4 pillar cards + reviews strip) + retire DienstenNav [wave 3]
+
+**Wave 4** *(blocked on Wave 3 routes)*
+
+- [ ] 02-05-PLAN.md — Taxonomy-derived nav: Navbar mega-menu + MobileMenu 2-level accordion + remove DIENSTEN_DROPDOWN (IA-07) [wave 4]
+
+**Wave 5** *(blocked on Wave 4)*
+
+- [ ] 02-06-PLAN.md — Content salvage port (D-04/D-05: drop Panasonic, fold dakventilator) + phase verification (green build, 22 routes pre-rendered) [wave 5]
+
 **UI hint**: yes
 
 ### Phase 3: SEO Infrastructure
@@ -117,18 +140,27 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: TBD
 **UI hint**: yes
 
+### Phase 6: Homepage conversion uplift
+
+**Goal**: Rebuild the home page around the three validated sketch-findings winners — a proof-forward hero, an equal scannable 4-pillar grid with brand logos, and a trust + contact band with a smart scroll-in sticky CTA — delivering the premium "Atmospheric Clarity, engineered" UI language so the site's highest-traffic page turns visitors into contacted leads.
+**Depends on**: Phase 5
+**Requirements**: TBD
+**Plans**: TBD
+**UI hint**: yes
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
-| 2. Routes & Service-Page Templates | 0/TBD | Not started | - |
+| 2. Routes & Service-Page Templates | 0/6 | Planned | - |
 | 3. SEO Infrastructure | 0/TBD | Not started | - |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
+| 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
 ## Coverage
 

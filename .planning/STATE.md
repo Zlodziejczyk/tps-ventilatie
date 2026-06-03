@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-last_updated: "2026-06-03T01:21:20.909Z"
-last_activity: 2026-06-02
+last_updated: "2026-06-03T12:55:28.000Z"
+last_activity: 2026-06-03
 progress:
-  total_phases: 5
+  total_phases: 6
   completed_phases: 1
-  total_plans: 6
+  total_plans: 12
   completed_plans: 6
-  percent: 20
+  percent: 17
 ---
 
 # Project State
@@ -25,9 +25,9 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 ## Current Position
 
 Phase: 2
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-06-02
+Plan: 6 plans created (5 waves) — ready to execute
+Status: Planned (plan-checker PASS_WITH_CONCERNS → HIGH+MEDIUM fixed)
+Last activity: 2026-06-03
 
 Progress: [██░░░░░░░░] 17%
 
@@ -67,6 +67,10 @@ Recent decisions affecting current work:
 - [Phase 01]: D-07: zod (runtime) + tsx (dev) + npm prebuild hook installed; taxonomy validation now build-blocking via pre<script>
 - [Phase 01]: D-03: trailingSlash: false locked in next.config.ts; output: export left untouched (Phase 5 decision gate)
 
+### Roadmap Evolution
+
+- Phase 6 added: Homepage conversion uplift — rebuild the home page from the validated sketch findings (proof-forward hero, equal 4-pillar grid, trust/contact band)
+
 ### Pending Todos
 
 [From .planning/todos/pending/ — ideas captured during sessions]
@@ -92,6 +96,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-03T01:21:20.904Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-routes-service-page-templates/02-CONTEXT.md
+Last session: 2026-06-03T12:55:28.000Z
+Stopped at: Phase 2 planned — 6 plans + RESEARCH written, verified by gsd-plan-checker (HIGH+MEDIUM addressed). Phase 6 (homepage uplift) reaffirmed deferred behind Phase 5 (dependency order).
+Resume file: .planning/phases/02-routes-service-page-templates/02-01-PLAN.md (first plan to execute)
