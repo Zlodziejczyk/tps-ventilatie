@@ -8,6 +8,7 @@
 - **Business data:** phone, email, address, KvK/BTW, and service radius come only from `SITE` in `lib/constants.ts` — never hardcode contact info.
 - **Forms:** submit via `lib/forms.ts` `submitForm()`. **Icons:** use the `components/Icon.tsx` wrapper (never raw Material Symbols spans).
 - **Active plan lives in `.planning/`:** PROJECT.md, ROADMAP.md, REQUIREMENTS.md, STATE.md, research/.
+- **Sketch findings (homepage uplift):** when building/redesigning the home page UI (hero, 4-pillar section, trust/contact band) or setting the premium "Atmospheric Clarity, engineered" UI language, load `Skill("sketch-findings-tps-ventilatie")` — validated design decisions, CSS patterns, and the chosen variants.
 
 <!-- GSD:project-start source:PROJECT.md -->
 ## Project

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sketch 003 — Trust & Speed-to-Contact · TPS klimaattechniek</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+<link rel="stylesheet" href="../themes/default.css" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body { font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); padding-top: 46px; -webkit-font-smoothing: antialiased; }
+  .ms { font-family: 'Material Symbols Outlined'; line-height: 1; display: inline-block; vertical-align: middle; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+  #variant-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9998; background: var(--color-ink-surface); color: #fff; display: flex; align-items: center; gap: 6px; padding: 7px 12px; font-size: 12.5px; }
+  #variant-nav .vlabel { opacity: .6; font-weight: 600; letter-spacing: .04em; margin-right: 6px; text-transform: uppercase; font-size: 11px; }
+  .variant-tab { border: 0; cursor: pointer; color: #cfe6ec; background: rgba(255,255,255,.08); padding: 5px 12px; border-radius: var(--radius-full); font-size: 12.5px; font-weight: 600; font-family: inherit; transition: all .18s var(--ease-clarity); }
+  .variant-tab:hover { background: rgba(255,255,255,.18); color: #fff; }
+  .variant-tab.active { background: var(--color-primary-light); color: #fff; }
+  .variant-tab .win { color: var(--color-accent-wash); margin-left: 4px; }
+
+  #frame { container-type: inline-size; container-name: stage; transition: max-width .35s var(--ease-clarity); }
+  #frame.constrained { margin: 14px auto; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-xl); outline: 1px solid var(--color-surface-4); }
+  .variant { display: none; }
+  .variant.active { display: block; }
+
+  /* atoms */
+  .badge { display: inline-flex; align-items: center; gap: 7px; background: var(--color-accent-wash); color: var(--color-accent-hover); font-weight: 700; font-size: 11.5px; letter-spacing: var(--tracking-wide); text-transform: uppercase; padding: 6px 13px; border-radius: var(--radius-full); }
+  .badge .ms { font-size: 15px; }
+  .badge.light { background: rgba(148,247,190,.16); color: var(--color-accent-wash); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; text-decoration: none; white-space: nowrap; font-family: var(--font-body); font-weight: 700; font-size: 15px; padding: 13px 22px; border-radius: var(--radius-lg); transition: transform .18s var(--ease-clarity), box-shadow .35s var(--ease-clarity), background .35s var(--ease-clarity); }
+  .btn .ms { font-size: 19px; }
+  .btn-primary { background: var(--gradient-signature); color: #fff; box-shadow: var(--shadow-md); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn-ghost { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); }
+  .btn-ghost:hover { background: var(--color-surface-2); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .btn-accent { background: var(--color-accent); color: #fff; box-shadow: var(--shadow-md); }
+  .btn-accent:hover { background: var(--color-accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn-light { background: rgba(255,255,255,.16); color: #fff; }
+  .btn-light:hover { background: rgba(255,255,255,.26); }
+  .btn-sm { padding: 10px 16px; font-size: 13.5px; border-radius: var(--radius-md); }
+  .btn-lg { padding: 16px 28px; font-size: 16.5px; }
+  h2 { font-family: var(--font-headline); font-weight: 800; letter-spacing: var(--tracking-tight); line-height: 1.12; color: var(--color-text); }
+
+  .stars { display: inline-flex; gap: 1px; color: var(--color-rating); }
+  .stars .ms { font-size: 18px; }
+  .trust-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--glass-bg); backdrop-filter: var(--glass-blur); padding: 9px 15px; border-radius: var(--radius-full); box-shadow: var(--shadow-sm); font-size: 13px; font-weight: 600; color: var(--color-text); }
+  .trust-pill .ms { font-size: 18px; color: var(--color-accent); }
+
+  .sec { padding: clamp(40px,6vw,80px) clamp(20px,5vw,56px); }
+  .wrap { max-width: 1140px; margin: 0 auto; }
+
+  .score { display: flex; align-items: center; gap: 14px; }
+  .score .num { font-family: var(--font-headline); font-size: 52px; font-weight: 800; line-height: 1; color: var(--color-text); }
+  .score .meta .stars { margin-bottom: 3px; }
+  .score .meta small { display: block; font-size: 13px; color: var(--color-text-muted); font-weight: 500; }
+  .gmark { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13px; color: var(--color-text-muted); }
+  .gmark .g { background: conic-gradient(from -45deg, #ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0); width: 16px; height: 16px; border-radius: 50%; -webkit-mask: radial-gradient(circle 4px at center, transparent 96%, #000); mask: radial-gradient(circle 4px at center, transparent 96%, #000); }
+
+  .rev { background: var(--color-surface); border-radius: var(--radius-xl); padding: 22px; box-shadow: var(--shadow-sm); transition: transform .3s var(--ease-clarity), box-shadow .3s var(--ease-clarity); }
+  .rev:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .rev p { font-size: 14.5px; color: var(--color-text); line-height: 1.55; margin: 12px 0 16px; }
+  .rev .who { display: flex; align-items: center; gap: 11px; }
+  .rev .av { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 14px; font-family: var(--font-headline); flex: none; }
+  .rev .who b { font-size: 13.5px; color: var(--color-text); font-weight: 700; display: block; }
+  .rev .who small { font-size: 12px; color: var(--color-text-faint); }
+
+  .cert { display: inline-flex; align-items: center; gap: 9px; background: var(--color-surface); padding: 11px 16px; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); font-weight: 700; font-size: 13px; color: var(--color-text); }
+  .cert .ms { font-size: 19px; color: var(--color-accent); }
+  .cert small { font-weight: 500; color: var(--color-text-faint); font-size: 11px; }
+
+  .offerte { position: relative; background: var(--color-surface); border-radius: var(--radius-2xl); padding: 24px; box-shadow: var(--shadow-xl); overflow: hidden; }
+  .offerte::before { content: ""; position: absolute; inset: 0; opacity: .55; pointer-events: none; background-image: linear-gradient(var(--color-surface-2) 1px, transparent 1px), linear-gradient(90deg, var(--color-surface-2) 1px, transparent 1px); background-size: 24px 24px; mask-image: radial-gradient(circle at 90% 0%, #000, transparent 66%); -webkit-mask-image: radial-gradient(circle at 90% 0%, #000, transparent 66%); }
+  .offerte > * { position: relative; z-index: 1; }
+  .offerte .ehead { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .offerte h3 { font-family: var(--font-headline); font-size: 19px; font-weight: 800; color: var(--color-text); display: flex; align-items: center; gap: 8px; }
+  .offerte h3 .ms { color: var(--color-accent); font-size: 22px; }
+  .offerte .live { display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--color-accent); }
+  .offerte .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); font-style: normal; animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,107,66,.4);} 70% { box-shadow: 0 0 0 8px rgba(0,107,66,0);} 100% { box-shadow: 0 0 0 0 rgba(0,107,66,0);} }
+  .offerte .sub { font-size: 12.5px; color: var(--color-text-muted); margin: 5px 0 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .field { display: block; margin-bottom: 12px; }
+  .field span { display: block; font-size: 11.5px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 5px; }
+  .field input, .field select { width: 100%; font-family: var(--font-body); font-size: 14px; color: var(--color-text); background: var(--color-bg-tint); border: 1.5px solid transparent; border-radius: var(--radius-md); padding: 11px 13px; transition: all .18s var(--ease-clarity); outline: none; }
+  .field input:focus, .field select:focus { border-color: var(--color-primary); background: var(--color-surface); box-shadow: 0 0 0 4px rgba(0,101,128,.1); }
+  .ordivider { display: flex; align-items: center; gap: 12px; margin: 16px 0; color: var(--color-text-faint); font-size: 12px; font-weight: 600; }
+  .ordivider::before, .ordivider::after { content: ""; height: 1px; flex: 1; background: var(--color-surface-3); }
+
+  /* VARIANT A — unified band */
+  .bandA { background: var(--gradient-ink); color: #fff; border-radius: var(--radius-4xl); padding: clamp(32px,4.5vw,64px); position: relative; overflow: hidden; box-shadow: var(--shadow-xl); }
+  .bandA::after { content: ""; position: absolute; inset: 0; opacity: .12; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px); background-size: 30px 30px; mask-image: radial-gradient(circle at 88% 12%, #000, transparent 58%); -webkit-mask-image: radial-gradient(circle at 88% 12%, #000, transparent 58%); }
+  .bandA .inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1px 1fr; gap: clamp(28px,4vw,56px); align-items: center; }
+  .bandA .divider { background: rgba(255,255,255,.14); align-self: stretch; }
+  .bandA h2 { color: #fff; font-size: clamp(1.6rem,2.8vw,2.3rem); }
+  .bandA .lead { color: #cfe8ee; font-size: 15.5px; line-height: 1.6; margin-top: 14px; }
+  .bandA .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  .bandA .score .num { color: #fff; }
+  .bandA .score .meta small { color: #aecdd6; }
+  .bandA .quote { font-size: 15px; color: #eaf6f9; line-height: 1.55; font-style: italic; margin: 18px 0; }
+  .bandA .quote b { color: #fff; font-style: normal; }
+  .bandA .certrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .bandA .cert { background: rgba(255,255,255,.08); color: #eaf6f9; box-shadow: none; }
+  .bandA .cert .ms { color: var(--color-accent-wash); }
+  .bandA .cert small { color: #9fc4ce; }
+
+  /* VARIANT B & D — proof section */
+  .proofhead { text-align: center; max-width: 680px; margin: 0 auto clamp(28px,4vw,44px); }
+  .proofhead h2 { font-size: clamp(1.7rem,3.4vw,2.5rem); margin-top: 14px; }
+  .proofhead .score { justify-content: center; margin-top: 20px; }
+  .revgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .certstrip { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
+  .uspstrip { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 20px; }
+  .scrollhint { text-align: center; color: var(--color-text-faint); font-size: 13px; margin-top: 40px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .scrollhint .ms { animation: bob 1.6s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(5px);} }
+
+  /* VARIANT D — faux hero so the "appears after hero" behaviour reads */
+  .fauxhero { min-height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 48px 24px; background: var(--gradient-airy); }
+  .fauxhero h2 { font-size: clamp(1.8rem,4vw,3rem); max-width: 720px; }
+  .fauxtag { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-faint); }
+  .fauxhero .hint { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; color: var(--color-text-faint); font-size: 13px; margin-top: 18px; }
+  .fauxhero .hint .ms { animation: bob 1.6s ease-in-out infinite; }
+
+  /* VARIANT C — inline offerte conversion band */
+  .bandC { background: var(--gradient-airy); border-radius: var(--radius-4xl); padding: clamp(28px,4vw,52px); box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+  .bandC .grid { display: grid; grid-template-columns: 1fr 0.86fr; gap: clamp(28px,4vw,52px); align-items: center; position: relative; z-index: 1; }
+  .bandC h2 { font-size: clamp(1.6rem,3vw,2.3rem); }
+  .bandC h2 em { font-style: normal; background: var(--gradient-signature); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .bandC .lead { color: var(--color-text-muted); font-size: 15.5px; line-height: 1.6; margin-top: 16px; max-width: 460px; }
+  .bandC .miniscore { display: flex; align-items: center; gap: 14px; margin-top: 22px; flex-wrap: wrap; }
+  .bandC .quotes { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+  .bandC .q { display: flex; gap: 11px; align-items: flex-start; }
+  .bandC .q .av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 13px; font-family: var(--font-headline); flex: none; }
+  .bandC .q p { font-size: 13.5px; color: var(--color-text-muted); line-height: 1.5; }
+  .bandC .q p b { color: var(--color-text); }
+  .bandC .usprow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+
+  /* CONTACT BARS — body-level so position:fixed resolves to the viewport,
+     not the container-query #frame (which would pin them to the frame). */
+  .cbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9990; transform: translateY(125%); transition: transform .45s var(--ease-spring); }
+  .cbar.show { transform: none; }
+  .cbar .inner { background: var(--glass-strong); backdrop-filter: var(--glass-blur); box-shadow: 0 -8px 32px rgba(0,101,128,.14); padding: 12px clamp(16px,4vw,40px); padding-bottom: max(12px, env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .cbar .msg { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 15px; color: var(--color-text); }
+  .cbar .msg .ms { color: var(--color-primary); font-size: 24px; }
+  .cbar .msg small { display: block; font-weight: 500; font-size: 12px; color: var(--color-text-muted); }
+  .cbar .acts { display: flex; gap: 10px; align-items: center; }
+  .cbar .close { background: none; border: 0; cursor: pointer; color: var(--color-text-faint); padding: 6px; border-radius: 50%; display: grid; place-items: center; transition: all .2s; }
+  .cbar .close:hover { background: var(--color-surface-3); color: var(--color-text); }
+
+  /* toast + toolbar */
+  #toast { position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--color-ink-surface); color: #fff; padding: 13px 22px; border-radius: var(--radius-full); font-size: 14px; font-weight: 600; box-shadow: var(--shadow-xl); z-index: 10000; display: flex; align-items: center; gap: 9px; opacity: 0; pointer-events: none; transition: all .35s var(--ease-spring); }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  #toast .ms { color: var(--color-accent-wash); font-size: 20px; }
+  #sketch-tools { position: fixed; bottom: 12px; right: 12px; z-index: 10000; font-size: 12px; background: rgba(20,29,31,.82); color: #fff; padding: 8px 10px; border-radius: var(--radius-lg); opacity: .35; transition: opacity .35s; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(8px); }
+  #sketch-tools:hover { opacity: 1; }
+  #sketch-tools .grp { display: flex; align-items: center; gap: 4px; }
+  #sketch-tools label { opacity: .6; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
+  #sketch-tools button { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 11px; font-family: inherit; }
+  #sketch-tools button:hover { background: rgba(255,255,255,.25); }
+  #sketch-tools button.on { background: var(--color-primary-light); }
+  #sketch-tools select { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; padding: 4px 6px; font-size: 11px; font-family: inherit; }
+  #sketch-tools select option { color: #000; }
+
+  .fu { opacity: 0; transform: translateY(16px); animation: fu .55s var(--ease-clarity) forwards; }
+  .fu.d1 { animation-delay: .05s; } .fu.d2 { animation-delay: .12s; } .fu.d3 { animation-delay: .19s; } .fu.d4 { animation-delay: .26s; }
+  @keyframes fu { to { opacity: 1; transform: none; } }
+
+  @container stage (max-width: 900px) {
+    .bandA .inner { grid-template-columns: 1fr; }
+    .bandA .divider { display: none; }
+    .revgrid { grid-template-columns: 1fr; }
+    .bandC .grid { grid-template-columns: 1fr; }
+  }
+  @container stage (max-width: 520px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+  /* the contact bar is body-level (not inside #frame), so it responds to the real
+     window width, not the container — use a normal media query for its mobile shape */
+  @media (max-width: 560px) {
+    .cbar .inner { flex-direction: column; gap: 10px; align-items: stretch; }
+    .cbar .msg { justify-content: center; }
+    .cbar .msg small { display: none; }
+    .cbar .acts { width: 100%; }
+    .cbar .acts .btn { flex: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div id="variant-nav">
+  <span class="vlabel">Sketch 003 · Trust + Contact</span>
+  <button class="variant-tab active" data-v="a" onclick="showVariant('a', this)">A · Unified band</button>
+  <button class="variant-tab" data-v="b" onclick="showVariant('b', this)">B · Sticky action bar</button>
+  <button class="variant-tab" data-v="c" onclick="showVariant('c', this)">C · Inline offerte band</button>
+  <button class="variant-tab" data-v="d" onclick="showVariant('d', this)">D · Smart sticky bar <span class="win">★ Gekozen</span></button>
+</div>
+
+<div id="frame">
+
+  <!-- ============ VARIANT A ============ -->
+  <section class="variant active" id="variant-a">
+    <div class="sec">
+      <div class="wrap">
+        <div class="bandA fu">
+          <div class="inner">
+            <div>
+              <span class="badge light"><span class="ms">reviews</span>Wat klanten zeggen</span>
+              <div class="score" style="margin-top:18px">
+                <span class="num">4,9</span>
+                <div class="meta"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><small>uit 50+ Google-reviews</small></div>
+              </div>
+              <p class="quote">&ldquo;Snel, netjes en goed advies. De airco draait perfect en de prijs was vooraf duidelijk.&rdquo;<br><b>— Jan de Vries, Zoetermeer</b></p>
+              <div class="certrow">
+                <span class="cert"><span class="ms">verified_user</span>F-gassen<small>gecertificeerd</small></span>
+                <span class="cert"><span class="ms">workspace_premium</span>STEK-erkend</span>
+                <span class="cert"><span class="ms">handshake</span>15+ jaar</span>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div>
+              <h2>Klaar voor een fris, comfortabel binnenklimaat?</h2>
+              <p class="lead">Vraag vrijblijvend een offerte aan — u krijgt snel persoonlijk advies. Liever direct? Bel of WhatsApp ons, geen voorrijkosten.</p>
+              <div class="cta">
+                <a class="btn btn-primary btn-lg" onclick="toast('Offerte-aanvraag geopend','request_quote');return false;"><span class="ms">request_quote</span>Offerte aanvragen</a>
+                <a class="btn btn-light btn-lg" href="tel:+31629403450" onclick="toast('Bellen: 06 - 29 40 34 50','call');return false;"><span class="ms">call</span>06 - 29 40 34 50</a>
+                <a class="btn btn-accent btn-lg" href="https://wa.me/31629403450" onclick="toast('WhatsApp openen','chat');return false;"><span class="ms">chat</span>WhatsApp</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT B ============ -->
+  <section class="variant" id="variant-b">
+    <div class="sec" style="padding-bottom:120px">
+      <div class="wrap">
+        <div class="proofhead">
+          <span class="badge fu"><span class="ms">reviews</span>Beoordeeld door onze klanten</span>
+          <h2 class="fu d1">Honderden tevreden klanten in de regio</h2>
+          <div class="score fu d2">
+            <span class="num">4,9</span>
+            <div class="meta"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><small class="gmark"><span class="g"></span><b>Google</b> · 50+ reviews</small></div>
+          </div>
+        </div>
+        <div class="revgrid">
+          <div class="rev fu d1"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><p>&ldquo;Snel, netjes en goed advies. De airco draait perfect en de prijs was vooraf duidelijk.&rdquo;</p><div class="who"><span class="av" style="background:#006580">JV</span><span><b>Jan de Vries</b><small>Zoetermeer · via Google</small></span></div></div>
+          <div class="rev fu d2"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><p>&ldquo;Vakkundige monteurs, duidelijke prijs vooraf en geen voorrijkosten. Echt een aanrader.&rdquo;</p><div class="who"><span class="av" style="background:#1b8657">MB</span><span><b>Marloes Bakker</b><small>Den Haag · via Google</small></span></div></div>
+          <div class="rev fu d3"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><p>&ldquo;WTW-unit laten vervangen — keurig werk, goede uitleg en netjes opgeruimd achteraf.&rdquo;</p><div class="who"><span class="av" style="background:#257f9c">TK</span><span><b>Thomas Klein</b><small>Pijnacker · via Google</small></span></div></div>
+        </div>
+        <div class="certstrip">
+          <span class="cert fu d1"><span class="ms">verified_user</span>F-gassen <small>gecertificeerd</small></span>
+          <span class="cert fu d2"><span class="ms">workspace_premium</span>STEK-erkend</span>
+          <span class="cert fu d3"><span class="ms">eco</span>InstallQ</span>
+          <span class="cert fu d4"><span class="ms">badge</span>KvK 73722650</span>
+        </div>
+        <div class="uspstrip">
+          <span class="trust-pill"><span class="ms">payments</span>Geen voorrijkosten</span>
+          <span class="trust-pill"><span class="ms">bolt</span>Reactie binnen 1 werkdag</span>
+          <span class="trust-pill"><span class="ms">shield</span>Gecertificeerd &amp; verzekerd</span>
+        </div>
+        <div class="scrollhint">De contactbalk blijft altijd in beeld <span class="ms">keyboard_double_arrow_down</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT C ============ -->
+  <section class="variant" id="variant-c">
+    <div class="sec">
+      <div class="wrap">
+        <div class="bandC fu">
+          <div class="grid">
+            <div>
+              <span class="badge"><span class="ms">request_quote</span>Vrijblijvende offerte</span>
+              <h2 style="margin-top:14px">Binnen 30 seconden aangevraagd — <em>wij bellen u terug.</em></h2>
+              <p class="lead">Vertel ons kort wat u zoekt. U krijgt snel persoonlijk advies van een ervaren, gecertificeerde specialist.</p>
+              <div class="miniscore">
+                <div class="score"><span class="num" style="font-size:38px">4,9</span><div class="meta"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><small>50+ Google-reviews</small></div></div>
+              </div>
+              <div class="quotes">
+                <div class="q"><span class="av" style="background:#006580">JV</span><p>&ldquo;Snel, netjes en goed advies.&rdquo; <b>— Jan de Vries, Zoetermeer</b></p></div>
+                <div class="q"><span class="av" style="background:#1b8657">MB</span><p>&ldquo;Duidelijke prijs vooraf, geen voorrijkosten.&rdquo; <b>— Marloes B., Den Haag</b></p></div>
+              </div>
+              <div class="usprow">
+                <span class="cert"><span class="ms">verified_user</span>F-gassen <small>gecertificeerd</small></span>
+                <span class="cert"><span class="ms">workspace_premium</span>STEK-erkend</span>
+              </div>
+            </div>
+            <form class="offerte" onsubmit="fakeSubmit(event)">
+              <div class="ehead"><h3><span class="ms">request_quote</span>Gratis offerte</h3><span class="live"><i></i>Direct beschikbaar</span></div>
+              <p class="sub">Geen kosten · vrijblijvend · AVG-proof</p>
+              <div class="form-row">
+                <label class="field"><span>Postcode</span><input type="text" placeholder="2712 LB" /></label>
+                <label class="field"><span>Telefoon</span><input type="tel" placeholder="06 - .. .. .. .." /></label>
+              </div>
+              <label class="field"><span>Waarvoor heeft u ons nodig?</span><select><option>Airconditioning</option><option>Warmtepomp</option><option>WTW / warmteterugwinning</option><option>Mechanische ventilatie</option><option>Weet ik nog niet</option></select></label>
+              <button type="submit" class="btn btn-primary" style="width:100%"><span class="ms">send</span>Vraag gratis offerte aan</button>
+              <div class="ordivider">of direct contact</div>
+              <div style="display:flex; gap:10px">
+                <a class="btn btn-ghost btn-sm" style="flex:1" href="tel:+31629403450" onclick="toast('Bellen: 06 - 29 40 34 50','call');return false;"><span class="ms">call</span>Bellen</a>
+                <a class="btn btn-accent btn-sm" style="flex:1" href="https://wa.me/31629403450" onclick="toast('WhatsApp openen','chat');return false;"><span class="ms">chat</span>WhatsApp</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT D — proof section + SMART sticky bar ============ -->
+  <section class="variant" id="variant-d">
+    <div class="fauxhero">
+      <span class="fauxtag">▲ Homepage-hero — met eigen offerte-CTA (sketch 001 · D)</span>
+      <span class="badge"><span class="ms">verified</span>Klimaattechniek · Regio Zoetermeer</span>
+      <h2>Uw specialist in een perfect binnenklimaat</h2>
+      <a class="btn btn-primary btn-lg" onclick="toast('Offerte (hero-CTA)','request_quote');return false;"><span class="ms">request_quote</span>Offerte aanvragen</a>
+      <span class="hint">Scroll naar beneden — de contactbalk verschijnt zodra u verder leest<span class="ms">keyboard_double_arrow_down</span></span>
+    </div>
+    <div class="sec" style="padding-bottom:140px">
+      <div class="wrap">
+        <div class="proofhead">
+          <span class="badge fu"><span class="ms">reviews</span>Beoordeeld door onze klanten</span>
+          <h2 class="fu d1">Honderden tevreden klanten in de regio</h2>
+          <div class="score fu d2">
+            <span class="num">4,9</span>
+            <div class="meta"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><small class="gmark"><span class="g"></span><b>Google</b> · 50+ reviews</small></div>
+          </div>
+        </div>
+        <div class="revgrid">
+          <div class="rev fu d1"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><p>&ldquo;Snel, netjes en goed advies. De airco draait perfect en de prijs was vooraf duidelijk.&rdquo;</p><div class="who"><span class="av" style="background:#006580">JV</span><span><b>Jan de Vries</b><small>Zoetermeer · via Google</small></span></div></div>
+          <div class="rev fu d2"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><p>&ldquo;Vakkundige monteurs, duidelijke prijs vooraf en geen voorrijkosten. Echt een aanrader.&rdquo;</p><div class="who"><span class="av" style="background:#1b8657">MB</span><span><b>Marloes Bakker</b><small>Den Haag · via Google</small></span></div></div>
+          <div class="rev fu d3"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><p>&ldquo;WTW-unit laten vervangen — keurig werk, goede uitleg en netjes opgeruimd achteraf.&rdquo;</p><div class="who"><span class="av" style="background:#257f9c">TK</span><span><b>Thomas Klein</b><small>Pijnacker · via Google</small></span></div></div>
+        </div>
+        <div class="certstrip">
+          <span class="cert fu d1"><span class="ms">verified_user</span>F-gassen <small>gecertificeerd</small></span>
+          <span class="cert fu d2"><span class="ms">workspace_premium</span>STEK-erkend</span>
+          <span class="cert fu d3"><span class="ms">eco</span>InstallQ</span>
+          <span class="cert fu d4"><span class="ms">badge</span>KvK 73722650</span>
+        </div>
+        <div class="uspstrip">
+          <span class="trust-pill"><span class="ms">payments</span>Geen voorrijkosten</span>
+          <span class="trust-pill"><span class="ms">bolt</span>Reactie binnen 1 werkdag</span>
+          <span class="trust-pill"><span class="ms">shield</span>Gecertificeerd &amp; verzekerd</span>
+        </div>
+      </div>
+    </div>
+      <div class="sec" style="min-height:40vh; padding:48px clamp(20px,5vw,56px) 180px; text-align:center">
+        <div class="wrap">
+          <h2 style="font-size:clamp(1.5rem,3vw,2.2rem)">Liever direct een afspraak?</h2>
+          <p style="color:var(--color-text-muted); max-width:520px; margin:14px auto 0; font-size:15.5px; line-height:1.6">Bel of WhatsApp ons — vaak nog dezelfde dag antwoord. De contactbalk onderaan helpt u op elk moment verder.</p>
+        </div>
+      </div>
+  </section>
+
+</div><!-- /#frame -->
+
+<!-- Contact bars live OUTSIDE #frame (see CSS note). Shown per active variant. -->
+<div class="cbar" id="barB">
+  <div class="inner">
+    <div class="msg"><span class="ms">support_agent</span><span>Hulp nodig of direct een prijs?<small>Persoonlijk advies — geen voorrijkosten</small></span></div>
+    <div class="acts">
+      <a class="btn btn-ghost btn-sm" href="tel:+31629403450" onclick="toast('Bellen: 06 - 29 40 34 50','call');return false;"><span class="ms">call</span>Bel</a>
+      <a class="btn btn-accent btn-sm" href="https://wa.me/31629403450" onclick="toast('WhatsApp openen','chat');return false;"><span class="ms">chat</span>WhatsApp</a>
+      <a class="btn btn-primary btn-sm" onclick="toast('Offerte-aanvraag geopend','request_quote');return false;"><span class="ms">request_quote</span>Offerte</a>
+    </div>
+  </div>
+</div>
+
+<div class="cbar" id="barD">
+  <div class="inner">
+    <div class="msg"><span class="ms">support_agent</span><span>Hulp nodig of direct een prijs?<small>Persoonlijk advies — geen voorrijkosten</small></span></div>
+    <div class="acts">
+      <a class="btn btn-ghost btn-sm" href="tel:+31629403450" onclick="toast('Bellen: 06 - 29 40 34 50','call');return false;"><span class="ms">call</span>Bel</a>
+      <a class="btn btn-accent btn-sm" href="https://wa.me/31629403450" onclick="toast('WhatsApp openen','chat');return false;"><span class="ms">chat</span>WhatsApp</a>
+      <a class="btn btn-primary btn-sm" onclick="toast('Offerte-aanvraag geopend','request_quote');return false;"><span class="ms">request_quote</span>Offerte</a>
+      <button class="close" onclick="dismissBarD()" title="Verberg balk"><span class="ms">close</span></button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"><span class="ms" id="toast-icon">check_circle</span><span id="toast-msg">Klaar</span></div>
+
+<div id="sketch-tools">
+  <div class="grp"><label>Thema</label><select onchange="document.querySelector('link[href*=themes]').href='../themes/'+this.value+'.css'"><option value="default">Default</option></select></div>
+  <div class="grp"><label>Breedte</label><button onclick="setVP(375,this)">📱</button><button onclick="setVP(768,this)">▭</button><button class="on" onclick="setVP(0,this)">🖥</button></div>
+</div>
+
+<script>
+  let dBarDismissed = false;
+
+  function showVariant(v, btn) {
+    document.querySelectorAll('.variant').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.variant-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('variant-' + v).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelectorAll('.variant.active .fu').forEach(el => { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
+    // contact bars
+    document.getElementById('barB').classList.toggle('show', v === 'b');
+    dBarDismissed = false;
+    document.getElementById('barD').classList.remove('show');
+  }
+
+  // Variant D: smart bar — appears once you scroll past the (faux) hero, dismissible
+  function updateBarD() {
+    const active = document.getElementById('variant-d').classList.contains('active');
+    const bar = document.getElementById('barD');
+    if (!active || dBarDismissed) { bar.classList.remove('show'); return; }
+    // Fixed, reliably-reachable threshold (a real homepage has a full page below the
+    // hero; the sketch guarantees scroll room via the 40vh closing block below).
+    bar.classList.toggle('show', window.scrollY > 200);
+  }
+  function dismissBarD() { dBarDismissed = true; document.getElementById('barD').classList.remove('show'); toast('Contactbalk verborgen', 'close'); }
+  window.addEventListener('scroll', updateBarD, { passive: true });
+
+  let toastTimer;
+  function toast(msg, icon) {
+    document.getElementById('toast-msg').textContent = msg;
+    document.getElementById('toast-icon').textContent = icon || 'check_circle';
+    const t = document.getElementById('toast'); t.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+  }
+  function fakeSubmit(e) { e.preventDefault(); toast('Bedankt! Wij bellen u snel terug.', 'check_circle'); e.target.reset && e.target.reset(); }
+  function setVP(w, btn) {
+    const frame = document.getElementById('frame');
+    document.querySelectorAll('#sketch-tools .grp:last-child button').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    if (!w) { frame.classList.remove('constrained'); frame.style.maxWidth = ''; }
+    else { frame.classList.add('constrained'); frame.style.maxWidth = w + 'px'; }
+    window.scrollTo({ top: 0 });
+  }
+</script>
+</body>
+</html>
