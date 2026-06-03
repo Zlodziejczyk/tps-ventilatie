@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sketch 001 — Homepage Hero · TPS klimaattechniek</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+<link rel="stylesheet" href="../themes/default.css" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    padding-top: 46px; /* clears the fixed variant bar */
+    -webkit-font-smoothing: antialiased;
+  }
+  .ms {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal; font-style: normal;
+    line-height: 1; letter-spacing: normal;
+    display: inline-block; vertical-align: middle;
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  /* ============ VARIANT BAR ============ */
+  #variant-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 9998;
+    background: var(--color-ink-surface); color: #fff;
+    display: flex; align-items: center; gap: 6px;
+    padding: 7px 12px; font-size: 12.5px; font-family: var(--font-body);
+  }
+  #variant-nav .vlabel { opacity: .6; font-weight: 600; letter-spacing: .04em; margin-right: 6px; text-transform: uppercase; font-size: 11px; }
+  .variant-tab {
+    border: 0; cursor: pointer; color: #cfe6ec;
+    background: rgba(255,255,255,.08); padding: 5px 12px; border-radius: var(--radius-full);
+    font-size: 12.5px; font-weight: 600; font-family: inherit; transition: all var(--dur-fast) var(--ease-clarity);
+  }
+  .variant-tab:hover { background: rgba(255,255,255,.18); color: #fff; }
+  .variant-tab.active { background: var(--color-primary-light); color: #fff; }
+  .variant-tab .win { color: var(--color-accent-wash); margin-left: 4px; }
+
+  /* ============ DEVICE FRAME (viewport preview) ============ */
+  #frame { container-type: inline-size; container-name: stage; transition: max-width var(--dur-base) var(--ease-clarity); }
+  #frame.constrained {
+    margin: 14px auto; max-width: 1280px;
+    border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-xl);
+    outline: 1px solid var(--color-surface-4);
+  }
+
+  .variant { display: none; }
+  .variant.active { display: block; }
+
+  /* ============ FAUX SITE NAV ============ */
+  .site-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px clamp(20px, 5vw, 56px);
+    background: var(--glass-strong); backdrop-filter: var(--glass-blur);
+    position: relative; z-index: 20;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-headline); font-weight: 800; font-size: 18px; color: var(--color-text); letter-spacing: -.01em; }
+  .brand .logo {
+    width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+    background: var(--gradient-signature); color: #fff; box-shadow: var(--shadow-md);
+  }
+  .brand small { display: block; font-family: var(--font-body); font-weight: 500; font-size: 10.5px; color: var(--color-text-muted); letter-spacing: .02em; margin-top: -2px; }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-links a { color: var(--color-text-muted); text-decoration: none; font-weight: 600; font-size: 14.5px; padding: 8px 14px; border-radius: var(--radius-md); transition: all var(--dur-fast) var(--ease-clarity); }
+  .nav-links a:hover { color: var(--color-primary); background: var(--color-bg-tint); }
+  .nav-links a.active { color: var(--color-primary); }
+  .nav-cta { display: flex; align-items: center; gap: 10px; }
+
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    border: 0; cursor: pointer; text-decoration: none; white-space: nowrap;
+    font-family: var(--font-body); font-weight: 700; font-size: 15px;
+    padding: 13px 22px; border-radius: var(--radius-lg);
+    transition: transform var(--dur-fast) var(--ease-clarity), box-shadow var(--dur-base) var(--ease-clarity), background var(--dur-base) var(--ease-clarity);
+  }
+  .btn .ms { font-size: 19px; }
+  .btn-primary { background: var(--gradient-signature); color: var(--color-on-primary); box-shadow: var(--shadow-md); }
+  .btn-primary:hover { transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow-lg); }
+  .btn-ghost { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); }
+  .btn-ghost:hover { background: var(--color-surface-2); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .btn-accent { background: var(--color-accent); color: #fff; box-shadow: var(--shadow-md); }
+  .btn-accent:hover { background: var(--color-accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn-sm { padding: 9px 16px; font-size: 13.5px; border-radius: var(--radius-md); }
+  .btn-lg { padding: 16px 28px; font-size: 16.5px; }
+
+  /* ============ SHARED ATOMS ============ */
+  .badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--color-accent-wash); color: var(--color-accent-hover);
+    font-weight: 700; font-size: 11.5px; letter-spacing: var(--tracking-wide); text-transform: uppercase;
+    padding: 6px 13px; border-radius: var(--radius-full);
+  }
+  .badge .ms { font-size: 15px; }
+
+  .rating { display: inline-flex; align-items: center; gap: 9px; flex-wrap: wrap; font-size: 14px; color: var(--color-text-muted); font-weight: 500; }
+  .stars { display: inline-flex; gap: 1px; color: var(--color-rating); }
+  .stars .ms { font-size: 18px; }
+  .rating b { color: var(--color-text); font-weight: 700; }
+  .rating .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--color-border); }
+
+  .trust-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .trust-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+    padding: 9px 15px; border-radius: var(--radius-full); box-shadow: var(--shadow-sm);
+    font-size: 13px; font-weight: 600; color: var(--color-text);
+  }
+  .trust-pill .ms { font-size: 18px; color: var(--color-accent); }
+
+  h1 { font-family: var(--font-headline); font-weight: 800; letter-spacing: var(--tracking-tight); line-height: var(--leading-tight); color: var(--color-text); }
+  .lead { color: var(--color-text-muted); font-size: var(--text-lg); line-height: var(--leading-relaxed); font-weight: 400; }
+
+  /* ============ AURORA (pure CSS, CWV-safe) ============ */
+  .aurora { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+  .aurora .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: .55; mix-blend-mode: multiply; }
+  .blob.b1 { width: 60vw; height: 60vw; max-width: 720px; max-height: 720px; left: -8%; top: -22%; background: radial-gradient(circle at 30% 30%, #a8dff0, transparent 65%); animation: drift1 22s var(--ease-clarity) infinite alternate; }
+  .blob.b2 { width: 55vw; height: 55vw; max-width: 640px; max-height: 640px; right: -10%; top: -12%; background: radial-gradient(circle at 70% 40%, #b8e8d0, transparent 65%); animation: drift2 26s var(--ease-clarity) infinite alternate; }
+  .blob.b3 { width: 48vw; height: 48vw; max-width: 560px; max-height: 560px; left: 30%; bottom: -34%; background: radial-gradient(circle at 50% 50%, #baeaff, transparent 62%); animation: drift3 30s var(--ease-clarity) infinite alternate; }
+  @keyframes drift1 { to { transform: translate(80px, 60px) scale(1.12); } }
+  @keyframes drift2 { to { transform: translate(-70px, 50px) scale(1.08); } }
+  @keyframes drift3 { to { transform: translate(40px, -50px) scale(1.15); } }
+
+  /* fade-up entrance */
+  .fu { opacity: 0; transform: translateY(18px); animation: fu .6s var(--ease-clarity) forwards; }
+  .fu.d1 { animation-delay: .06s; } .fu.d2 { animation-delay: .14s; }
+  .fu.d3 { animation-delay: .22s; } .fu.d4 { animation-delay: .30s; } .fu.d5 { animation-delay: .40s; }
+  @keyframes fu { to { opacity: 1; transform: none; } }
+
+  /* ============================================================= */
+  /* VARIANT A — Elevated-Atmospheric                              */
+  /* ============================================================= */
+  .heroA { position: relative; background: var(--gradient-airy); padding: clamp(48px, 7vw, 96px) clamp(20px, 5vw, 56px) clamp(72px, 8vw, 120px); overflow: hidden; }
+  .heroA .aurora { z-index: 0; }
+  .heroA .inner { position: relative; z-index: 2; max-width: 880px; margin: 0 auto; text-align: center; }
+  .heroA .glass {
+    position: relative; background: var(--glass-bg); backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius-3xl); padding: clamp(32px, 5vw, 56px) clamp(24px, 5vw, 60px);
+    box-shadow: var(--shadow-glow), var(--shadow-lg);
+  }
+  .heroA h1 { font-size: clamp(2.1rem, 6vw, 4.25rem); margin: 20px 0 0; }
+  .heroA .rot { display: block; position: relative; height: 1.12em; overflow: hidden; }
+  .heroA .rot span { position: absolute; inset: 0; color: var(--color-primary); opacity: 0; transform: translateY(100%); transition: transform .55s var(--ease-spring), opacity .55s var(--ease-clarity); }
+  .heroA .rot span.in { opacity: 1; transform: translateY(0); }
+  .heroA .rot span.out { opacity: 0; transform: translateY(-100%); }
+  .heroA .lead { max-width: 600px; margin: 22px auto 0; }
+  .heroA .ratingwrap { display: flex; justify-content: center; margin-top: 22px; }
+  .heroA .ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .heroA .chips { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; position: relative; z-index: 2; }
+  .pillar-chip {
+    display: inline-flex; align-items: center; gap: 9px; cursor: pointer;
+    background: var(--color-surface); padding: 11px 18px; border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm); font-weight: 600; font-size: 14px; color: var(--color-text);
+    transition: all var(--dur-base) var(--ease-clarity);
+  }
+  .pillar-chip .ms { font-size: 21px; color: var(--color-primary); transition: transform var(--dur-base) var(--ease-spring); }
+  .pillar-chip:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); color: var(--color-primary); }
+  .pillar-chip:hover .ms { transform: scale(1.15) rotate(-6deg); }
+  .pillar-chip .new { background: var(--color-accent); color: #fff; font-size: 9.5px; font-weight: 800; letter-spacing: .06em; padding: 2px 6px; border-radius: var(--radius-full); text-transform: uppercase; }
+  .heroA .trust-row { justify-content: center; margin-top: 40px; position: relative; z-index: 2; }
+
+  /* ============================================================= */
+  /* VARIANT B — Engineered split (Daikin-style)                   */
+  /* ============================================================= */
+  .heroB { position: relative; background: var(--gradient-airy); padding: clamp(40px, 5vw, 80px) clamp(20px, 5vw, 56px) clamp(56px, 6vw, 96px); overflow: hidden; }
+  .heroB .aurora .blob { opacity: .38; }
+  .heroB .grid { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .heroB .left { }
+  .heroB h1 { font-size: clamp(2rem, 4.6vw, 3.6rem); margin: 18px 0 0; }
+  .heroB h1 em { font-style: normal; color: var(--color-primary); }
+  .heroB .lead { margin-top: 20px; max-width: 520px; }
+  .heroB .rating { margin-top: 24px; }
+  .heroB .ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+  .heroB .specs { display: flex; gap: 26px; margin-top: 34px; flex-wrap: wrap; }
+  .heroB .spec b { display: block; font-family: var(--font-headline); font-size: 24px; font-weight: 800; color: var(--color-primary); line-height: 1; }
+  .heroB .spec span { font-size: 12.5px; color: var(--color-text-muted); font-weight: 500; }
+
+  /* engineered panel */
+  .epanel {
+    position: relative; background: var(--color-surface); border-radius: var(--radius-2xl);
+    padding: 22px; box-shadow: var(--shadow-xl); overflow: hidden;
+  }
+  .epanel::before {
+    content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none;
+    background-image: linear-gradient(var(--color-surface-2) 1px, transparent 1px), linear-gradient(90deg, var(--color-surface-2) 1px, transparent 1px);
+    background-size: 26px 26px; mask-image: radial-gradient(circle at 70% 20%, #000, transparent 75%);
+  }
+  .epanel .ehead { position: relative; display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .epanel .ehead span { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-faint); }
+  .epanel .ehead .live { display: inline-flex; align-items: center; gap: 6px; color: var(--color-accent); }
+  .epanel .ehead .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 0 rgba(0,107,66,.4); animation: pulse 2s infinite; font-style: normal; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,107,66,.4);} 70% { box-shadow: 0 0 0 8px rgba(0,107,66,0);} 100% { box-shadow: 0 0 0 0 rgba(0,107,66,0);} }
+  .ptiles { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ptile {
+    position: relative; cursor: pointer; text-align: left;
+    background: var(--color-bg-tint); border: 1.5px solid transparent; border-radius: var(--radius-xl);
+    padding: 16px; transition: all var(--dur-base) var(--ease-clarity);
+  }
+  .ptile .ms { font-size: 26px; color: var(--color-primary); }
+  .ptile h4 { font-family: var(--font-headline); font-size: 15px; font-weight: 700; margin-top: 10px; color: var(--color-text); }
+  .ptile:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); background: var(--color-surface); }
+  .ptile.active { border-color: var(--color-primary); background: var(--color-surface); box-shadow: var(--shadow-md); }
+  .ptile.active .ms { color: var(--color-accent); }
+  .ptile .newtag { position: absolute; top: 10px; right: 10px; background: var(--color-accent); color: #fff; font-size: 8.5px; font-weight: 800; letter-spacing: .05em; padding: 2px 6px; border-radius: var(--radius-full); text-transform: uppercase; }
+  .epreview { position: relative; margin-top: 14px; background: var(--gradient-ink); color: #fff; border-radius: var(--radius-xl); padding: 18px 20px; box-shadow: var(--shadow-md); }
+  .epreview h5 { font-family: var(--font-headline); font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .epreview p { font-size: 13px; color: #d3e8ee; line-height: 1.5; }
+  .epreview a { display: inline-flex; align-items: center; gap: 5px; margin-top: 12px; color: var(--color-accent-wash); font-weight: 700; font-size: 13.5px; text-decoration: none; }
+  .epreview a .ms { font-size: 17px; transition: transform var(--dur-fast) var(--ease-clarity); }
+  .epreview a:hover .ms { transform: translateX(4px); }
+
+  /* ============================================================= */
+  /* VARIANT C — Proof-forward (conversion-dense)                  */
+  /* ============================================================= */
+  .heroC { position: relative; background: var(--gradient-airy); padding: clamp(28px, 4vw, 52px) clamp(20px, 5vw, 56px) clamp(48px, 6vw, 84px); overflow: hidden; }
+  .heroC .aurora .blob { opacity: .32; }
+  .heroC .inner { position: relative; z-index: 2; max-width: 1080px; margin: 0 auto; }
+  .proofbar {
+    display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    background: var(--color-surface); border-radius: var(--radius-full); padding: 9px 9px 9px 18px;
+    box-shadow: var(--shadow-md);
+  }
+  .proofbar .quote { font-size: 13px; color: var(--color-text-muted); font-style: italic; }
+  .proofbar .quote b { color: var(--color-text); font-style: normal; font-weight: 700; }
+  .proofbar .av { display: inline-flex; }
+  .proofbar .av i { width: 26px; height: 26px; border-radius: 50%; margin-left: -8px; border: 2px solid var(--color-surface); display: grid; place-items: center; font-style: normal; font-size: 11px; font-weight: 700; color: #fff; }
+  .heroC .head { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(28px, 4vw, 56px); align-items: end; margin-top: 28px; }
+  .heroC h1 { font-size: clamp(1.9rem, 4.2vw, 3.1rem); }
+  .heroC h1 em { font-style: normal; background: var(--gradient-signature); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .heroC .lead { margin-top: 16px; }
+  /* offerte card */
+  .offerte {
+    background: var(--color-surface); border-radius: var(--radius-2xl); padding: 22px; box-shadow: var(--shadow-xl);
+  }
+  .offerte h3 { font-family: var(--font-headline); font-size: 17px; font-weight: 800; color: var(--color-text); display: flex; align-items: center; gap: 8px; }
+  .offerte h3 .ms { color: var(--color-accent); font-size: 22px; }
+  .offerte p.sub { font-size: 12.5px; color: var(--color-text-muted); margin: 4px 0 16px; }
+  .field { display: block; margin-bottom: 12px; }
+  .field label { display: block; font-size: 11.5px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 5px; letter-spacing: .02em; }
+  .field input, .field select {
+    width: 100%; font-family: var(--font-body); font-size: 14px; color: var(--color-text);
+    background: var(--color-bg-tint); border: 1.5px solid transparent; border-radius: var(--radius-md);
+    padding: 11px 13px; transition: all var(--dur-fast) var(--ease-clarity); outline: none;
+  }
+  .field input:focus, .field select:focus { border-color: var(--color-primary); background: var(--color-surface); box-shadow: 0 0 0 4px rgba(0,101,128,.1); }
+  .offerte .reassure { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--color-text-muted); margin-top: 10px; }
+  .offerte .reassure .ms { font-size: 16px; color: var(--color-accent); }
+  .usps { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; position: relative; z-index: 2; }
+  .pcards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 28px; position: relative; z-index: 2; }
+  .pcard {
+    position: relative; cursor: pointer; background: var(--color-surface); border-radius: var(--radius-xl);
+    padding: 18px; box-shadow: var(--shadow-sm); transition: all var(--dur-base) var(--ease-clarity); text-decoration: none; color: inherit; display: block;
+  }
+  .pcard .ms { font-size: 28px; color: var(--color-primary); }
+  .pcard h4 { font-family: var(--font-headline); font-size: 15px; font-weight: 700; margin-top: 12px; color: var(--color-text); }
+  .pcard p { font-size: 12.5px; color: var(--color-text-muted); margin-top: 4px; line-height: 1.45; }
+  .pcard .go { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; color: var(--color-primary); font-weight: 700; font-size: 13px; }
+  .pcard .go .ms { font-size: 16px; color: var(--color-primary); transition: transform var(--dur-fast) var(--ease-clarity); }
+  .pcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .pcard:hover .go .ms { transform: translateX(4px); }
+  .pcard .newtag { position: absolute; top: 14px; right: 14px; background: var(--color-accent); color: #fff; font-size: 8.5px; font-weight: 800; letter-spacing: .05em; padding: 2px 6px; border-radius: var(--radius-full); text-transform: uppercase; }
+
+  /* ============ TOAST ============ */
+  #toast {
+    position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--color-ink-surface); color: #fff; padding: 13px 22px; border-radius: var(--radius-full);
+    font-size: 14px; font-weight: 600; box-shadow: var(--shadow-xl); z-index: 9999;
+    display: flex; align-items: center; gap: 9px; opacity: 0; pointer-events: none; transition: all var(--dur-base) var(--ease-spring);
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  #toast .ms { color: var(--color-accent-wash); font-size: 20px; }
+
+  /* ============ SKETCH TOOLBAR ============ */
+  #sketch-tools {
+    position: fixed; bottom: 12px; right: 12px; z-index: 9999; font-family: var(--font-body); font-size: 12px;
+    background: rgba(20,29,31,.82); color: #fff; padding: 8px 10px; border-radius: var(--radius-lg);
+    opacity: .35; transition: opacity var(--dur-base); display: flex; align-items: center; gap: 10px; backdrop-filter: blur(8px);
+  }
+  #sketch-tools:hover { opacity: 1; }
+  #sketch-tools .grp { display: flex; align-items: center; gap: 4px; }
+  #sketch-tools label { opacity: .6; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
+  #sketch-tools button { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 11px; font-family: inherit; }
+  #sketch-tools button:hover { background: rgba(255,255,255,.25); }
+  #sketch-tools button.on { background: var(--color-primary-light); }
+  #sketch-tools select { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; padding: 4px 6px; font-size: 11px; font-family: inherit; }
+  #sketch-tools select option { color: #000; }
+
+  /* ============================================================= */
+  /* VARIANT D — Proof-forward, engineered (synthesis: C + B craft) */
+  /* ============================================================= */
+  .heroD { position: relative; background: var(--gradient-airy); padding: clamp(32px,4.5vw,64px) clamp(20px,5vw,56px) clamp(56px,7vw,104px); overflow: hidden; }
+  .heroD .aurora .blob { opacity: .42; }
+  .heroD .inner { position: relative; z-index: 2; max-width: 1140px; margin: 0 auto; }
+  .heroD .head { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(30px,4vw,60px); align-items: start; margin-top: 30px; }
+  .heroD h1 { font-size: clamp(2rem,4.4vw,3.35rem); margin-top: 16px; }
+  .heroD h1 em { font-style: normal; background: var(--gradient-signature); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .heroD .lead { margin-top: 18px; max-width: 520px; }
+  .heroD .usps { margin-top: 24px; }
+  .heroD .specs { display: flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; padding-top: 26px; position: relative; }
+  .heroD .specs::before { content: ""; position: absolute; top: 0; left: 0; width: 64px; height: 3px; border-radius: 3px; background: var(--gradient-signature); }
+  .heroD .spec b { display: block; font-family: var(--font-headline); font-size: 26px; font-weight: 800; color: var(--color-primary); line-height: 1; }
+  .heroD .spec span { font-size: 12.5px; color: var(--color-text-muted); font-weight: 500; }
+
+  /* engineered offerte form (B's panel craft applied to C's form) */
+  .offerte.engineered { position: relative; overflow: hidden; box-shadow: var(--shadow-xl); }
+  .offerte.engineered::before {
+    content: ""; position: absolute; inset: 0; opacity: .6; pointer-events: none; z-index: 0;
+    background-image: linear-gradient(var(--color-surface-2) 1px, transparent 1px), linear-gradient(90deg, var(--color-surface-2) 1px, transparent 1px);
+    background-size: 24px 24px; mask-image: radial-gradient(circle at 88% 0%, #000, transparent 68%); -webkit-mask-image: radial-gradient(circle at 88% 0%, #000, transparent 68%);
+  }
+  .offerte.engineered > * { position: relative; z-index: 1; }
+  .offerte .ehead { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .offerte .live { display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--color-accent); white-space: nowrap; }
+  .offerte .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); font-style: normal; animation: pulse 2s infinite; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-row .field { margin-bottom: 12px; }
+
+  /* engineered pillar cards — top accent reveal + route-to-form state */
+  .heroD .pcards { margin-top: 34px; }
+  .heroD .pcard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-signature); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-base) var(--ease-clarity); }
+  .heroD .pcard:hover::before { transform: scaleX(1); }
+  .heroD .pcard.routed { box-shadow: var(--shadow-lg), inset 0 0 0 1.5px var(--color-primary); }
+  .heroD .pcard.routed::before { transform: scaleX(1); }
+
+  /* ============ CONTAINER QUERIES (viewport preview reflow) ============ */
+  @container stage (max-width: 860px) {
+    .nav-links { display: none; }
+    .heroB .grid { grid-template-columns: 1fr; }
+    .heroC .head { grid-template-columns: 1fr; }
+    .heroC .pcards { grid-template-columns: repeat(2, 1fr); }
+    .heroD .head { grid-template-columns: 1fr; }
+    .heroD .pcards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @container stage (max-width: 520px) {
+    .site-nav { padding: 14px 18px; }
+    .brand small { display: none; }
+    .nav-cta .btn span.lbl { display: none; }
+    .heroA .glass { padding: 28px 20px; }
+    .heroA .ctas .btn, .heroB .ctas .btn { flex: 1 1 100%; }
+    .heroC .pcards { grid-template-columns: 1fr; }
+    .heroD .pcards { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .ptiles { grid-template-columns: 1fr; }
+    .heroB .specs, .heroD .specs { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====================== VARIANT BAR ====================== -->
+<div id="variant-nav">
+  <span class="vlabel">Sketch 001 · Hero</span>
+  <button class="variant-tab active" data-v="a" onclick="showVariant('a', this)">A · Elevated-Atmospheric</button>
+  <button class="variant-tab" data-v="b" onclick="showVariant('b', this)">B · Engineered split</button>
+  <button class="variant-tab" data-v="c" onclick="showVariant('c', this)">C · Proof-forward</button>
+  <button class="variant-tab" data-v="d" onclick="showVariant('d', this)">D · Proof-forward, engineered <span class="win">★ Gekozen</span></button>
+</div>
+
+<div id="frame">
+
+  <!-- ============================================================ -->
+  <!-- VARIANT A                                                    -->
+  <!-- ============================================================ -->
+  <section class="variant active" id="variant-a">
+    <nav class="site-nav">
+      <div class="brand">
+        <span class="logo ms">mode_fan</span>
+        <div>TPS klimaattechniek<small>Specialist in schone lucht · Zoetermeer</small></div>
+      </div>
+      <div class="nav-links">
+        <a href="#" class="active">Home</a><a href="#">Diensten</a><a href="#">Tarieven</a><a href="#">Over ons</a><a href="#">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#" class="btn btn-primary btn-sm" onclick="toast('Offerte-formulier geopend','description'); return false;"><span class="ms">request_quote</span><span class="lbl">Offerte</span></a>
+      </div>
+    </nav>
+
+    <div class="heroA">
+      <div class="aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+      <div class="inner">
+        <div class="glass">
+          <span class="badge fu"><span class="ms">verified</span>Klimaattechniek · Regio Zoetermeer</span>
+          <h1 class="fu d1">Uw specialist in
+            <span class="rot" id="rotwords">
+              <span class="in">Airconditioning</span><span>Warmtepompen</span><span>Ventilatie</span><span>Warmteterugwinning</span>
+            </span>
+          </h1>
+          <p class="lead fu d2">Installatie, onderhoud en advies voor een gezond en comfortabel binnenklimaat — vakkundig uitgevoerd in Zoetermeer en de regio (tot 60&nbsp;km).</p>
+          <div class="ratingwrap fu d3">
+            <span class="rating">
+              <span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span>
+              <b>4,9</b> uit 50+ Google-reviews <span class="dot"></span> <b>15+ jaar</b> ervaring
+            </span>
+          </div>
+          <div class="ctas fu d4">
+            <a href="#" class="btn btn-primary btn-lg" onclick="toast('Offerte-aanvraag geopend','request_quote'); return false;"><span class="ms">request_quote</span>Offerte aanvragen</a>
+            <a href="tel:+31629403450" class="btn btn-ghost btn-lg" onclick="toast('Bellen: 06 - 29 40 34 50','call'); return false;"><span class="ms">call</span>06 - 29 40 34 50</a>
+          </div>
+        </div>
+
+        <div class="chips fu d5">
+          <a class="pillar-chip" onclick="toast('Naar Airconditioning','ac_unit'); return false;"><span class="ms">ac_unit</span>Airconditioning</a>
+          <a class="pillar-chip" onclick="toast('Naar Warmtepompen','heat_pump'); return false;"><span class="ms">heat_pump</span>Warmtepompen <span class="new">Nieuw</span></a>
+          <a class="pillar-chip" onclick="toast('Naar WTW','hvac'); return false;"><span class="ms">hvac</span>WTW</a>
+          <a class="pillar-chip" onclick="toast('Naar Mechanische ventilatie','air'); return false;"><span class="ms">air</span>Mech. ventilatie</a>
+        </div>
+
+        <div class="trust-row">
+          <span class="trust-pill"><span class="ms">bolt</span>Snel een afspraak</span>
+          <span class="trust-pill"><span class="ms">payments</span>Geen voorrijkosten</span>
+          <span class="trust-pill"><span class="ms">workspace_premium</span>Gecertificeerd team</span>
+          <span class="trust-pill"><span class="ms">handshake</span>Erkend installateur</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VARIANT B                                                    -->
+  <!-- ============================================================ -->
+  <section class="variant" id="variant-b">
+    <nav class="site-nav">
+      <div class="brand">
+        <span class="logo ms">mode_fan</span>
+        <div>TPS klimaattechniek<small>Specialist in schone lucht · Zoetermeer</small></div>
+      </div>
+      <div class="nav-links">
+        <a href="#" class="active">Home</a><a href="#">Diensten</a><a href="#">Tarieven</a><a href="#">Over ons</a><a href="#">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="tel:+31629403450" class="btn btn-ghost btn-sm" onclick="toast('Bellen: 06 - 29 40 34 50','call'); return false;"><span class="ms">call</span><span class="lbl">06 - 29 40 34 50</span></a>
+        <a href="#" class="btn btn-primary btn-sm" onclick="toast('Offerte-formulier geopend','request_quote'); return false;"><span class="ms">request_quote</span><span class="lbl">Offerte</span></a>
+      </div>
+    </nav>
+
+    <div class="heroB">
+      <div class="aurora"><div class="blob b1"></div><div class="blob b2"></div></div>
+      <div class="grid">
+        <div class="left">
+          <span class="badge fu"><span class="ms">verified</span>Erkend installateur · Regio Zoetermeer</span>
+          <h1 class="fu d1">Comfortabel binnenklimaat, <em>vakkundig geregeld.</em></h1>
+          <p class="lead fu d2">Airconditioning, warmtepompen en ventilatie — van advies tot installatie en onderhoud. Eén betrouwbare specialist voor uw hele binnenklimaat.</p>
+          <span class="rating fu d3">
+            <span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span>
+            <b>4,9</b> uit 50+ Google-reviews
+          </span>
+          <div class="ctas fu d4">
+            <a href="#" class="btn btn-primary btn-lg" onclick="toast('Offerte-aanvraag geopend','request_quote'); return false;"><span class="ms">request_quote</span>Offerte aanvragen</a>
+            <a href="#" class="btn btn-ghost btn-lg" onclick="toast('Naar alle diensten','grid_view'); return false;"><span class="ms">grid_view</span>Bekijk diensten</a>
+          </div>
+          <div class="specs fu d5">
+            <div class="spec"><b>15+</b><span>jaar ervaring</span></div>
+            <div class="spec"><b>60&nbsp;km</b><span>werkgebied</span></div>
+            <div class="spec"><b>4&nbsp;pijlers</b><span>één specialist</span></div>
+            <div class="spec"><b>€0</b><span>voorrijkosten</span></div>
+          </div>
+        </div>
+
+        <div class="right fu d3">
+          <div class="epanel">
+            <div class="ehead">
+              <span>Onze vakgebieden</span>
+              <span class="live"><i></i>Direct beschikbaar</span>
+            </div>
+            <div class="ptiles" id="ptiles">
+              <button class="ptile active" data-key="airco" onclick="selectPillar('airco', this)"><span class="ms">ac_unit</span><h4>Airconditioning</h4></button>
+              <button class="ptile" data-key="wp" onclick="selectPillar('wp', this)"><span class="newtag">Nieuw</span><span class="ms">heat_pump</span><h4>Warmtepompen</h4></button>
+              <button class="ptile" data-key="wtw" onclick="selectPillar('wtw', this)"><span class="ms">hvac</span><h4>WTW</h4></button>
+              <button class="ptile" data-key="mv" onclick="selectPillar('mv', this)"><span class="ms">air</span><h4>Mech. ventilatie</h4></button>
+            </div>
+            <div class="epreview" id="epreview">
+              <h5 id="ep-title">Airconditioning</h5>
+              <p id="ep-desc">Koelen én verwarmen met een energiezuinige split-airco. Installatie, onderhoud en reparatie van Daikin, Mitsubishi Electric en Mitsubishi Heavy.</p>
+              <a href="#" onclick="toast('Naar vakgebied','arrow_forward'); return false;">Bekijk dit vakgebied <span class="ms">arrow_forward</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VARIANT C                                                    -->
+  <!-- ============================================================ -->
+  <section class="variant" id="variant-c">
+    <nav class="site-nav">
+      <div class="brand">
+        <span class="logo ms">mode_fan</span>
+        <div>TPS klimaattechniek<small>Specialist in schone lucht · Zoetermeer</small></div>
+      </div>
+      <div class="nav-links">
+        <a href="#" class="active">Home</a><a href="#">Diensten</a><a href="#">Tarieven</a><a href="#">Over ons</a><a href="#">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="https://wa.me/31629403450" class="btn btn-accent btn-sm" onclick="toast('WhatsApp openen','chat'); return false;"><span class="ms">chat</span><span class="lbl">WhatsApp</span></a>
+        <a href="tel:+31629403450" class="btn btn-primary btn-sm" onclick="toast('Bellen: 06 - 29 40 34 50','call'); return false;"><span class="ms">call</span><span class="lbl">Bel direct</span></a>
+      </div>
+    </nav>
+
+    <div class="heroC">
+      <div class="aurora"><div class="blob b1"></div><div class="blob b3"></div></div>
+      <div class="inner">
+        <div class="proofbar fu">
+          <span class="av"><i style="background:#006580">TK</i><i style="background:#1b8657">JdV</i><i style="background:#257f9c">MB</i></span>
+          <span class="rating"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><b>4,9</b></span>
+          <span class="quote">&ldquo;Snel, netjes en goed advies.&rdquo; — <b>50+ Google-reviews</b></span>
+        </div>
+
+        <div class="head">
+          <div>
+            <h1 class="fu d1">Airco, warmtepomp &amp; ventilatie — <em>goed geregeld in Zoetermeer.</em></h1>
+            <p class="lead fu d2">Vraag vrijblijvend een offerte aan. U krijgt snel persoonlijk advies van een ervaren, gecertificeerde specialist — geen voorrijkosten.</p>
+            <div class="usps fu d3">
+              <span class="trust-pill"><span class="ms">bolt</span>Reactie binnen 1 werkdag</span>
+              <span class="trust-pill"><span class="ms">payments</span>Geen voorrijkosten</span>
+              <span class="trust-pill"><span class="ms">verified_user</span>Gecertificeerd &amp; verzekerd</span>
+            </div>
+          </div>
+
+          <form class="offerte fu d2" onsubmit="fakeSubmit(event)">
+            <h3><span class="ms">request_quote</span>Gratis offerte</h3>
+            <p class="sub">In 30 seconden aangevraagd — wij bellen u terug.</p>
+            <label class="field"><span>Postcode</span><input type="text" placeholder="2712 LB" /></label>
+            <label class="field"><span>Waarvoor?</span>
+              <select>
+                <option>Airconditioning</option>
+                <option>Warmtepomp</option>
+                <option>WTW / warmteterugwinning</option>
+                <option>Mechanische ventilatie</option>
+                <option>Weet ik nog niet</option>
+              </select>
+            </label>
+            <button type="submit" class="btn btn-primary" style="width:100%"><span class="ms">send</span>Vraag gratis offerte aan</button>
+            <div class="reassure"><span class="ms">lock</span>Vrijblijvend · geen kosten · AVG-proof</div>
+          </form>
+        </div>
+
+        <div class="pcards fu d4">
+          <a class="pcard" onclick="toast('Naar Airconditioning','ac_unit'); return false;"><span class="ms">ac_unit</span><h4>Airconditioning</h4><p>Koelen &amp; verwarmen, energiezuinig.</p><span class="go">Bekijk <span class="ms">arrow_forward</span></span></a>
+          <a class="pcard" onclick="toast('Naar Warmtepompen','heat_pump'); return false;"><span class="newtag">Nieuw</span><span class="ms">heat_pump</span><h4>Warmtepompen</h4><p>Duurzaam verwarmen, ISDE-subsidie.</p><span class="go">Bekijk <span class="ms">arrow_forward</span></span></a>
+          <a class="pcard" onclick="toast('Naar WTW','hvac'); return false;"><span class="ms">hvac</span><h4>WTW</h4><p>Warmteterugwinning, schone lucht.</p><span class="go">Bekijk <span class="ms">arrow_forward</span></span></a>
+          <a class="pcard" onclick="toast('Naar Mechanische ventilatie','air'); return false;"><span class="ms">air</span><h4>Mech. ventilatie</h4><p>Onderhoud &amp; reiniging.</p><span class="go">Bekijk <span class="ms">arrow_forward</span></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- VARIANT D — Proof-forward, engineered (synthesis C + B)      -->
+  <!-- ============================================================ -->
+  <section class="variant" id="variant-d">
+    <nav class="site-nav">
+      <div class="brand">
+        <span class="logo ms">mode_fan</span>
+        <div>TPS klimaattechniek<small>Specialist in schone lucht · Zoetermeer</small></div>
+      </div>
+      <div class="nav-links">
+        <a href="#" class="active">Home</a><a href="#">Diensten</a><a href="#">Tarieven</a><a href="#">Over ons</a><a href="#">Contact</a>
+      </div>
+      <div class="nav-cta">
+        <a href="https://wa.me/31629403450" class="btn btn-accent btn-sm" onclick="toast('WhatsApp openen','chat'); return false;"><span class="ms">chat</span><span class="lbl">WhatsApp</span></a>
+        <a href="tel:+31629403450" class="btn btn-primary btn-sm" onclick="toast('Bellen: 06 - 29 40 34 50','call'); return false;"><span class="ms">call</span><span class="lbl">Bel direct</span></a>
+      </div>
+    </nav>
+
+    <div class="heroD">
+      <div class="aurora"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+      <div class="inner">
+        <div class="proofbar fu">
+          <span class="av"><i style="background:#006580">TK</i><i style="background:#1b8657">JdV</i><i style="background:#257f9c">MB</i></span>
+          <span class="rating"><span class="stars"><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span><span class="ms">star</span></span><b>4,9</b></span>
+          <span class="quote">&ldquo;Snel, netjes en goed advies.&rdquo; — <b>50+ Google-reviews</b></span>
+        </div>
+
+        <div class="head">
+          <div>
+            <span class="badge fu"><span class="ms">verified</span>Erkend installateur · Regio Zoetermeer</span>
+            <h1 class="fu d1">Airco, warmtepomp &amp; ventilatie — <em>goed geregeld in Zoetermeer.</em></h1>
+            <p class="lead fu d2">Vraag vrijblijvend een offerte aan. U krijgt snel persoonlijk advies van een ervaren, gecertificeerde specialist — geen voorrijkosten.</p>
+            <div class="usps fu d3">
+              <span class="trust-pill"><span class="ms">bolt</span>Reactie binnen 1 werkdag</span>
+              <span class="trust-pill"><span class="ms">payments</span>Geen voorrijkosten</span>
+              <span class="trust-pill"><span class="ms">verified_user</span>Gecertificeerd &amp; verzekerd</span>
+            </div>
+            <div class="specs fu d4">
+              <div class="spec"><b>15+</b><span>jaar ervaring</span></div>
+              <div class="spec"><b>60&nbsp;km</b><span>werkgebied</span></div>
+              <div class="spec"><b>4&nbsp;pijlers</b><span>één specialist</span></div>
+              <div class="spec"><b>€0</b><span>voorrijkosten</span></div>
+            </div>
+          </div>
+
+          <form class="offerte engineered fu d2" id="d-offerte" onsubmit="fakeSubmit(event)">
+            <div class="ehead">
+              <h3><span class="ms">request_quote</span>Gratis offerte</h3>
+              <span class="live"><i></i>Direct beschikbaar</span>
+            </div>
+            <p class="sub">In 30 seconden aangevraagd — wij bellen u terug.</p>
+            <div class="form-row">
+              <label class="field"><span>Postcode</span><input type="text" placeholder="2712 LB" /></label>
+              <label class="field"><span>Telefoon</span><input type="tel" placeholder="06 - .. .. .. .." /></label>
+            </div>
+            <label class="field"><span>Waarvoor heeft u ons nodig?</span>
+              <select id="d-dienst">
+                <option>Airconditioning</option>
+                <option>Warmtepomp</option>
+                <option>WTW / warmteterugwinning</option>
+                <option>Mechanische ventilatie</option>
+                <option>Weet ik nog niet</option>
+              </select>
+            </label>
+            <button type="submit" class="btn btn-primary" style="width:100%"><span class="ms">send</span>Vraag gratis offerte aan</button>
+            <div class="reassure"><span class="ms">lock</span>Vrijblijvend · geen kosten · AVG-proof</div>
+          </form>
+        </div>
+
+        <div class="pcards fu d4">
+          <a class="pcard" onclick="routeToOfferte('Airconditioning', this); return false;"><span class="ms">ac_unit</span><h4>Airconditioning</h4><p>Koelen &amp; verwarmen, energiezuinig.</p><span class="go">Kies &amp; vraag aan <span class="ms">arrow_forward</span></span></a>
+          <a class="pcard" onclick="routeToOfferte('Warmtepomp', this); return false;"><span class="newtag">Nieuw</span><span class="ms">heat_pump</span><h4>Warmtepompen</h4><p>Duurzaam verwarmen, ISDE-subsidie.</p><span class="go">Kies &amp; vraag aan <span class="ms">arrow_forward</span></span></a>
+          <a class="pcard" onclick="routeToOfferte('WTW', this); return false;"><span class="ms">hvac</span><h4>WTW</h4><p>Warmteterugwinning, schone lucht.</p><span class="go">Kies &amp; vraag aan <span class="ms">arrow_forward</span></span></a>
+          <a class="pcard" onclick="routeToOfferte('Mechanische ventilatie', this); return false;"><span class="ms">air</span><h4>Mech. ventilatie</h4><p>Onderhoud &amp; reiniging.</p><span class="go">Kies &amp; vraag aan <span class="ms">arrow_forward</span></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /#frame -->
+
+<!-- ====================== TOAST ====================== -->
+<div id="toast"><span class="ms" id="toast-icon">check_circle</span><span id="toast-msg">Klaar</span></div>
+
+<!-- ====================== SKETCH TOOLBAR ====================== -->
+<div id="sketch-tools">
+  <div class="grp">
+    <label>Thema</label>
+    <select onchange="document.querySelector('link[href*=themes]').href='../themes/'+this.value+'.css'">
+      <option value="default">Default</option>
+    </select>
+  </div>
+  <div class="grp">
+    <label>Breedte</label>
+    <button onclick="setVP(375,this)">📱</button>
+    <button onclick="setVP(768,this)">▭</button>
+    <button class="on" onclick="setVP(0,this)">🖥</button>
+  </div>
+</div>
+
+<script>
+  // ---- Variant switching ----
+  function showVariant(v, btn) {
+    document.querySelectorAll('.variant').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.variant-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('variant-' + v).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    restartFadeups();
+  }
+
+  // ---- Re-trigger entrance animations on variant change ----
+  function restartFadeups() {
+    const active = document.querySelector('.variant.active');
+    active.querySelectorAll('.fu').forEach(el => {
+      el.style.animation = 'none'; void el.offsetWidth; el.style.animation = '';
+    });
+  }
+
+  // ---- Rotating headline word (Variant A) ----
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function rotate() {
+    if (reduceMotion) return;
+    const words = document.querySelectorAll('#rotwords span');
+    let i = 0;
+    setInterval(() => {
+      const cur = words[i];
+      const next = words[(i + 1) % words.length];
+      cur.classList.remove('in'); cur.classList.add('out');
+      next.classList.remove('out'); next.classList.add('in');
+      i = (i + 1) % words.length;
+    }, 2400);
+  })();
+
+  // ---- Engineered pillar selector (Variant B) ----
+  const PILLARS = {
+    airco: { t: 'Airconditioning', d: 'Koelen én verwarmen met een energiezuinige split-airco. Installatie, onderhoud en reparatie van Daikin, Mitsubishi Electric en Mitsubishi Heavy.' },
+    wp:    { t: 'Warmtepompen',    d: 'Duurzaam verwarmen met een lucht/water- of hybride warmtepomp. Advies over ISDE-subsidie en een installatie op maat — nieuw in ons aanbod.' },
+    wtw:   { t: 'WTW — Warmteterugwinning', d: 'Vervanging en installatie van WTW-units. Continu verse lucht met behoud van warmte — gezonder binnenklimaat, lagere stookkosten.' },
+    mv:    { t: 'Mechanische ventilatie', d: 'Onderhoud, reiniging en vervanging van mechanische ventilatie. Schone kanalen en een gezond, fris binnenklimaat.' }
+  };
+  function selectPillar(key, btn) {
+    document.querySelectorAll('#ptiles .ptile').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    const p = PILLARS[key];
+    const prev = document.getElementById('epreview');
+    prev.style.opacity = 0;
+    setTimeout(() => {
+      document.getElementById('ep-title').textContent = p.t;
+      document.getElementById('ep-desc').textContent = p.d;
+      prev.style.transition = 'opacity .3s'; prev.style.opacity = 1;
+    }, 140);
+  }
+
+  // ---- Fake interactions ----
+  let toastTimer;
+  function toast(msg, icon) {
+    document.getElementById('toast-msg').textContent = msg;
+    document.getElementById('toast-icon').textContent = icon || 'check_circle';
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+  function fakeSubmit(e) {
+    e.preventDefault();
+    toast('Bedankt! Wij bellen u snel terug.', 'check_circle');
+    e.target.reset && e.target.reset();
+  }
+
+  // ---- Pillar card → routes the choice into the offerte form (Variant D) ----
+  function routeToOfferte(service, card) {
+    const sel = document.getElementById('d-dienst');
+    if (sel) {
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.toLowerCase().startsWith(service.toLowerCase())) { sel.selectedIndex = i; break; }
+      }
+    }
+    document.querySelectorAll('#variant-d .pcard').forEach(c => c.classList.remove('routed'));
+    card.classList.add('routed');
+    const form = document.getElementById('d-offerte');
+    if (form && !reduceMotion) {
+      form.animate(
+        [{ transform: 'scale(1)' }, { transform: 'scale(1.012)' }, { transform: 'scale(1)' }],
+        { duration: 360, easing: 'cubic-bezier(0.34,1.56,0.64,1)' }
+      );
+    }
+    toast(service + ' gekozen — vul uw gegevens in', 'arrow_upward');
+  }
+
+  // ---- Viewport preview ----
+  function setVP(w, btn) {
+    const frame = document.getElementById('frame');
+    document.querySelectorAll('#sketch-tools .grp:last-child button').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    if (!w) { frame.classList.remove('constrained'); frame.style.maxWidth = ''; }
+    else { frame.classList.add('constrained'); frame.style.maxWidth = w + 'px'; }
+    window.scrollTo({ top: 0 });
+  }
+</script>
+</body>
+</html>
