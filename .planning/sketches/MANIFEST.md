@@ -36,7 +36,7 @@ fixes the off-brand English "Clean Air Technology" badge.
 | # | Name | Design Question | Winner | Tags |
 |---|------|----------------|--------|------|
 | 001 | homepage-hero | Premium, "alive" first impression that also routes + reassures? | **D** — Proof-forward, engineered | hero, conversion, layout |
-| 002 | pillar-service-clarity | 4 climate pillars (incl. new Warmtepompen) scannable + premium? | TBD | services, pillars, layout |
+| 002 | pillar-service-clarity | 4 climate pillars (incl. new Warmtepompen) scannable + premium? | **D** — Equal grid, engineered & branded | services, pillars, layout |
 | 003 | trust-contact-band | Proof + frictionless contact, premium and ever-present? | TBD | trust, conversion, contact |
 
 ## Notes

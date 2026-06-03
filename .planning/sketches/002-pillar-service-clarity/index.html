@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sketch 002 — 4-Pillar Service Clarity · TPS klimaattechniek</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+<link rel="stylesheet" href="../themes/default.css" />
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body { font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); padding-top: 46px; -webkit-font-smoothing: antialiased; }
+  .ms { font-family: 'Material Symbols Outlined'; line-height: 1; display: inline-block; vertical-align: middle; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+  /* ---- variant bar ---- */
+  #variant-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9998; background: var(--color-ink-surface); color: #fff; display: flex; align-items: center; gap: 6px; padding: 7px 12px; font-size: 12.5px; }
+  #variant-nav .vlabel { opacity: .6; font-weight: 600; letter-spacing: .04em; margin-right: 6px; text-transform: uppercase; font-size: 11px; }
+  .variant-tab { border: 0; cursor: pointer; color: #cfe6ec; background: rgba(255,255,255,.08); padding: 5px 12px; border-radius: var(--radius-full); font-size: 12.5px; font-weight: 600; font-family: inherit; transition: all .18s var(--ease-clarity); }
+  .variant-tab:hover { background: rgba(255,255,255,.18); color: #fff; }
+  .variant-tab.active { background: var(--color-primary-light); color: #fff; }
+  .variant-tab .win { color: var(--color-accent-wash); margin-left: 4px; }
+
+  /* ---- frame ---- */
+  #frame { container-type: inline-size; container-name: stage; transition: max-width .35s var(--ease-clarity); }
+  #frame.constrained { margin: 14px auto; border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-xl); outline: 1px solid var(--color-surface-4); }
+  .variant { display: none; }
+  .variant.active { display: block; }
+
+  /* ---- atoms ---- */
+  .badge { display: inline-flex; align-items: center; gap: 7px; background: var(--color-accent-wash); color: var(--color-accent-hover); font-weight: 700; font-size: 11.5px; letter-spacing: var(--tracking-wide); text-transform: uppercase; padding: 6px 13px; border-radius: var(--radius-full); }
+  .badge .ms { font-size: 15px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; cursor: pointer; text-decoration: none; white-space: nowrap; font-family: var(--font-body); font-weight: 700; font-size: 15px; padding: 13px 22px; border-radius: var(--radius-lg); transition: transform .18s var(--ease-clarity), box-shadow .35s var(--ease-clarity), background .35s var(--ease-clarity); }
+  .btn .ms { font-size: 19px; }
+  .btn-primary { background: var(--gradient-signature); color: #fff; box-shadow: var(--shadow-md); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn-ghost { background: var(--color-surface); color: var(--color-text); box-shadow: var(--shadow-sm); }
+  .btn-ghost:hover { background: var(--color-surface-2); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .btn-light { background: rgba(255,255,255,.16); color: #fff; }
+  .btn-light:hover { background: rgba(255,255,255,.26); }
+  .btn-sm { padding: 9px 16px; font-size: 13.5px; border-radius: var(--radius-md); }
+  h2 { font-family: var(--font-headline); font-weight: 800; letter-spacing: var(--tracking-tight); line-height: 1.12; color: var(--color-text); }
+
+  /* ---- section shell ---- */
+  .dsec { position: relative; background: var(--gradient-airy); padding: clamp(40px,6vw,88px) clamp(20px,5vw,56px) clamp(56px,7vw,104px); }
+  .dhead { max-width: 720px; margin: 0 auto clamp(32px,4vw,52px); text-align: center; }
+  .dhead h2 { font-size: clamp(1.8rem,4vw,3rem); margin: 16px 0 0; }
+  .dhead p { color: var(--color-text-muted); font-size: var(--text-lg); line-height: 1.6; margin-top: 16px; }
+  .dwrap { max-width: 1180px; margin: 0 auto; }
+
+  /* ---- shared pillar card atoms ---- */
+  .picon { width: 54px; height: 54px; border-radius: var(--radius-lg); display: grid; place-items: center; background: var(--color-primary-wash); color: var(--color-primary); flex: none; }
+  .picon .ms { font-size: 29px; }
+  .picon.accent { background: var(--color-accent-wash); color: var(--color-accent-hover); }
+  .subs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .subs a { font-size: 12px; font-weight: 600; color: var(--color-text-muted); background: var(--color-bg-tint); padding: 5px 11px; border-radius: var(--radius-full); text-decoration: none; transition: all .18s var(--ease-clarity); }
+  .subs a:hover { background: var(--color-primary-wash); color: var(--color-primary-hover); transform: translateY(-1px); }
+  .brands { display: flex; align-items: center; gap: 7px; margin-top: 14px; font-size: 11.5px; color: var(--color-text-faint); font-weight: 600; }
+  .brands .ms { font-size: 15px; color: var(--color-accent); }
+  .cardlink { display: inline-flex; align-items: center; gap: 5px; margin-top: 16px; color: var(--color-primary); font-weight: 700; font-size: 14px; text-decoration: none; }
+  .cardlink .ms { font-size: 18px; transition: transform .18s var(--ease-clarity); }
+  .newtag { background: var(--color-accent); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: .05em; padding: 3px 7px; border-radius: var(--radius-full); text-transform: uppercase; }
+
+  /* ============ VARIANT A — equal refined grid ============ */
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .pcard2 { position: relative; background: var(--color-surface); border-radius: var(--radius-2xl); padding: 26px 22px; box-shadow: var(--shadow-sm); overflow: hidden; transition: transform .35s var(--ease-clarity), box-shadow .35s var(--ease-clarity); display: flex; flex-direction: column; }
+  .pcard2::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-signature); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-clarity); }
+  .pcard2:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .pcard2:hover::before { transform: scaleX(1); }
+  .pcard2 .top { display: flex; align-items: center; justify-content: space-between; }
+  .pcard2 h3 { font-family: var(--font-headline); font-size: 18px; font-weight: 700; margin-top: 18px; color: var(--color-text); }
+  .pcard2 p { font-size: 13.5px; color: var(--color-text-muted); margin-top: 8px; line-height: 1.5; }
+  .pcard2 .spacer { flex: 1; }
+
+  /* ============ VARIANT B — featured Warmtepompen + 3 ============ */
+  .featgrid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 18px; align-items: stretch; }
+  .feat { position: relative; background: var(--gradient-ink); color: #fff; border-radius: var(--radius-3xl); padding: clamp(26px,3vw,40px); overflow: hidden; box-shadow: var(--shadow-xl); }
+  .feat::after { content: ""; position: absolute; inset: 0; opacity: .14; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(circle at 90% 8%, #000, transparent 60%); -webkit-mask-image: radial-gradient(circle at 90% 8%, #000, transparent 60%); }
+  .feat > * { position: relative; z-index: 1; }
+  .feat .picon { background: rgba(148,247,190,.18); color: var(--color-accent-wash); }
+  .feat h3 { font-family: var(--font-headline); font-size: clamp(1.5rem,2.4vw,2rem); font-weight: 800; margin-top: 18px; }
+  .feat .subtitle { color: #cfe8ee; font-size: 15px; line-height: 1.6; margin-top: 12px; max-width: 420px; }
+  .feat .isde { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; background: var(--color-accent); color: #fff; font-weight: 700; font-size: 13px; padding: 8px 14px; border-radius: var(--radius-full); }
+  .feat .subs { margin-top: 20px; }
+  .feat .subs a { background: rgba(255,255,255,.12); color: #eaf6f9; }
+  .feat .subs a:hover { background: rgba(255,255,255,.22); color: #fff; }
+  .feat .feat-cta { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .feat .brands { color: #9fc4ce; margin-top: 18px; }
+  .feat .brands .ms { color: var(--color-accent-wash); }
+  .featside { display: grid; grid-template-rows: repeat(3, 1fr); gap: 18px; }
+  .minicard { position: relative; display: flex; align-items: center; gap: 16px; background: var(--color-surface); border-radius: var(--radius-xl); padding: 18px 20px; box-shadow: var(--shadow-sm); text-decoration: none; color: inherit; overflow: hidden; transition: transform .3s var(--ease-clarity), box-shadow .3s var(--ease-clarity); }
+  .minicard::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gradient-signature); transform: scaleY(0); transform-origin: top; transition: transform .3s var(--ease-clarity); }
+  .minicard:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+  .minicard:hover::before { transform: scaleY(1); }
+  .minicard .picon { width: 46px; height: 46px; }
+  .minicard .picon .ms { font-size: 25px; }
+  .minicard h4 { font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-text); }
+  .minicard p { font-size: 12.5px; color: var(--color-text-muted); margin-top: 3px; }
+  .minicard .arrow { margin-left: auto; color: var(--color-primary); }
+  .minicard .arrow .ms { font-size: 22px; transition: transform .18s var(--ease-clarity); }
+  .minicard:hover .arrow .ms { transform: translateX(4px); }
+
+  /* ============ VARIANT C — interactive selector ============ */
+  .selwrap { display: grid; grid-template-columns: 320px 1fr; gap: 18px; }
+  .selrail { display: flex; flex-direction: column; gap: 10px; }
+  .seltab { position: relative; display: flex; align-items: center; gap: 14px; cursor: pointer; text-align: left; background: var(--color-surface); border: 1.5px solid transparent; border-radius: var(--radius-xl); padding: 16px 18px; box-shadow: var(--shadow-sm); transition: all .3s var(--ease-clarity); }
+  .seltab .picon { width: 44px; height: 44px; }
+  .seltab .picon .ms { font-size: 24px; }
+  .seltab h4 { font-family: var(--font-headline); font-size: 15.5px; font-weight: 700; color: var(--color-text); }
+  .seltab small { display: block; font-size: 11.5px; color: var(--color-text-faint); font-weight: 500; margin-top: 2px; }
+  .seltab:hover { transform: translateX(3px); box-shadow: var(--shadow-md); }
+  .seltab.active { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .seltab.active .picon { background: var(--color-primary); color: #fff; }
+  .seltab .chev { margin-left: auto; color: var(--color-text-faint); opacity: 0; transition: all .25s var(--ease-clarity); }
+  .seltab.active .chev { opacity: 1; color: var(--color-primary); }
+  .selpanel { position: relative; background: var(--color-surface); border-radius: var(--radius-3xl); padding: clamp(28px,3vw,44px); box-shadow: var(--shadow-xl); overflow: hidden; min-height: 380px; }
+  .selpanel::before { content: ""; position: absolute; inset: 0; opacity: .5; pointer-events: none; background-image: linear-gradient(var(--color-surface-2) 1px, transparent 1px), linear-gradient(90deg, var(--color-surface-2) 1px, transparent 1px); background-size: 26px 26px; mask-image: radial-gradient(circle at 92% 6%, #000, transparent 62%); -webkit-mask-image: radial-gradient(circle at 92% 6%, #000, transparent 62%); }
+  .selpanel > * { position: relative; z-index: 1; }
+  .selpanel .phead { display: flex; align-items: center; gap: 18px; }
+  .selpanel .picon { width: 64px; height: 64px; }
+  .selpanel .picon .ms { font-size: 36px; }
+  .selpanel h3 { font-family: var(--font-headline); font-size: clamp(1.5rem,2.4vw,2.1rem); font-weight: 800; color: var(--color-text); }
+  .selpanel .lead2 { font-size: 15.5px; color: var(--color-text-muted); line-height: 1.65; margin-top: 18px; max-width: 540px; }
+  .selpanel .seclabel { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-faint); margin: 26px 0 12px; }
+  .selpanel .subgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 560px; }
+  .selpanel .subgrid a { display: flex; align-items: center; gap: 9px; background: var(--color-bg-tint); padding: 12px 14px; border-radius: var(--radius-lg); text-decoration: none; color: var(--color-text); font-weight: 600; font-size: 14px; transition: all .2s var(--ease-clarity); }
+  .selpanel .subgrid a .ms { font-size: 18px; color: var(--color-primary); }
+  .selpanel .subgrid a:hover { background: var(--color-surface); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .selpanel .pcta { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .selpanel .anim { animation: panelIn .4s var(--ease-clarity); }
+  @keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  /* ---- toast ---- */
+  #toast { position: fixed; bottom: 70px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--color-ink-surface); color: #fff; padding: 13px 22px; border-radius: var(--radius-full); font-size: 14px; font-weight: 600; box-shadow: var(--shadow-xl); z-index: 9999; display: flex; align-items: center; gap: 9px; opacity: 0; pointer-events: none; transition: all .35s var(--ease-spring); }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  #toast .ms { color: var(--color-accent-wash); font-size: 20px; }
+
+  /* ---- toolbar ---- */
+  #sketch-tools { position: fixed; bottom: 12px; right: 12px; z-index: 9999; font-size: 12px; background: rgba(20,29,31,.82); color: #fff; padding: 8px 10px; border-radius: var(--radius-lg); opacity: .35; transition: opacity .35s; display: flex; align-items: center; gap: 10px; backdrop-filter: blur(8px); }
+  #sketch-tools:hover { opacity: 1; }
+  #sketch-tools .grp { display: flex; align-items: center; gap: 4px; }
+  #sketch-tools label { opacity: .6; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
+  #sketch-tools button { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; padding: 4px 8px; cursor: pointer; font-size: 11px; font-family: inherit; }
+  #sketch-tools button:hover { background: rgba(255,255,255,.25); }
+  #sketch-tools button.on { background: var(--color-primary-light); }
+  #sketch-tools select { background: rgba(255,255,255,.12); color: #fff; border: 0; border-radius: 6px; padding: 4px 6px; font-size: 11px; font-family: inherit; }
+  #sketch-tools select option { color: #000; }
+
+  /* ---- entrance ---- */
+  .fu { opacity: 0; transform: translateY(16px); animation: fu .55s var(--ease-clarity) forwards; }
+  .fu.d1 { animation-delay: .05s; } .fu.d2 { animation-delay: .12s; } .fu.d3 { animation-delay: .19s; } .fu.d4 { animation-delay: .26s; }
+  @keyframes fu { to { opacity: 1; transform: none; } }
+
+  /* ============ VARIANT D — equal grid, engineered & branded (A + logos + interaction) ============ */
+  #variant-d .grid4 { align-items: start; }
+  .bcard { position: relative; background: var(--color-surface); border-radius: var(--radius-2xl); padding: 26px 22px; box-shadow: var(--shadow-sm); overflow: hidden; transition: transform .35s var(--ease-clarity), box-shadow .35s var(--ease-clarity); }
+  .bcard::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-signature); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease-clarity); }
+  .bcard:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .bcard:hover::before, .bcard.open::before { transform: scaleX(1); }
+  .bcard .top { display: flex; align-items: center; justify-content: space-between; }
+  .bcard h3 { font-family: var(--font-headline); font-size: 18px; font-weight: 700; margin-top: 18px; color: var(--color-text); }
+  .bcard > p { font-size: 13.5px; color: var(--color-text-muted); margin-top: 8px; line-height: 1.5; }
+
+  /* brand logo chips (placeholder lockups — grayscale → brand color on hover) */
+  .logo-label { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-faint); margin-top: 18px; }
+  .logo-strip { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .logo-chip { display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border-radius: var(--radius-md); background: var(--color-bg-tint); transition: all .2s var(--ease-clarity); cursor: default; }
+  .logo-chip .mark { width: 12px; height: 12px; border-radius: 3px; background: var(--color-text-faint); transition: all .25s var(--ease-clarity); flex: none; }
+  .logo-chip .word { font-family: var(--font-headline); font-weight: 800; font-size: 12.5px; letter-spacing: -.01em; color: var(--color-text-faint); transition: color .25s var(--ease-clarity); white-space: nowrap; }
+  .logo-chip:hover { background: var(--color-surface); box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+  .logo-chip:hover .mark { background: var(--brand); transform: rotate(45deg); }
+  .logo-chip:hover .word { color: var(--brand); }
+
+  .bcard .subs { margin-top: 16px; }
+  .bcard .foot { margin-top: 18px; }
+  .toggle { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; color: var(--color-primary); font-weight: 700; font-size: 14px; background: none; border: 0; font-family: var(--font-body); padding: 0; }
+  .toggle .ms { font-size: 19px; transition: transform .3s var(--ease-clarity); }
+  .bcard.open .toggle .ms { transform: rotate(180deg); }
+  .detail { max-height: 0; overflow: hidden; opacity: 0; transition: max-height .4s var(--ease-clarity), opacity .3s var(--ease-clarity), margin .3s var(--ease-clarity); }
+  .bcard.open .detail { max-height: 280px; opacity: 1; margin-top: 16px; }
+  .detail .usp { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; background: var(--color-bg-tint); border-radius: var(--radius-lg); margin-bottom: 14px; }
+  .detail .usp span { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--color-text-muted); font-weight: 600; }
+  .detail .usp .ms { font-size: 17px; color: var(--color-accent); }
+  .detail .dcta { display: flex; gap: 10px; flex-wrap: wrap; }
+  .detail .dcta .btn { flex: 1 1 auto; }
+
+  /* ---- container queries ---- */
+  @container stage (max-width: 920px) {
+    .grid4 { grid-template-columns: repeat(2, 1fr); }
+    .featgrid { grid-template-columns: 1fr; }
+    .featside { grid-template-rows: none; grid-template-columns: 1fr; }
+    .selwrap { grid-template-columns: 1fr; }
+    .selrail { flex-direction: row; overflow-x: auto; }
+    .seltab { flex: 1 0 auto; }
+    .seltab small, .seltab .chev { display: none; }
+  }
+  @container stage (max-width: 540px) {
+    .grid4 { grid-template-columns: 1fr; }
+    .selpanel .subgrid { grid-template-columns: 1fr; }
+    .selrail { flex-direction: column; }
+    .seltab small { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<div id="variant-nav">
+  <span class="vlabel">Sketch 002 · Pillars</span>
+  <button class="variant-tab active" data-v="a" onclick="showVariant('a', this)">A · Equal grid</button>
+  <button class="variant-tab" data-v="b" onclick="showVariant('b', this)">B · Featured Warmtepompen</button>
+  <button class="variant-tab" data-v="c" onclick="showVariant('c', this)">C · Interactive selector</button>
+  <button class="variant-tab" data-v="d" onclick="showVariant('d', this)">D · Equal grid, branded <span class="win">★ Gekozen</span></button>
+</div>
+
+<div id="frame">
+
+  <!-- ============ VARIANT A ============ -->
+  <section class="variant active" id="variant-a">
+    <div class="dsec">
+      <div class="dhead">
+        <span class="badge fu"><span class="ms">grid_view</span>Onze vakgebieden</span>
+        <h2 class="fu d1">Eén specialist voor uw hele binnenklimaat</h2>
+        <p class="fu d2">Van koeling tot duurzame verwarming en gezonde ventilatie — vier vakgebieden, één vertrouwd team in de regio Zoetermeer.</p>
+      </div>
+      <div class="dwrap">
+        <div class="grid4">
+          <div class="pcard2 fu d1">
+            <div class="top"><div class="picon"><span class="ms">ac_unit</span></div></div>
+            <h3>Airconditioning</h3>
+            <p>Koelen én verwarmen met een energiezuinige split-airco.</p>
+            <div class="subs">
+              <a onclick="toast('Airco · Installatie','ac_unit');return false;">Installatie</a>
+              <a onclick="toast('Airco · Onderhoud','ac_unit');return false;">Onderhoud</a>
+              <a onclick="toast('Airco · Reparatie','ac_unit');return false;">Reparatie &amp; storing</a>
+              <a onclick="toast('Airco · Advies','ac_unit');return false;">Advies</a>
+            </div>
+            <div class="brands"><span class="ms">verified</span>Daikin · Mitsubishi Electric · Heavy</div>
+            <div class="spacer"></div>
+            <a class="cardlink" onclick="toast('Naar Airconditioning','arrow_forward');return false;">Bekijk Airconditioning <span class="ms">arrow_forward</span></a>
+          </div>
+
+          <div class="pcard2 fu d2">
+            <div class="top"><div class="picon accent"><span class="ms">heat_pump</span></div><span class="newtag">Nieuw</span></div>
+            <h3>Warmtepompen</h3>
+            <p>Duurzaam verwarmen met lucht/water of hybride — ISDE-subsidie.</p>
+            <div class="subs">
+              <a onclick="toast('Warmtepomp · Installatie','heat_pump');return false;">Installatie</a>
+              <a onclick="toast('Warmtepomp · Onderhoud','heat_pump');return false;">Onderhoud</a>
+              <a onclick="toast('Warmtepomp · Reparatie','heat_pump');return false;">Reparatie &amp; storing</a>
+              <a onclick="toast('Warmtepomp · Advies','heat_pump');return false;">Advies</a>
+            </div>
+            <div class="brands"><span class="ms">verified</span>Daikin · Mitsubishi Ecodan</div>
+            <div class="spacer"></div>
+            <a class="cardlink" onclick="toast('Naar Warmtepompen','arrow_forward');return false;">Bekijk Warmtepompen <span class="ms">arrow_forward</span></a>
+          </div>
+
+          <div class="pcard2 fu d3">
+            <div class="top"><div class="picon"><span class="ms">hvac</span></div></div>
+            <h3>WTW Unit</h3>
+            <p>Continu verse lucht met warmteterugwinning — lagere stookkosten.</p>
+            <div class="subs">
+              <a onclick="toast('WTW · Vervangen','hvac');return false;">Vervangen</a>
+              <a onclick="toast('WTW · Onderhoud','hvac');return false;">Onderhoud &amp; reinigen</a>
+              <a onclick="toast('WTW · Inregelen','hvac');return false;">Inregelen</a>
+              <a onclick="toast('WTW · Storing','hvac');return false;">Storing</a>
+              <a onclick="toast('WTW · Aanleggen','hvac');return false;">Aanleggen</a>
+            </div>
+            <div class="spacer"></div>
+            <a class="cardlink" onclick="toast('Naar WTW Unit','arrow_forward');return false;">Bekijk WTW Unit <span class="ms">arrow_forward</span></a>
+          </div>
+
+          <div class="pcard2 fu d4">
+            <div class="top"><div class="picon"><span class="ms">air</span></div></div>
+            <h3>Mechanische ventilatie</h3>
+            <p>Schone kanalen en een fris, gezond binnenklimaat.</p>
+            <div class="subs">
+              <a onclick="toast('MV · Vervangen','air');return false;">Vervangen</a>
+              <a onclick="toast('MV · Onderhoud','air');return false;">Onderhoud &amp; reinigen</a>
+              <a onclick="toast('MV · Storing','air');return false;">Storing</a>
+              <a onclick="toast('MV · Aanleggen','air');return false;">Aanleggen</a>
+            </div>
+            <div class="spacer"></div>
+            <a class="cardlink" onclick="toast('Naar Mechanische ventilatie','arrow_forward');return false;">Bekijk Mech. ventilatie <span class="ms">arrow_forward</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT B ============ -->
+  <section class="variant" id="variant-b">
+    <div class="dsec">
+      <div class="dhead">
+        <span class="badge fu"><span class="ms">eco</span>Nieuw: duurzaam verwarmen</span>
+        <h2 class="fu d1">Vier vakgebieden — met de warmtepomp voorop</h2>
+        <p class="fu d2">Onze nieuwste specialisatie staat centraal: duurzame warmtepompen met ISDE-subsidie. Daarnaast blijft TPS uw specialist voor airco, WTW en mechanische ventilatie.</p>
+      </div>
+      <div class="dwrap">
+        <div class="featgrid">
+          <article class="feat fu d1">
+            <div class="picon"><span class="ms">heat_pump</span></div>
+            <h3>Warmtepompen</h3>
+            <p class="subtitle">Duurzaam verwarmen (en koelen) met een lucht/water- of hybride warmtepomp. Wij adviseren over het juiste systeem én over uw ISDE-subsidie — installatie volledig op maat.</p>
+            <span class="isde"><span class="ms">savings</span>Tot € 2.700 ISDE-subsidie</span>
+            <div class="subs">
+              <a onclick="toast('Warmtepomp · Installatie','heat_pump');return false;">Installatie</a>
+              <a onclick="toast('Warmtepomp · Onderhoud','heat_pump');return false;">Onderhoud</a>
+              <a onclick="toast('Warmtepomp · Reparatie','heat_pump');return false;">Reparatie &amp; storing</a>
+              <a onclick="toast('Warmtepomp · Advies','heat_pump');return false;">Advies</a>
+            </div>
+            <div class="brands"><span class="ms">verified</span>Daikin · Mitsubishi Ecodan</div>
+            <div class="feat-cta">
+              <a class="btn btn-primary" onclick="toast('Offerte warmtepomp','request_quote');return false;"><span class="ms">request_quote</span>Vraag offerte aan</a>
+              <a class="btn btn-light" onclick="toast('Naar Warmtepompen','arrow_forward');return false;">Meer over warmtepompen</a>
+            </div>
+          </article>
+
+          <div class="featside">
+            <a class="minicard fu d2" onclick="toast('Naar Airconditioning','arrow_forward');return false;">
+              <div class="picon"><span class="ms">ac_unit</span></div>
+              <div><h4>Airconditioning</h4><p>Installatie · onderhoud · reparatie · advies</p></div>
+              <span class="arrow"><span class="ms">arrow_forward</span></span>
+            </a>
+            <a class="minicard fu d3" onclick="toast('Naar WTW Unit','arrow_forward');return false;">
+              <div class="picon"><span class="ms">hvac</span></div>
+              <div><h4>WTW Unit</h4><p>Vervangen · onderhoud · inregelen · aanleggen</p></div>
+              <span class="arrow"><span class="ms">arrow_forward</span></span>
+            </a>
+            <a class="minicard fu d4" onclick="toast('Naar Mechanische ventilatie','arrow_forward');return false;">
+              <div class="picon"><span class="ms">air</span></div>
+              <div><h4>Mechanische ventilatie</h4><p>Vervangen · onderhoud · storing · aanleggen</p></div>
+              <span class="arrow"><span class="ms">arrow_forward</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT C ============ -->
+  <section class="variant" id="variant-c">
+    <div class="dsec">
+      <div class="dhead">
+        <span class="badge fu"><span class="ms">tune</span>Ontdek onze diensten</span>
+        <h2 class="fu d1">Kies uw vakgebied</h2>
+        <p class="fu d2">Selecteer een vakgebied en bekijk direct wat TPS voor u kan betekenen — van installatie tot onderhoud.</p>
+      </div>
+      <div class="dwrap">
+        <div class="selwrap">
+          <div class="selrail fu d1" id="selrail">
+            <button class="seltab active" data-key="airco" onclick="selectP('airco', this)">
+              <div class="picon"><span class="ms">ac_unit</span></div>
+              <div><h4>Airconditioning</h4><small>4 diensten</small></div>
+              <span class="chev ms">chevron_right</span>
+            </button>
+            <button class="seltab" data-key="wp" onclick="selectP('wp', this)">
+              <div class="picon accent"><span class="ms">heat_pump</span></div>
+              <div><h4>Warmtepompen <span class="newtag">Nieuw</span></h4><small>4 diensten · ISDE</small></div>
+              <span class="chev ms">chevron_right</span>
+            </button>
+            <button class="seltab" data-key="wtw" onclick="selectP('wtw', this)">
+              <div class="picon"><span class="ms">hvac</span></div>
+              <div><h4>WTW Unit</h4><small>5 diensten</small></div>
+              <span class="chev ms">chevron_right</span>
+            </button>
+            <button class="seltab" data-key="mv" onclick="selectP('mv', this)">
+              <div class="picon"><span class="ms">air</span></div>
+              <div><h4>Mechanische ventilatie</h4><small>4 diensten</small></div>
+              <span class="chev ms">chevron_right</span>
+            </button>
+          </div>
+
+          <div class="selpanel fu d2" id="selpanel"><!-- filled by JS --></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT D — equal grid, engineered & branded ============ -->
+  <section class="variant" id="variant-d">
+    <div class="dsec">
+      <div class="dhead">
+        <span class="badge fu"><span class="ms">verified</span>Onze vakgebieden &amp; merken</span>
+        <h2 class="fu d1">Eén specialist, vier vakgebieden — en de merken die u vertrouwt</h2>
+        <p class="fu d2">Alles in één oogopslag. Klik een vakgebied open voor de details en een directe offerte.</p>
+      </div>
+      <div class="dwrap">
+        <div class="grid4">
+
+          <!-- Airco -->
+          <div class="bcard fu d1">
+            <div class="top"><div class="picon"><span class="ms">ac_unit</span></div></div>
+            <h3>Airconditioning</h3>
+            <p>Koelen én verwarmen met een energiezuinige split-airco.</p>
+            <div class="logo-label">Merken die wij installeren</div>
+            <div class="logo-strip">
+              <span class="logo-chip" style="--brand:#0086c9"><span class="mark"></span><span class="word">Daikin</span></span>
+              <span class="logo-chip" style="--brand:#e60012"><span class="mark"></span><span class="word">Mitsubishi Electric</span></span>
+              <span class="logo-chip" style="--brand:#c8102e"><span class="mark"></span><span class="word">Mitsubishi Heavy</span></span>
+            </div>
+            <div class="subs">
+              <a onclick="toast('Airco · Installatie','ac_unit');return false;">Installatie</a>
+              <a onclick="toast('Airco · Onderhoud','ac_unit');return false;">Onderhoud</a>
+              <a onclick="toast('Airco · Reparatie','ac_unit');return false;">Reparatie &amp; storing</a>
+              <a onclick="toast('Airco · Advies','ac_unit');return false;">Advies</a>
+            </div>
+            <div class="foot">
+              <button class="toggle" onclick="toggleCard(this)">Details &amp; offerte <span class="ms">expand_more</span></button>
+              <div class="detail">
+                <div class="usp">
+                  <span><span class="ms">check_circle</span>Vakkundige montage door eigen team</span>
+                  <span><span class="ms">check_circle</span>Geen voorrijkosten · heldere prijs vooraf</span>
+                </div>
+                <div class="dcta">
+                  <a class="btn btn-primary btn-sm" onclick="toast('Offerte Airconditioning','request_quote');return false;"><span class="ms">request_quote</span>Offerte</a>
+                  <a class="btn btn-ghost btn-sm" onclick="toast('Naar Airconditioning','arrow_forward');return false;">Bekijk <span class="ms">arrow_forward</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Warmtepompen -->
+          <div class="bcard fu d2">
+            <div class="top"><div class="picon accent"><span class="ms">heat_pump</span></div><span class="newtag">Nieuw</span></div>
+            <h3>Warmtepompen</h3>
+            <p>Duurzaam verwarmen met lucht/water of hybride — ISDE-subsidie.</p>
+            <div class="logo-label">Merken die wij installeren</div>
+            <div class="logo-strip">
+              <span class="logo-chip" style="--brand:#0086c9"><span class="mark"></span><span class="word">Daikin</span></span>
+              <span class="logo-chip" style="--brand:#e60012"><span class="mark"></span><span class="word">Mitsubishi Ecodan</span></span>
+            </div>
+            <div class="subs">
+              <a onclick="toast('Warmtepomp · Installatie','heat_pump');return false;">Installatie</a>
+              <a onclick="toast('Warmtepomp · Onderhoud','heat_pump');return false;">Onderhoud</a>
+              <a onclick="toast('Warmtepomp · Reparatie','heat_pump');return false;">Reparatie &amp; storing</a>
+              <a onclick="toast('Warmtepomp · Advies','heat_pump');return false;">Advies</a>
+            </div>
+            <div class="foot">
+              <button class="toggle" onclick="toggleCard(this)">Details &amp; offerte <span class="ms">expand_more</span></button>
+              <div class="detail">
+                <div class="usp">
+                  <span><span class="ms">savings</span>Advies over ISDE-subsidie inbegrepen</span>
+                  <span><span class="ms">check_circle</span>Installatie volledig op maat</span>
+                </div>
+                <div class="dcta">
+                  <a class="btn btn-primary btn-sm" onclick="toast('Offerte Warmtepomp','request_quote');return false;"><span class="ms">request_quote</span>Offerte</a>
+                  <a class="btn btn-ghost btn-sm" onclick="toast('Naar Warmtepompen','arrow_forward');return false;">Bekijk <span class="ms">arrow_forward</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WTW -->
+          <div class="bcard fu d3">
+            <div class="top"><div class="picon"><span class="ms">hvac</span></div></div>
+            <h3>WTW Unit</h3>
+            <p>Continu verse lucht met warmteterugwinning — lagere stookkosten.</p>
+            <div class="logo-label">Alle gangbare merken</div>
+            <div class="logo-strip">
+              <span class="logo-chip" style="--brand:#006580"><span class="mark"></span><span class="word">Itho · Brink · Zehnder</span></span>
+            </div>
+            <div class="subs">
+              <a onclick="toast('WTW · Vervangen','hvac');return false;">Vervangen</a>
+              <a onclick="toast('WTW · Onderhoud','hvac');return false;">Onderhoud &amp; reinigen</a>
+              <a onclick="toast('WTW · Inregelen','hvac');return false;">Inregelen</a>
+              <a onclick="toast('WTW · Storing','hvac');return false;">Storing</a>
+              <a onclick="toast('WTW · Aanleggen','hvac');return false;">Aanleggen</a>
+            </div>
+            <div class="foot">
+              <button class="toggle" onclick="toggleCard(this)">Details &amp; offerte <span class="ms">expand_more</span></button>
+              <div class="detail">
+                <div class="usp">
+                  <span><span class="ms">check_circle</span>Vervanging én onderhoud van bestaande units</span>
+                  <span><span class="ms">check_circle</span>Gezonder binnenklimaat, lager energieverbruik</span>
+                </div>
+                <div class="dcta">
+                  <a class="btn btn-primary btn-sm" onclick="toast('Offerte WTW','request_quote');return false;"><span class="ms">request_quote</span>Offerte</a>
+                  <a class="btn btn-ghost btn-sm" onclick="toast('Naar WTW Unit','arrow_forward');return false;">Bekijk <span class="ms">arrow_forward</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MV -->
+          <div class="bcard fu d4">
+            <div class="top"><div class="picon"><span class="ms">air</span></div></div>
+            <h3>Mechanische ventilatie</h3>
+            <p>Schone kanalen en een fris, gezond binnenklimaat.</p>
+            <div class="logo-label">Alle gangbare merken</div>
+            <div class="logo-strip">
+              <span class="logo-chip" style="--brand:#006580"><span class="mark"></span><span class="word">Itho · Vasco · Orcon</span></span>
+            </div>
+            <div class="subs">
+              <a onclick="toast('MV · Vervangen','air');return false;">Vervangen</a>
+              <a onclick="toast('MV · Onderhoud','air');return false;">Onderhoud &amp; reinigen</a>
+              <a onclick="toast('MV · Storing','air');return false;">Storing</a>
+              <a onclick="toast('MV · Aanleggen','air');return false;">Aanleggen</a>
+            </div>
+            <div class="foot">
+              <button class="toggle" onclick="toggleCard(this)">Details &amp; offerte <span class="ms">expand_more</span></button>
+              <div class="detail">
+                <div class="usp">
+                  <span><span class="ms">check_circle</span>Reiniging &amp; onderhoud van kanalen en box</span>
+                  <span><span class="ms">check_circle</span>Fris en gezond — minder vocht en stof</span>
+                </div>
+                <div class="dcta">
+                  <a class="btn btn-primary btn-sm" onclick="toast('Offerte Mechanische ventilatie','request_quote');return false;"><span class="ms">request_quote</span>Offerte</a>
+                  <a class="btn btn-ghost btn-sm" onclick="toast('Naar Mechanische ventilatie','arrow_forward');return false;">Bekijk <span class="ms">arrow_forward</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /#frame -->
+
+<div id="toast"><span class="ms" id="toast-icon">check_circle</span><span id="toast-msg">Klaar</span></div>
+
+<div id="sketch-tools">
+  <div class="grp"><label>Thema</label>
+    <select onchange="document.querySelector('link[href*=themes]').href='../themes/'+this.value+'.css'"><option value="default">Default</option></select>
+  </div>
+  <div class="grp"><label>Breedte</label>
+    <button onclick="setVP(375,this)">📱</button><button onclick="setVP(768,this)">▭</button><button class="on" onclick="setVP(0,this)">🖥</button>
+  </div>
+</div>
+
+<script>
+  function showVariant(v, btn) {
+    document.querySelectorAll('.variant').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.variant-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('variant-' + v).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.querySelectorAll('.variant.active .fu').forEach(el => { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
+  }
+
+  let toastTimer;
+  function toast(msg, icon) {
+    document.getElementById('toast-msg').textContent = msg;
+    document.getElementById('toast-icon').textContent = icon || 'check_circle';
+    const t = document.getElementById('toast'); t.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  // ---- Variant C selector data (real taxonomy) ----
+  const P = {
+    airco: { icon: 'ac_unit', accent: false, title: 'Airconditioning', tag: '',
+      desc: 'Koelen én verwarmen met een energiezuinige split-airco. Wij verzorgen installatie, onderhoud en reparatie van Daikin, Mitsubishi Electric en Mitsubishi Heavy.',
+      brands: 'Daikin · Mitsubishi Electric · Mitsubishi Heavy',
+      subs: ['Installatie', 'Onderhoud', 'Reparatie & storing', 'Advies'] },
+    wp: { icon: 'heat_pump', accent: true, title: 'Warmtepompen', tag: 'Nieuw',
+      desc: 'Duurzaam verwarmen met een lucht/water- of hybride warmtepomp. Advies over ISDE-subsidie en een installatie volledig op maat — onze nieuwste specialisatie.',
+      brands: 'Daikin · Mitsubishi Ecodan',
+      subs: ['Installatie', 'Onderhoud', 'Reparatie & storing', 'Advies'] },
+    wtw: { icon: 'hvac', accent: false, title: 'WTW Unit', tag: '',
+      desc: 'Vervanging, installatie en onderhoud van WTW-units. Continu verse lucht met behoud van warmte — een gezonder binnenklimaat en lagere stookkosten.',
+      brands: '',
+      subs: ['Vervangen', 'Onderhoud & reinigen', 'Inregelen', 'Storing', 'Aanleggen'] },
+    mv: { icon: 'air', accent: false, title: 'Mechanische ventilatie', tag: '',
+      desc: 'Onderhoud, reiniging en vervanging van mechanische ventilatie. Schone kanalen en een fris, gezond binnenklimaat in uw woning of bedrijfspand.',
+      brands: '',
+      subs: ['Vervangen', 'Onderhoud & reinigen', 'Storing', 'Aanleggen'] }
+  };
+  function selectP(key, btn) {
+    document.querySelectorAll('#selrail .seltab').forEach(t => t.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    const p = P[key];
+    const brandsHtml = p.brands ? `<div class="brands"><span class="ms">verified</span>${p.brands}</div>` : '';
+    const subsHtml = p.subs.map(s => `<a onclick="toast('${p.title} · ${s}','${p.icon}');return false;"><span class="ms">arrow_outward</span>${s}</a>`).join('');
+    const tagHtml = p.tag ? ` <span class="newtag">${p.tag}</span>` : '';
+    document.getElementById('selpanel').innerHTML = `
+      <div class="anim">
+        <div class="phead">
+          <div class="picon ${p.accent ? 'accent' : ''}"><span class="ms">${p.icon}</span></div>
+          <div><h3>${p.title}${tagHtml}</h3>${brandsHtml}</div>
+        </div>
+        <p class="lead2">${p.desc}</p>
+        <div class="seclabel">Onze diensten</div>
+        <div class="subgrid">${subsHtml}</div>
+        <div class="pcta">
+          <a class="btn btn-primary" onclick="toast('Offerte ${p.title}','request_quote');return false;"><span class="ms">request_quote</span>Vraag offerte aan</a>
+          <a class="btn btn-ghost" onclick="toast('Naar ${p.title}','arrow_forward');return false;">Bekijk vakgebied <span class="ms">arrow_forward</span></a>
+        </div>
+      </div>`;
+  }
+  selectP('airco', null); // initial fill
+
+  // ---- Variant D: click-to-expand card detail ----
+  function toggleCard(btn) {
+    btn.closest('.bcard').classList.toggle('open');
+  }
+
+  function setVP(w, btn) {
+    const frame = document.getElementById('frame');
+    document.querySelectorAll('#sketch-tools .grp:last-child button').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    if (!w) { frame.classList.remove('constrained'); frame.style.maxWidth = ''; }
+    else { frame.classList.add('constrained'); frame.style.maxWidth = w + 'px'; }
+    window.scrollTo({ top: 0 });
+  }
+</script>
+</body>
+</html>
