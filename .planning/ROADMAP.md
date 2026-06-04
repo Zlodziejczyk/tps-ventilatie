@@ -70,7 +70,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 1**
 
-- [ ] 02-01-PLAN.md — Registry lookups + render helpers (pillars, childrenOf, siblingsOf, brandsForPillar, trailFor, pillarTarievenTab) + assert-registry extension [wave 1]
+- [x] 02-01-PLAN.md — Registry lookups + render helpers (pillars, childrenOf, siblingsOf, brandsForPillar, trailFor, pillarTarievenTab) + assert-registry extension [wave 1]
 
 **Wave 2** *(blocked on Wave 1)*
 
@@ -156,7 +156,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
-| 2. Routes & Service-Page Templates | 0/6 | Planned | - |
+| 2. Routes & Service-Page Templates | 1/6 | In Progress|  |
 | 3. SEO Infrastructure | 0/TBD | Not started | - |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
