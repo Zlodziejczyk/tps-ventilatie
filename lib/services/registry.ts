@@ -13,7 +13,14 @@
 // leading slash, no trailing slash); scripts/assert-registry.ts still asserts
 // urlFor(node) === canonicalPath(node) for every node as a regression guard.
 
-import { canonicalPath, pagesSchema, type PageNode, type PageType } from "./types";
+import {
+  canonicalPath,
+  pagesSchema,
+  type PageNode,
+  type PageType,
+  type PillarPage,
+  type ServicePage,
+} from "./types";
 import { AIRCONDITIONING_PAGES } from "./airconditioning";
 import { WARMTEPOMPEN_PAGES } from "./warmtepompen";
 import { WTW_PAGES } from "./wtw";
@@ -165,6 +172,107 @@ export function findByType(type: PageType): PageNode[] {
 
 export function findBySlug(url: string): PageNode | undefined {
   return PAGES.find((node) => urlFor(node) === url);
+}
+
+// ── Phase 2 taxonomy lookups + render helpers (D-14). Pure, typed against the
+//    ./types union, narrowed via type-guard predicates (no `as` casts). Every
+//    href delegates to urlFor — the sole href builder (P1 D-03). The render
+//    layer (routes, the 6 IA-05 components, the taxonomy-derived nav) reads
+//    these so taxonomy traversal is never re-implemented downstream. Kept here
+//    under the same no-barrel justification as the lookups above. ──
+
+// The 4 pillar pages, in registry order.
+export function pillars(): PillarPage[] {
+  return PAGES.filter((node): node is PillarPage => node.type === "pillar");
+}
+
+// A pillar by its slug.
+export function findPillar(pillarSlug: string): PillarPage | undefined {
+  return pillars().find((p) => p.pillarSlug === pillarSlug);
+}
+
+// The sub-services of one pillar, in registry order.
+export function childrenOf(pillarSlug: string): ServicePage[] {
+  return PAGES.filter(
+    (node): node is ServicePage =>
+      node.type === "service" && node.pillarSlug === pillarSlug,
+  );
+}
+
+// A specific sub-service within a pillar.
+export function findService(
+  pillarSlug: string,
+  serviceSlug: string,
+): ServicePage | undefined {
+  return childrenOf(pillarSlug).find((s) => s.serviceSlug === serviceSlug);
+}
+
+// Same-pillar siblings of a sub-service, excluding the node itself (D-11).
+export function siblingsOf(
+  pillarSlug: string,
+  serviceSlug: string,
+): ServicePage[] {
+  return childrenOf(pillarSlug).filter((s) => s.serviceSlug !== serviceSlug);
+}
+
+// Order-stable, de-duplicated union of the brandIds across a pillar's children
+// (drives the pillar-page BrandGrid, D-02). Pillars whose children carry no
+// brands (wtw, mechanische-ventilatie) return an empty array.
+export function brandsForPillar(pillarSlug: string): string[] {
+  const seen = new Set<string>();
+  const ids: string[] = [];
+  for (const service of childrenOf(pillarSlug)) {
+    for (const id of service.brandIds ?? []) {
+      if (!seen.has(id)) {
+        seen.add(id);
+        ids.push(id);
+      }
+    }
+  }
+  return ids;
+}
+
+// A single breadcrumb: a visible label + the href urlFor produced for its node.
+export interface Crumb {
+  label: string;
+  href: string;
+}
+
+// The breadcrumb trail for a node: Home → Diensten → [pillar] → [node]. Every
+// href delegates to urlFor (the sole builder), so Phase 3 reuses this exact
+// shape for BreadcrumbList JSON-LD (D-13). A hub node's trail is Home + Diensten
+// only; a pillar adds its own crumb; a service resolves its pillar crumb first.
+export function trailFor(node: PageNode): Crumb[] {
+  const trail: Crumb[] = [
+    { label: "Home", href: "/" },
+    { label: "Diensten", href: "/diensten" },
+  ];
+  if (node.type === "pillar") {
+    trail.push({ label: node.navTitle, href: urlFor(node) });
+  } else if (node.type === "service") {
+    const pillar = findPillar(node.pillarSlug);
+    if (pillar) {
+      trail.push({ label: pillar.navTitle, href: urlFor(pillar) });
+    }
+    trail.push({ label: node.navTitle, href: urlFor(node) });
+  }
+  return trail;
+}
+
+// Maps a pillar slug to its PricingTabs tab id, or null when the pillar has no
+// pricing tab. Warmtepompen pricing is "op maat via offerte" — no tab exists
+// (RESEARCH §5), so the template links to /contact instead of a dead tab.
+export function pillarTarievenTab(pillarSlug: string): string | null {
+  switch (pillarSlug) {
+    case "airconditioning":
+      return "airco";
+    case "wtw":
+      return "wtw";
+    case "mechanische-ventilatie":
+      return "mv";
+    default:
+      return null; // warmtepompen (and any unknown slug) → no tarieven tab
+  }
 }
 
 // Validate the taxonomy WITHOUT throwing — returns the project ok-result
