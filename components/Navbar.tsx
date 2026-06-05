@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_LINKS, DIENSTEN_DROPDOWN, TARIEVEN_DROPDOWN } from "@/lib/constants";
+import { NAV_LINKS, TARIEVEN_DROPDOWN } from "@/lib/constants";
+import { pillars, childrenOf, urlFor } from "@/lib/services/registry";
 import { MobileMenu } from "./MobileMenu";
 import { Icon } from "./Icon";
 
@@ -148,27 +149,42 @@ export function Navbar() {
   );
 }
 
+// Taxonomy-derived mega-menu (D-07/IA-07): 4 pillar columns from pillars(), each
+// listing its childrenOf() sub-services. Pillar header + every sub link via
+// urlFor — no hardcoded dropdown list. Gives every service a sitewide link.
 function DienstenPanel() {
   return (
-    <div className="p-5 grid grid-cols-3 gap-3 w-[540px]">
-      {DIENSTEN_DROPDOWN.map((service) => (
-        <Link
-          key={service.href}
-          href={service.href}
-          className="group flex flex-col gap-3 p-4 rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors"
-        >
-          <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-primary-fixed text-primary">
-            <Icon name={service.icon} />
-          </span>
-          <div>
-            <p className="font-headline font-bold text-sm text-on-surface group-hover:text-primary transition-colors">
-              {service.title}
-            </p>
-            <p className="text-xs text-on-surface-variant leading-relaxed mt-1">
-              {service.description}
-            </p>
+    <div className="p-5 grid grid-cols-4 gap-2 w-[760px]">
+      {pillars().map((pillar) => (
+        <div key={pillar.pillarSlug} className="flex flex-col">
+          <Link
+            href={urlFor(pillar)}
+            className="group/header flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-surface-container-high transition-colors mb-1"
+          >
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary-fixed text-primary shrink-0">
+              <Icon name={pillar.icon} className="text-xl" />
+            </span>
+            <span className="font-headline font-bold text-sm text-on-surface group-hover/header:text-primary transition-colors leading-tight">
+              {pillar.navTitle}
+            </span>
+            {pillar.pillarSlug === "warmtepompen" && (
+              <span className="ml-auto bg-tertiary-fixed text-on-tertiary-fixed text-[9px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                Nieuw
+              </span>
+            )}
+          </Link>
+          <div className="flex flex-col">
+            {childrenOf(pillar.pillarSlug).map((service) => (
+              <Link
+                key={urlFor(service)}
+                href={urlFor(service)}
+                className="px-3 py-1.5 rounded-lg text-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors"
+              >
+                {service.navTitle}
+              </Link>
+            ))}
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
