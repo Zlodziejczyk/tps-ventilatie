@@ -1,15 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { findBySlug } from "@/lib/services/registry";
 import { Icon } from "@/components/Icon";
 import { CTABanner } from "@/components/CTABanner";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 
-export const metadata: Metadata = {
-  title: "Over Ons",
-  description:
-    "Leer meer over TPS Ventilatie — uw betrouwbare specialist in schone lucht sinds Zoetermeer.",
-};
+export const metadata = buildMetadata(findBySlug("/over-ons")!);
 
 const REVIEWS = [
   {

@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
 import { Suspense } from "react";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { findBySlug } from "@/lib/services/registry";
 import Link from "next/link";
 import { SITE } from "@/lib/constants";
 import { Icon } from "@/components/Icon";
@@ -7,11 +8,7 @@ import { CTABanner } from "@/components/CTABanner";
 import { PricingTabs } from "@/components/PricingTabs";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
-export const metadata: Metadata = {
-  title: "Tarieven",
-  description:
-    "Transparante prijzen voor ventilatie en airconditioning — inclusief BTW en voorrijkosten.",
-};
+export const metadata = buildMetadata(findBySlug("/tarieven")!);
 
 export default function TarievenPage() {
   return (

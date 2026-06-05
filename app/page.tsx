@@ -4,6 +4,12 @@ import { PricingSection } from "./page-sections/PricingSection";
 import { WhyTPSSection } from "./page-sections/WhyTPSSection";
 import { ReviewsSection } from "./page-sections/ReviewsSection";
 import { CTABanner } from "@/components/CTABanner";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { findBySlug } from "@/lib/services/registry";
+
+// Home had no metadata export — add one via the shared builder so it gets an
+// absolute self-canonical (https://tpsventilatie.nl/) + OG/Twitter + index (D-05).
+export const metadata = buildMetadata(findBySlug("/")!);
 
 export default function Home() {
   return (

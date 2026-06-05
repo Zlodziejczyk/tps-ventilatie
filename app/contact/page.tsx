@@ -1,15 +1,12 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { findBySlug } from "@/lib/services/registry";
 import { Icon } from "@/components/Icon";
 import { ContactForm } from "@/components/ContactForm";
 import { SITE } from "@/lib/constants";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description:
-    "Neem contact op met TPS Ventilatie voor advies, afspraken of offertes.",
-};
+export const metadata = buildMetadata(findBySlug("/contact")!);
 
 export default function ContactPage() {
   return (
