@@ -8,6 +8,7 @@
 
 import { CANONICAL_ORIGIN, SITE } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/seo/policy";
+import { trailFor, urlFor } from "@/lib/services/registry";
 import type { PageNode } from "@/lib/services/types";
 
 // Stable @id for the one site-wide business node, so per-page Service nodes can
@@ -69,5 +70,49 @@ export function businessJsonLd(): object {
     priceRange: "€€",
     image: BUSINESS_IMAGE,
     logo: BUSINESS_IMAGE,
+  };
+}
+
+// Per-page Service node (pillar + sub-service; the hub omits it). `provider` points
+// at the site-wide business @id; `areaServed` carries the regio Places (SEO-06).
+export function serviceJsonLd(node: PageNode): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: node.navTitle,
+    serviceType: node.primaryKeyword,
+    provider: { "@id": BUSINESS_ID },
+    areaServed: SITE.serviceAreas.map((area) => ({ "@type": "Place", name: area })),
+    url: absoluteUrl(urlFor(node)),
+  };
+}
+
+// BreadcrumbList from trailFor(node) — the same trail the visible Breadcrumbs use
+// (P2 D-13), each `item` an absolute URL, `position` 1-indexed.
+export function breadcrumbJsonLd(node: PageNode): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trailFor(node).map((crumb, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: crumb.label,
+      item: absoluteUrl(crumb.href),
+    })),
+  };
+}
+
+// FAQPage from node.content.faqs — returns null when empty, so it only renders once
+// Phase 4 fills FAQs on published pages (callers render <JsonLd> only when non-null).
+export function faqJsonLd(node: PageNode): object | null {
+  if (node.content.faqs.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: node.content.faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
   };
 }
