@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS, SITE } from "@/lib/constants";
+import { pillars, childrenOf, urlFor } from "@/lib/services/registry";
+import { Icon } from "@/components/Icon";
 
 interface MobileMenuProps {
   open: boolean;
@@ -11,6 +14,8 @@ interface MobileMenuProps {
 
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const pathname = usePathname();
+  // D-08: single-open accordion — which pillar's sub-list is expanded.
+  const [openPillar, setOpenPillar] = useState<string | null>(null);
 
   return (
     <>
@@ -42,24 +47,92 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             </button>
           </div>
 
-          <nav className="flex-1 px-6 space-y-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={onClose}
-                className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
-                  pathname === link.href
-                    ? "bg-primary-fixed text-on-primary-fixed-variant"
-                    : "text-on-surface-variant hover:bg-surface-container-high"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <nav className="flex-1 px-6 space-y-1 overflow-y-auto">
+            {NAV_LINKS.map((link) =>
+              link.label === "Diensten" ? (
+                // Diensten — 2-level accordion (D-08): pillar rows (label links
+                // to the pillar page) + a chevron toggling each pillar's subs.
+                <div key={link.href} className="py-1">
+                  <Link
+                    href={link.href}
+                    onClick={onClose}
+                    className="block px-4 py-3 rounded-xl font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                  <div className="mt-1 space-y-0.5">
+                    {pillars().map((pillar) => {
+                      const isOpen = openPillar === pillar.pillarSlug;
+                      return (
+                        <div key={pillar.pillarSlug}>
+                          <div className="flex items-center gap-1">
+                            <Link
+                              href={urlFor(pillar)}
+                              onClick={onClose}
+                              className="flex-1 flex items-center gap-2 pl-4 pr-2 py-2.5 rounded-xl text-sm font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors"
+                            >
+                              <Icon
+                                name={pillar.icon}
+                                className="text-lg text-primary"
+                              />
+                              {pillar.navTitle}
+                              {pillar.pillarSlug === "warmtepompen" && (
+                                <span className="bg-tertiary-fixed text-on-tertiary-fixed text-[9px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                                  Nieuw
+                                </span>
+                              )}
+                            </Link>
+                            <button
+                              onClick={() =>
+                                setOpenPillar(isOpen ? null : pillar.pillarSlug)
+                              }
+                              aria-expanded={isOpen}
+                              aria-label={`${pillar.navTitle} diensten ${isOpen ? "inklappen" : "uitklappen"}`}
+                              className="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer"
+                            >
+                              <Icon
+                                name="expand_more"
+                                className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+                              />
+                            </button>
+                          </div>
+                          {isOpen && (
+                            <div className="pl-11 pb-1 space-y-0.5">
+                              {childrenOf(pillar.pillarSlug).map((service) => (
+                                <Link
+                                  key={urlFor(service)}
+                                  href={urlFor(service)}
+                                  onClick={onClose}
+                                  className="block px-4 py-2 rounded-lg text-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-low transition-colors"
+                                >
+                                  {service.navTitle}
+                                </Link>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={onClose}
+                  className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
+                    pathname === link.href
+                      ? "bg-primary-fixed text-on-primary-fixed-variant"
+                      : "text-on-surface-variant hover:bg-surface-container-high"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ),
+            )}
           </nav>
 
-          <div className="p-6 space-y-3 border-t border-outline-variant/20">
+          <div className="p-6 space-y-3 bg-surface-container-low">
             <a
               href={`tel:${SITE.phone}`}
               className="flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container-high text-on-surface font-medium"
