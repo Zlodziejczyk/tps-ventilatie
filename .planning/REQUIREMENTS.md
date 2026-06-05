@@ -51,7 +51,7 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 - [x] **SEO-06**: Zoetermeer + regio signals baked into page copy, metadata, and NAP (no separate city pages in v1)
 - [ ] **SEO-07**: Google Business Profile alignment (NAP, categories, service area, verified maps pin)
 - [x] **SEO-08**: NAP consistency from a single source (`lib/constants.ts`), including the corrected service radius
-- [ ] **SEO-09**: Analytics (Vercel Analytics + optional GA4) + Google Search Console verification + sitemap submission
+- [x] **SEO-09**: Analytics (Vercel Analytics + optional GA4) + Google Search Console verification + sitemap submission
 - [ ] **SEO-10**: Page-speed pass with mobile Core Web Vitals (INP < 200ms, good LCP) as a launch criterion
 
 ### QA & Hardening (launch blockers)
@@ -138,7 +138,7 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | SEO-06 | Phase 3 | Complete |
 | SEO-07 | Phase 3 | Pending |
 | SEO-08 | Phase 1 | Complete |
-| SEO-09 | Phase 3 | Pending |
+| SEO-09 | Phase 3 | Complete |
 | SEO-10 | Phase 5 | Pending |
 | QA-01 | Phase 5 | Pending |
 | QA-02 | Phase 5 | Pending |
