@@ -13,13 +13,14 @@ function draftShell(
   h1: string,
   metaTitle: string,
   metaDescription: string,
+  extra?: { intro?: string; localAngle?: string },
 ): ContentShell {
   return {
     h1,
-    intro: "",
+    intro: extra?.intro ?? "",
     steps: [],
     faqs: [],
-    localAngle: "",
+    localAngle: extra?.localAngle ?? "",
     metaTitle,
     metaDescription,
   };
@@ -74,6 +75,10 @@ export const MECHANISCHE_VENTILATIE_PAGES: PageNode[] = [
       "Mechanische ventilatie onderhoud en reinigen",
       "Mechanische ventilatie onderhoud | TPS klimaattechniek",
       "Ventilatiekanalen reinigen en onderhouden voor gezonde lucht in huis.",
+      {
+        intro:
+          "Schone ventilatiekanalen zorgen voor een gezond binnenklimaat, minder stof in huis, een langere levensduur van het systeem, minder gezondheidsklachten en een lagere energierekening. Wij reinigen uw ventilatiekanalen met een roterende borstel — snel, grondig en professioneel — waarbij al het vuil uit de kanalen wordt verwijderd. Regelmatige reiniging voorkomt gezondheidsklachten, ongedierte en extra onderhoudswerk. Ook uw dakventilator nemen wij mee: een complete reiniging en onderhoud is minimaal iedere 4 jaar (uiterlijk 5 jaar) aan te raden, en vervanging is verstandig zodra deze 15 jaar of ouder is — oude dakventilatoren werken op wisselstroom en verbruiken tot 80% meer energie.",
+      },
     ),
   },
   {

@@ -14,13 +14,14 @@ function draftShell(
   h1: string,
   metaTitle: string,
   metaDescription: string,
+  extra?: { intro?: string; localAngle?: string },
 ): ContentShell {
   return {
     h1,
-    intro: "",
+    intro: extra?.intro ?? "",
     steps: [],
     faqs: [],
-    localAngle: "",
+    localAngle: extra?.localAngle ?? "",
     metaTitle,
     metaDescription,
   };
@@ -41,6 +42,10 @@ export const AIRCONDITIONING_PAGES: PageNode[] = [
       "Airconditioning in Zoetermeer",
       "Airconditioning Zoetermeer | TPS klimaattechniek",
       "Airconditioning: installatie, onderhoud en reparatie in Zoetermeer en omgeving.",
+      {
+        intro:
+          "Geniet het hele jaar door van de perfecte temperatuur — van duurzame verwarming in de winter tot ijzige koelte in de zomer. Wij installeren airconditioning van Daikin, Mitsubishi Electric en Mitsubishi Heavy.",
+      },
     ),
   },
   {
@@ -62,6 +67,10 @@ export const AIRCONDITIONING_PAGES: PageNode[] = [
       "Airco laten installeren",
       "Airco laten installeren | TPS klimaattechniek",
       "Laat uw airco vakkundig installeren door TPS klimaattechniek in de regio Zoetermeer.",
+      {
+        intro:
+          "Complete montage van Single- of Multi-split systemen in uw woning of kantoor.",
+      },
     ),
   },
   {
@@ -79,6 +88,10 @@ export const AIRCONDITIONING_PAGES: PageNode[] = [
       "Airco onderhoud",
       "Airco onderhoud | TPS klimaattechniek",
       "Periodiek airco-onderhoud voor optimale prestaties en een langere levensduur.",
+      {
+        intro:
+          "Voorkom storingen en nare geurtjes door een jaarlijkse checkup en reiniging.",
+      },
     ),
   },
   {
@@ -96,6 +109,10 @@ export const AIRCONDITIONING_PAGES: PageNode[] = [
       "Airco reparatie en storing",
       "Airco storing & reparatie | TPS klimaattechniek",
       "Snelle reparatie bij aircostoringen in Zoetermeer en omgeving.",
+      {
+        intro:
+          "Snelle hulp bij lekkages, vreemde geluiden of systemen die niet meer koelen.",
+      },
     ),
   },
   {
@@ -113,6 +130,10 @@ export const AIRCONDITIONING_PAGES: PageNode[] = [
       "Airco advies",
       "Airco advies Zoetermeer | TPS klimaattechniek",
       "Onafhankelijk advies over de juiste airco voor uw woning of bedrijf.",
+      {
+        intro:
+          "Vrijblijvende opname op locatie om de beste positie en capaciteit te bepalen.",
+      },
     ),
   },
 ];
