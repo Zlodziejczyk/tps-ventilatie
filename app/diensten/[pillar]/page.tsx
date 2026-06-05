@@ -17,6 +17,13 @@ import {
   pillarTarievenTab,
   urlFor,
 } from "@/lib/services/registry";
+import { buildMetadata } from "@/lib/seo/metadata";
+import {
+  JsonLd,
+  serviceJsonLd,
+  breadcrumbJsonLd,
+  faqJsonLd,
+} from "@/lib/seo/jsonld";
 
 // One data-driven template for all 4 pillar pages (IA-03/IA-04, D-02 layout).
 // dynamicParams=false → only the 4 enumerated slugs pre-render; anything else
@@ -36,10 +43,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { pillar } = await params;
   const node = findPillar(pillar);
-  return {
-    title: node?.content.metaTitle,
-    description: node?.content.metaDescription,
-  };
+  // Widened from the Phase-2 title/desc seam to full canonical + OG/Twitter +
+  // per-page robots via the shared builder (D-05). Draft pillars get noindex,follow.
+  return node ? buildMetadata(node) : {};
 }
 
 export default async function PillarPage({ params }: { params: Params }) {
@@ -52,6 +58,11 @@ export default async function PillarPage({ params }: { params: Params }) {
 
   return (
     <main className="pt-28 pb-20">
+      {/* Per-page structured data (D-04) — server-rendered, no visual effect */}
+      <JsonLd data={serviceJsonLd(node)} />
+      <JsonLd data={breadcrumbJsonLd(node)} />
+      {node.content.faqs.length > 0 && <JsonLd data={faqJsonLd(node)!} />}
+
       <ServiceHero node={node} />
 
       {/* Sub-service card grid — the routes into each sub-service page */}
