@@ -31,6 +31,18 @@ export const SITE = {
   whatsappUrl: "https://wa.me/31629403450",
 } as const;
 
+// Canonical origin (D-01) — the apex, live-confirmed (RESEARCH §1) as the served
+// primary (www→apex 301 in place). This is the ONLY place the origin string is
+// written: metadataBase, every absolute canonical, OG `url`, sitemap `<loc>`,
+// robots `Sitemap:`, and JSON-LD `url`/`@id` all import it. No trailing slash.
+export const CANONICAL_ORIGIN = "https://tpsventilatie.nl";
+
+// Google Search Console verification token (D-06). Public by design (read from a
+// NEXT_PUBLIC_ env var) — not a secret. Empty string when unset so downstream
+// code omits the verification tag rather than shipping an empty/invalid one.
+export const GOOGLE_SITE_VERIFICATION =
+  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "";
+
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Diensten", href: "/diensten" },
