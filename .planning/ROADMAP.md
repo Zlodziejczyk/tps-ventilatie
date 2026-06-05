@@ -78,7 +78,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 3** *(blocked on Wave 2)*
 
-- [ ] 02-03-PLAN.md — Pillar + sub-service dynamic routes: generateStaticParams (4 + 17), async params, dynamicParams=false, generateMetadata (D-13) [wave 3]
+- [x] 02-03-PLAN.md — Pillar + sub-service dynamic routes: generateStaticParams (4 + 17), async params, dynamicParams=false, generateMetadata (D-13) [wave 3]
 - [ ] 02-04-PLAN.md — Lean /diensten hub (4 pillar cards + reviews strip) + retire DienstenNav [wave 3]
 
 **Wave 4** *(blocked on Wave 3 routes)*
@@ -156,7 +156,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
-| 2. Routes & Service-Page Templates | 2/6 | In Progress|  |
+| 2. Routes & Service-Page Templates | 3/6 | In Progress|  |
 | 3. SEO Infrastructure | 0/TBD | Not started | - |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
