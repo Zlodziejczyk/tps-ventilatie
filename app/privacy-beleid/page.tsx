@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { findBySlug } from "@/lib/services/registry";
 
-export const metadata: Metadata = {
-  title: "Privacy Beleid",
-  description: "Privacy beleid van TPS Ventilatie.",
-};
+// Policy returns non-indexable for privacy-beleid → builder emits noindex,follow
+// (legal page, no search value); also excluded from the sitemap (D-02).
+export const metadata = buildMetadata(findBySlug("/privacy-beleid")!);
 
 const SECTIONS = [
   {

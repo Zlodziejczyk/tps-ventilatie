@@ -1,17 +1,15 @@
-import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/metadata";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import { ServiceCard } from "@/components/ServiceCard";
 import { ReviewCarousel } from "@/components/ReviewCarousel";
 import type { Review } from "@/components/ReviewCarousel";
 import { CTABanner } from "@/components/CTABanner";
-import { pillars, urlFor } from "@/lib/services/registry";
+import { pillars, urlFor, findBySlug } from "@/lib/services/registry";
 
-export const metadata: Metadata = {
-  title: "Diensten",
-  description:
-    "Airconditioning, warmtepompen, WTW en mechanische ventilatie — alle klimaattechniek van TPS onder één dak.",
-};
+// Hub node is status:"draft" → builder emits noindex,follow and excludes it from
+// the sitemap; it auto-flips to indexed when Phase 4 publishes it (single lever, D-02).
+export const metadata = buildMetadata(findBySlug("/diensten")!);
 
 // D-12: the hub trust strip reuses the existing reviews. REVIEWS in
 // app/page-sections/ReviewsSection.tsx is a PRIVATE const (not exported), so the
