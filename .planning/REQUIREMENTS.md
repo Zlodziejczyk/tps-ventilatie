@@ -43,10 +43,10 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 
 ### SEO — Technical, Local, Measurement
 
-- [ ] **SEO-01**: Programmatic `sitemap.xml` sourced from the taxonomy with `dynamic = "force-static"`
-- [ ] **SEO-02**: `robots.txt` via `app/robots.ts`
+- [x] **SEO-01**: Programmatic `sitemap.xml` sourced from the taxonomy with `dynamic = "force-static"`
+- [x] **SEO-02**: `robots.txt` via `app/robots.ts`
 - [ ] **SEO-03**: JSON-LD — site-wide LocalBusiness/HVACBusiness + per-page Service, BreadcrumbList, and FAQPage (server-rendered)
-- [ ] **SEO-04**: `metadataBase` + consistent `trailingSlash` + absolute self-canonical on every page
+- [x] **SEO-04**: `metadataBase` + consistent `trailingSlash` + absolute self-canonical on every page
 - [ ] **SEO-05**: Open Graph / Twitter card metadata across all pages
 - [ ] **SEO-06**: Zoetermeer + regio signals baked into page copy, metadata, and NAP (no separate city pages in v1)
 - [ ] **SEO-07**: Google Business Profile alignment (NAP, categories, service area, verified maps pin)
@@ -130,10 +130,10 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | LEAD-04 | Phase 5 | Pending |
 | LEAD-05 | Phase 5 | Pending |
 | LEAD-06 | Phase 5 | Pending |
-| SEO-01 | Phase 3 | Pending |
-| SEO-02 | Phase 3 | Pending |
+| SEO-01 | Phase 3 | Complete |
+| SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 3 | Pending |
-| SEO-04 | Phase 3 | Pending |
+| SEO-04 | Phase 3 | Complete |
 | SEO-05 | Phase 3 | Pending |
 | SEO-06 | Phase 3 | Pending |
 | SEO-07 | Phase 3 | Pending |
