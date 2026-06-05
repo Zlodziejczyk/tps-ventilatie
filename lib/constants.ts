@@ -46,27 +46,9 @@ export interface DropdownItem {
   href: string;
 }
 
-export const DIENSTEN_DROPDOWN: DropdownItem[] = [
-  {
-    icon: "heat_pump",
-    title: "WTW Unit",
-    description: "Vervanging en installatie van warmteterugwinunits",
-    href: "/diensten#wtw",
-  },
-  {
-    icon: "air",
-    title: "Mechanische Ventilatie",
-    description: "Reiniging en onderhoud van ventilatiekanalen",
-    href: "/diensten#mechanisch",
-  },
-  {
-    icon: "ac_unit",
-    title: "Airconditioning",
-    description: "Installatie, onderhoud en reparatie van aircosystemen",
-    href: "/diensten#airco",
-  },
-];
-
+// The hardcoded Diensten dropdown list was removed (IA-07): the Diensten nav is
+// now taxonomy-derived from pillars()/childrenOf() in Navbar + MobileMenu.
+// TARIEVEN_DROPDOWN stays (pricing nav is not part of the service taxonomy).
 export const TARIEVEN_DROPDOWN: DropdownItem[] = [
   {
     icon: "air",
