@@ -104,7 +104,34 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Zoetermeer + regio signals appear in page copy, metadata, and NAP, and the on-site NAP matches the Google Business Profile (categories, service area, verified maps pin)
   5. Analytics (Vercel Analytics, optional GA4) is collecting and Google Search Console is verified with the sitemap submitted
 
-**Plans**: TBD
+**Plans**: 8 plans (4 waves)
+
+**Wave 1**
+
+- [ ] 03-01-PLAN.md — SEO foundation: canonical origin (apex, D-01) + GSC field + indexing-policy helper (`lib/seo/policy.ts`) [wave 1]
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 03-02-PLAN.md — Shared metadata builder (`lib/seo/metadata.ts`: canonical/OG/Twitter/robots) + branded 1200×630 OG image [wave 2]
+- [ ] 03-03-PLAN.md — JSON-LD: `JsonLd` injector + HVACBusiness / Service / BreadcrumbList / FAQPage builders (no ratings) [wave 2]
+- [ ] 03-04-PLAN.md — Programmatic `app/sitemap.ts` (force-static) + `app/robots.ts` (open, AI-bots, absolute pointer) [wave 2]
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 03-05-PLAN.md — Root layout: brand rebrand + metadataBase + default OG + sitewide HVACBusiness JSON-LD + Vercel Analytics/Speed Insights + GSC meta [wave 3]
+- [ ] 03-06-PLAN.md — Dynamic pillar + sub-service routes: `generateMetadata`→builder + per-page Service/BreadcrumbList/FAQPage JSON-LD [wave 3]
+- [ ] 03-07-PLAN.md — Static-page metadata via the builder (home/tarieven/over-ons/contact index; privacy-beleid + hub noindex) [wave 3]
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 03-08-PLAN.md — Owner-ops runbook (GBP/GSC/Vercel/AI-opt-out/geo) + `scripts/assert-seo.ts` + green-build phase gate [wave 4]
+
+**Cross-cutting constraints** (hold across plans):
+- One canonical origin (`CANONICAL_ORIGIN` = apex `https://tpsventilatie.nl`, live-confirmed) — every absolute URL derives from it.
+- One indexing lever: `lib/seo/policy.ts isIndexable()` drives both sitemap membership and per-page `robots` (statics index now except privacy-beleid; hub/pillar/service gate on `status:"published"` → Phase 4 flips them).
+- All JSON-LD server-rendered, zero client JS, `<`-escaped; NO `aggregateRating`/`review` (reserved for Phase 4).
+- `next.config.ts` stays `output:"export"` — do NOT relax it (Phase 5 decision gate).
+
 **UI hint**: yes
 
 ### Phase 4: Content Fill & Editorial Gate

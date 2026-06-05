@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-last_updated: "2026-06-05T13:01:08.196Z"
+last_updated: "2026-06-05T15:45:00.000Z"
 last_activity: 2026-06-05
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 12
+  total_plans: 20
   completed_plans: 12
   percent: 33
 ---
@@ -20,16 +20,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-02)
 
 **Core value:** Turn local search demand into contacted leads — a prospect in the Zoetermeer region finds TPS, trusts it, reaches out, and the owner is notified instantly.
-**Current focus:** Phase 06 — homepage conversion uplift
+**Current focus:** Phase 03 — SEO infrastructure (planned, ready to execute)
 
 ## Current Position
 
-Phase: 06
-Plan: Not started
-Status: Ready to plan
+Phase: 03
+Plan: Not started (8 plans, 4 waves)
+Status: Ready to execute
 Last activity: 2026-06-05
 
-Progress: [██████████] 100%
+Progress: [██████████] 100% (planning)
 
 ## Performance Metrics
 
@@ -90,7 +90,7 @@ None yet.
 
 - Owner inputs needed before Phase 4 drafting: exact certifications held (F-gassen/STEK, BRL, InstallQ, VCA) and Daikin/Mitsubishi authorized-dealer status.
 - Confirm the correct service radius with the owner before propagating it in Phase 1.
-- Rebrand/domain question (tpsventilatie.nl vs tpsklimaattechniek.nl) should be raised before Phase 3 so NAP signals target the right domain.
+- ✅ RESOLVED (Phase 3 D-01): canonical host locked to apex `https://tpsventilatie.nl` for launch (live-confirmed: www→apex 301 in place); brand name stays "TPS klimaattechniek" (name≠domain); tpsklimaattechniek.nl migration deferred to v2 (DOM-V2-01).
 - Phase 5 depends on the GHL instant-notification workflow being configured for a live end-to-end test.
 
 ## Deferred Items
@@ -103,6 +103,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-05T13:01:08.191Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-seo-infrastructure/03-CONTEXT.md
+Last session: 2026-06-05T15:45:00.000Z
+Stopped at: Phase 3 planned (8 plans, 4 waves) — ready to execute
+Resume file: .planning/phases/03-seo-infrastructure/03-01-PLAN.md
