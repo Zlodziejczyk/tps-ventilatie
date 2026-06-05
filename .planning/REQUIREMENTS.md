@@ -47,7 +47,7 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 - [x] **SEO-02**: `robots.txt` via `app/robots.ts`
 - [ ] **SEO-03**: JSON-LD — site-wide LocalBusiness/HVACBusiness + per-page Service, BreadcrumbList, and FAQPage (server-rendered)
 - [x] **SEO-04**: `metadataBase` + consistent `trailingSlash` + absolute self-canonical on every page
-- [ ] **SEO-05**: Open Graph / Twitter card metadata across all pages
+- [x] **SEO-05**: Open Graph / Twitter card metadata across all pages
 - [ ] **SEO-06**: Zoetermeer + regio signals baked into page copy, metadata, and NAP (no separate city pages in v1)
 - [ ] **SEO-07**: Google Business Profile alignment (NAP, categories, service area, verified maps pin)
 - [x] **SEO-08**: NAP consistency from a single source (`lib/constants.ts`), including the corrected service radius
@@ -134,7 +134,7 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 3 | Pending |
 | SEO-04 | Phase 3 | Complete |
-| SEO-05 | Phase 3 | Pending |
+| SEO-05 | Phase 3 | Complete |
 | SEO-06 | Phase 3 | Pending |
 | SEO-07 | Phase 3 | Pending |
 | SEO-08 | Phase 1 | Complete |
