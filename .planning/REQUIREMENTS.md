@@ -10,7 +10,7 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 ### Information Architecture & Service Pages
 
 - [x] **IA-01**: Service taxonomy data model (`lib/services/`) is the single source of truth for routes, nav, sitemap, and JSON-LD
-- [ ] **IA-02**: `/diensten` hub page lists and links all 4 service pillars
+- [x] **IA-02**: `/diensten` hub page lists and links all 4 service pillars
 - [x] **IA-03**: 4 pillar pages (Airconditioning, Warmtepompen, WTW, Mechanische Ventilatie) generated from the data-driven template
 - [x] **IA-04**: ~17 sub-service pages generated from the taxonomy (Airco/WP: Installatie, Onderhoud, Reparatie & Storing, Advies · WTW: Vervangen, Onderhoud/Reinigen, Inregelen, Storing, Aanleggen · MV: Vervangen, Onderhoud/Reinigen, Storing, Aanleggen)
 - [x] **IA-05**: Reusable service-template components (ServiceHero, ServiceSteps, ServiceFAQ, BrandGrid, RelatedServices, Breadcrumbs) as server components
@@ -106,7 +106,7 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | IA-01 | Phase 1 | Complete |
-| IA-02 | Phase 2 | Pending |
+| IA-02 | Phase 2 | Complete |
 | IA-03 | Phase 2 | Complete |
 | IA-04 | Phase 2 | Complete |
 | IA-05 | Phase 2 | Complete |
