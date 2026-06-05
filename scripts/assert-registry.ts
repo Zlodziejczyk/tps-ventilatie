@@ -180,6 +180,39 @@ assert.equal(
   "warmtepompen → null (no tarieven tab)",
 );
 
+// ── 02-06 content-port spot checks (D-04/D-05) — lock the salvaged content. ──
+
+// (12) WTW vervangen carries the salvaged 10-step sequence, every step non-empty.
+const wtwVervangen = findService("wtw", "vervangen");
+assert(wtwVervangen, "wtw/vervangen must exist");
+assert.equal(
+  wtwVervangen.content.steps.length,
+  10,
+  `wtw/vervangen must carry 10 ported steps, got ${wtwVervangen.content.steps.length}`,
+);
+assert(
+  wtwVervangen.content.steps.every(
+    (s) => s.title.trim() !== "" && s.body.trim() !== "",
+  ),
+  "every wtw/vervangen step must have a non-empty title and body",
+);
+
+// (13) No node's intro mentions "Panasonic" (D-05 — taxonomy brands are
+//      Daikin / Mitsubishi Electric / Mitsubishi Heavy / Mitsubishi Ecodan).
+assert(
+  PAGES.every((node) => !node.content.intro.includes("Panasonic")),
+  "no node content.intro may mention Panasonic (D-05 brand alignment)",
+);
+
+// (14) Warmtepompen installatie still carries its 2 brandIds (port regression guard).
+const wpInstallatie = findService("warmtepompen", "installatie");
+assert(wpInstallatie, "warmtepompen/installatie must exist");
+assert.equal(
+  wpInstallatie.brandIds?.length,
+  2,
+  "warmtepompen/installatie must keep its 2 brandIds after the content port",
+);
+
 console.log(
-  `✅ Registry OK — ${PAGES.length} pages, ${uniqueUrls.size} unique URLs, D-03 policy holds, taxonomy validates, Phase-2 helpers locked (4 pillars, 17 subs, brand/trail/tarieven helpers).`,
+  `✅ Registry OK — ${PAGES.length} pages, ${uniqueUrls.size} unique URLs, D-03 policy holds, taxonomy validates, Phase-2 helpers locked, content port spot-checked (WTW 10 steps, no Panasonic).`,
 );
