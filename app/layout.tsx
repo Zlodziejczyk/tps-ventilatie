@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
@@ -51,6 +53,9 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        {/* Cookieless, privacy-friendly — no consent banner needed (D-06, LEAD-06) */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
