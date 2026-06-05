@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SITE, CANONICAL_ORIGIN, GOOGLE_SITE_VERIFICATION } from "@/lib/constants";
+import { OG_IMAGE } from "@/lib/seo/metadata";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -19,21 +21,31 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  // metadataBase makes relative OG/canonical resolve to the apex origin (D-01).
+  metadataBase: new URL(CANONICAL_ORIGIN),
   title: {
-    default: "TPS Ventilatie — Uw Ventilatiespecialist",
-    template: "%s | TPS Ventilatie",
+    default:
+      "TPS klimaattechniek — Airco, warmtepompen & ventilatie in Zoetermeer",
+    template: "%s | TPS klimaattechniek",
   },
   description:
-    "Specialist in installatie, onderhoud en advies voor WTW units, mechanische ventilatie en airconditioning in de regio Zoetermeer.",
-  keywords: [
-    "ventilatie",
-    "WTW",
-    "mechanische ventilatie",
-    "airconditioning",
-    "Zoetermeer",
-    "onderhoud",
-    "installatie",
-  ],
+    "Specialist in airconditioning, warmtepompen en ventilatie in Zoetermeer en omgeving.",
+  // Legacy keyword-array meta intentionally dropped (D-05 — deprecated; the keyword
+  // map lives in the taxonomy registry).
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    locale: "nl_NL",
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: [OG_IMAGE],
+  },
+  // Emit the GSC verification tag only when the env token is set (never an empty tag).
+  verification: GOOGLE_SITE_VERIFICATION
+    ? { google: GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({
