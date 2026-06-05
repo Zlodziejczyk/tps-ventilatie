@@ -8,6 +8,13 @@ import { ServiceFAQ } from "@/components/ServiceFAQ";
 import { RelatedServices } from "@/components/RelatedServices";
 import { CTABanner } from "@/components/CTABanner";
 import { pillars, childrenOf, findService } from "@/lib/services/registry";
+import { buildMetadata } from "@/lib/seo/metadata";
+import {
+  JsonLd,
+  serviceJsonLd,
+  breadcrumbJsonLd,
+  faqJsonLd,
+} from "@/lib/seo/jsonld";
 
 // One data-driven template for all 17 sub-service pages (IA-03/IA-04, D-01
 // convert-forward stack). dynamicParams=false → only the 17 enumerated
@@ -32,10 +39,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { pillar, service } = await params;
   const node = findService(pillar, service);
-  return {
-    title: node?.content.metaTitle,
-    description: node?.content.metaDescription,
-  };
+  // Widened from the Phase-2 title/desc seam to the full shared builder (D-05) —
+  // absolute canonical + OG/Twitter + per-page robots. Draft services: noindex,follow.
+  return node ? buildMetadata(node) : {};
 }
 
 export default async function ServiceDetailPage({ params }: { params: Params }) {
@@ -45,6 +51,11 @@ export default async function ServiceDetailPage({ params }: { params: Params }) 
 
   return (
     <main className="pt-28 pb-20">
+      {/* Per-page structured data (D-04) — server-rendered, no visual effect */}
+      <JsonLd data={serviceJsonLd(node)} />
+      <JsonLd data={breadcrumbJsonLd(node)} />
+      {node.content.faqs.length > 0 && <JsonLd data={faqJsonLd(node)!} />}
+
       <Breadcrumbs node={node} />
       <ServiceHero node={node} />
       <ServiceSteps steps={node.content.steps} />
