@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SITE, CANONICAL_ORIGIN, GOOGLE_SITE_VERIFICATION } from "@/lib/constants";
 import { OG_IMAGE } from "@/lib/seo/metadata";
+import { JsonLd, businessJsonLd } from "@/lib/seo/jsonld";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -62,6 +63,8 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-on-surface font-body">
+        {/* Site-wide HVACBusiness node — the single business JSON-LD every page carries (D-04) */}
+        <JsonLd data={businessJsonLd()} />
         <Navbar />
         {children}
         <Footer />
