@@ -119,7 +119,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Wave 3** *(blocked on Wave 2 completion)*
 
 - [x] 03-05-PLAN.md — Root layout: brand rebrand + metadataBase + default OG + sitewide HVACBusiness JSON-LD + Vercel Analytics/Speed Insights + GSC meta [wave 3]
-- [ ] 03-06-PLAN.md — Dynamic pillar + sub-service routes: `generateMetadata`→builder + per-page Service/BreadcrumbList/FAQPage JSON-LD [wave 3]
+- [x] 03-06-PLAN.md — Dynamic pillar + sub-service routes: `generateMetadata`→builder + per-page Service/BreadcrumbList/FAQPage JSON-LD [wave 3]
 - [ ] 03-07-PLAN.md — Static-page metadata via the builder (home/tarieven/over-ons/contact index; privacy-beleid + hub noindex) [wave 3]
 
 **Wave 4** *(blocked on Wave 3 completion)*
@@ -184,7 +184,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
-| 3. SEO Infrastructure | 5/8 | In Progress|  |
+| 3. SEO Infrastructure | 6/8 | In Progress|  |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
