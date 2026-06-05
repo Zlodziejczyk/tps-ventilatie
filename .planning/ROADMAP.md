@@ -114,7 +114,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] 03-02-PLAN.md — Shared metadata builder (`lib/seo/metadata.ts`: canonical/OG/Twitter/robots) + branded 1200×630 OG image [wave 2]
 - [x] 03-03-PLAN.md — JSON-LD: `JsonLd` injector + HVACBusiness / Service / BreadcrumbList / FAQPage builders (no ratings) [wave 2]
-- [ ] 03-04-PLAN.md — Programmatic `app/sitemap.ts` (force-static) + `app/robots.ts` (open, AI-bots, absolute pointer) [wave 2]
+- [x] 03-04-PLAN.md — Programmatic `app/sitemap.ts` (force-static) + `app/robots.ts` (open, AI-bots, absolute pointer) [wave 2]
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -184,7 +184,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
-| 3. SEO Infrastructure | 3/8 | In Progress|  |
+| 3. SEO Infrastructure | 4/8 | In Progress|  |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
