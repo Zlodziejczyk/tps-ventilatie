@@ -147,7 +147,26 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Over-ons shows the refreshed "Verhaal van Thomas" + 4 USPs, and reviews come from one consolidated source with Google score, count, and link on home and key pages
   5. The owner has reviewed and signed off on every page before it ships — no page goes live without editorial approval (hard gate)
 
-**Plans**: TBD
+**Plans**: 9 plans (3 waves)
+
+**Wave 1** *(foundation — parallel, no shared files)*
+
+- [ ] 04-01-PLAN.md — D-13 anti-claim grep gate (scripts/assert-no-forbidden-claims.ts) + prebuild wire + written checklist [wave 1]
+- [ ] 04-02-PLAN.md — Reviews consolidation (lib/reviews.ts) + gated aggregateRating slot + over-ons/home USP interim-true copy (CONT-07/08) [wave 1]
+- [ ] 04-08-PLAN.md — Owner intake: publish Tally 2EojAA + send Thomas one message (autonomous:false) [wave 1]
+
+**Wave 2** *(pillar content silos — depend on 04-01; each pillar its own file)*
+
+- [ ] 04-03-PLAN.md — Airconditioning silo (pillar + 4 subs; airco = geen ISDE; brand install copy) → review [wave 2]
+- [ ] 04-04-PLAN.md — Warmtepompen silo (net-new pillar + 4 subs; ISDE yes + rvo.nl cite, amounts→consult) → review [wave 2]
+- [ ] 04-05-PLAN.md — WTW silo (fix wtw.ts:65 gecertificeerd; expand intros + FAQs; ISDE yes-2026 + isolatie) → review [wave 2]
+- [ ] 04-06-PLAN.md — Mechanische Ventilatie silo (expand + FAQs; ISDE CO2-gestuurd-only + isolatie) → review [wave 2]
+- [ ] 04-07-PLAN.md — Brand blurbs (brands.ts, dealer status gated) + pricing transparency copy (tarieven node) [wave 2]
+
+**Wave 3** *(editorial gate — depends on all content + intake)*
+
+- [ ] 04-09-PLAN.md — Map intake returns → gated slots; whole-site owner review (preview); batch-flip approved set → published; update assert-seo (autonomous:false) [wave 3]
+
 **UI hint**: yes
 
 ### Phase 5: Lead Capture, Form Security & Launch QA
@@ -185,7 +204,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
-| 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
+| 4. Content Fill & Editorial Gate | 0/9 | Not started | - |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
