@@ -189,6 +189,12 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
+## Backlog
+
+Deferred items captured outside the active phase sequence. Review or promote with `/gsd-review-backlog`.
+
+- [ ] **999.1: Branded OG / Social-Share Card** (BACKLOG) — Replace the launch-default `public/og-default.jpg` (plain grey fan product shot, no brand) with a purpose-designed 1200×630 card carrying the TPS klimaattechniek logo + tagline. Origin: Phase 3 SEO UAT gap 12 (cosmetic, SEO-05). Needs owner logo asset; natural pairing with Phase 4 (copy) or Phase 6 (brand/visual). Detail: `.planning/phases/999.1-branded-og-card/999.1-CONTEXT.md`
+
 ## Coverage
 
 All 43 v1 requirements mapped to exactly one phase (IA 9, CONT 10, LEAD 6, SEO 10, QA 8). No orphans, no duplicates. BLOG-01 and other v2 items are intentionally excluded from this launch roadmap.

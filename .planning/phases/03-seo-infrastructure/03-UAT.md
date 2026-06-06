@@ -1,10 +1,11 @@
 ---
-status: diagnosed
+status: partial
 phase: 03-seo-infrastructure
 source: [03-01-SUMMARY.md, 03-02-SUMMARY.md, 03-03-SUMMARY.md, 03-04-SUMMARY.md, 03-05-SUMMARY.md, 03-06-SUMMARY.md, 03-07-SUMMARY.md, 03-08-SUMMARY.md]
 started: 2026-06-06T00:48:21Z
-updated: 2026-06-06T00:55:00Z
+updated: 2026-06-06T10:51:39Z
 verification_method: automated build-output inspection (out/ from 2026-06-06T02:34) + assertion scripts — no Playwright (non-visual phase)
+note: "Testing complete. 11 pass. Gap 13 (geo) fixed in 66f6752. Gap 12 (OG card) deferred to backlog 999.1. 4 items owner-blocked (GSC verify, Vercel Analytics enable, live Rich-Results test, www→apex 301) — all documented in docs/seo-owner-runbook.md. No phase-goal blockers remain."
 ---
 
 ## Current Test
@@ -110,14 +111,17 @@ reason: "DNS/hosting redirect confirmation; owner pre-launch step in the runbook
 total: 17
 passed: 11
 issues: 2
+issues_fixed: 1     # gap 13 geo — commit 66f6752
+issues_deferred: 1  # gap 12 OG card — backlog 999.1
 pending: 0
 skipped: 0
-blocked: 4
+blocked: 4          # owner dashboard / post-deploy — documented in runbook
 
 ## Gaps
 
 - truth: "The OG/Twitter social-share card visually represents TPS klimaattechniek (brand present)"
-  status: failed
+  status: deferred
+  resolution: "Queued as backlog 999.1 (.planning/phases/999.1-branded-og-card/) + ROADMAP ## Backlog. Design task — needs owner logo asset. Not a phase-goal blocker (cosmetic; SEO wiring around the asset is done/proven)."
   reason: "User reported: wants the card branded with 'TPS klimaattechniek'. Current card is a plain grey fan product shot with no logo/name/tagline."
   severity: cosmetic
   test: 12
@@ -130,7 +134,8 @@ blocked: 4
   debug_session: "inline — no investigation needed (known deferred design decision, not a defect)"
 
 - truth: "JSON-LD/metadata geo coordinates are the verified business location"
-  status: failed
+  status: fixed
+  resolution: "Fixed in commit 66f6752 — SITE.geo set to {lat:52.04822769870841,lng:4.502050197039296}; comment updated to reflect verified pin (resolves A-1/A3). Proven: businessJsonLd() emits new coords in GeoCoordinates + areaServed geoMidpoint; assert-seo/site-shape/registry all green."
   reason: "User reported: geo pin was a placeholder. Verified coords from owner's Google Maps embed for Industrieweg 6 B, 2712 LB Zoetermeer: lat 52.04822769870841, lng 4.502050197039296."
   severity: minor
   test: 13
