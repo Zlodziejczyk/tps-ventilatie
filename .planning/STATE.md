@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-06-06T14:14:36.918Z"
+last_updated: "2026-06-06T14:14:50.834Z"
 last_activity: 2026-06-06
 progress:
   total_phases: 6
@@ -100,6 +100,7 @@ None yet.
 - Confirm the correct service radius with the owner before propagating it in Phase 1.
 - ✅ RESOLVED (Phase 3 D-01): canonical host locked to apex `https://tpsventilatie.nl` for launch (live-confirmed: www→apex 301 in place); brand name stays "TPS klimaattechniek" (name≠domain); tpsklimaattechniek.nl migration deferred to v2 (DOM-V2-01).
 - Phase 5 depends on the GHL instant-notification workflow being configured for a live end-to-end test.
+- 04-09 editorial gate blocked on owner: awaiting Thomas's intake returns (dealer status, F-gassen/STEK proof for the Gecertificeerd USP swap, real Google rating for REVIEW_RATING, story, pricing confirm, NAP/hours) and his whole-site Vercel-preview sign-off before batch-flipping review->published. Async (days). Resume with /gsd-execute-phase 4.
 
 ## Deferred Items
 
