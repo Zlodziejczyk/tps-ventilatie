@@ -13,7 +13,7 @@ const USPs = [
   {
     icon: "tune",
     title: "Merk-onafhankelijk Advies",
-    description: "Wij werken met alle grote merken: Itho Daalderop, Zehnder en Orcon. U krijgt altijd het best passende systeem voor uw situatie.",
+    description: "Wij werken merk-onafhankelijk met alle grote fabrikanten en adviseren u het systeem dat het best bij uw situatie en budget past.",
   },
   {
     icon: "local_shipping",
@@ -36,7 +36,7 @@ export function WhyTPSSection() {
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-tertiary/5 rounded-full blur-3xl" />
             <AnimateOnScroll>
             <h2 className="text-4xl lg:text-5xl font-extrabold font-headline mb-8 tracking-tight leading-tight">
-              Waarom kiezen voor <span className="text-primary">TPS Ventilatie</span>?
+              Waarom kiezen voor <span className="text-primary">TPS klimaattechniek</span>?
             </h2>
             </AnimateOnScroll>
             <StaggerChildren className="space-y-8">
@@ -65,7 +65,7 @@ export function WhyTPSSection() {
                 <div className="rounded-2xl overflow-hidden shadow-lg relative">
                   <Image
                     src="/images/work/tpsventilatie-work.jpg"
-                    alt="TPS Ventilatie aan het werk"
+                    alt="TPS klimaattechniek aan het werk"
                     fill
                     className="object-cover"
                   />

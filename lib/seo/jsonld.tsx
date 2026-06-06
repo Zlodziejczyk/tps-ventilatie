@@ -1,7 +1,9 @@
 // JSON-LD STRUCTURED DATA (D-04, SEO-03/SEO-06) — server-rendered, zero client JS,
 // XSS-safe. One reusable injector + typed builders that turn SITE + a taxonomy node
-// into valid Schema.org data. NO `aggregateRating`/`review` in Phase 3 (reserved for
-// Phase 4 / CONT-08 — ratings must reflect consolidated, sourced, on-page reviews).
+// into valid Schema.org data. The `aggregateRating` slot is wired but GATED on
+// REVIEW_RATING (CONT-08/D-17): emitted only when the owner supplies a real Google
+// score+count. Self-serving ratings earn no Google star snippet — the slot serves
+// AI/LLM search + honest on-page display.
 //
 // Server-only file (.tsx, no client directive). Part of the `lib/seo/*` no-barrel
 // family. All business data flows from SITE; the origin from CANONICAL_ORIGIN.
@@ -10,6 +12,7 @@ import { CANONICAL_ORIGIN, SITE } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/seo/policy";
 import { trailFor, urlFor } from "@/lib/services/registry";
 import type { PageNode } from "@/lib/services/types";
+import { REVIEW_RATING } from "@/lib/reviews";
 
 // Stable @id for the one site-wide business node, so per-page Service nodes can
 // reference it as their `provider` (D-04).
@@ -28,9 +31,10 @@ export function JsonLd({ data }: { data: object }) {
 }
 
 // Site-wide HVACBusiness (a LocalBusiness subtype — stronger HVAC signal). Built
-// entirely from SITE. Carries NO aggregateRating/review (Phase 4) and NO sameAs
-// while the owner GBP/social URLs are pending (A-3) — omitting optional props is
-// valid JSON-LD; never emit empty/placeholder URLs.
+// entirely from SITE. Emits aggregateRating ONLY when REVIEW_RATING is non-null
+// (D-17, gated on real Google data), and NO sameAs while the owner GBP/social URLs
+// are pending (A-3) — omitting optional props is valid JSON-LD; never emit
+// empty/placeholder values.
 export function businessJsonLd(): object {
   return {
     "@context": "https://schema.org",
@@ -70,6 +74,15 @@ export function businessJsonLd(): object {
     priceRange: "€€",
     image: BUSINESS_IMAGE,
     logo: BUSINESS_IMAGE,
+    // Gated rating slot (D-17): present only when lib/reviews.ts has the owner's
+    // real Google data; omitted entirely while null (never a placeholder).
+    ...(REVIEW_RATING && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: REVIEW_RATING.value,
+        reviewCount: REVIEW_RATING.count,
+      },
+    }),
   };
 }
 

@@ -20,6 +20,7 @@ import {
 } from "@/lib/services/registry";
 import { isIndexable, absoluteUrl, sitemapEntries } from "@/lib/seo/policy";
 import { businessJsonLd, faqJsonLd } from "@/lib/seo/jsonld";
+import { REVIEW_RATING } from "@/lib/reviews";
 
 // (1) Exactly the 4 static content pages are indexable, in canonical-URL terms.
 const indexableUrls = PAGES.filter(isIndexable).map(urlFor).sort();
@@ -53,12 +54,22 @@ assert.equal(CANONICAL_ORIGIN, "https://tpsventilatie.nl", "CANONICAL_ORIGIN mus
 assert.equal(absoluteUrl("/"), "https://tpsventilatie.nl/", "absoluteUrl('/') keeps the root slash");
 assert.equal(absoluteUrl("/contact"), "https://tpsventilatie.nl/contact", "non-root carries no trailing slash");
 
-// (5) Site-wide business JSON-LD is HVACBusiness, stable @id, NO ratings, geoRadius 60000.
+// (5) Site-wide business JSON-LD is HVACBusiness, stable @id, geoRadius 60000.
+// aggregateRating is gated on REVIEW_RATING (D-17): absent until the owner supplies
+// real Google data, present + typed once set. (The "4 indexable statics" / sitemap-4
+// assertions above stay valid until nodes actually publish — updated in 04-09.)
 const biz = businessJsonLd() as Record<string, unknown>;
 assert.equal(biz["@type"], "HVACBusiness", "business node must be HVACBusiness");
 assert.ok(String(biz["@id"]).endsWith("/#business"), "business node needs a stable /#business @id");
-assert.ok(!("aggregateRating" in biz), "no aggregateRating in Phase 3 (reserved for Phase 4)");
-assert.ok(!("review" in biz), "no review in Phase 3 (reserved for Phase 4)");
+if (REVIEW_RATING === null) {
+  assert.ok(!("aggregateRating" in biz), "no aggregateRating until REVIEW_RATING is set (D-17)");
+} else {
+  assert.ok("aggregateRating" in biz, "aggregateRating must be present when REVIEW_RATING is set");
+  const rating = biz.aggregateRating as Record<string, unknown>;
+  assert.equal(rating["@type"], "AggregateRating", "aggregateRating must be a typed AggregateRating");
+  assert.equal(rating.ratingValue, REVIEW_RATING.value, "ratingValue must reflect REVIEW_RATING.value");
+}
+assert.ok(!("review" in biz), "no inline review[] array (aggregateRating only this phase)");
 const geoCircle = (biz.areaServed as Array<Record<string, unknown>>)[0];
 assert.equal(geoCircle.geoRadius, 60000, "areaServed GeoCircle radius must be 60000 m (60 km)");
 

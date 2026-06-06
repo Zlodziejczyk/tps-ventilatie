@@ -43,20 +43,22 @@ export default function OverOnsPage() {
           <AnimateOnScroll>
           <div className="space-y-6">
             <p className="text-lg text-on-surface-variant leading-relaxed">
-              TPS Ventilatie is opgericht door Thomas, een ervaren en gecertificeerde ventilatiespecialist gevestigd in Zoetermeer. Met jarenlange ervaring in de branche bieden wij hoogwaardige oplossingen voor ventilatie, mechanische afzuiging en airconditioning.
+              TPS klimaattechniek is opgericht door Thomas, een ervaren en vakkundige specialist in klimaattechniek, gevestigd in Zoetermeer. Wat begon vanuit één overtuiging — dat een gezond, comfortabel binnenklimaat binnen ieders bereik hoort te liggen — groeide uit tot een bedrijf dat airconditioning, warmtepompen en ventilatie onder één dak samenbrengt.
             </p>
             <p className="text-lg text-on-surface-variant leading-relaxed">
-              Wij geloven dat schone lucht geen luxe is, maar een noodzaak voor een gezond binnenklimaat. Daarom combineren wij vakmanschap met persoonlijke aandacht — elke klus wordt met dezelfde toewijding en precisie uitgevoerd.
+              Bij ons spreekt u rechtstreeks met de vakman die het werk ook uitvoert. Thomas staat zelf bij vrijwel elke klus op de stoep, van de eerste inspectie tot de oplevering. Zo combineren wij vakmanschap met persoonlijke aandacht — elke installatie en elk onderhoud wordt met dezelfde toewijding en precisie uitgevoerd.
             </p>
             <p className="text-lg text-on-surface-variant leading-relaxed">
-              Ons werkgebied strekt zich uit over de regio Zoetermeer en omstreken, inclusief Den Haag, Leiden, Delft en Rotterdam. Wij staan bekend om onze snelle service, transparante tarieven en eerlijk advies.
+              Ons werkgebied strekt zich uit over Zoetermeer en omstreken, waaronder Den Haag, Leidschendam-Voorburg, Pijnacker-Nootdorp, Delft, Leiden en Gouda. Klanten waarderen onze snelle service, onze transparante tarieven zonder verborgen kosten en ons eerlijke advies.
             </p>
           </div>
           </AnimateOnScroll>
 
           <StaggerChildren className="space-y-6">
             {[
-              { icon: "workspace_premium", title: "Gecertificeerd", desc: "Opgeleid volgens de nieuwste normen voor ventilatie en koeltechniek." },
+              // Interim USP (D-02): gated on cert proof — swap "Vakkundig" to the
+              // certified-status wording once intake §6 returns F-gassen/STEK proof (04-09).
+              { icon: "workspace_premium", title: "Vakkundig", desc: "Jarenlange ervaring met ventilatie, warmtepompen en koeltechniek — vakwerk dat staat." },
               { icon: "speed", title: "Snel & Betrouwbaar", desc: "Wij streven naar een afspraak binnen 48 uur." },
               { icon: "handshake", title: "Persoonlijk Contact", desc: "U heeft altijd rechtstreeks contact met Thomas." },
               { icon: "payments", title: "Transparante Prijzen", desc: "Geen verborgen kosten — wat u ziet is wat u betaalt." },
