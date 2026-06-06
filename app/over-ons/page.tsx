@@ -5,29 +5,21 @@ import { Icon } from "@/components/Icon";
 import { CTABanner } from "@/components/CTABanner";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
+import { REVIEWS } from "@/lib/reviews";
 
 export const metadata = buildMetadata(findBySlug("/over-ons")!);
 
-const REVIEWS = [
-  {
-    initials: "JO",
-    name: "Jacqueline Overwater",
-    quote:
-      "De opdracht 's middags geplaatst, om half 8 kwam Thomas al langs. Hij heeft alles nagemeten. De schimmel in de badkamer lag niet aan de ventilatie. Hij gaf me het advies om opnieuw een advertentie op werkspot te plaatsen voor afkrabben van de schimmel, primeren, stucen en opnieuw schilderen. Hier heeft hij niets voor gerekend! Hardstikke bedankt Thomas voor deze snelle goede service!",
-  },
-  {
-    initials: "DH",
-    name: "Daan Hazelzet",
-    quote:
-      "Thomasz heeft het oude ventilatie systeem vervangen met een nieuwe met twee afstandsbedieningen. Netjes gehangen in twee uur. Erg blij mee.",
-  },
-  {
-    initials: "TK",
-    name: "Ton Kooremans",
-    quote:
-      "Goede TOP vakman, zeer beleefd, werkt snel en laat alles heel netjes achter. Hij heeft het ventilatiesysteem vervangen en alle kanalen schoongemaakt. Echt een aanrader!",
-  },
-];
+// Initials for the review avatar — derived from the name. The consolidated
+// reviews source (lib/reviews.ts) dropped the old per-row `initials` field;
+// this mirrors ReviewCarousel's getInitials.
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+}
 
 export default function OverOnsPage() {
   return (
@@ -98,7 +90,7 @@ export default function OverOnsPage() {
           </AnimateOnScroll>
 
           <StaggerChildren className="grid md:grid-cols-3 gap-8">
-            {REVIEWS.map((review) => (
+            {REVIEWS.slice(0, 3).map((review) => (
               <StaggerItem key={review.name}>
               <div className="bg-surface-container-low p-8 rounded-3xl">
                 <div className="flex text-yellow-500 mb-6">
@@ -111,7 +103,7 @@ export default function OverOnsPage() {
                 </p>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center font-bold">
-                    {review.initials}
+                    {getInitials(review.name)}
                   </div>
                   <div>
                     <p className="font-bold">{review.name}</p>
