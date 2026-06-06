@@ -465,22 +465,27 @@ process.exit(failed ? 1 : 0);
 
 **This table is non-empty — A1 (keyword volume) and A2 (cert held) are the items needing confirmation before content locks; both have cheap mitigations already baked into the decisions.**
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+> All three open questions were resolved during planning and the resolutions are implemented by the Phase 4 plans. Retained here as the decision record.
 
 1. **"Gecertificeerd" USP vs D-02 gate (CONT-07 / D-14).**
    - What we know: the locked 4-USP set includes "Gecertificeerd"; D-02 forbids the word until a certification is proof-confirmed; F-gassen/STEK is *legally required* to operate.
    - What's unclear: whether to (a) confirm F-gassen/STEK via intake §6 and then use "Gecertificeerd", or (b) use a literally-true interim USP ("Vakkundig"/"Ervaren") until proof lands.
    - Recommendation: **Plan both paths.** Default to interim "Vakkundig" wording (D-02-safe); the moment intake §6 returns F-gassen/STEK proof, swap to "Gecertificeerd". Treat the USP word as a gated value, like the dealer badge.
+   - **RESOLVED:** Both paths planned. Plan 04-02 defaults the USP copy to interim "Vakkundig" (D-02-safe); plan 04-09 swaps it to "Gecertificeerd" once intake §6 returns F-gassen/STEK proof. The anti-claim grep gate (04-01) enforces no "gecertificeerd" before proof.
 
 2. **Verbatim "TPS Ventilatie" in customer review quotes (CONT-08).**
    - What we know: real reviews quote the old brand name; editing customer words risks authenticity/fake-review concerns.
    - What's unclear: owner preference.
    - Recommendation: keep verbatim by default (authenticity wins under Dec-2025 trust signals); flag in the intake/owner message as an FYI. Do NOT mass-replace.
+   - **RESOLVED:** Keep verbatim. Plan 04-02 preserves the original quote text when consolidating into `lib/reviews.ts`; plan 04-08's owner message flags it as an FYI. No mass-replace.
 
 3. **Does TPS sell lucht-lucht (airco-as-heating) units that *could* touch ISDE?**
    - What we know: cooling-only airco = no subsidy; some airco units heat and blur the line.
    - What's unclear: TPS's product mix.
    - Recommendation: keep airco copy to a clean "geen ISDE voor koeling" for v1; only revisit if the owner raises lucht-lucht heating. Avoids a YMYL edge case.
+   - **RESOLVED:** v1 airco copy states a clean "geen ISDE voor koeling" (plan 04-03); the edge case is revisited only if the owner raises lucht-lucht heating. Avoids the YMYL edge case.
 
 ## Environment Availability
 
