@@ -9,10 +9,10 @@ export const SITE = {
   city: "Zoetermeer",
   province: "Zuid-Holland",
   country: "NL",
-  // owner-verify-pending: placeholder coordinates (Zoetermeer centroid).
-  // Today's Maps pin is a placeholder (CONCERNS.md / A3); Phase 5 QA-05 sets the
-  // verified business-location lat/lng. Do NOT render as a confirmed pin until then.
-  geo: { lat: 52.0607, lng: 4.4940 },
+  // Verified business-location pin (Industrieweg 6 B, 2712 LB Zoetermeer), confirmed
+  // by the owner via Google Maps embed (2026-06-06, resolves A-1/A3). Feeds JSON-LD
+  // GeoCoordinates + areaServed geoMidpoint.
+  geo: { lat: 52.04822769870841, lng: 4.502050197039296 },
   serviceRadiusKm: 60,
   // owner-review-pending: seed coverage list (D-11 / A2). Owner curates before
   // publish — never claim an unserved area. Phase 3+ JSON-LD areaServed reads this.
