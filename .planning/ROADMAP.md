@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Taxonomy & Data Model** - One typed source of truth for routes, nav, sitemap, and JSON-LD; fixed NAP/radius; keyword map; uniqueness bar (completed 2026-06-02)
 - [x] **Phase 2: Routes & Service-Page Templates** - Data-driven hub + pillar + sub-service pages (~22) generated from the taxonomy with taxonomy-derived nav (completed 2026-06-05)
-- [ ] **Phase 3: SEO Infrastructure** - Sitemap, robots, JSON-LD, canonical/OG, GBP alignment, and analytics + Search Console across every page
+- [x] **Phase 3: SEO Infrastructure** - Sitemap, robots, JSON-LD, canonical/OG, GBP alignment, and analytics + Search Console across every page (completed 2026-06-06)
 - [ ] **Phase 4: Content Fill & Editorial Gate** - Unique, accurate, owner-reviewed Dutch copy on every page (the launch quality gate)
 - [ ] **Phase 5: Lead Capture, Form Security & Launch QA** - Secure lead path with instant owner notification, the static-vs-hybrid decision gate, and the launch-readiness QA pass
 - [ ] **Phase 6: Homepage conversion uplift** - Premium conversion-optimized home page (proof-forward hero, equal 4-pillar grid, trust/contact band) built from the validated sketch findings
@@ -124,7 +124,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 03-08-PLAN.md — Owner-ops runbook (GBP/GSC/Vercel/AI-opt-out/geo) + `scripts/assert-seo.ts` + green-build phase gate [wave 4]
+- [x] 03-08-PLAN.md — Owner-ops runbook (GBP/GSC/Vercel/AI-opt-out/geo) + `scripts/assert-seo.ts` + green-build phase gate [wave 4]
 
 **Cross-cutting constraints** (hold across plans):
 - One canonical origin (`CANONICAL_ORIGIN` = apex `https://tpsventilatie.nl`, live-confirmed) — every absolute URL derives from it.
@@ -184,7 +184,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 |-------|----------------|--------|-----------|
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
-| 3. SEO Infrastructure | 7/8 | In Progress|  |
+| 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 0/TBD | Not started | - |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
