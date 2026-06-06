@@ -16,10 +16,12 @@
 import {
   canonicalPath,
   pagesSchema,
+  type FaqItem,
   type PageNode,
   type PageType,
   type PillarPage,
   type ServicePage,
+  type StepItem,
 } from "./types";
 import { AIRCONDITIONING_PAGES } from "./airconditioning";
 import { WARMTEPOMPEN_PAGES } from "./warmtepompen";
@@ -30,13 +32,19 @@ function draftShell(
   h1: string,
   metaTitle: string,
   metaDescription: string,
+  extra?: {
+    intro?: string;
+    steps?: StepItem[];
+    faqs?: FaqItem[];
+    localAngle?: string;
+  },
 ): PageNode["content"] {
   return {
     h1,
-    intro: "",
-    steps: [],
-    faqs: [],
-    localAngle: "",
+    intro: extra?.intro ?? "",
+    steps: extra?.steps ?? [],
+    faqs: extra?.faqs ?? [],
+    localAngle: extra?.localAngle ?? "",
     metaTitle,
     metaDescription,
   };
@@ -94,10 +102,35 @@ const STATIC_PAGES: PageNode[] = [
     navTitle: "Tarieven",
     navDescription: "Transparante prijzen, inclusief BTW en voorrijkosten",
     icon: "request_quote",
+    // Pricing transparency copy (CONT-05 / D-11). The actual price numbers live in
+    // components/PricingTabs.tsx (untouched); this node carries only the all-in /
+    // op-maat framing. Stays status:"draft" — statics index by type via policy.ts,
+    // and the Zod uniqueness gate only bites review/published, so rich body here is safe.
     content: draftShell(
       "Onze tarieven",
       "Tarieven | TPS klimaattechniek",
       "Transparante prijzen voor ventilatie en airconditioning — inclusief BTW en voorrijkosten.",
+      {
+        intro:
+          "Bij TPS klimaattechniek werken wij met heldere, eerlijke prijzen — zonder verrassingen achteraf. Voor airconditioning, WTW en mechanische ventilatie zijn onze tarieven all-in: inclusief BTW én inclusief voorrijkosten binnen ons werkgebied. Wat u in de offerte ziet, is wat u betaalt. Voor warmtepompen werken wij met een prijs op maat via een vrijblijvende offerte, omdat de prijs sterk afhangt van het type warmtepomp, het benodigde vermogen en uw woning. In die offerte is alles inbegrepen: de opname en warmteverliesberekening, het materiaal, de installatie en de inbedrijfstelling. Zo weet u vooraf precies waar u aan toe bent. Heeft u een specifieke situatie of wilt u meerdere diensten combineren? Vraag gerust een offerte op maat aan, dan rekenen wij het transparant voor u uit.",
+        faqs: [
+          {
+            question: "Zijn de voorrijkosten inbegrepen in de prijs?",
+            answer:
+              "Ja. Binnen ons werkgebied rond Zoetermeer rekenen wij geen aparte voorrijkosten — die zitten bij de all-in tarieven voor airco, WTW en mechanische ventilatie inbegrepen.",
+          },
+          {
+            question: "Is de BTW inbegrepen in de getoonde prijzen?",
+            answer:
+              "Ja, onze tarieven voor airco, WTW en mechanische ventilatie zijn inclusief 21% BTW. U betaalt geen onverwachte opslag bovenop het genoemde bedrag.",
+          },
+          {
+            question: "Waarom is de prijs van een warmtepomp op maat?",
+            answer:
+              "Een warmtepomp stemmen wij af op uw woning: het type (hybride of volledig), het benodigde vermogen en uw afgiftesysteem bepalen de prijs. Daarom maken wij een offerte op maat waarin opname, materiaal, installatie en inbedrijfstelling zijn inbegrepen.",
+          },
+        ],
+      },
     ),
   },
   {
