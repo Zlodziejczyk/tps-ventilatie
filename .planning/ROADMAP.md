@@ -153,7 +153,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] 04-01-PLAN.md — D-13 anti-claim grep gate (scripts/assert-no-forbidden-claims.ts) + prebuild wire + written checklist [wave 1]
 - [x] 04-02-PLAN.md — Reviews consolidation (lib/reviews.ts) + gated aggregateRating slot + over-ons/home USP interim-true copy (CONT-07/08) [wave 1]
-- [ ] 04-08-PLAN.md — Owner intake: publish Tally 2EojAA + send Thomas one message (autonomous:false) [wave 1]
+- [x] 04-08-PLAN.md — Owner intake: publish Tally 2EojAA + send Thomas one message (autonomous:false) [wave 1]
 
 **Wave 2** *(pillar content silos — depend on 04-01; each pillar its own file)*
 
@@ -204,7 +204,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
-| 4. Content Fill & Editorial Gate | 7/9 | In Progress|  |
+| 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
