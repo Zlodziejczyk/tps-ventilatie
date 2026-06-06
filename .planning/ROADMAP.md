@@ -159,7 +159,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] 04-03-PLAN.md — Airconditioning silo (pillar + 4 subs; airco = geen ISDE; brand install copy) → review [wave 2]
 - [x] 04-04-PLAN.md — Warmtepompen silo (net-new pillar + 4 subs; ISDE yes + rvo.nl cite, amounts→consult) → review [wave 2]
-- [ ] 04-05-PLAN.md — WTW silo (fix wtw.ts:65 gecertificeerd; expand intros + FAQs; ISDE yes-2026 + isolatie) → review [wave 2]
+- [x] 04-05-PLAN.md — WTW silo (fix wtw.ts:65 gecertificeerd; expand intros + FAQs; ISDE yes-2026 + isolatie) → review [wave 2]
 - [ ] 04-06-PLAN.md — Mechanische Ventilatie silo (expand + FAQs; ISDE CO2-gestuurd-only + isolatie) → review [wave 2]
 - [ ] 04-07-PLAN.md — Brand blurbs (brands.ts, dealer status gated) + pricing transparency copy (tarieven node) [wave 2]
 
@@ -204,7 +204,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 1. Taxonomy & Data Model | 6/6 | Complete    | 2026-06-02 |
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
-| 4. Content Fill & Editorial Gate | 4/9 | In Progress|  |
+| 4. Content Fill & Editorial Gate | 5/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
