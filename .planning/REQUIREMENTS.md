@@ -23,10 +23,10 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 
 - [ ] **CONT-01**: Unique Dutch copy for every pillar page (intro ≥120 words, USPs, local angle)
 - [ ] **CONT-02**: Unique Dutch copy for every sub-service page (service-specific intro + steps + 3-6 unique FAQs)
-- [ ] **CONT-03**: Brand-specific install content (Daikin / Mitsubishi Electric / Heavy / Ecodan) with accurate "erkend installateur" claims
+- [x] **CONT-03**: Brand-specific install content (Daikin / Mitsubishi Electric / Heavy / Ecodan) with accurate "erkend installateur" claims
 - [ ] **CONT-04**: Accurate per-pillar ISDE/subsidie content (WP ✅, WTW/MV ✅ 2026 + insulation condition, Airco ❌), sourced and linked
-- [ ] **CONT-05**: Pricing transparency content — all-in incl. BTW for Airco/WTW/MV; Warmtepompen "op maat via offerte" with inclusions
-- [ ] **CONT-06**: Certification/keurmerk trust block showing only genuinely-held marks (owner-verified)
+- [x] **CONT-05**: Pricing transparency content — all-in incl. BTW for Airco/WTW/MV; Warmtepompen "op maat via offerte" with inclusions
+- [x] **CONT-06**: Certification/keurmerk trust block showing only genuinely-held marks (owner-verified)
 - [ ] **CONT-07**: Refreshed Over-ons — "Verhaal van Thomas" + 4 USPs (Gecertificeerd, Snel, Persoonlijk, Transparant)
 - [ ] **CONT-08**: Reviews consolidated to a single source; Google score + count + link shown on home and key pages
 - [ ] **CONT-09**: FAQ content per pillar + general topics (kosten, garantie, subsidie, VvE/vergunning, geluid, onderhoud)
@@ -116,10 +116,10 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | IA-09 | Phase 1 | Complete |
 | CONT-01 | Phase 4 | Pending |
 | CONT-02 | Phase 4 | Pending |
-| CONT-03 | Phase 4 | Pending |
+| CONT-03 | Phase 4 | Complete |
 | CONT-04 | Phase 4 | Pending |
-| CONT-05 | Phase 4 | Pending |
-| CONT-06 | Phase 4 | Pending |
+| CONT-05 | Phase 4 | Complete |
+| CONT-06 | Phase 4 | Complete |
 | CONT-07 | Phase 4 | Pending |
 | CONT-08 | Phase 4 | Pending |
 | CONT-09 | Phase 4 | Pending |
