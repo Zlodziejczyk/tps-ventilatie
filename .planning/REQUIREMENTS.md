@@ -27,8 +27,8 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 - [ ] **CONT-04**: Accurate per-pillar ISDE/subsidie content (WP ✅, WTW/MV ✅ 2026 + insulation condition, Airco ❌), sourced and linked
 - [x] **CONT-05**: Pricing transparency content — all-in incl. BTW for Airco/WTW/MV; Warmtepompen "op maat via offerte" with inclusions
 - [x] **CONT-06**: Certification/keurmerk trust block showing only genuinely-held marks (owner-verified)
-- [ ] **CONT-07**: Refreshed Over-ons — "Verhaal van Thomas" + 4 USPs (Gecertificeerd, Snel, Persoonlijk, Transparant)
-- [ ] **CONT-08**: Reviews consolidated to a single source; Google score + count + link shown on home and key pages
+- [x] **CONT-07**: Refreshed Over-ons — "Verhaal van Thomas" + 4 USPs (Gecertificeerd, Snel, Persoonlijk, Transparant)
+- [x] **CONT-08**: Reviews consolidated to a single source; Google score + count + link shown on home and key pages
 - [ ] **CONT-09**: FAQ content per pillar + general topics (kosten, garantie, subsidie, VvE/vergunning, geluid, onderhoud)
 - [ ] **CONT-10**: Owner editorial review completed and signed off on every page before it ships (hard gate)
 
@@ -120,8 +120,8 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | CONT-04 | Phase 4 | Pending |
 | CONT-05 | Phase 4 | Complete |
 | CONT-06 | Phase 4 | Complete |
-| CONT-07 | Phase 4 | Pending |
-| CONT-08 | Phase 4 | Pending |
+| CONT-07 | Phase 4 | Complete |
+| CONT-08 | Phase 4 | Complete |
 | CONT-09 | Phase 4 | Pending |
 | CONT-10 | Phase 4 | Pending |
 | LEAD-01 | Phase 5 | Pending |
