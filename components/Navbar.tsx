@@ -48,23 +48,22 @@ export function Navbar() {
         <div className="flex justify-between items-center px-6 lg:px-8 py-4 max-w-7xl mx-auto">
           <Link
             href="/"
-            className="flex items-center gap-2.5"
+            className="flex items-center"
             aria-label={`${SITE.name} home`}
           >
-            {/* Logo emblem on a white chip — source PNG is opaque white-bg
-                (RGB, no alpha); the chip makes it read as intentional. Pair
-                with a text wordmark so the brand name is legible at nav size. */}
-            <span className="relative w-10 h-10 rounded-full bg-white shadow-sm overflow-hidden shrink-0">
+            {/* Logo-only header (owner pref 2026-06-28): the emblem already
+                carries "TPS / KLIMAATTECHNIEK", so the text wordmark was dropped
+                and the chip enlarged so the logo owns the corner. White chip +
+                shadow because the source PNG is opaque white-bg (RGB, no alpha).
+                Brand name stays announced via the link aria-label. */}
+            <span className="relative w-14 h-14 rounded-full bg-white shadow-sm overflow-hidden shrink-0">
               <Image
                 src="/tps-logo.png"
                 alt=""
                 fill
-                sizes="40px"
+                sizes="56px"
                 className="object-contain p-0.5"
               />
-            </span>
-            <span className="text-lg sm:text-xl font-bold text-on-surface font-headline tracking-tight whitespace-nowrap">
-              {SITE.name}
             </span>
           </Link>
 
