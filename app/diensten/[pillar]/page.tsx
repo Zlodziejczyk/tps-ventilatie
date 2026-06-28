@@ -25,6 +25,28 @@ import {
   faqJsonLd,
 } from "@/lib/seo/jsonld";
 
+// Pillar hero imagery (TIER 3, 2026-06-28): one scene per pillar, rendered in the
+// ServiceHero right column on pillar pages only. Service detail pages keep the
+// trust card. Keys MUST match pillarSlug.
+const PILLAR_IMAGES: Record<string, { src: string; alt: string }> = {
+  airconditioning: {
+    src: "/images/heroes/airco.jpg",
+    alt: "Monteur van TPS klimaattechniek installeert een airco-binnenunit in een lichte woonkamer",
+  },
+  warmtepompen: {
+    src: "/images/heroes/warmtepomp.jpg",
+    alt: "Warmtepomp-buitenunit naast een moderne woning",
+  },
+  wtw: {
+    src: "/images/heroes/wtw.jpg",
+    alt: "Monteur controleert het filter van een WTW-ventilatie-unit",
+  },
+  "mechanische-ventilatie": {
+    src: "/images/heroes/mv.jpg",
+    alt: "Monteur stelt een ventilatieventiel in het plafond af",
+  },
+};
+
 // One data-driven template for all 4 pillar pages (IA-03/IA-04, D-02 layout).
 // dynamicParams=false → only the 4 enumerated slugs pre-render; anything else
 // 404s at export. Server component, cheap motion only (D-10).
@@ -63,7 +85,7 @@ export default async function PillarPage({ params }: { params: Params }) {
       <JsonLd data={breadcrumbJsonLd(node)} />
       {node.content.faqs.length > 0 && <JsonLd data={faqJsonLd(node)!} />}
 
-      <ServiceHero node={node} />
+      <ServiceHero node={node} image={PILLAR_IMAGES[pillar]} />
 
       {/* Sub-service card grid — the routes into each sub-service page */}
       <section className="max-w-7xl mx-auto px-6 my-16">

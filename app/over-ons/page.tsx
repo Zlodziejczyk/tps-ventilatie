@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { findBySlug } from "@/lib/services/registry";
 import { Icon } from "@/components/Icon";
@@ -37,6 +38,20 @@ export default function OverOnsPage() {
         <h1 className="text-5xl md:text-6xl font-extrabold font-headline tracking-tight text-on-surface mb-8">
           Over <span className="text-primary">Ons</span>
         </h1>
+        </AnimateOnScroll>
+
+        {/* Trust/team scene — real human "life" shot (TIER 3 imagery, 2026-06-28) */}
+        <AnimateOnScroll>
+          <div className="relative aspect-[16/9] lg:aspect-[21/9] rounded-3xl overflow-hidden shadow-[0_18px_50px_-22px_rgba(0,101,128,0.35)] mb-16">
+            <Image
+              src="/images/heroes/trust.jpg"
+              alt="Monteur van TPS klimaattechniek bespreekt het advies met een klant aan de keukentafel"
+              fill
+              sizes="(min-width: 1280px) 1216px, 100vw"
+              className="object-cover object-[center_35%]"
+              priority
+            />
+          </div>
         </AnimateOnScroll>
 
         {/* About Section */}

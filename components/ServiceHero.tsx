@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "@/components/Icon";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { SITE } from "@/lib/constants";
@@ -106,7 +107,13 @@ function HeroFacts() {
   );
 }
 
-export function ServiceHero({ node }: { node: PageNode }) {
+export function ServiceHero({
+  node,
+  image,
+}: {
+  node: PageNode;
+  image?: { src: string; alt: string };
+}) {
   const source =
     node.content.intro.trim() !== "" ? node.content.intro : node.navDescription;
   const { lead, rest } = splitLead(source);
@@ -155,9 +162,23 @@ export function ServiceHero({ node }: { node: PageNode }) {
           </div>
         </div>
 
-        {/* Right — engineered trust card (fills the formerly-empty column) */}
+        {/* Right — pillar hero image when provided (pillar pages), else the
+            engineered trust card (service detail pages). */}
         <div className="lg:col-span-5 w-full">
-          <HeroFacts />
+          {image ? (
+            <div className="relative aspect-[3/2] rounded-3xl overflow-hidden shadow-[0_18px_50px_-22px_rgba(0,101,128,0.35)]">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+          ) : (
+            <HeroFacts />
+          )}
         </div>
       </div>
     </AnimateOnScroll>
