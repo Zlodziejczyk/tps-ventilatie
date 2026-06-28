@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-06-06T14:14:50.834Z"
-last_activity: 2026-06-06
+last_updated: "2026-06-28T16:00:00.000Z"
+last_activity: 2026-06-28
 progress:
   total_phases: 6
   completed_phases: 3
@@ -25,9 +25,9 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 ## Current Position
 
 Phase: 04 (content-fill-editorial-gate) — EXECUTING
-Plan: 9 of 9
-Status: Ready to execute
-Last activity: 2026-06-06
+Plan: 9 of 9 (04-09 Task 1 done; awaiting owner preview sign-off for Tasks 2-3)
+Status: In progress — intake mapped to gated slots; blocked on owner whole-site Vercel-preview sign-off
+Last activity: 2026-06-28
 
 Progress: [███████░░░] 72%
 
@@ -96,11 +96,11 @@ None yet.
 
 [Issues that affect future work]
 
-- Owner inputs needed before Phase 4 drafting: exact certifications held (F-gassen/STEK, BRL, InstallQ, VCA) and Daikin/Mitsubishi authorized-dealer status.
-- Confirm the correct service radius with the owner before propagating it in Phase 1.
+- ✅ RESOLVED (intake 2026-06-28): certifications + dealer status FINALIZED by owner / Pushly editorial sign-off — erkendInstallateur=true for Daikin + Mitsubishi (Electric/Heavy/Ecodan), BRL 100/200 surfaced; F-gassen/STEK chase dropped (upload requirement waived, physical certs held on-site); anti-claim gate patterns lifted.
+- ✅ RESOLVED (intake 2026-06-28): service radius confirmed 60 km + 8 service areas; NAP corrections applied (BTW NL859640929B01, slogan "Specialist in gezond binnenklimaat"); opening hours Ma–za 08:00–17:30 added (SITE + JSON-LD + contact); legalName "TPS services" added; REVIEW_RATING 4,9/34 set (real Google data) → aggregateRating emits.
 - ✅ RESOLVED (Phase 3 D-01): canonical host locked to apex `https://tpsventilatie.nl` for launch (live-confirmed: www→apex 301 in place); brand name stays "TPS klimaattechniek" (name≠domain); tpsklimaattechniek.nl migration deferred to v2 (DOM-V2-01).
 - Phase 5 depends on the GHL instant-notification workflow being configured for a live end-to-end test.
-- 04-09 editorial gate blocked on owner: awaiting Thomas's intake returns (dealer status, F-gassen/STEK proof for the Gecertificeerd USP swap, real Google rating for REVIEW_RATING, story, pricing confirm, NAP/hours) and his whole-site Vercel-preview sign-off before batch-flipping review->published. Async (days). Resume with /gsd-execute-phase 4.
+- 04-09 Task 1 (map intake → gated slots) ✅ DONE 2026-06-28; company "Verhaal van Thomas" rewritten (experience/specialisaties/merken). STILL PENDING from owner: Instagram + Facebook URLs (footer + JSON-LD sameAs), project + portrait photos, logo placement (PNG in hand), and the whole-site Vercel-preview sign-off (Task 2) before batch-flipping review->published (Task 3). Async. Resume with /gsd-execute-phase 4.
 
 ## Deferred Items
 
@@ -112,6 +112,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-06T14:14:36.912Z
-Stopped at: Phase 04: 8/9 plans complete (04-01..04-08); 04-09 blocked on owner intake response + Vercel preview sign-off
+Last session: 2026-06-28
+Stopped at: Phase 04: 04-09 Task 1 complete — intake mapped to gated slots (NAP/BTW/slogan, legalName, opening hours, Google rating 4,9/34, erkend installateur + BRL certs ungated, company story). Awaiting owner social URLs + photos + whole-site Vercel-preview sign-off (Task 2) before batch-flip (Task 3).
 Resume file: None
