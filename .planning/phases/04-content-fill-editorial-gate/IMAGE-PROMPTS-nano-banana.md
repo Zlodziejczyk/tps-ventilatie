@@ -1,5 +1,11 @@
 # Hero / site imagery — Nano Banana (Gemini image) prompts
 
+> **STATUS (2026-06-28): GENERATED + INTEGRATED** (commit f91b783) — all 6 saved
+> to `public/images/heroes/`. The 4 pillar shots wired into the pillar-page hero;
+> `trust` into over-ons; `home-hero` staged for the Phase 6 homepage rebuild.
+> Open polish: `wtw` has faint AI fake-brand shelf bottles (re-roll or accept);
+> invented polo logos kept as generic uniforms (optional real-TPS-logo swap).
+>
 > Owner has access to **Nano Banana** (Gemini 2.5 Flash Image). Claude drafts the
 > prompts; owner generates; Claude `sips`-optimizes + wires the files in. This
 > unblocks the TIER-3 imagery that was waiting on Thomas's photos.
@@ -26,7 +32,9 @@ Mitsubishi Electric calibre). Bright and airy, soft natural cool daylight, clean
 minimal Dutch residential setting. Light neutral palette — whites, pale grey-blue,
 light oak — with subtle teal and green accents. Shallow depth of field, crisp
 focus on the subject, gentle soft shadows, low contrast, tidy and uncluttered,
-high-end. Natural realistic colour. No text, no watermarks, no brand logos. High
+high-end. Natural realistic colour. Absolutely no text, lettering or product
+labels anywhere — including on any background packaging, bottles or signage. No
+watermarks, no brand logos, no decorative sparkles or glints, no lens flare. High
 resolution, sharp detail.
 ```
 
