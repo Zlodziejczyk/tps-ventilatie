@@ -25,9 +25,9 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 ## Current Position
 
 Phase: 04 (content-fill-editorial-gate) — EXECUTING
-Plan: 9 of 9 (04-09 Task 1 done; awaiting owner preview sign-off for Tasks 2-3)
-Status: In progress — intake mapped to gated slots; blocked on owner whole-site Vercel-preview sign-off
-Last activity: 2026-06-28
+Plan: 9 of 9 (04-09 Task 1 done; REVISE cycle — TIER 1 branding shipped to preview)
+Status: In progress — TIER 1 owner-feedback fixes deployed to a fresh preview; awaiting owner re-check, then TIER 2 (ServiceHero) and 04-09 Task 3
+Last activity: 2026-06-28 — quick task 260628-q2u (TIER 1 branding) shipped to preview
 
 Progress: [███████░░░] 72%
 
@@ -101,6 +101,13 @@ None yet.
 - ✅ RESOLVED (Phase 3 D-01): canonical host locked to apex `https://tpsventilatie.nl` for launch (live-confirmed: www→apex 301 in place); brand name stays "TPS klimaattechniek" (name≠domain); tpsklimaattechniek.nl migration deferred to v2 (DOM-V2-01).
 - Phase 5 depends on the GHL instant-notification workflow being configured for a live end-to-end test.
 - 04-09 Task 1 (map intake → gated slots) ✅ DONE 2026-06-28; company "Verhaal van Thomas" rewritten (experience/specialisaties/merken). STILL PENDING from owner: Instagram + Facebook URLs (footer + JSON-LD sameAs), project + portrait photos, logo placement (PNG in hand), and the whole-site Vercel-preview sign-off (Task 2) before batch-flipping review->published (Task 3). Async. Resume with /gsd-execute-phase 4.
+- 04-09 REVISE cycle (owner preview review 2026-06-28): TIER 1 branding fixes ✅ SHIPPED to preview (quick task 260628-q2u — see table below). TIER 2 (ServiceHero redesign) + TIER 3 (manufacturer/cert logo assets, owner-blocked) still pending. Owner re-checks the new preview before whole-site sign-off → then 04-09 Task 3.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260628-q2u | TIER 1 branding fixes (04-revise): Navbar brand+logo, stale brand refs, Nieuw badge clip | 2026-06-28 | 8fbd954 | [260628-q2u-tier-1-branding-fixes-04-revise-navbar-b](./quick/260628-q2u-tier-1-branding-fixes-04-revise-navbar-b/) |
 
 ## Deferred Items
 
@@ -113,5 +120,5 @@ Items acknowledged and carried forward from previous milestone close:
 ## Session Continuity
 
 Last session: 2026-06-28
-Stopped at: Phase 04: 04-09 Task 1 complete — intake mapped to gated slots (NAP/BTW/slogan, legalName, opening hours, Google rating 4,9/34, erkend installateur + BRL certs ungated, company story). Awaiting owner social URLs + photos + whole-site Vercel-preview sign-off (Task 2) before batch-flip (Task 3).
-Resume file: None
+Stopped at: 04-09 REVISE cycle — TIER 1 branding fixes SHIPPED to a fresh preview (quick task 260628-q2u). Two atomic commits on main (cbd285d brand name+logo; 8fbd954 Nieuw badge clip), NOT pushed. NEW preview: https://tps-ventilatie-67hwltb0k-pushly-projects.vercel.app — Vercel CI build PASSED (TypeScript clean, 32 pages, taxonomy + forbidden-claims gates green); homepage 200 + x-robots noindex; navbar now shows the logo emblem + "TPS klimaattechniek" wordmark; privacy page brand fixed (domain tpsventilatie.nl + info@ kept); lib/reviews.ts untouched. Prior preview (k4pmcvtfz, sha 4a92eb6) superseded. AWAITING owner (Oskar) re-check of the new preview. REMAINING from OWNER-FEEDBACK-2026-06-28.md: TIER 2 = ServiceHero redesign (walls of text; load Skill sketch-findings-tps-ventilatie); TIER 3 (asset-blocked on owner) = manufacturer logos (Daikin/Mitsubishi) + cert badges (BRL 100/200, erkend installateur) + homepage trust band. Logo follow-up: current public/tps-logo.png is opaque white-bg, 1.1 MB 1369×1149 — request transparent SVG/horizontal lockup + optimize. Still pending: Thomas whole-site sign-off → then 04-09 Task 3 (batch-flip 21 review nodes → published + rewrite assert-seo.ts status-derived); owner non-blockers (project+portrait photos, GBP rename, invoice-email). CONSTRAINTS UNCHANGED: never push main / never `vercel --prod` (main = production = launch); never local build/tsx (OneDrive deadlock) — validate on Vercel CI; run GSD execution inline (no subagents/worktrees on OneDrive).
+Resume file: .planning/phases/04-content-fill-editorial-gate/.continue-here.md
