@@ -20,7 +20,7 @@ const SECTIONS = [
   {
     title: "3) Vragen",
     content:
-      "Als u meer informatie wilt ontvangen, of vragen hebt over de privacy policy van TPS Ventilatie en specifiek tpsventilatie.nl, kun u ons benaderen via e-mail. Ons e-mailadres is info@tpsventilatie.nl.",
+      "Als u meer informatie wilt ontvangen, of vragen hebt over de privacy policy van TPS klimaattechniek en specifiek tpsventilatie.nl, kun u ons benaderen via e-mail. Ons e-mailadres is info@tpsventilatie.nl.",
   },
   {
     title: "4) Monitoren gedrag bezoeker",
@@ -64,7 +64,7 @@ export default function PrivacyBeleidPage() {
           Privacy Beleid
         </h1>
         <p className="text-on-surface-variant mb-12">
-          Privacy policy voor TPS Ventilatie, eigenaar van tpsventilatie.nl
+          Privacy policy voor TPS klimaattechniek, eigenaar van tpsventilatie.nl
         </p>
 
         <div className="space-y-10">

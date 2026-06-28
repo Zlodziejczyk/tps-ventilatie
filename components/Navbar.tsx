@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV_LINKS, TARIEVEN_DROPDOWN } from "@/lib/constants";
+import { NAV_LINKS, TARIEVEN_DROPDOWN, SITE } from "@/lib/constants";
 import { pillars, childrenOf, urlFor } from "@/lib/services/registry";
 import { MobileMenu } from "./MobileMenu";
 import { Icon } from "./Icon";
@@ -47,9 +48,24 @@ export function Navbar() {
         <div className="flex justify-between items-center px-6 lg:px-8 py-4 max-w-7xl mx-auto">
           <Link
             href="/"
-            className="text-xl font-bold text-on-surface font-headline tracking-tight"
+            className="flex items-center gap-2.5"
+            aria-label={`${SITE.name} home`}
           >
-            TPS Ventilatie
+            {/* Logo emblem on a white chip — source PNG is opaque white-bg
+                (RGB, no alpha); the chip makes it read as intentional. Pair
+                with a text wordmark so the brand name is legible at nav size. */}
+            <span className="relative w-10 h-10 rounded-full bg-white shadow-sm overflow-hidden shrink-0">
+              <Image
+                src="/tps-logo.png"
+                alt=""
+                fill
+                sizes="40px"
+                className="object-contain p-0.5"
+              />
+            </span>
+            <span className="text-lg sm:text-xl font-bold text-on-surface font-headline tracking-tight whitespace-nowrap">
+              {SITE.name}
+            </span>
           </Link>
 
           <div className="hidden lg:flex items-center space-x-8">

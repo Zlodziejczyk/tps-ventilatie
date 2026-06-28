@@ -121,7 +121,7 @@ export default function ContactPage() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="TPS Ventilatie locatie - Industrieweg 6 B, 2712LB Zoetermeer"
+                title={`${SITE.name} locatie - ${SITE.address}, ${SITE.postcode} ${SITE.city}`}
               />
             </div>
           </div>
