@@ -94,6 +94,21 @@ export default function ContactPage() {
                   <p className="text-on-surface-variant">{SITE.postcode} {SITE.city}</p>
                 </div>
               </div>
+
+              <div className="flex items-start gap-4 p-4 bg-surface-container-low rounded-xl">
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <Icon name="schedule" className="text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-on-surface-variant">Openingstijden</p>
+                  <p className="font-bold text-on-surface">
+                    Maandag t/m zaterdag: {SITE.openingHours.opens} – {SITE.openingHours.closes}
+                  </p>
+                  <p className="text-on-surface-variant">
+                    Zondag gesloten · ook op afspraak · storingsdienst beschikbaar
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* Google Maps embed */}

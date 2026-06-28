@@ -42,6 +42,7 @@ export function businessJsonLd(): object {
     "@id": BUSINESS_ID,
     url: CANONICAL_ORIGIN,
     name: SITE.name,
+    legalName: SITE.legalName,
     telephone: SITE.phone,
     email: SITE.email,
     address: {
@@ -71,6 +72,12 @@ export function businessJsonLd(): object {
       },
       ...SITE.serviceAreas.map((area) => ({ "@type": "Place", name: area })),
     ],
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [...SITE.openingHours.days],
+      opens: SITE.openingHours.opens,
+      closes: SITE.openingHours.closes,
+    },
     priceRange: "€€",
     image: BUSINESS_IMAGE,
     logo: BUSINESS_IMAGE,

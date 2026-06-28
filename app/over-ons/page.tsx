@@ -6,6 +6,7 @@ import { CTABanner } from "@/components/CTABanner";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import { REVIEWS } from "@/lib/reviews";
+import { SITE } from "@/lib/constants";
 
 export const metadata = buildMetadata(findBySlug("/over-ons")!);
 
@@ -43,22 +44,22 @@ export default function OverOnsPage() {
           <AnimateOnScroll>
           <div className="space-y-6">
             <p className="text-lg text-on-surface-variant leading-relaxed">
-              TPS klimaattechniek is opgericht door Thomas, een ervaren en vakkundige specialist in klimaattechniek, gevestigd in Zoetermeer. Wat begon vanuit één overtuiging — dat een gezond, comfortabel binnenklimaat binnen ieders bereik hoort te liggen — groeide uit tot een bedrijf dat airconditioning, warmtepompen en ventilatie onder één dak samenbrengt.
+              TPS klimaattechniek is sinds 2009 een gespecialiseerd klimaattechniekbedrijf in Zoetermeer en omstreken. Met 17 jaar ervaring in het vak brengen wij airconditioning, warmtepompen, warmteterugwinning (WTW) en mechanische ventilatie onder één dak samen — vier vakgebieden die wij tot in de details beheersen. Voor installatie, onderhoud, storingen en advies heeft u zo één vast, deskundig aanspreekpunt voor een gezond en comfortabel binnenklimaat.
             </p>
             <p className="text-lg text-on-surface-variant leading-relaxed">
-              Bij ons spreekt u rechtstreeks met de vakman die het werk ook uitvoert. Thomas staat zelf bij vrijwel elke klus op de stoep, van de eerste inspectie tot de oplevering. Zo combineren wij vakmanschap met persoonlijke aandacht — elke installatie en elk onderhoud wordt met dezelfde toewijding en precisie uitgevoerd.
+              Als erkend installateur werken wij met toonaangevende fabrikanten als Daikin en Mitsubishi (Electric, Heavy Industries en Ecodan), en wij zijn gecertificeerd volgens BRL 100 en 200. Zo bent u verzekerd van hoogwaardige systemen, een vakkundige montage en behoud van de fabrieksgarantie. Ons gecertificeerde team adviseert merk-onafhankelijk en kiest altijd de oplossing die het best bij uw situatie en budget past.
             </p>
             <p className="text-lg text-on-surface-variant leading-relaxed">
-              Ons werkgebied strekt zich uit over Zoetermeer en omstreken, waaronder Den Haag, Leidschendam-Voorburg, Pijnacker-Nootdorp, Delft, Leiden en Gouda. Klanten waarderen onze snelle service, onze transparante tarieven zonder verborgen kosten en ons eerlijke advies.
+              Ons werkgebied strekt zich uit tot circa {SITE.serviceRadiusKm} km rondom Zoetermeer, waaronder Den Haag, Delft, Leiden, Gouda, Leidschendam-Voorburg, Pijnacker-Nootdorp en Lansingerland. Wij werken voor particulieren, bedrijven en VvE&apos;s, en zijn thuis in zowel nieuwbouw als renovatie. Klanten waarderen onze snelle service, onze transparante tarieven zonder verborgen kosten en ons eerlijke, deskundige advies.
             </p>
           </div>
           </AnimateOnScroll>
 
           <StaggerChildren className="space-y-6">
             {[
-              // Interim USP (D-02): gated on cert proof — swap "Vakkundig" to the
-              // certified-status wording once intake §6 returns F-gassen/STEK proof (04-09).
-              { icon: "workspace_premium", title: "Vakkundig", desc: "Jarenlange ervaring met ventilatie, warmtepompen en koeltechniek — vakwerk dat staat." },
+              // Owner-verified cert USP (04-09, intake §5/§6): erkend installateur voor
+              // Daikin & Mitsubishi + BRL 100/200 — display authorised by Pushly editorial sign-off.
+              { icon: "verified", title: "Gecertificeerd", desc: "Erkend installateur voor Daikin en Mitsubishi, met BRL 100 & 200 — vakwerk dat aantoonbaar staat." },
               { icon: "speed", title: "Snel & Betrouwbaar", desc: "Wij streven naar een afspraak binnen 48 uur." },
               { icon: "handshake", title: "Persoonlijk Contact", desc: "U heeft altijd rechtstreeks contact met Thomas." },
               { icon: "payments", title: "Transparante Prijzen", desc: "Geen verborgen kosten — wat u ziet is wat u betaalt." },

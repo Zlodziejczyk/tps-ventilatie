@@ -19,6 +19,7 @@ function isNonEmptyString(value: unknown): value is string {
 // NAP string fields — present and non-empty.
 for (const field of [
   "name",
+  "legalName",
   "address",
   "postcode",
   "city",
@@ -58,6 +59,21 @@ assert(
 assert(
   SITE.serviceAreas.every(isNonEmptyString),
   "SITE.serviceAreas must contain only non-empty strings",
+);
+
+// Opening hours — present, with a non-empty day set and open/close times.
+assert(
+  SITE.openingHours !== null && typeof SITE.openingHours === "object",
+  "SITE.openingHours must be an object",
+);
+assert(
+  Array.isArray(SITE.openingHours.days) && SITE.openingHours.days.length > 0,
+  "SITE.openingHours.days must be a non-empty array",
+);
+assert(
+  isNonEmptyString(SITE.openingHours.opens) &&
+    isNonEmptyString(SITE.openingHours.closes),
+  "SITE.openingHours.opens/closes must be non-empty strings",
 );
 
 console.log(

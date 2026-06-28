@@ -1,12 +1,13 @@
 import type { CSSProperties } from "react";
 import { BRANDS, type BrandId } from "@/lib/services/brands";
+import { Icon } from "@/components/Icon";
 
 // IA-06 brand grid (server component, D-03). Renders TEXT brand chips — a small
 // brand-colored mark + the brand name (sketch .logo-chip pattern). It renders
 // NO image elements: the placeholder logo paths in brands.ts point at assets
 // that do not exist yet (RESEARCH §4), so an image tag would 404. Renders
-// nothing when there are no brandIds (D-06). Brand NAMES only — never a
-// dealer-status or keurmerk endorsement (owner-verify-pending until CONT-03).
+// nothing when there are no brandIds (D-06). Brands the owner is an "erkend
+// installateur" for show a verified badge (CONT-03 resolved 2026-06-28, intake §5).
 const BRAND_COLOR: Record<string, string> = {
   daikin: "#0086C9",
   "mitsubishi-electric": "#E60012",
@@ -45,6 +46,15 @@ export function BrandGrid({ brandIds }: { brandIds?: string[] }) {
             <span className="font-headline font-extrabold text-sm text-on-surface">
               {brand.name}
             </span>
+            {brand.erkendInstallateur && (
+              <span
+                title="Erkend installateur"
+                className="inline-flex items-center text-primary"
+              >
+                <Icon name="verified" filled className="text-base" />
+                <span className="sr-only">Erkend installateur</span>
+              </span>
+            )}
           </li>
         ))}
       </ul>

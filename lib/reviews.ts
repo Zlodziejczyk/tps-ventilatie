@@ -127,5 +127,10 @@ export const REVIEWS: Review[] = [
 // render — only a neutral "{count}+ reviews op Google" line shows. Never fabricate
 // a rating (self-serving ratings earn no Google stars anyway; the slot is for
 // honest on-page display + AI/LLM search).
+//
+// Populated 2026-06-28 from Thomas's intake §8 (review consent = "ja") + his Google
+// Business Profile (kgmid /g/11h07d_z1t): 4,9 ★ across 34 Google reviews — resolved
+// and corroborated across sources. ⚠️ Re-confirm the exact live count at owner
+// sign-off; it ticks up over time (D-13: real data only, never fabricate).
 export const REVIEW_RATING: { value: number; count: number; url: string } | null =
-  null;
+  { value: 4.9, count: 34, url: "https://www.google.com/search?kgmid=/g/11h07d_z1t" };

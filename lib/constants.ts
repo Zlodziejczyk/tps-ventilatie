@@ -1,6 +1,10 @@
 export const SITE = {
   name: "TPS klimaattechniek",
-  tagline: "Specialist in Schone Lucht",
+  // Registered KvK entity name (intake §1, 2026-06-28) — distinct from the trade
+  // name above. Emitted as JSON-LD `legalName`; the brand/display name stays
+  // "TPS klimaattechniek" (name ≠ legal entity, D-01).
+  legalName: "TPS services",
+  tagline: "Specialist in gezond binnenklimaat",
   phone: "+31 6 29403450",
   phoneDisplay: "06 - 29 40 34 50",
   email: "info@tpsventilatie.nl",
@@ -14,6 +18,14 @@ export const SITE = {
   // GeoCoordinates + areaServed geoMidpoint.
   geo: { lat: 52.04822769870841, lng: 4.502050197039296 },
   serviceRadiusKm: 60,
+  // Opening hours (owner-confirmed intake §2, 2026-06-28): Ma–za 08:00–17:30,
+  // zondag gesloten. Buiten deze tijden ook op afspraak + storingsdienst. Feeds the
+  // schema OpeningHoursSpecification (lib/seo/jsonld) and the contact-page hours card.
+  openingHours: {
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "08:00",
+    closes: "17:30",
+  },
   // owner-review-pending: seed coverage list (D-11 / A2). Owner curates before
   // publish — never claim an unserved area. Phase 3+ JSON-LD areaServed reads this.
   serviceAreas: [
@@ -27,7 +39,7 @@ export const SITE = {
     "Leiden",
   ],
   kvk: "73722650",
-  btw: "NL862655889B01",
+  btw: "NL859640929B01",
   whatsappUrl: "https://wa.me/31629403450",
 } as const;
 
