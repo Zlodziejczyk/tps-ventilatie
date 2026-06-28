@@ -170,7 +170,7 @@ export function Navbar() {
 // urlFor — no hardcoded dropdown list. Gives every service a sitewide link.
 function DienstenPanel() {
   return (
-    <div className="p-5 grid grid-cols-4 gap-2 w-[760px]">
+    <div className="p-5 grid grid-cols-4 gap-2 w-[840px]">
       {pillars().map((pillar) => (
         <div key={pillar.pillarSlug} className="flex flex-col">
           <Link
@@ -180,14 +180,16 @@ function DienstenPanel() {
             <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-primary-fixed text-primary shrink-0">
               <Icon name={pillar.icon} className="text-xl" />
             </span>
-            <span className="font-headline font-bold text-sm text-on-surface group-hover/header:text-primary transition-colors leading-tight">
-              {pillar.navTitle}
-            </span>
-            {pillar.pillarSlug === "warmtepompen" && (
-              <span className="ml-auto bg-tertiary-fixed text-on-tertiary-fixed text-[9px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                Nieuw
+            <span className="flex flex-wrap items-center gap-x-2 gap-y-0.5 min-w-0">
+              <span className="font-headline font-bold text-sm text-on-surface group-hover/header:text-primary transition-colors leading-tight">
+                {pillar.navTitle}
               </span>
-            )}
+              {pillar.pillarSlug === "warmtepompen" && (
+                <span className="shrink-0 whitespace-nowrap bg-tertiary-fixed text-on-tertiary-fixed text-[9px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                  Nieuw
+                </span>
+              )}
+            </span>
           </Link>
           <div className="flex flex-col">
             {childrenOf(pillar.pillarSlug).map((service) => (
