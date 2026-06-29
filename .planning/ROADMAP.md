@@ -193,7 +193,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 05-02-PLAN.md — Shared Zod v4 lead schema + secure `app/api/lead` route (rate-limit + validation + honeypot + server secret + GHL forward) (QA-02, LEAD-02) [wave 2]
+- [x] 05-02-PLAN.md — Shared Zod v4 lead schema + secure `app/api/lead` route (rate-limit + validation + honeypot + server secret + GHL forward) (QA-02, LEAD-02) [wave 2]
 - [ ] 05-04-PLAN.md — Site-wide sticky contact bar (Sketch-003-D, layout-level) + LEAD-04 link sweep (LEAD-03, LEAD-04) [wave 2]
 - [ ] 05-05-PLAN.md — Mobile launch polish: SSR-safe motion-gating hook + gated aurora + lazy corrected map + image preload (QA-05, QA-06, QA-07) [wave 2]
 
@@ -232,7 +232,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
-| 5. Lead Capture, Form Security & Launch QA | 1/6 | In Progress|  |
+| 5. Lead Capture, Form Security & Launch QA | 2/6 | In Progress|  |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
 ## Backlog

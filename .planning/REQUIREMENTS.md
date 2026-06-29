@@ -35,7 +35,7 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 ### Lead Capture & Communication (v1 — simple)
 
 - [ ] **LEAD-01**: Offerte/contact form with reassurance copy (gratis, vrijblijvend, binnen 24u) and short field set (naam, contact, postcode, dienst, bericht)
-- [ ] **LEAD-02**: Form submission triggers an instant owner notification (WhatsApp / email) via a GHL workflow
+- [x] **LEAD-02**: Form submission triggers an instant owner notification (WhatsApp / email) via a GHL workflow
 - [ ] **LEAD-03**: Floating WhatsApp contact affordance available site-wide
 - [ ] **LEAD-04**: Every CTA, `tel:`, `mailto:`, and `wa.me` link verified working across all pages
 - [ ] **LEAD-05**: Visible form error state with fallback to phone/WhatsApp — no silent "sending" hang
@@ -57,7 +57,7 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 ### QA & Hardening (launch blockers)
 
 - [x] **QA-01**: Resolve and log the static-export-vs-hybrid decision (recommended: drop `output: "export"` → Vercel hybrid) in PROJECT.md
-- [ ] **QA-02**: Secure form path — server-only webhook secret (no `NEXT_PUBLIC_`), Zod validation, honeypot, rate limiting
+- [x] **QA-02**: Secure form path — server-only webhook secret (no `NEXT_PUBLIC_`), Zod validation, honeypot, rate limiting
 - [x] **QA-03**: Fix the service-area radius inconsistency (50 km vs 100 km) at the source
 - [ ] **QA-04**: Add network error handling to form submission
 - [ ] **QA-05**: Fix the placeholder Google Maps pin to the verified business location
@@ -125,7 +125,7 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | CONT-09 | Phase 4 | Complete |
 | CONT-10 | Phase 4 | Pending |
 | LEAD-01 | Phase 5 | Pending |
-| LEAD-02 | Phase 5 | Pending |
+| LEAD-02 | Phase 5 | Complete |
 | LEAD-03 | Phase 5 | Pending |
 | LEAD-04 | Phase 5 | Pending |
 | LEAD-05 | Phase 5 | Pending |
@@ -141,7 +141,7 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | SEO-09 | Phase 3 | Complete |
 | SEO-10 | Phase 5 | Pending |
 | QA-01 | Phase 5 | Complete |
-| QA-02 | Phase 5 | Pending |
+| QA-02 | Phase 5 | Complete |
 | QA-03 | Phase 1 | Complete |
 | QA-04 | Phase 5 | Pending |
 | QA-05 | Phase 5 | Pending |
