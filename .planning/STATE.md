@@ -24,10 +24,10 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 
 ## Current Position
 
-Phase: 04 (content-fill-editorial-gate) — EXECUTING
-Plan: 9 of 9 (04-09 Task 1 done; REVISE cycle — TIER 1 + TIER 2 done, committed on main)
-Status: In progress — TIER 1 (branding) + TIER 2 (ServiceHero redesign) committed on main; awaiting owner preview deploy + re-check, then TIER 3 (asset-blocked) and 04-09 Task 3
-Last activity: 2026-06-28 — quick task 260628-4d3 (TIER 2 ServiceHero redesign) committed on main
+Phase: 04 (content-fill-editorial-gate) — EXECUTING (04-09 editorial gate still pending on Thomas's sign-off)
+Plan: 9 of 9 (04-09 Task 1 done; owner-feedback REVISE cycle COMPLETE — all design fixes shipped to preview)
+Status: Owner-feedback revise cycle DONE — branding (q2u), ServiceHero redesign (4d3), logo-only header, Nano Banana hero imagery, lean hero + de-localised pillar headlines. Latest preview https://tps-ventilatie-r6znbcg6f-pushly-projects.vercel.app — all on main, NOT pushed. Awaiting Thomas whole-site sign-off → 04-09 Task 3 (flip 21 review→published). READY TO START THE NEXT PHASE IN A CLEAN CONTEXT (2026-06-29): roadmap-next is Phase 5 (Lead Capture / Form Security / Launch QA — owns the static-export-vs-hybrid DECISION GATE; resolve+log in PROJECT.md at the start of planning); Phase 6 (Homepage uplift) depends on Phase 5 (its offerte form should post via the Phase-5 secure route) — home-hero.jpg already staged for it.
+Last activity: 2026-06-29 — owner review #3: lean pillar hero + de-localised headlines (62edb6c/56afb37); revise cycle complete
 
 Progress: [███████░░░] 72%
 
