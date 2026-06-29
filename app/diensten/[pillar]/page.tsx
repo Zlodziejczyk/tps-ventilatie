@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Icon } from "@/components/Icon";
 import { ServiceCard } from "@/components/ServiceCard";
 import { ServiceHero } from "@/components/ServiceHero";
+import { ServiceIntro } from "@/components/ServiceIntro";
 import { BrandGrid } from "@/components/BrandGrid";
 import { ServiceFAQ } from "@/components/ServiceFAQ";
 import { RelatedServices } from "@/components/RelatedServices";
@@ -47,6 +48,36 @@ const PILLAR_IMAGES: Record<string, { src: string; alt: string }> = {
   },
 };
 
+// Scannable hero key-points per pillar (owner feedback 2026-06-29: make it less
+// of a text wall, more scannable). Short, truthful — each is backed by the pillar
+// intro. Keys MUST match pillarSlug. ISDE only on warmtepompen (anti-claim §2).
+const PILLAR_HIGHLIGHTS: Record<string, string[]> = {
+  airconditioning: [
+    "Koelen én verwarmen",
+    "Daikin & Mitsubishi",
+    "Stil & energiezuinig",
+    "Vrijblijvende opname op locatie",
+  ],
+  warmtepompen: [
+    "Lager energieverbruik & CO₂",
+    "Lucht-water & hybride",
+    "Daikin & Mitsubishi Ecodan",
+    "ISDE-subsidie mogelijk",
+  ],
+  wtw: [
+    "Tot 95% warmteterugwinning",
+    "Vervangen · onderhoud · inregelen",
+    "Inregelen met meetrapport",
+    "Fluisterstil & zuinig",
+  ],
+  "mechanische-ventilatie": [
+    "Voorkomt vocht & schimmel",
+    "CO₂-gestuurd mogelijk",
+    "Vervangen · reinigen · storing",
+    "Stille, frisse afvoer",
+  ],
+};
+
 // One data-driven template for all 4 pillar pages (IA-03/IA-04, D-02 layout).
 // dynamicParams=false → only the 4 enumerated slugs pre-render; anything else
 // 404s at export. Server component, cheap motion only (D-10).
@@ -85,7 +116,12 @@ export default async function PillarPage({ params }: { params: Params }) {
       <JsonLd data={breadcrumbJsonLd(node)} />
       {node.content.faqs.length > 0 && <JsonLd data={faqJsonLd(node)!} />}
 
-      <ServiceHero node={node} image={PILLAR_IMAGES[pillar]} />
+      <ServiceHero
+        node={node}
+        image={PILLAR_IMAGES[pillar]}
+        highlights={PILLAR_HIGHLIGHTS[pillar]}
+      />
+      <ServiceIntro node={node} />
 
       {/* Sub-service card grid — the routes into each sub-service page */}
       <section className="max-w-7xl mx-auto px-6 my-16">

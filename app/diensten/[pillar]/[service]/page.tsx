@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ServiceHero } from "@/components/ServiceHero";
+import { ServiceIntro } from "@/components/ServiceIntro";
 import { ServiceSteps } from "@/components/ServiceSteps";
 import { BrandGrid } from "@/components/BrandGrid";
 import { ServiceFAQ } from "@/components/ServiceFAQ";
@@ -58,6 +59,7 @@ export default async function ServiceDetailPage({ params }: { params: Params }) 
 
       <Breadcrumbs node={node} />
       <ServiceHero node={node} />
+      <ServiceIntro node={node} />
       <ServiceSteps steps={node.content.steps} />
       {/* BrandGrid self-omits unless node.brandIds is present (Installatie only) */}
       <BrandGrid brandIds={node.brandIds} />
