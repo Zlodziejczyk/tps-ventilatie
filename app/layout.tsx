@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { StickyContactBar } from "@/components/StickyContactBar";
 import { SITE, CANONICAL_ORIGIN, GOOGLE_SITE_VERIFICATION } from "@/lib/constants";
 import { OG_IMAGE } from "@/lib/seo/metadata";
 import { JsonLd, businessJsonLd } from "@/lib/seo/jsonld";
@@ -68,6 +69,9 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        {/* Single always-on contact affordance (LEAD-03) — a direct <body> child so
+            it is viewport-fixed, never trapped by a transformed ancestor (LEAD-04). */}
+        <StickyContactBar />
         {/* Cookieless, privacy-friendly — no consent banner needed (D-06, LEAD-06) */}
         <Analytics />
         <SpeedInsights />
