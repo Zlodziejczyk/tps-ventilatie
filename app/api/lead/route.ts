@@ -59,17 +59,20 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "invalid_json" }, { status: 400 });
   }
 
-  // 3. server-authoritative validation (do NOT echo field values back)
+  // 3. honeypot — checked BEFORE schema validation so a filled hidden field is
+  //    silently accepted (200, never forwarded) and looks successful to the bot,
+  //    instead of surfacing as a validation error that would tip the bot off.
+  const trap = (body as { website?: unknown })?.website;
+  if (typeof trap === "string" && trap.length > 0) {
+    return NextResponse.json({ ok: true });
+  }
+
+  // 4. server-authoritative validation (do NOT echo field values back)
   const parsed = leadSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 400 });
   }
   const data = parsed.data;
-
-  // 4. honeypot — a filled hidden field marks a bot; accept silently, do NOT forward
-  if (data.website) {
-    return NextResponse.json({ ok: true }); // looks successful to the bot
-  }
 
   // 5. server-only secret
   const webhookUrl = process.env.GHL_WEBHOOK_URL;
