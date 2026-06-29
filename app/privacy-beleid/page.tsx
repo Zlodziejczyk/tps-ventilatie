@@ -47,6 +47,11 @@ const SECTIONS = [
     content:
       "Voor meer informatie over de privacy policy van onze adverteerders en derde partijen die verbonden zijn aan deze website, kun u terecht op de websites van deze respectievelijke partijen. tpsventilatie.nl kan geen invloed uitoefenen op deze cookies en de privacy policy van door derden geplaatste cookies. Deze cookies vallen buiten het bereik van de privacy policy van tpsventilatie.nl.",
   },
+  {
+    title: "9) Verwerkers — contactformulier",
+    content:
+      "Wanneer u via een formulier op tpsventilatie.nl een aanvraag of bericht verstuurt, worden de door u ingevulde gegevens (zoals naam, telefoonnummer, e-mailadres, postcode en uw bericht) namens TPS klimaattechniek verwerkt en opgeslagen door GoHighLevel. GoHighLevel treedt hierbij op als verwerker en gebruikt deze gegevens uitsluitend om uw aanvraag bij ons af te handelen en u te kunnen beantwoorden. Wij verstrekken uw gegevens niet aan andere partijen voor andere doeleinden.",
+  },
 ];
 
 export default function PrivacyBeleidPage() {

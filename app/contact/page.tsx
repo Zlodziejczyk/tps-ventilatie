@@ -2,7 +2,7 @@ import Link from "next/link";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { findBySlug } from "@/lib/services/registry";
 import { Icon } from "@/components/Icon";
-import { ContactForm } from "@/components/ContactForm";
+import { OfferteForm } from "@/components/OfferteForm";
 import { SITE } from "@/lib/constants";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { LazyMap } from "@/components/LazyMap";
@@ -34,7 +34,7 @@ export default function ContactPage() {
           <AnimateOnScroll>
           <div>
             <h2 className="text-2xl font-bold font-headline mb-6">Stuur ons een bericht</h2>
-            <ContactForm />
+            <OfferteForm />
           </div>
           </AnimateOnScroll>
 
