@@ -189,7 +189,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 1**
 
-- [ ] 05-01-PLAN.md — Hybrid hosting flip + Upstash deps + server-only `GHL_WEBHOOK_URL` env + log the QA-01 decision in PROJECT.md (QA-01, QA-07 config) [wave 1]
+- [x] 05-01-PLAN.md — Hybrid hosting flip + Upstash deps + server-only `GHL_WEBHOOK_URL` env + log the QA-01 decision in PROJECT.md (QA-01, QA-07 config) [wave 1]
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -232,7 +232,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
-| 5. Lead Capture, Form Security & Launch QA | 0/6 | Planned | - |
+| 5. Lead Capture, Form Security & Launch QA | 1/6 | In Progress|  |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
 ## Backlog

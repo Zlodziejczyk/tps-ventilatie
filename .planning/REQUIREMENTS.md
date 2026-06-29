@@ -56,13 +56,13 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 
 ### QA & Hardening (launch blockers)
 
-- [ ] **QA-01**: Resolve and log the static-export-vs-hybrid decision (recommended: drop `output: "export"` → Vercel hybrid) in PROJECT.md
+- [x] **QA-01**: Resolve and log the static-export-vs-hybrid decision (recommended: drop `output: "export"` → Vercel hybrid) in PROJECT.md
 - [ ] **QA-02**: Secure form path — server-only webhook secret (no `NEXT_PUBLIC_`), Zod validation, honeypot, rate limiting
 - [x] **QA-03**: Fix the service-area radius inconsistency (50 km vs 100 km) at the source
 - [ ] **QA-04**: Add network error handling to form submission
 - [ ] **QA-05**: Fix the placeholder Google Maps pin to the verified business location
 - [ ] **QA-06**: Gate the WebGL aurora + canvas particles on mobile / `prefers-reduced-motion` (CWV)
-- [ ] **QA-07**: Build-time image optimization (WebP/AVIF via re-enabled `next/image` or `sharp`)
+- [x] **QA-07**: Build-time image optimization (WebP/AVIF via re-enabled `next/image` or `sharp`)
 - [ ] **QA-08**: End-to-end lead-notification test — real submit → owner notified within seconds
 
 ## v2 Requirements
@@ -140,13 +140,13 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | SEO-08 | Phase 1 | Complete |
 | SEO-09 | Phase 3 | Complete |
 | SEO-10 | Phase 5 | Pending |
-| QA-01 | Phase 5 | Pending |
+| QA-01 | Phase 5 | Complete |
 | QA-02 | Phase 5 | Pending |
 | QA-03 | Phase 1 | Complete |
 | QA-04 | Phase 5 | Pending |
 | QA-05 | Phase 5 | Pending |
 | QA-06 | Phase 5 | Pending |
-| QA-07 | Phase 5 | Pending |
+| QA-07 | Phase 5 | Complete |
 | QA-08 | Phase 5 | Pending |
 
 **Phase totals:** Phase 1 = 5 · Phase 2 = 6 · Phase 3 = 8 · Phase 4 = 10 · Phase 5 = 14
