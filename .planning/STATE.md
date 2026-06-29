@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-last_updated: "2026-06-28T16:00:00.000Z"
-last_activity: 2026-06-28
+status: planning
+last_updated: "2026-06-29T15:11:23.588Z"
+last_activity: "2026-06-29 — owner review #3: lean pillar hero + de-localised headlines (62edb6c/56afb37); revise cycle complete"
 progress:
   total_phases: 6
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 29
-  completed_plans: 28
-  percent: 50
+  completed_plans: 29
+  percent: 67
 ---
 
 # Project State
@@ -120,6 +120,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-28
-Stopped at: 04-09 REVISE cycle — TIER 1 (branding) + TIER 2 (ServiceHero) both DONE on main, NOT pushed, NOT yet preview-deployed. TIER 1 = quick task 260628-q2u (cbd285d brand+logo; 8fbd954 Nieuw badge clip). TIER 2 = quick task 260628-4d3 (b55de17): ServiceHero redesign — two-column layout, splitLead() lead-sentence/supporting-copy hierarchy, engineered glass HeroFacts trust card (air-pulse "direct beschikbaar" + 3 SITE facts + WhatsApp) filling the formerly-empty right column; shared template so it covers all service + pillar pages; Server Component preserved, no new assets, no copy rewritten. SHIPPED to preview https://tps-ventilatie-klwgq6xyn-pushly-projects.vercel.app (Vercel CI build PASSED: prebuild gates 27/27, TypeScript clean, 32 pages; homepage 200 + x-robots noindex; /diensten/warmtepompen/onderhoud 200 with the new hero markers — "Direct beschikbaar voor advies", "Stuur een WhatsApp", air-pulse, signature-gradient). This preview carries TIER 1 + TIER 2 together; prior 67hwltb0k is superseded. IMMEDIATE NEXT ACTION: owner (Oskar) eyeballs the new preview (service + pillar hero, trust card, pulse) + re-confirms the TIER 1 header. REMAINING from OWNER-FEEDBACK-2026-06-28.md: TIER 3 (asset-blocked on owner) = manufacturer logos (Daikin/Mitsubishi) + cert badges (BRL 100/200, erkend installateur) + homepage trust band. Logo follow-up: current public/tps-logo.png is opaque white-bg, 1.1 MB 1369×1149 — request transparent SVG/horizontal lockup + optimize. Still pending: Thomas whole-site sign-off → then 04-09 Task 3 (batch-flip 21 review nodes → published + rewrite assert-seo.ts status-derived); owner non-blockers (project+portrait photos, GBP rename, invoice-email). CONSTRAINTS UNCHANGED: never push main / never `vercel --prod` (main = production = launch); never local build/tsx (OneDrive deadlock) — validate on Vercel CI; run GSD execution inline (no subagents/worktrees on OneDrive).
-Resume file: .planning/phases/04-content-fill-editorial-gate/.continue-here.md
+Last session: 2026-06-29T15:11:23.582Z
+Stopped at: Phase 5 context gathered
+Resume file: .planning/phases/05-lead-capture-form-security-launch-qa/05-CONTEXT.md
