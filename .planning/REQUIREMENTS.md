@@ -60,8 +60,8 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 - [x] **QA-02**: Secure form path — server-only webhook secret (no `NEXT_PUBLIC_`), Zod validation, honeypot, rate limiting
 - [x] **QA-03**: Fix the service-area radius inconsistency (50 km vs 100 km) at the source
 - [ ] **QA-04**: Add network error handling to form submission
-- [ ] **QA-05**: Fix the placeholder Google Maps pin to the verified business location
-- [ ] **QA-06**: Gate the WebGL aurora + canvas particles on mobile / `prefers-reduced-motion` (CWV)
+- [x] **QA-05**: Fix the placeholder Google Maps pin to the verified business location
+- [x] **QA-06**: Gate the WebGL aurora + canvas particles on mobile / `prefers-reduced-motion` (CWV)
 - [x] **QA-07**: Build-time image optimization (WebP/AVIF via re-enabled `next/image` or `sharp`)
 - [ ] **QA-08**: End-to-end lead-notification test — real submit → owner notified within seconds
 
@@ -144,8 +144,8 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | QA-02 | Phase 5 | Complete |
 | QA-03 | Phase 1 | Complete |
 | QA-04 | Phase 5 | Pending |
-| QA-05 | Phase 5 | Pending |
-| QA-06 | Phase 5 | Pending |
+| QA-05 | Phase 5 | Complete |
+| QA-06 | Phase 5 | Complete |
 | QA-07 | Phase 5 | Complete |
 | QA-08 | Phase 5 | Pending |
 
