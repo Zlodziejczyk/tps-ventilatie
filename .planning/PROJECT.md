@@ -94,7 +94,7 @@ Built with Next.js 16 (App Router, static export), TypeScript, and Tailwind CSS 
 
 ## Constraints
 
-- **Tech stack:** Next.js 16 App Router + TypeScript + Tailwind v4 — keep. Currently `output: "export"` (fully static); may need to relax to a hybrid (one server route) to secure the form — open decision.
+- **Tech stack:** Next.js 16 App Router + TypeScript + Tailwind v4 — keep. Hosting resolved to **hybrid** in Phase 5 (QA-01): dropped `output: "export"` for one server route (`app/api/lead/route.ts`); all other ~22 pages stay statically prerendered. `trailingSlash: false` + the apex canonical are preserved.
 - **Design system:** "Atmospheric Clarity" — no 1px section borders (use tonal background layering), no 100% black text (`on-surface` #141D1F), Material Symbols via the `Icon` wrapper, business data via the `SITE` constant. Never modify `.stitch/` or `.firecrawl/`.
 - **Language:** all site-facing content in Dutch (`nl`).
 - **Content model:** Claude drafts content from research + owner notes; owner reviews/approves before publish.
@@ -114,7 +114,7 @@ Built with Next.js 16 (App Router, static export), TypeScript, and Tailwind CSS 
 | QA scope = blockers + hardening (defer tests/refactors) | Reach launch-readiness without over-investing pre-launch | — Pending |
 | Stay on `tpsventilatie.nl` for launch | `tpsklimaattechniek` domain unverified; not blocking work | — Pending |
 | Keep content in-repo (MDX/data), no CMS yet | Avoid CMS overhead; owner is not self-editing yet | — Pending |
-| Static-export vs hybrid for a secure form route | Securing the webhook wants a server route, which conflicts with `output: "export"` | ⚠️ Revisit (resolve in comms/QA planning) |
+| Static-export vs hybrid for a secure form route | Securing the webhook wants a server route, which conflicts with `output: "export"` | ✅ Hybrid (Phase 5, QA-01, 2026-06-29) — dropped `output: "export"`; one server route `app/api/lead/route.ts` holds the GHL secret server-side; ~22 pages stay SSG; `trailingSlash: false` + apex canonical preserved |
 
 ## Evolution
 
@@ -134,4 +134,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-02 — Phase 1 (Taxonomy & Data Model) complete*
+*Last updated: 2026-06-29 — Phase 5 planning; QA-01 static-vs-hybrid resolved to hybrid*
