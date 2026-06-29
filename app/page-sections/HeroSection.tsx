@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Icon } from "@/components/Icon";
 import { SoftAurora } from "@/components/SoftAurora";
+import { useEnableHeavyMotion } from "@/lib/useEnableHeavyMotion";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -21,6 +22,9 @@ const heroWords = [
 
 export function HeroSection() {
   const [wordIndex, setWordIndex] = useState(0);
+  // Desktop + allowed-motion only; mobile / SSR / reduced-motion get the static
+  // gradient fallback so no WebGL canvas mounts where it would hurt INP (QA-06).
+  const heavy = useEnableHeavyMotion();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -31,25 +35,34 @@ export function HeroSection() {
 
   return (
     <header className="relative min-h-[85vh] flex items-center justify-center px-6 py-28 xl:py-40 overflow-hidden">
-      {/* Aurora background — centered behind hero content */}
+      {/* Aurora background — centered behind hero content. Heavy WebGL motion is
+          desktop-and-motion-only (QA-06); mobile / SSR / reduced-motion render a
+          cheap static gradient so no canvas mounts where it would hurt INP. */}
       <div className="absolute inset-0 -z-10 pointer-events-none flex items-center justify-center">
         <div className="w-[120%] h-[80%]">
-          <SoftAurora
-            speed={0.6}
-            scale={1.2}
-            brightness={0.9}
-            color1="#a8dff0"
-            color2="#b8e8d0"
-            noiseFrequency={2.0}
-            noiseAmplitude={1.2}
-            bandHeight={0.5}
-            bandSpread={1.5}
-            octaveDecay={0.15}
-            layerOffset={0.3}
-            colorSpeed={0.6}
-            enableMouseInteraction
-            mouseInfluence={0.2}
-          />
+          {heavy ? (
+            <SoftAurora
+              speed={0.6}
+              scale={1.2}
+              brightness={0.9}
+              color1="#a8dff0"
+              color2="#b8e8d0"
+              noiseFrequency={2.0}
+              noiseAmplitude={1.2}
+              bandHeight={0.5}
+              bandSpread={1.5}
+              octaveDecay={0.15}
+              layerOffset={0.3}
+              colorSpeed={0.6}
+              enableMouseInteraction
+              mouseInfluence={0.2}
+            />
+          ) : (
+            <div
+              className="h-full w-full bg-gradient-to-br from-[#a8dff0]/50 via-[#b8e8d0]/40 to-transparent"
+              aria-hidden
+            />
+          )}
         </div>
       </div>
 
