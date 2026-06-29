@@ -166,7 +166,7 @@ export function ServiceHero({
                 fill
                 sizes="(min-width: 1024px) 42vw, 100vw"
                 className="object-cover"
-                priority
+                preload
               />
             </div>
           ) : (

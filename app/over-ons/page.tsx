@@ -49,7 +49,7 @@ export default function OverOnsPage() {
               fill
               sizes="(min-width: 1280px) 1216px, 100vw"
               className="object-cover object-[center_35%]"
-              priority
+              preload
             />
           </div>
         </AnimateOnScroll>
