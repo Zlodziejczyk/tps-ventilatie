@@ -199,7 +199,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 05-03-PLAN.md — Reusable `<OfferteForm>` + thin client caller + AVG consent + fail-safe error UI (LEAD-01, LEAD-05, LEAD-06, QA-04) [wave 3]
+- [x] 05-03-PLAN.md — Reusable `<OfferteForm>` + thin client caller + AVG consent + fail-safe error UI (LEAD-01, LEAD-05, LEAD-06, QA-04) [wave 3]
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -232,7 +232,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
-| 5. Lead Capture, Form Security & Launch QA | 4/6 | In Progress|  |
+| 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
 ## Backlog

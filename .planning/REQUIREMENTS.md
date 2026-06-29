@@ -34,12 +34,12 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 
 ### Lead Capture & Communication (v1 — simple)
 
-- [ ] **LEAD-01**: Offerte/contact form with reassurance copy (gratis, vrijblijvend, binnen 24u) and short field set (naam, contact, postcode, dienst, bericht)
+- [x] **LEAD-01**: Offerte/contact form with reassurance copy (gratis, vrijblijvend, binnen 24u) and short field set (naam, contact, postcode, dienst, bericht)
 - [x] **LEAD-02**: Form submission triggers an instant owner notification (WhatsApp / email) via a GHL workflow
 - [x] **LEAD-03**: Floating WhatsApp contact affordance available site-wide
 - [x] **LEAD-04**: Every CTA, `tel:`, `mailto:`, and `wa.me` link verified working across all pages
-- [ ] **LEAD-05**: Visible form error state with fallback to phone/WhatsApp — no silent "sending" hang
-- [ ] **LEAD-06**: AVG/GDPR consent at the form + GoHighLevel named as processor in the privacy policy
+- [x] **LEAD-05**: Visible form error state with fallback to phone/WhatsApp — no silent "sending" hang
+- [x] **LEAD-06**: AVG/GDPR consent at the form + GoHighLevel named as processor in the privacy policy
 
 ### SEO — Technical, Local, Measurement
 
@@ -59,7 +59,7 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 - [x] **QA-01**: Resolve and log the static-export-vs-hybrid decision (recommended: drop `output: "export"` → Vercel hybrid) in PROJECT.md
 - [x] **QA-02**: Secure form path — server-only webhook secret (no `NEXT_PUBLIC_`), Zod validation, honeypot, rate limiting
 - [x] **QA-03**: Fix the service-area radius inconsistency (50 km vs 100 km) at the source
-- [ ] **QA-04**: Add network error handling to form submission
+- [x] **QA-04**: Add network error handling to form submission
 - [x] **QA-05**: Fix the placeholder Google Maps pin to the verified business location
 - [x] **QA-06**: Gate the WebGL aurora + canvas particles on mobile / `prefers-reduced-motion` (CWV)
 - [x] **QA-07**: Build-time image optimization (WebP/AVIF via re-enabled `next/image` or `sharp`)
@@ -124,12 +124,12 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | CONT-08 | Phase 4 | Complete |
 | CONT-09 | Phase 4 | Complete |
 | CONT-10 | Phase 4 | Pending |
-| LEAD-01 | Phase 5 | Pending |
+| LEAD-01 | Phase 5 | Complete |
 | LEAD-02 | Phase 5 | Complete |
 | LEAD-03 | Phase 5 | Complete |
 | LEAD-04 | Phase 5 | Complete |
-| LEAD-05 | Phase 5 | Pending |
-| LEAD-06 | Phase 5 | Pending |
+| LEAD-05 | Phase 5 | Complete |
+| LEAD-06 | Phase 5 | Complete |
 | SEO-01 | Phase 3 | Complete |
 | SEO-02 | Phase 3 | Complete |
 | SEO-03 | Phase 3 | Complete |
@@ -143,7 +143,7 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | QA-01 | Phase 5 | Complete |
 | QA-02 | Phase 5 | Complete |
 | QA-03 | Phase 1 | Complete |
-| QA-04 | Phase 5 | Pending |
+| QA-04 | Phase 5 | Complete |
 | QA-05 | Phase 5 | Complete |
 | QA-06 | Phase 5 | Complete |
 | QA-07 | Phase 5 | Complete |
