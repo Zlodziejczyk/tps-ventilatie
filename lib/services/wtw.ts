@@ -157,8 +157,8 @@ export const WTW_PAGES: PageNode[] = [
     navDescription: "Vervanging, onderhoud en installatie van warmteterugwinunits",
     icon: "hvac",
     content: draftShell(
-      "WTW units in Zoetermeer",
-      "WTW unit Zoetermeer | TPS klimaattechniek",
+      "Warmteterugwinning (WTW)",
+      "WTW units in de regio Zoetermeer | TPS klimaattechniek",
       "WTW units: vervangen, onderhoud, inregelen en aanleggen in Zoetermeer en omgeving.",
       {
         intro:

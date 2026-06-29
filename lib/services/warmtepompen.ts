@@ -140,8 +140,8 @@ export const WARMTEPOMPEN_PAGES: PageNode[] = [
     navDescription: "Installatie, onderhoud en reparatie van warmtepompen",
     icon: "heat_pump",
     content: draftShell(
-      "Warmtepompen in Zoetermeer",
-      "Warmtepomp Zoetermeer | TPS klimaattechniek",
+      "Warmtepompen",
+      "Warmtepomp in de regio Zoetermeer | TPS klimaattechniek",
       "Warmtepompen: installatie, onderhoud en reparatie in Zoetermeer en omgeving.",
       {
         intro:

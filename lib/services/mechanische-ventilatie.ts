@@ -144,8 +144,8 @@ export const MECHANISCHE_VENTILATIE_PAGES: PageNode[] = [
     navDescription: "Vervanging, onderhoud en aanleg van ventilatiesystemen",
     icon: "air",
     content: draftShell(
-      "Mechanische ventilatie in Zoetermeer",
-      "Mechanische ventilatie Zoetermeer | TPS klimaattechniek",
+      "Mechanische ventilatie",
+      "Mechanische ventilatie in de regio Zoetermeer | TPS klimaattechniek",
       "Mechanische ventilatie: vervangen, onderhoud, storing en aanleggen in Zoetermeer en omgeving.",
       {
         intro:

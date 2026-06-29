@@ -137,8 +137,8 @@ export const AIRCONDITIONING_PAGES: PageNode[] = [
     navDescription: "Installatie, onderhoud en reparatie van aircosystemen",
     icon: "ac_unit",
     content: draftShell(
-      "Airconditioning in Zoetermeer",
-      "Airconditioning Zoetermeer | TPS klimaattechniek",
+      "Airconditioning",
+      "Airconditioning in de regio Zoetermeer | TPS klimaattechniek",
       "Airconditioning: installatie, onderhoud en reparatie in Zoetermeer en omgeving.",
       {
         intro:
