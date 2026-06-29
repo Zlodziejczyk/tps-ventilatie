@@ -36,8 +36,8 @@ Launch scope. Decisions locked during initialization: **broaden to klimaattechni
 
 - [ ] **LEAD-01**: Offerte/contact form with reassurance copy (gratis, vrijblijvend, binnen 24u) and short field set (naam, contact, postcode, dienst, bericht)
 - [x] **LEAD-02**: Form submission triggers an instant owner notification (WhatsApp / email) via a GHL workflow
-- [ ] **LEAD-03**: Floating WhatsApp contact affordance available site-wide
-- [ ] **LEAD-04**: Every CTA, `tel:`, `mailto:`, and `wa.me` link verified working across all pages
+- [x] **LEAD-03**: Floating WhatsApp contact affordance available site-wide
+- [x] **LEAD-04**: Every CTA, `tel:`, `mailto:`, and `wa.me` link verified working across all pages
 - [ ] **LEAD-05**: Visible form error state with fallback to phone/WhatsApp — no silent "sending" hang
 - [ ] **LEAD-06**: AVG/GDPR consent at the form + GoHighLevel named as processor in the privacy policy
 
@@ -126,8 +126,8 @@ Each v1 requirement maps to exactly one phase. See `.planning/ROADMAP.md` for ph
 | CONT-10 | Phase 4 | Pending |
 | LEAD-01 | Phase 5 | Pending |
 | LEAD-02 | Phase 5 | Complete |
-| LEAD-03 | Phase 5 | Pending |
-| LEAD-04 | Phase 5 | Pending |
+| LEAD-03 | Phase 5 | Complete |
+| LEAD-04 | Phase 5 | Complete |
 | LEAD-05 | Phase 5 | Pending |
 | LEAD-06 | Phase 5 | Pending |
 | SEO-01 | Phase 3 | Complete |
