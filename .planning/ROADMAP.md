@@ -183,7 +183,34 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. A floating WhatsApp affordance is available site-wide and every CTA, `tel:`, `mailto:`, and `wa.me` link is verified working across all pages
   5. Mobile Core Web Vitals pass as a launch criterion (INP < 200ms, good LCP) with WebGL aurora + canvas particles gated on mobile / `prefers-reduced-motion`, and the Google Maps pin points to the verified business location
 
-**Plans**: TBD
+**Decision Gate** (resolved): static-export-vs-hybrid → **HYBRID** (drop `output: "export"`; one server `/api/lead` route holds the GHL secret; all other ~22 pages stay SSG; `trailingSlash: false` + apex canonical preserved). Logged in PROJECT.md during 05-01 (QA-01).
+
+**Plans**: 6 plans (4 waves)
+
+**Wave 1**
+
+- [ ] 05-01-PLAN.md — Hybrid hosting flip + Upstash deps + server-only `GHL_WEBHOOK_URL` env + log the QA-01 decision in PROJECT.md (QA-01, QA-07 config) [wave 1]
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 05-02-PLAN.md — Shared Zod v4 lead schema + secure `app/api/lead` route (rate-limit + validation + honeypot + server secret + GHL forward) (QA-02, LEAD-02) [wave 2]
+- [ ] 05-04-PLAN.md — Site-wide sticky contact bar (Sketch-003-D, layout-level) + LEAD-04 link sweep (LEAD-03, LEAD-04) [wave 2]
+- [ ] 05-05-PLAN.md — Mobile launch polish: SSR-safe motion-gating hook + gated aurora + lazy corrected map + image preload (QA-05, QA-06, QA-07) [wave 2]
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 05-03-PLAN.md — Reusable `<OfferteForm>` + thin client caller + AVG consent + fail-safe error UI (LEAD-01, LEAD-05, LEAD-06, QA-04) [wave 3]
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 05-06-PLAN.md — External infra (Vercel env/Upstash/GHL) + preview launch-QA: build gate, secure-path, QA-08 live notify, mobile CWV gate (QA-08, SEO-10) `autonomous: false` [wave 4]
+
+**Cross-cutting constraints** (hold across plans):
+- The hybrid flip (05-01) changes the whole build — sequence it first; every later plan validates on a **Vercel preview** (no local `next build`/`tsx` — OneDrive deadlock).
+- The GHL webhook secret is **server-only** (`GHL_WEBHOOK_URL`, never `NEXT_PUBLIC_`); the old public Vercel var is deleted at cutover (05-06).
+- **Never push `main`; never `vercel --prod`** — all proof is on the preview; owner sign-off is the launch gate.
+- One shared sticky contact bar (no second WhatsApp FAB); Phase 6 inherits the `<OfferteForm>` + bar.
+
 **UI hint**: yes
 
 ### Phase 6: Homepage conversion uplift
@@ -205,7 +232,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 2. Routes & Service-Page Templates | 6/6 | Complete    | 2026-06-05 |
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
-| 5. Lead Capture, Form Security & Launch QA | 0/TBD | Not started | - |
+| 5. Lead Capture, Form Security & Launch QA | 0/6 | Planned | - |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
 
 ## Backlog

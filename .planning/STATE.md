@@ -2,13 +2,13 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
-last_updated: "2026-06-29T15:11:23.588Z"
-last_activity: "2026-06-29 — owner review #3: lean pillar hero + de-localised headlines (62edb6c/56afb37); revise cycle complete"
+status: executing
+last_updated: "2026-06-29T16:49:07.081Z"
+last_activity: 2026-06-29 -- Phase 05 planning complete
 progress:
   total_phases: 6
   completed_phases: 4
-  total_plans: 29
+  total_plans: 35
   completed_plans: 29
   percent: 67
 ---
@@ -26,8 +26,8 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 
 Phase: 04 (content-fill-editorial-gate) — EXECUTING (04-09 editorial gate still pending on Thomas's sign-off)
 Plan: 9 of 9 (04-09 Task 1 done; owner-feedback REVISE cycle COMPLETE — all design fixes shipped to preview)
-Status: Owner-feedback revise cycle DONE — branding (q2u), ServiceHero redesign (4d3), logo-only header, Nano Banana hero imagery, lean hero + de-localised pillar headlines. Latest preview https://tps-ventilatie-r6znbcg6f-pushly-projects.vercel.app — all on main, NOT pushed. Awaiting Thomas whole-site sign-off → 04-09 Task 3 (flip 21 review→published). READY TO START THE NEXT PHASE IN A CLEAN CONTEXT (2026-06-29): roadmap-next is Phase 5 (Lead Capture / Form Security / Launch QA — owns the static-export-vs-hybrid DECISION GATE; resolve+log in PROJECT.md at the start of planning); Phase 6 (Homepage uplift) depends on Phase 5 (its offerte form should post via the Phase-5 secure route) — home-hero.jpg already staged for it.
-Last activity: 2026-06-29 — owner review #3: lean pillar hero + de-localised headlines (62edb6c/56afb37); revise cycle complete
+Status: Ready to execute
+Last activity: 2026-06-29 -- Phase 05 planning complete
 
 Progress: [███████░░░] 72%
 
@@ -123,3 +123,5 @@ Items acknowledged and carried forward from previous milestone close:
 Last session: 2026-06-29T15:11:23.582Z
 Stopped at: Phase 5 context gathered
 Resume file: .planning/phases/05-lead-capture-form-security-launch-qa/05-CONTEXT.md
+
+Session resumed: 2026-06-29 — restored context; frontier = Phase 5 planning (CONTEXT.md ready, decision gate resolved to hybrid). Phase 4 editorial gate remains async/owner-blocked on Thomas's whole-site sign-off (preview r6znbcg6f).
