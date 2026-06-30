@@ -5,7 +5,7 @@ status: in-progress
 nyquist_compliant: false
 wave_0_complete: false
 created: 2026-06-29
-last_verified: 2026-06-29
+last_verified: 2026-06-30
 ---
 
 # Phase 5 — Validation Strategy
@@ -33,6 +33,25 @@ Run via `node scripts/test-lead-route.mjs <preview>` + targeted live checks:
 | Image optimizer serves AVIF (`/_next/image` → `Content-Type: image/avif`) | ✅ |
 
 **Still pending** (genuinely external/visual/field): live owner notification (GHL workflow), forced-failure error UI (visual), sticky-bar behavior (visual), map pin (visual), no-canvas-on-mobile (visual), mobile **field** INP/LCP (PSI — anonymous API rate-limited; run in PSI UI or with a key).
+
+## Live Lead E2E (automated, 2026-06-30)
+
+**Preview:** `https://tps-ventilatie-mpan4b7q6-pushly-projects.vercel.app` (commit `5269191`, deploy `dpl_9WFmRzR…`). GHL location `2rjHMsGsh5E7ql7Foph9`. Verified by firing a real lead through `/api/lead` and reading the created contact back via the GHL REST API.
+
+Setup completed this session: created GHL custom field **`Dienst`** (`contact.dienst`, TEXT, id `1btVVbSWhIcijJWJnQIm`); confirmed pre-existing **`Message`** (`contact.message`, LARGE_TEXT); owner mapped the inbound-webhook → Create Contact action and **published** the "Website - Webhook Form" workflow (was draft → 0 contacts; root-caused via GHL workflows API).
+
+| Check | Result |
+|-------|--------|
+| `POST /api/lead` valid lead (live `GHL_WEBHOOK_URL`) → 200 `{ok:true}` | ✅ |
+| GHL workflow created a contact (~28 s after submit) | ✅ |
+| `naam` → Full name (`QA-LIVE-… Test`) | ✅ |
+| `email` → email (brace-typo fix confirmed end-to-end) | ✅ |
+| `telefoon` → phone (GHL normalized `06…` → `+31…`) | ✅ |
+| `postcode` → postalCode (`2712LB`) | ✅ |
+| `dienst` → **Dienst** custom field (`Airconditioning`) | ✅ |
+| `bericht` → **Message** custom field | ✅ |
+
+**Still pending on QA-08:** the owner-notification *action* (WhatsApp + email) — to be added to the workflow, pointed at a **test inbox** first (owner not to be pinged during QA), then swapped to the owner before launch.
 
 ---
 
@@ -64,8 +83,8 @@ Run via `node scripts/test-lead-route.mjs <preview>` + targeted live checks:
 |-------------|--------------------|------------|-----------|--------------------------|--------|
 | QA-01 | Build succeeds in hybrid; ~22 routes still SSG, `/api/lead` is a function | — | Build gate | Vercel preview build output: `○/●` static, `ƒ` for `/api/lead` | ✅ green (preview `ea574f0`: green build, exactly 1 `ƒ`) |
 | QA-02 | Invalid/oversized/missing-field payloads rejected; honeypot-filled silently accepted-but-not-forwarded; secret absent from client bundle | T-5-secret / T-5-payload | Runtime contract + manual | `leadSchema` `safeParse`; `curl` preview `/api/lead`; grep client bundle for webhook string | ✅ green (preview: 400/400/200-no-fwd + bounds 400 + bundle secret absent) |
-| LEAD-01 | Offerte form submits naam/telefoon/email/postcode/dienst/bericht via the secure route | — | Manual on preview | Submit a valid lead on preview; 200 + success UI | ⬜ pending (form renders; true 200 success needs live `GHL_WEBHOOK_URL`) |
-| LEAD-02 / QA-08 | Real submit → WhatsApp + email to owner within seconds | — | Live E2E on **preview** | One clean submit; confirm both channels (agency-configured GHL) | ⬜ pending (GHL workflow + env) |
+| LEAD-01 | Offerte form submits naam/telefoon/email/postcode/dienst/bericht via the secure route | — | Live E2E on preview | Submit a valid lead on preview; 200 + contact created | ✅ green (2026-06-30: live submit → 200 `{ok:true}`; GHL contact created with all 6 fields incl. `Dienst`/`Message`) |
+| LEAD-02 / QA-08 | Real submit → contact created + WhatsApp + email to owner within seconds | — | Live E2E on **preview** | One clean submit; confirm contact + both channels (agency-configured GHL) | ⚠️ partial (contact-create proven 2026-06-30; **owner WhatsApp/email action pending** — point at test inbox, then swap to owner pre-launch) |
 | LEAD-05 / QA-04 | Network failure + non-OK → visible error + Bel/WhatsApp/retry, never stuck "sending" | T-5-failsafe | Manual on preview | Force route 502 / offline; confirm error UI + fallback | ⬜ pending (visual — demonstrable NOW: no-env submit → 500 → fail-safe error) |
 | LEAD-06 | Submit blocked without consent; privacy page names GHL as processor (verwerker) | — | Runtime contract + manual | `consent: z.literal(true)`; verify `/privacy-beleid` text | ✅ green (preview: consent:false→400 isolated; privacy names GoHighLevel) |
 | LEAD-03 | One site-wide sticky contact bar (Bel · WhatsApp · Offerte), layout-level, scroll-in ~200px, dismissible | — | Manual on preview | Visual + interaction check on multiple routes | ⬜ pending (visual; mounted body-level in code) |
