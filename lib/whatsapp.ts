@@ -13,15 +13,25 @@ export interface WhatsAppLeadFields {
   bericht?: string;
 }
 
+// Owner-recognizable sentinel naam for the Phase-6 compact hero form (D-03). It is
+// >= 2 chars so the shared leadSchema `naam.min(2)` still passes for the silent GHL
+// backup, but the WhatsApp message OMITS its Naam line (see below) so the quick-start
+// chat stays clean. "Snelaanvraag" also signals to the owner this came from the hero.
+export const COMPACT_LEAD_NAME = "Snelaanvraag";
+
 export function buildWhatsAppLeadUrl(fields: WhatsAppLeadFields): string {
   const lines = [
     "Hoi TPS, ik wil graag een offerte aanvragen:",
     "",
-    `Naam: ${fields.naam}`,
-    `Telefoon: ${fields.telefoon}`,
-    `Postcode: ${fields.postcode}`,
-    `Dienst: ${fields.dienst}`,
   ];
+
+  // Push Naam only for a real, non-sentinel name — mirrors the email/bericht idiom.
+  const naam = fields.naam?.trim();
+  if (naam && naam !== COMPACT_LEAD_NAME) lines.push(`Naam: ${naam}`);
+
+  lines.push(`Telefoon: ${fields.telefoon}`);
+  lines.push(`Postcode: ${fields.postcode}`);
+  lines.push(`Dienst: ${fields.dienst}`);
 
   const email = fields.email?.trim();
   if (email) lines.push(`E-mail: ${email}`);
