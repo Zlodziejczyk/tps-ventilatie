@@ -52,7 +52,7 @@ export function HomeHero() {
         <span className="blob b3 left-[18%] bottom-[-25%] h-[60%] w-[60%]" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <div className="relative mx-auto max-w-7xl px-6 pt-28 pb-16 md:pt-32 md:pb-24">
         <div className="grid items-start gap-10 @min-[860px]:grid-cols-[1.15fr_0.85fr]">
           {/* Left — proof-forward hero copy */}
           <div>
