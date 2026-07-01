@@ -237,7 +237,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Wave 2** *(section components — blocked on Wave 1)*
 
 - [x] 06-04-PLAN.md — HomeHero client island (badge, one h1, proof bar, coverage line, aurora, compact form) + PillarGrid (taxonomy cards, Offerte gesture, brand chips + WTW/MV fallback) [wave 2]
-- [ ] 06-05-PLAN.md — ProofBand (score + CSS-G + 3 static cards + BRL 100/200 + KvK + USP pills) + ImageBand (lazy home-hero.jpg, off LCP) [wave 2]
+- [x] 06-05-PLAN.md — ProofBand (score + CSS-G + 3 static cards + BRL 100/200 + KvK + USP pills) + ImageBand (lazy home-hero.jpg, off LCP) [wave 2]
 
 **Wave 3** *(assembly — blocked on Wave 2)*
 
@@ -304,7 +304,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
-| 6. Homepage conversion uplift | 4/6 | In Progress|  |
+| 6. Homepage conversion uplift | 5/6 | In Progress|  |
 | 7. UI/UX & Accessibility Remediation | 0/8 | Planned | - |
 
 ## Backlog
