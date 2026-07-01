@@ -24,10 +24,10 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 
 ## Current Position
 
-Phase: 6 (homepage-conversion-uplift) — EXECUTING
-Plan: 1 of 6
-Status: Executing Phase 6
-Last activity: 2026-07-01 -- Phase 6 execution started
+Phase: 6 (homepage-conversion-uplift) — COMPLETE (all 6 plans; preview build green)
+Plan: 6 of 6
+Status: Phase 6 executed — Vercel preview build READY; owner sign-off pending
+Last activity: 2026-07-01 -- Phase 6 execution complete (6/6 plans, preview build green)
 
 Progress: [██████████] 97%
 
@@ -127,8 +127,9 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-01T12:06:33.285Z
-Stopped at: Phase 6 context gathered
+Last session: 2026-07-01 — Phase 6 executed end-to-end (6/6 plans, 3 waves, inline sequential per OneDrive constraint).
+Stopped at: Phase 6 complete — Vercel preview build READY (green). Homepage rebuilt: HomeHero island (proof-forward hero + 4-pillar grid + pillar→form gesture), ProofBand + ImageBand, ClosingCTA; app/page.tsx composes the 4 new sections (5 old sections + CTABanner retired, files left on disk for Phase-7 cleanup). Preview branch alias: tps-ventilatie-git-gsd-phase-05-lead-cap-fd0fe4-pushly-projects.vercel.app (commit 8a29d86).
+NEXT: (1) owner preview sign-off of home copy (H1/coverage), WTW/MV brands, closing band — non-blocking; (2) preview behavioral spot-check (compact submit → /api/lead 200 + WhatsApp; pillar Offerte pre-select+scroll; aurora desktop-only; INP<200ms/LCP=H1; axe AA); (3) optional /gsd-secure-phase (no new trust boundaries — reuses Phase-5 /api/lead) + /gsd-verify-work; (4) Phase 7 (UI/UX & a11y remediation) deletes the retired section files.
 Resume file: .planning/phases/06-homepage-conversion-uplift/06-CONTEXT.md
 
 Session resumed: 2026-06-29 — restored context; frontier = Phase 5 planning (CONTEXT.md ready, decision gate resolved to hybrid). Phase 4 editorial gate remains async/owner-blocked on Thomas's whole-site sign-off (preview r6znbcg6f).
