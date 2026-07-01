@@ -133,6 +133,49 @@
   animation: air-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* Pure-CSS brand-teal aurora (D-04 / D-19) — drifting blurred radial blobs that
+   replace the WebGL SoftAurora for CWV. A static soft base always paints; the drift
+   animations run ONLY on desktop + no-reduced-motion (mobile / SSR / reduced-motion
+   get zero animation → lowest INP, off the LCP path). Bare classes + @keyframes,
+   mirroring .air-pulse (NOT @theme, NOT @utility). Calm brand-teal tints only
+   (#a8dff0 / #b8e8d0 / #baeaff) — no loud accent colors, no phantom sketch vars. */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.aurora .blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+}
+.aurora .b1 { background: radial-gradient(circle at 30% 30%, #a8dff0, transparent 65%); }
+.aurora .b2 { background: radial-gradient(circle at 70% 40%, #b8e8d0, transparent 65%); }
+.aurora .b3 { background: radial-gradient(circle at 50% 70%, #baeaff, transparent 65%); }
+
+@keyframes drift1 { to { transform: translate3d(6%, 4%, 0) scale(1.08); } }
+@keyframes drift2 { to { transform: translate3d(-5%, 6%, 0) scale(1.06); } }
+@keyframes drift3 { to { transform: translate3d(4%, -5%, 0) scale(1.1); } }
+
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .aurora .b1 { animation: drift1 22s cubic-bezier(0.25, 0.1, 0.25, 1) infinite alternate; }
+  .aurora .b2 { animation: drift2 26s cubic-bezier(0.25, 0.1, 0.25, 1) infinite alternate; }
+  .aurora .b3 { animation: drift3 30s cubic-bezier(0.25, 0.1, 0.25, 1) infinite alternate; }
+}
+
+/* Cheap CSS fade-up entrance (D-19) — a lighter, JS-free alternative to framer-motion
+   for the rebuilt home sections. Uses the real cubic-bezier (the sketch's --ease-clarity
+   translated). Nulled under reduced-motion below (and reset visible so content shows). */
+.fu {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fu 0.55s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+@keyframes fu { to { opacity: 1; transform: none; } }
+
 @media (prefers-reduced-motion: reduce) {
   .air-pulse,
   .animate-fan-spin {
@@ -145,5 +188,10 @@
   .hover-lift:hover,
   .btn-hover:hover {
     transform: none !important;
+  }
+  .fu {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
