@@ -8,10 +8,10 @@ export function ImageBand() {
     <section className="mx-auto max-w-7xl px-6 pb-16">
       <div className="overflow-hidden rounded-4xl bg-surface-container-high">
         <Image
-          src="/images/heroes/home-hero.jpg"
-          alt="TPS-monteur installeert een klimaatsysteem"
-          width={1600}
-          height={900}
+          src="/images/heroes/home-hero-crop.jpg"
+          alt="Wandmodel airconditioning in een lichte woonkamer met daglicht"
+          width={1300}
+          height={731}
           sizes="100vw"
           className="h-auto w-full object-cover"
           loading="lazy"

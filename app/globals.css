@@ -159,7 +159,7 @@
   position: absolute;
   border-radius: 9999px;
   filter: blur(60px);
-  opacity: 0.45;
+  opacity: 0.6;
   mix-blend-mode: multiply;
 }
 .aurora .b1 { background: radial-gradient(circle at 30% 30%, #a8dff0, transparent 65%); }

@@ -44,7 +44,7 @@ export function PillarGrid({ onOfferte }: PillarGridProps) {
           return (
             <article
               key={pillar.pillarSlug}
-              className="flex flex-col rounded-3xl bg-surface-container-low p-6"
+              className="hover-lift flex flex-col rounded-3xl bg-surface-container-lowest p-6 shadow-sm hover:shadow-xl"
             >
               <div className="flex items-center gap-3">
                 <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary-container text-on-primary-container">
