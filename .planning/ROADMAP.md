@@ -19,6 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 4: Content Fill & Editorial Gate** - Unique, accurate, owner-reviewed Dutch copy on every page (the launch quality gate)
 - [ ] **Phase 5: Lead Capture, Form Security & Launch QA** - Secure lead path with instant owner notification, the static-vs-hybrid decision gate, and the launch-readiness QA pass
 - [ ] **Phase 6: Homepage conversion uplift** - Premium conversion-optimized home page (proof-forward hero, equal 4-pillar grid, trust/contact band) built from the validated sketch findings
+- [ ] **Phase 7: UI/UX & Accessibility Remediation** - Bring every page to WCAG 2.1 AA (contrast, heading order, skip-link/landmarks, touch targets) and apply brand-consistency polish, from the 2026-06-30 UI/UX audit (8.7/10)
 
 ## Phase Details
 
@@ -221,10 +222,52 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: TBD
 **UI hint**: yes
 
+### Phase 7: UI/UX and Accessibility Remediation
+
+**Goal**: Bring every page to WCAG 2.1 AA on the audited dimensions and resolve the remaining visual/brand-consistency nits from the 2026-06-30 UI/UX audit (Playwright + design-intelligence sweep, 8 pages × 4 viewports, score 8.7/10) — so the site launches accessible and on-brand. Only A11Y-01 is launch-gating; the rest is layered hardening + polish.
+**Depends on**: Phase 5 (shared lead-path components: CTABanner, ServiceHero, StickyContactBar, MobileMenu, OfferteForm). Homepage-hero items (UI-05–UI-07) additionally depend on Phase 6's hero rebuild.
+**Requirements**: A11Y-01, A11Y-02, A11Y-03, A11Y-04, UI-05, UI-06, UI-07, UI-08, UI-09, UI-10
+**Success Criteria** (what must be TRUE):
+
+  1. An automated re-audit shows zero solid-background WCAG AA contrast failures on interactive text/controls across all pages — the WhatsApp CTAs (`components/CTABanner.tsx`, `components/ServiceHero.tsx`) and the contact WhatsApp icon read ≥4.5:1 (≥3:1 for the glyph) — verified on the Vercel preview (A11Y-01, UI-10)
+  2. Every page's heading outline nests without level skips (exactly one h1; no h1→h3 or h2→h4 jumps in `WhyTPSSection`, `Footer`, `/diensten`, `/over-ons`), with visual sizing unchanged (A11Y-02)
+  3. Every page exposes a keyboard-reachable skip-link to the existing `<main>` landmark, and all non-inline interactive controls (sticky-bar close, mobile-menu chevrons, carousel arrows) meet a ≥44px hit-area (A11Y-03, A11Y-04)
+  4. The homepage hero is on-brand and all-Dutch — Dutch badge (not "Clean Air Technology"), a calmer brand-teal aurora, and trust-pills that lay out cleanly at 375px — applied to the Phase-6 hero with no regression (UI-05, UI-06, UI-07)
+  5. Site-wide interaction polish holds: the diensten mega-menu is keyboard-operable with correct `aria-expanded`/`aria-haspopup`, and the sticky contact bar never occludes footer content at full scroll — re-audit + manual pass green on the preview (UI-08, UI-09)
+
+**Plans**: 8 plans (4 waves)
+
+**Wave 1** *(local accessibility fixes — shared components, independent of the Phase-6 rebuild; may be pulled forward if launch precedes Phase 6)*
+
+- [ ] 07-01-PLAN.md — WhatsApp/green contrast: CTABanner + ServiceHero dark-on-green text + contact icon glyph (A11Y-01 launch-gate, UI-10) [wave 1]
+- [ ] 07-02-PLAN.md — Heading-order re-rank: WhyTPSSection h4→h3, Footer h4→h2, over-ons h3→h2, /diensten sr-only h2 (ServiceCard untouched) (A11Y-02) [wave 1]
+- [ ] 07-04-PLAN.md — Touch targets ≥44px: sticky-bar close, mobile-menu chevrons, review-carousel arrows (A11Y-04) [wave 1]
+
+**Wave 2** *(blocked on Wave 1 — re-touches the same page files)*
+
+- [ ] 07-03-PLAN.md — Skip-link "Naar inhoud" in layout + `id="main"` on all 8 `<main>` landmarks (A11Y-03) [wave 2]
+
+**Wave 3** *(polish; UI-05/06/07 depend on the Phase-6 hero rebuild — verify-and-remediate)*
+
+- [ ] 07-05-PLAN.md — Sticky-bar bottom spacer so it never occludes the footer (UI-08) [wave 3]
+- [ ] 07-06-PLAN.md — Mega-menu keyboard/ARIA: aria-haspopup/expanded + focus-open + Escape (UI-09) [wave 3]
+- [ ] 07-07-PLAN.md — Homepage hero brand/Dutch: Dutch badge, teal aurora, clean 375px pills — post-Phase-6 (UI-05, UI-06, UI-07) [wave 3]
+
+**Wave 4** *(blocked on all — preview verification gate, `autonomous: false`)*
+
+- [ ] 07-08-PLAN.md — Push→Vercel preview + `re-audit.mjs`: 0 contrast fails, 0 heading skips, skip-link, ≥44px targets + manual UI pass
+
+**Cross-cutting constraints** (hold across plans):
+- Keep the Atmospheric Clarity design system: no 1px section borders (tonal layering), no `#000` text (use `on-surface` `#141D1F`), business data via the `SITE` constant, icons via the `Icon` wrapper.
+- Validate on a **Vercel preview** (no local `next build` — OneDrive deadlock); re-verify with the Playwright UI-audit harness (see the `ui-audit-harness` memory) — target: 0 AA contrast fails, 0 heading skips, skip-link focusable, controls ≥44px.
+- Findings source: UI/UX audit 2026-06-30 (8.7/10). **A11Y-01 is the only launch-gating item.**
+
+**UI hint**: yes
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -234,6 +277,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
 | 6. Homepage conversion uplift | 0/TBD | Not started | - |
+| 7. UI/UX & Accessibility Remediation | 0/8 | Planned | - |
 
 ## Backlog
 
@@ -244,6 +288,8 @@ Deferred items captured outside the active phase sequence. Review or promote wit
 ## Coverage
 
 All 43 v1 requirements mapped to exactly one phase (IA 9, CONT 10, LEAD 6, SEO 10, QA 8). No orphans, no duplicates. BLOG-01 and other v2 items are intentionally excluded from this launch roadmap.
+
+Phase 7 introduces a post-audit launch-hardening group (A11Y-01…04, UI-05…10 — 10 items) additive to the original 43; these come from the 2026-06-30 UI/UX audit, not the initial requirements scope.
 
 | Phase | Requirements | Count |
 |-------|--------------|-------|
