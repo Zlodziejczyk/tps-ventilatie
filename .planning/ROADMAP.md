@@ -18,7 +18,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: SEO Infrastructure** - Sitemap, robots, JSON-LD, canonical/OG, GBP alignment, and analytics + Search Console across every page (completed 2026-06-06)
 - [ ] **Phase 4: Content Fill & Editorial Gate** - Unique, accurate, owner-reviewed Dutch copy on every page (the launch quality gate)
 - [ ] **Phase 5: Lead Capture, Form Security & Launch QA** - Secure lead path with instant owner notification, the static-vs-hybrid decision gate, and the launch-readiness QA pass
-- [ ] **Phase 6: Homepage conversion uplift** - Premium conversion-optimized home page (proof-forward hero, equal 4-pillar grid, trust/contact band) built from the validated sketch findings
+- [x] **Phase 6: Homepage conversion uplift** - Premium conversion-optimized home page (proof-forward hero, equal 4-pillar grid, trust/contact band) built from the validated sketch findings (completed 2026-07-01)
 - [ ] **Phase 7: UI/UX & Accessibility Remediation** - Bring every page to WCAG 2.1 AA (contrast, heading order, skip-link/landmarks, touch targets) and apply brand-consistency polish, from the 2026-06-30 UI/UX audit (8.7/10)
 
 ## Phase Details
@@ -241,7 +241,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 3** *(assembly — blocked on Wave 2)*
 
-- [ ] 06-06-PLAN.md — ClosingCTA restyle (dark band, AA-safe WhatsApp, Icon wrapper) + app/page.tsx rewrite (compose 4 sections, retire old imports, keep metadata) [wave 3]
+- [x] 06-06-PLAN.md — ClosingCTA restyle (dark band, AA-safe WhatsApp, Icon wrapper) + app/page.tsx rewrite (compose 4 sections, retire old imports, keep metadata) [wave 3]
 
 **Cross-cutting constraints** (hold across plans):
 - Composition of existing verified assets (zero new dependencies) — extend/reuse, never fork (OfferteForm, StickyContactBar inherited, taxonomy, reviews, BrandGrid, Icon).
@@ -304,7 +304,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
-| 6. Homepage conversion uplift | 5/6 | In Progress|  |
+| 6. Homepage conversion uplift | 6/6 | Complete   | 2026-07-01 |
 | 7. UI/UX & Accessibility Remediation | 0/8 | Planned | - |
 
 ## Backlog
