@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 Phase: 05 (lead-capture-form-security-launch-qa) — EXECUTING
 Plan: 6 of 6
 Status: Ready to execute
-Last activity: 2026-07-01 -- Phase 07 planning complete
+Last activity: 2026-07-01 -- Quick task 260701-koc: fixed StickyContactBar mobile shatter (mobile audit → Phase 7)
 
 Progress: [██████████] 97%
 
@@ -115,6 +115,7 @@ None yet.
 |---|-------------|------|--------|-----------|
 | 260628-q2u | TIER 1 branding fixes (04-revise): Navbar brand+logo, stale brand refs, Nieuw badge clip | 2026-06-28 | 8fbd954 | [260628-q2u-tier-1-branding-fixes-04-revise-navbar-b](./quick/260628-q2u-tier-1-branding-fixes-04-revise-navbar-b/) |
 | 260628-4d3 | TIER 2 (04-revise): ServiceHero redesign — two-column, lead/supporting split + engineered trust card (defect #4 walls of text) | 2026-06-28 | b55de17 | [260628-4d3-tier-2-servicehero-redesign](./quick/260628-4d3-tier-2-servicehero-redesign/) |
+| 260701-koc | Fix StickyContactBar mobile shatter — content-sized single-row pills (<560px), digits dropped on mobile; verified 320/360/390/414 (bar 258px→114px). Rest of mobile audit → Phase 7 | 2026-07-01 | e72464f | [260701-koc-fix-stickycontactbar-mobile-layout-compa](./quick/260701-koc-fix-stickycontactbar-mobile-layout-compa/) |
 
 ## Deferred Items
 
