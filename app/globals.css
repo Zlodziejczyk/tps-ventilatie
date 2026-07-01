@@ -195,3 +195,16 @@
     transform: none;
   }
 }
+
+/* CSS Google "G" mark (D-14) — the only Google-brand mark on the page, drawn purely
+   from a conic-gradient + a center-cut radial mask. No image, no SVG, no network
+   asset (no 404 risk). Fixed 16px; the ProofBand can wrap it to position/scale. */
+.gmark {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  background: conic-gradient(from -45deg, #ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0);
+  -webkit-mask: radial-gradient(circle 4px at center, transparent 96%, #000);
+  mask: radial-gradient(circle 4px at center, transparent 96%, #000);
+}
