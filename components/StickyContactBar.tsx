@@ -58,7 +58,7 @@ export function StickyContactBar() {
         <Icon name="close" className="text-[20px]" />
       </button>
 
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 pr-12 max-[560px]:flex-col max-[560px]:items-stretch max-[560px]:gap-2.5 max-[560px]:pr-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 pr-12 max-[560px]:flex-col max-[560px]:items-stretch max-[560px]:gap-2.5 max-[560px]:px-3">
         <p className="flex items-center gap-2 font-semibold text-on-surface max-[560px]:pr-8">
           <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-60 motion-safe:animate-ping" />
@@ -67,14 +67,16 @@ export function StickyContactBar() {
           Direct contact?
         </p>
 
-        <div className="flex items-center gap-2 max-[560px]:w-full">
+        {/* Content-sized pills (never flex-1: equal thirds crush "WhatsApp" and shatter
+            the phone number <560px). whitespace-nowrap + dropped digits keep one clean row. */}
+        <div className="flex items-center gap-2 min-w-0 max-[560px]:w-full max-[560px]:justify-center max-[560px]:gap-1">
           <a
             href={`tel:${SITE.phone}`}
-            className="btn-hover flex items-center justify-center gap-2 rounded-full bg-surface-container-high px-4 py-2.5 font-semibold text-on-surface max-[560px]:flex-1"
+            className="btn-hover flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-surface-container-high px-4 py-2.5 font-semibold text-on-surface max-[560px]:gap-1.5 max-[560px]:px-2 max-[560px]:text-sm"
           >
-            <Icon name="call" filled className="text-[20px] text-primary" />
+            <Icon name="call" filled className="text-[20px] text-primary max-[560px]:text-[18px]" />
             <span>
-              Bel <span className="font-normal text-on-surface-variant">{SITE.phoneDisplay}</span>
+              Bel<span className="font-normal text-on-surface-variant max-[560px]:hidden"> {SITE.phoneDisplay}</span>
             </span>
           </a>
 
@@ -82,17 +84,17 @@ export function StickyContactBar() {
             href={SITE.whatsappUrl}
             target="_blank"
             rel="noopener"
-            className="btn-hover flex items-center justify-center gap-2 rounded-full bg-surface-container-high px-4 py-2.5 font-semibold text-on-surface max-[560px]:flex-1"
+            className="btn-hover flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-surface-container-high px-4 py-2.5 font-semibold text-on-surface max-[560px]:gap-1.5 max-[560px]:px-2 max-[560px]:text-sm"
           >
-            <Icon name="chat" filled className="text-[20px] text-primary" />
+            <Icon name="chat" filled className="text-[20px] text-primary max-[560px]:text-[18px]" />
             WhatsApp
           </a>
 
           <Link
             href="/contact"
-            className="btn-hover signature-gradient flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-semibold text-white max-[560px]:flex-1"
+            className="btn-hover signature-gradient flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 font-semibold text-white max-[560px]:gap-1.5 max-[560px]:px-2.5 max-[560px]:text-sm"
           >
-            <Icon name="request_quote" filled className="text-[20px]" />
+            <Icon name="request_quote" filled className="text-[20px] max-[560px]:text-[18px]" />
             Offerte
           </Link>
         </div>
