@@ -59,6 +59,14 @@
 
 ---
 
+### UI-11 · Footer brand refresh  (routed here from the Phase-6 discussion, 2026-07-01)
+- Site-wide `components/Footer.tsx`, pairs with the A11Y-02 footer heading-order pass (one footer edit). Scope agreed with owner:
+  - **Real PNG logo** — replace the text wordmark (`SITE.name`) with the owner's PNG (via `next/image`), sized for the brand column.
+  - **Klimaattechniek copy** — rewrite "Uw specialist in hoogwaardige ventilatieoplossingen…" to the 4-pillar klimaattechniek positioning, aligned with the SITE slogan "Specialist in gezond binnenklimaat".
+  - **Live-taxonomy Diensten links** — rebuild the Diensten column from `lib/services/` (add Warmtepompen; link real pillar URLs) instead of the 4 stale links all pointing at `/diensten`.
+  - **Drop the 1px border** — replace the bottom-bar `border-t border-outline-variant/20` with Atmospheric-Clarity tonal layering.
+- **Owner-blocked (do NOT wait on):** Instagram/Facebook social icons — IG/FB URLs still pending from Thomas (also feeds JSON-LD `sameAs`). Ship the refresh without them; add later.
+
 ## Sequencing note (important)
 **Phase 6 rebuilds the homepage hero.** Wave-1 items touch shared components (independent — may be pulled forward if launch precedes Phase 6). Wave-2 items **UI-05 / UI-06 / UI-07 live in the hero** → do them *after* Phase 6's hero lands, or fold them into Phase 6, to avoid rework. UI-08 / UI-09 / UI-10 are independent.
 
