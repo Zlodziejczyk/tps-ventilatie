@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { BRANDS, type BrandId } from "@/lib/services/brands";
+import { BRANDS, BRAND_COLOR, type BrandId } from "@/lib/services/brands";
 import { Icon } from "@/components/Icon";
 
 // IA-06 brand grid (server component, D-03). Renders TEXT brand chips — a small
@@ -8,12 +8,7 @@ import { Icon } from "@/components/Icon";
 // that do not exist yet (RESEARCH §4), so an image tag would 404. Renders
 // nothing when there are no brandIds (D-06). Brands the owner is an "erkend
 // installateur" for show a verified badge (CONT-03 resolved 2026-06-28, intake §5).
-const BRAND_COLOR: Record<string, string> = {
-  daikin: "#0086C9",
-  "mitsubishi-electric": "#E60012",
-  "mitsubishi-heavy": "#003F87",
-  "mitsubishi-ecodan": "#E60012",
-};
+// BRAND_COLOR now lives in lib/services/brands.ts (shared with PillarGrid, D-12).
 
 export function BrandGrid({ brandIds }: { brandIds?: string[] }) {
   if (!brandIds || brandIds.length === 0) return null;

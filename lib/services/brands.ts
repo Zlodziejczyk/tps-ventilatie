@@ -48,3 +48,14 @@ export const BRANDS = {
 } as const;
 
 export type BrandId = keyof typeof BRANDS;
+
+// Shared brand-mark hex map (D-12). Extracted from BrandGrid so the Wave-2
+// PillarGrid brand chips can import the same source instead of duplicating it.
+// Keyed by the same brand ids as BRANDS. Additive — does not alter BRANDS shape
+// or BrandId, so the prebuild taxonomy gate stays green.
+export const BRAND_COLOR: Record<string, string> = {
+  daikin: "#0086C9",
+  "mitsubishi-electric": "#E60012",
+  "mitsubishi-heavy": "#003F87",
+  "mitsubishi-ecodan": "#E60012",
+};
