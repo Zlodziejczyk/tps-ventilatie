@@ -85,3 +85,21 @@
 3. Keyboard skip-link → `<main>`; all non-inline interactive controls ≥ 44 px.
 4. Homepage hero on-brand + all-Dutch (Dutch badge, calmer teal aurora, clean 375 px pills) — no regression on the Phase-6 hero.
 5. Mega-menu keyboard-operable with correct ARIA; sticky bar never occludes the footer.
+
+---
+
+## ADDENDUM — Mobile-only re-audit (2026-07-01)
+
+**Provenance:** Follow-up audit triggered by an owner-reported mobile bug (iPhone 12 Pro / 390px). Ran an extended harness (`scratchpad/mobile-audit.mjs`) against **local `next dev`** at real device widths **320 / 360 / 390 / 414 + 768**, exercising **scroll-to-reveal + interactive states** (the original audit only captured the sticky bar at desktop width and only checked *horizontal* scroll — so it missed vertical text-shatter). Every machine flag was pixel-verified.
+
+### ✅ FIXED here (not Phase 7 work) — quick task 260701-koc (commit e72464f)
+- **Sticky "Direct contact?" bar shattered on every phone.** Below 560px the pills were `flex-1` (equal thirds); the "Bel 06 - 29 40 34 50" text wrapped one-token-per-line, the bar ballooned to **258px** (29–45% of viewport) and "Offerte" clipped off-screen. Fix: content-sized pills + `whitespace-nowrap` + inline digits dropped <560px (`tel:` still dials). Bar now 114px; verified 0 shatter / 0 overflow at 320/360/390/414; desktop unchanged.
+- **Re-verify implications for existing Phase 7 items:** A11Y-04's sticky-close **32×32** is still unfixed (untouched). UI-08 (footer occlusion) should be re-checked against the new **114px** mobile bar height (was 258px).
+
+### NEW findings to fold into Phase 7 (verified, not in the original list)
+- **UI-11 · Primary "Bekijk [dienst]" CTAs are 40px tall (<44px).** `signature-gradient` buttons on `/diensten` + pillar/service pages (ServiceHero/ServiceCard/RelatedServices). Conversion buttons — extend the A11Y-04 ≥44px pass to cover them (likely one shared button-height token). Also FAQ `<summary>` toggles ~24px and the "(34 reviews op Google)" link 40px.
+- **UI-12 · "Nieuw" badge at 9px font.** `components/Navbar.tsx:187` + `components/MobileMenu.tsx:80` (`text-[9px]`), `app/diensten/page.tsx:48` (`text-[10px]`). Bump to ≥11px for readability.
+- **UI-13 · Raw `material-symbols-outlined` spans (guardrail violation).** `components/CTABanner.tsx` (27/36/44) + `app/page-sections/PricingSection.tsx` (64/103/132) bypass the `Icon` wrapper. Renders fine (font loads) but violates CLAUDE.md — swap to `<Icon>`. Pairs naturally with A11Y-01 (same CTABanner file) and UI-10.
+- **UI-14 · 320px robustness (smallest devices).** At 320px the hero rotating-word span + a couple CTA cards (`bg-on-primary-fixed rounded-3xl`) + the CTABanner tel button overflow their box by ~16–57px (clipped, no page scroll). Original audit only tested ≥375px. Low priority; verify once at 320.
+
+**Baseline still strong (mobile re-audit):** 0 page-level horizontal scroll at any width; mobile menu, contact form, and 768px tablet all clean. Harness + 89 screenshots retained in the session scratchpad; re-runnable against `:3100` or a preview.
