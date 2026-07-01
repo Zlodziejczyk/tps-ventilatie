@@ -90,6 +90,16 @@
   background: linear-gradient(135deg, #006580 0%, #257f9c 100%);
 }
 
+/* Gradient-clipped TEXT (D-06 hero accent). Must use background-IMAGE (not the
+   `background` shorthand, which resets background-clip back to border-box and makes the
+   gradient fill the whole box as solid blocks instead of clipping to the glyphs). */
+@utility gradient-text {
+  background-image: linear-gradient(120deg, #006580 0%, #1b8657 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 @utility text-balance {
   text-wrap: balance;
 }

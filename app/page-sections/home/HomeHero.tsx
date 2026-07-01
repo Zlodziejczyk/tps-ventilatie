@@ -65,7 +65,7 @@ export function HomeHero() {
             {/* Exactly one H1, with a gradient-accent span (D-06) */}
             <h1 className="mt-6 font-headline text-4xl font-extrabold leading-[1.1] tracking-tight text-on-surface sm:text-5xl">
               Airco, warmtepomp &amp; ventilatie —{" "}
-              <span className="signature-gradient bg-clip-text text-transparent">
+              <span className="gradient-text">
                 goed geregeld in Zoetermeer en heel Zuid-Holland
               </span>
             </h1>
