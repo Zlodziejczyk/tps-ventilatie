@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Icon } from "@/components/Icon";
+import { getInitials } from "@/lib/initials";
 
 export interface Review {
   name: string;
@@ -12,15 +13,6 @@ export interface Review {
 interface ReviewCarouselProps {
   reviews: Review[];
   intervalMs?: number;
-}
-
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
 }
 
 function Stars() {
