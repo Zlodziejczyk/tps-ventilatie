@@ -218,8 +218,36 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Goal**: Rebuild the home page around the three validated sketch-findings winners — a proof-forward hero, an equal scannable 4-pillar grid with brand logos, and a trust + contact band with a smart scroll-in sticky CTA — delivering the premium "Atmospheric Clarity, engineered" UI language so the site's highest-traffic page turns visitors into contacted leads.
 **Depends on**: Phase 5
-**Requirements**: TBD
-**Plans**: TBD
+**Requirements**: None mapped (coverage is driven by CONTEXT decisions D-01…D-19 — every trackable decision is cited in a plan's must_haves/truths)
+**Plans**: 6 plans (3 waves)
+**Success Criteria** (what must be TRUE):
+
+  1. The home page is a full rebuild — Hero → 4-pillar grid → proof/trust band → closing CTA — with the 5 old sections retired and the `<main>` landmark kept (D-01/D-02)
+  2. The proof-forward hero leads with proof (initials + 4,9 + 34 Google-reviews) + a compact offerte form that posts through the secure `/api/lead`, with a data-sourced coverage line and a pure-CSS brand-teal aurora (no WebGL) (D-03/D-04/D-06/D-07)
+  3. All four pillars are visible as an equal scannable grid; a primary click opens the pillar page and a distinct Offerte button pre-selects that service in the hero form and scrolls to it; WTW/MV render a neutral brand chip (D-08…D-13)
+  4. A trust/proof band shows 4,9 + CSS Google-G + 3 static review cards + BRL 100/200 + KvK + USP pills; the home-hero.jpg sits lower as a lazy off-LCP band (D-05/D-14/D-15)
+  5. An engineered dark closing CTA band ships AA-safe WhatsApp; Phase-7 hero items are baked in (Dutch badge, teal aurora, 375px pills, one h1); mobile INP < 200ms + good LCP on the Vercel preview (D-16/D-17/D-18/D-19)
+
+**Wave 1** *(enablers — parallel, no shared files)*
+
+- [ ] 06-01-PLAN.md — Shared extractions: getInitials → lib/initials.ts + BRAND_COLOR → lib/services/brands.ts (re-point consumers) [wave 1]
+- [ ] 06-02-PLAN.md — OfferteForm compact variant + controlled dienst + COMPACT_LEAD_NAME sentinel (naam/consent mechanic resolved) [wave 1]
+- [ ] 06-03-PLAN.md — CSS foundations in globals.css: gated pure-CSS aurora + CSS Google-G + .fu fade-up (no phantom tokens) [wave 1]
+
+**Wave 2** *(section components — blocked on Wave 1)*
+
+- [ ] 06-04-PLAN.md — HomeHero client island (badge, one h1, proof bar, coverage line, aurora, compact form) + PillarGrid (taxonomy cards, Offerte gesture, brand chips + WTW/MV fallback) [wave 2]
+- [ ] 06-05-PLAN.md — ProofBand (score + CSS-G + 3 static cards + BRL 100/200 + KvK + USP pills) + ImageBand (lazy home-hero.jpg, off LCP) [wave 2]
+
+**Wave 3** *(assembly — blocked on Wave 2)*
+
+- [ ] 06-06-PLAN.md — ClosingCTA restyle (dark band, AA-safe WhatsApp, Icon wrapper) + app/page.tsx rewrite (compose 4 sections, retire old imports, keep metadata) [wave 3]
+
+**Cross-cutting constraints** (hold across plans):
+- Composition of existing verified assets (zero new dependencies) — extend/reuse, never fork (OfferteForm, StickyContactBar inherited, taxonomy, reviews, BrandGrid, Icon).
+- Atmospheric Clarity guardrails: no 1px borders (tonal layering), no `#000` (`on-surface`), business data via `SITE`, icons via the `Icon` wrapper; port sketch CSS through the real-token translation table (zero phantom `var(--…)`).
+- Validate on the **Vercel preview** (no local `next build`/`tsc` — OneDrive deadlock); no test framework added; execution is **inline** (no worktrees/subagents on this mount). Never push `main` / never `vercel --prod`.
+
 **UI hint**: yes
 
 ### Phase 7: UI/UX and Accessibility Remediation
@@ -276,7 +304,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
-| 6. Homepage conversion uplift | 0/TBD | Not started | - |
+| 6. Homepage conversion uplift | 0/6 | Planned | - |
 | 7. UI/UX & Accessibility Remediation | 0/8 | Planned | - |
 
 ## Backlog
