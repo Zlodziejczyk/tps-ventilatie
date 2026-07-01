@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { OfferteForm } from "@/components/OfferteForm";
+import { PillarGrid } from "./PillarGrid";
 import { Icon } from "@/components/Icon";
 import { getInitials } from "@/lib/initials";
 import { REVIEWS, REVIEW_RATING } from "@/lib/reviews";
@@ -28,7 +29,20 @@ export function HomeHero() {
   // Coverage line composed from data (D-06) — never a hardcoded town list.
   const coverageTowns = SITE.serviceAreas.slice(1, 5).join(", ");
 
+  // Signature gesture (D-09): a pillar Offerte click pre-selects that service in the
+  // compact form (controlled dienst) and scrolls to it — reduced-motion-aware, no
+  // query param / useSearchParams / Suspense, so the page stays statically generated.
+  function routeToOfferte(pillarNavTitle: string) {
+    setDienst(pillarNavTitle);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    formRef.current?.scrollIntoView({
+      behavior: reduce ? "auto" : "smooth",
+      block: "center",
+    });
+  }
+
   return (
+    <>
     <section className="@container relative overflow-hidden">
       {/* Decorative pure-CSS aurora (06-03) — no WebGL/canvas, animation gated in CSS,
           off the LCP path (the H1 is LCP). */}
@@ -126,5 +140,8 @@ export function HomeHero() {
         </div>
       </div>
     </section>
+
+    <PillarGrid onOfferte={routeToOfferte} />
+    </>
   );
 }
