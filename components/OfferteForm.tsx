@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { submitLead } from "@/lib/forms";
+import { buildWhatsAppLeadUrl } from "@/lib/whatsapp";
 import { pillars } from "@/lib/services/registry";
 import { SITE } from "@/lib/constants";
 import { Icon } from "@/components/Icon";
@@ -18,9 +19,9 @@ interface OfferteFormProps {
 }
 
 export function OfferteForm({ defaultDienst }: OfferteFormProps) {
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
-    "idle",
-  );
+  // Once set, the lead has been handed off to WhatsApp (the primary channel). We keep
+  // the URL so the confirmation panel can offer a manual "open WhatsApp" fallback.
+  const [waUrl, setWaUrl] = useState<string | null>(null);
 
   // The 4 pillars from the taxonomy + a catch-all (D-06) — never a hardcoded list.
   const dienstOptions = [
@@ -28,9 +29,8 @@ export function OfferteForm({ defaultDienst }: OfferteFormProps) {
     "Anders / weet ik nog niet",
   ];
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("sending");
 
     const fd = new FormData(e.currentTarget);
     const data = {
@@ -44,22 +44,42 @@ export function OfferteForm({ defaultDienst }: OfferteFormProps) {
       website: String(fd.get("website") ?? ""), // honeypot — empty for real users
     };
 
-    const result = await submitLead(data);
-    setStatus(result.ok ? "success" : "error");
+    const url = buildWhatsAppLeadUrl(data);
+    setWaUrl(url);
+
+    // Silent GHL backup — fire-and-forget (keepalive lets it finish after we navigate).
+    void submitLead(data);
+
+    // Hand off to WhatsApp with the message pre-filled. Same-tab navigation is never
+    // pop-up-blocked and reliably deep-links into the app on mobile.
+    window.location.href = url;
   }
 
-  if (status === "success") {
+  if (waUrl) {
     return (
-      <div className="bg-tertiary-fixed/20 rounded-2xl p-8 text-center">
-        <Icon
-          name="check_circle"
-          filled
-          className="text-tertiary text-4xl mb-4 block"
-        />
-        <h3 className="text-xl font-bold font-headline mb-2">Aanvraag verzonden</h3>
+      <div className="bg-tertiary-fixed/20 rounded-2xl p-8 text-center space-y-4">
+        <Icon name="chat" filled className="text-tertiary text-4xl block" />
+        <h3 className="text-xl font-bold font-headline">WhatsApp wordt geopend…</h3>
         <p className="text-on-surface-variant">
-          Bedankt voor uw aanvraag. Wij nemen binnen 24 uur contact met u op.
+          We openen WhatsApp met uw gegevens al ingevuld — u hoeft alleen nog op
+          verzenden te tikken.
         </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+          <a
+            href={waUrl}
+            target="_blank"
+            rel="noopener"
+            className="btn-hover inline-flex items-center justify-center gap-2 rounded-xl bg-primary/10 text-primary px-4 py-2.5 font-semibold"
+          >
+            <Icon name="open_in_new" className="text-[20px]" /> Opent WhatsApp niet? Open handmatig
+          </a>
+          <a
+            href={`tel:${SITE.phone}`}
+            className="btn-hover inline-flex items-center justify-center gap-2 rounded-xl bg-primary/10 text-primary px-4 py-2.5 font-semibold"
+          >
+            <Icon name="call" filled className="text-[20px]" /> Liever bellen? {SITE.phoneDisplay}
+          </a>
+        </div>
       </div>
     );
   }
@@ -164,50 +184,17 @@ export function OfferteForm({ defaultDienst }: OfferteFormProps) {
         </span>
       </label>
 
-      {/* Fail-safe error affordance (D-07 / QA-04 / LEAD-05) — never stranded on "sending". */}
-      {status === "error" && (
-        <div className="bg-error-container text-on-error-container rounded-xl p-5 space-y-4">
-          <p className="text-sm font-medium">
-            Er ging iets mis bij het verzenden. Probeer het opnieuw of neem direct
-            contact met ons op — we helpen u graag.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href={`tel:${SITE.phone}`}
-              className="btn-hover flex items-center justify-center gap-2 rounded-xl bg-on-error-container/10 px-4 py-2.5 font-semibold"
-            >
-              <Icon name="call" filled className="text-[20px]" /> Bel {SITE.phoneDisplay}
-            </a>
-            <a
-              href={SITE.whatsappUrl}
-              target="_blank"
-              rel="noopener"
-              className="btn-hover flex items-center justify-center gap-2 rounded-xl bg-on-error-container/10 px-4 py-2.5 font-semibold"
-            >
-              <Icon name="chat" filled className="text-[20px]" /> WhatsApp
-            </a>
-            <button
-              type="button"
-              onClick={() => setStatus("idle")}
-              className="btn-hover flex items-center justify-center gap-2 rounded-xl bg-on-error-container/10 px-4 py-2.5 font-semibold"
-            >
-              <Icon name="refresh" className="text-[20px]" /> Opnieuw proberen
-            </button>
-          </div>
-        </div>
-      )}
-
       <div className="space-y-3">
         <button
           type="submit"
-          disabled={status === "sending"}
-          className="w-full signature-gradient text-on-primary py-4 rounded-xl font-bold text-lg shadow-md hover:shadow-lg transition-all active:scale-[0.98] disabled:opacity-60 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer"
+          className="w-full signature-gradient text-on-primary py-4 rounded-xl font-bold text-lg shadow-md hover:shadow-lg transition-all active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer inline-flex items-center justify-center gap-2"
         >
-          {status === "sending" ? "Verzenden..." : "Vraag offerte aan"}
+          <Icon name="chat" filled className="text-[22px]" />
+          Verstuur via WhatsApp
         </button>
         <p className="flex items-center justify-center gap-2 text-xs text-on-surface-variant">
           <Icon name="check_circle" filled className="text-tertiary text-base" />
-          Gratis en vrijblijvend · reactie binnen 24 uur
+          Gratis en vrijblijvend · u rondt af in WhatsApp
         </p>
       </div>
     </form>
