@@ -230,7 +230,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 1** *(enablers — parallel, no shared files)*
 
-- [ ] 06-01-PLAN.md — Shared extractions: getInitials → lib/initials.ts + BRAND_COLOR → lib/services/brands.ts (re-point consumers) [wave 1]
+- [x] 06-01-PLAN.md — Shared extractions: getInitials → lib/initials.ts + BRAND_COLOR → lib/services/brands.ts (re-point consumers) [wave 1]
 - [ ] 06-02-PLAN.md — OfferteForm compact variant + controlled dienst + COMPACT_LEAD_NAME sentinel (naam/consent mechanic resolved) [wave 1]
 - [ ] 06-03-PLAN.md — CSS foundations in globals.css: gated pure-CSS aurora + CSS Google-G + .fu fade-up (no phantom tokens) [wave 1]
 
@@ -304,7 +304,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 3. SEO Infrastructure | 8/8 | Complete   | 2026-06-06 |
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
-| 6. Homepage conversion uplift | 0/6 | Planned | - |
+| 6. Homepage conversion uplift | 1/6 | In Progress|  |
 | 7. UI/UX & Accessibility Remediation | 0/8 | Planned | - |
 
 ## Backlog
