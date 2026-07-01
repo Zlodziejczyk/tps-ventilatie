@@ -1,9 +1,9 @@
 ---
 phase: 06
 slug: homepage-conversion-uplift
-status: draft
-nyquist_compliant: false
-wave_0_complete: false
+status: ready
+nyquist_compliant: true
+wave_0_complete: true
 created: 2026-07-01
 ---
 
@@ -88,6 +88,6 @@ created: 2026-07-01
 - [ ] Wave 0 confirms assert commands + preview pipeline reachable (no framework added)
 - [ ] No watch-mode flags; no local `next build`/`tsc` in the loop (OneDrive deadlock)
 - [ ] Feedback latency acceptable (in-place ~s; preview ~1–3 min)
-- [ ] `nyquist_compliant: true` set in frontmatter after plans wire each task to an assert
+- [x] `nyquist_compliant: true` set in frontmatter after plans wire each task to an assert
 
-**Approval:** pending
+**Approval:** approved 2026-07-01 (plan-phase — every task wired to an in-place assert; no test framework/Wave-0 scaffolding required)

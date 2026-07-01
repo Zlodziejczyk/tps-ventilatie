@@ -576,7 +576,14 @@ const brandIds = brandsForPillar(pillar.pillarSlug); // [] for wtw + mechanische
 | A6 | Prefer CSS fade-up over framer-motion for new sections (INP) | Pattern, Alternatives | `[ASSUMED]` — discretion | Minor INP cost if framer-motion used everywhere |
 | A7 | Coverage-line wording "Van Den Haag tot Gouda en Leiden — actief binnen 60 km rondom Zoetermeer" | D-06 | `[ASSUMED]` working copy (owner-approvable) | Owner may reword |
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+> All five were resolved in-plan during /gsd-plan-phase (2026-07-01) — no owner block. Resolution map:
+> 1. **RESOLVED** (Plan 06-02) — compact form sends a hidden owner-recognizable `COMPACT_LEAD_NAME = "Snelaanvraag"` sentinel (passes `naam.min(2)`) + a condensed explicit AVG consent (`consent:true` preserved); `buildWhatsAppLeadUrl` omits the sentinel Naam line. `leadSchema` untouched.
+> 2. **RESOLVED** (Plan 06-04) — WTW/MV render the neutral "Diverse merken · merkonafhankelijk" chip (`brandsForPillar()===[]`); the serviced-brand list is flagged as a non-blocking owner-review item.
+> 3. **RESOLVED** (Plan 06-06) — retired section imports removed now; the files are left on disk (lint-safe) for Phase-7 cleanup.
+> 4. **RESOLVED** (Plan 06-03) — aurora gated by pure-CSS media query (`min-width:768px` + `prefers-reduced-motion:no-preference`) for lowest INP; no JS hook.
+> 5. **RESOLVED** (Plan 06-03) — fade-up uses the cheap CSS `.fu` class; framer-motion reserved for isolated accents only.
 
 1. **Compact-form `naam` + `consent` mechanic (the key decision).**
    - What we know: the shared server `leadSchema` requires `naam.min(2)` and `consent: literal(true)`; the WhatsApp handoff is the primary channel (name arrives naturally in chat); `submitLead` runs as a best-effort silent backup with `keepalive`.
