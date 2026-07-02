@@ -202,6 +202,8 @@ export const WTW_PAGES: PageNode[] = [
     navTitle: "Vervangen",
     navDescription: "WTW-unit vervangen door een nieuw, zuinig systeem",
     icon: "swap_horiz",
+    // WTW brands TPS installs (owner 2026-07-02): Zehnder (preferred), Duco, Itho.
+    brandIds: ["zehnder", "duco", "itho-daalderop"],
     content: draftShell(
       "WTW-unit vervangen",
       "WTW-unit vervangen | TPS klimaattechniek",

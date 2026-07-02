@@ -189,6 +189,8 @@ export const MECHANISCHE_VENTILATIE_PAGES: PageNode[] = [
     navTitle: "Vervangen",
     navDescription: "Ventilatiebox vervangen door een zuinig systeem",
     icon: "swap_horiz",
+    // MV brands TPS installs (owner 2026-07-02): Zehnder (preferred), Duco.
+    brandIds: ["zehnder", "duco"],
     content: draftShell(
       "Mechanische ventilatie vervangen",
       "Ventilatiebox vervangen | TPS klimaattechniek",
