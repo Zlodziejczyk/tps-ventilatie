@@ -53,7 +53,7 @@ export function StickyContactBar() {
         type="button"
         onClick={dismiss}
         aria-label="Contactbalk sluiten"
-        className="btn-hover absolute right-3 top-2 flex h-8 w-8 items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high"
+        className="btn-hover absolute right-3 top-2 flex h-11 w-11 items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high"
       >
         <Icon name="close" className="text-[20px]" />
       </button>
