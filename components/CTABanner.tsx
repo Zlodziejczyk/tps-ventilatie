@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE } from "@/lib/constants";
+import { Icon } from "@/components/Icon";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 
 interface CTABannerProps {
@@ -24,7 +25,7 @@ export function CTABanner({ heading, description }: CTABannerProps) {
               href={`tel:${SITE.phone}`}
               className="btn-hover flex items-center gap-3 bg-surface-container-lowest text-on-primary-fixed px-6 py-3 rounded-xl font-bold hover:bg-primary-fixed transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
-              <span className="material-symbols-outlined">phone</span>
+              <Icon name="phone" />
               {SITE.phoneDisplay}
             </a>
             <a
@@ -33,7 +34,7 @@ export function CTABanner({ heading, description }: CTABannerProps) {
               rel="noopener noreferrer"
               className="btn-hover flex items-center gap-3 bg-[#25D366] text-on-surface px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
             >
-              <span className="material-symbols-outlined">chat</span>
+              <Icon name="chat" />
               WhatsApp
             </a>
           </div>
@@ -41,9 +42,7 @@ export function CTABanner({ heading, description }: CTABannerProps) {
 
         <div className="relative z-10">
           <div className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/10 text-center">
-            <span className="material-symbols-outlined text-5xl mb-4 text-primary-fixed block">
-              support_agent
-            </span>
+            <Icon name="support_agent" className="text-5xl mb-4 text-primary-fixed block" />
             <p className="font-bold mb-4">Direct een expert spreken?</p>
             <Link
               href="/contact"
