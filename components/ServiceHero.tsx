@@ -79,7 +79,7 @@ function HeroFacts() {
           href={SITE.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-hover flex items-center justify-center gap-2.5 bg-[#25D366] text-white py-3.5 rounded-xl font-bold hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+          className="btn-hover flex items-center justify-center gap-2.5 bg-[#25D366] text-on-surface py-3.5 rounded-xl font-bold hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
         >
           <Icon name="chat" filled className="text-xl" />
           Stuur een WhatsApp
