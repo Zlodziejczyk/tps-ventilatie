@@ -18,7 +18,7 @@ export function Footer() {
 
         {/* Diensten */}
         <div>
-          <h4 className="font-bold text-on-surface mb-6">Diensten</h4>
+          <h2 className="font-bold text-on-surface mb-6">Diensten</h2>
           <ul className="space-y-4 text-on-surface-variant">
             <li>
               <Link href="/diensten" className="hover:text-primary transition-colors">
@@ -45,7 +45,7 @@ export function Footer() {
 
         {/* Bedrijf */}
         <div>
-          <h4 className="font-bold text-on-surface mb-6">Bedrijf</h4>
+          <h2 className="font-bold text-on-surface mb-6">Bedrijf</h2>
           <ul className="space-y-4 text-on-surface-variant">
             <li>
               <Link href="/over-ons" className="hover:text-primary transition-colors">
@@ -72,7 +72,7 @@ export function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="font-bold text-on-surface mb-6">Contact</h4>
+          <h2 className="font-bold text-on-surface mb-6">Contact</h2>
           <ul className="space-y-4 text-on-surface-variant">
             <li>
               <a href={`tel:${SITE.phone}`} className="hover:text-primary transition-colors">
