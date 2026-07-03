@@ -24,10 +24,10 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 
 ## Current Position
 
-Phase: 6 (homepage-conversion-uplift) — COMPLETE (all 6 plans; preview build green)
+Phase: 6 (homepage-conversion-uplift) — COMPLETE & FINALIZED (all 6 plans; preview build green; owner-reviewed)
 Plan: 6 of 6
-Status: Phase 6 executed — Vercel preview build READY; owner sign-off pending
-Last activity: 2026-07-01 -- Phase 6 execution complete (6/6 plans, preview build green)
+Status: Phase 6 finalized — homepage approved on preview; no open items. Ready to merge to main (go-live) on owner go-ahead.
+Last activity: 2026-07-03 -- Phase 6 finalized (owner reviewed homepage; WTW/MV brands + erkend badges in; brand-color polish waived)
 
 Progress: [██████████] 97%
 
@@ -130,8 +130,9 @@ Items acknowledged and carried forward from previous milestone close:
 Last session: 2026-07-01 — Phase 6 executed end-to-end (6/6 plans, 3 waves, inline sequential per OneDrive constraint).
 Stopped at: Phase 6 complete — Vercel preview build READY (green). Homepage rebuilt: HomeHero island (proof-forward hero + 4-pillar grid + pillar→form gesture), ProofBand + ImageBand, ClosingCTA; app/page.tsx composes the 4 new sections (5 old sections + CTABanner retired, files left on disk for Phase-7 cleanup). Preview branch alias: tps-ventilatie-git-gsd-phase-05-lead-cap-fd0fe4-pushly-projects.vercel.app (commit 8a29d86).
 POST-EXECUTION FIXES (2026-07-01, after owner visual review — screenshot audit added): (a) hero H1 gradient shipped as blue blocks — signature-gradient's `background` shorthand defeats bg-clip-text; fixed with a dedicated `gradient-text` @utility using background-image (commit 7a24d54); (b) ImageBand reframed to a content-cropped home-hero-crop.jpg (blank wall removed via sharp) + pillar cards gained hover depth + aurora opacity bumped (commit 10fa4e4). Verified via Playwright screenshots (desktop 1440 + mobile 390) — all good. LESSON: green Vercel build ≠ visually correct; always screenshot-audit after UI deploy (see memory visual-verify-after-ui-deploy).
-WTW/MV BRANDS RESOLVED (owner 2026-07-02, commit a8e0b9f): WTW = Zehnder (preferred)/Duco/Itho Daalderop, MV = Zehnder/Duco added to BRANDS + wired to the Vervangen nodes (erkendInstallateur:false — installed, not attested dealer; approximate brand-mark colors pending official assets). Neutral fallback gone on homepage pillar grid + WTW/MV pillar pages. Verified on preview.
-NEXT: (1) owner preview sign-off of home copy (H1/coverage) + confirm the approximate brand colors/erkendInstallateur flags — non-blocking; (2) preview behavioral spot-check (compact submit → /api/lead 200 + WhatsApp; pillar Offerte pre-select+scroll; aurora desktop-only; INP<200ms/LCP=H1; axe AA); (3) optional /gsd-secure-phase (no new trust boundaries — reuses Phase-5 /api/lead) + /gsd-verify-work; (4) Phase 7 (UI/UX & a11y remediation) deletes the retired section files.
+WTW/MV BRANDS DONE (owner 2026-07-02→03): WTW = Zehnder (preferred)/Duco/Itho Daalderop, MV = Zehnder/Duco added to BRANDS + wired to the Vervangen nodes; erkendInstallateur:true (owner confirmed 2026-07-03 → verified badge renders on WTW/MV pillar pages, commit 4387d1a). Neutral fallback gone on homepage pillar grid + pillar pages. Verified on preview. Brand-mark square colors are approximate tints — owner WAIVED the official-color/logo swap (accepted as final, no open item).
+FINALIZED 2026-07-03 — owner reviewed the homepage on preview and approved; no open items remain for Phase 6.
+NEXT (owner-driven, non-blocking): (1) merge branch → main to go live (owner go-ahead — production deploy); (2) optional preview behavioral spot-check (compact submit → /api/lead 200 + WhatsApp; pillar Offerte pre-select+scroll); (3) optional /gsd-secure-phase + /gsd-verify-work artifacts; (4) Phase 7 (UI/UX & a11y remediation) deletes the retired section files.
 Resume file: .planning/phases/06-homepage-conversion-uplift/06-CONTEXT.md
 
 Session resumed: 2026-06-29 — restored context; frontier = Phase 5 planning (CONTEXT.md ready, decision gate resolved to hybrid). Phase 4 editorial gate remains async/owner-blocked on Thomas's whole-site sign-off (preview r6znbcg6f).
