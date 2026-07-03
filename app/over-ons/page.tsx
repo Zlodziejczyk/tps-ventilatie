@@ -85,7 +85,7 @@ export default function OverOnsPage() {
                   <Icon name={item.icon} className="text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-on-surface">{item.title}</h3>
+                  <h2 className="font-bold text-on-surface">{item.title}</h2>
                   <p className="text-on-surface-variant text-sm">{item.desc}</p>
                 </div>
               </div>
