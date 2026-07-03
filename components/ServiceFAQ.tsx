@@ -34,7 +34,7 @@ export function ServiceFAQ({
             key={`${i}-${faq.question}`}
             className="group bg-surface-container-low rounded-xl p-5 [&_summary::-webkit-details-marker]:hidden"
           >
-            <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-on-surface">
+            <summary className="flex items-center justify-between gap-4 min-h-[44px] cursor-pointer list-none font-semibold text-on-surface">
               {faq.question}
               <Icon
                 name="expand_more"
