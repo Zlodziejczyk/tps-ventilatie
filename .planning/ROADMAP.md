@@ -276,7 +276,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Wave 2** *(blocked on Wave 1 — re-touches the same page files)*
 
 - [x] 07-03-PLAN.md — Skip-link "Naar inhoud" in layout + `id="main"` on all 8 `<main>` landmarks (A11Y-03) [wave 2]
-- [ ] 07-10-PLAN.md — Conversion CTA target sizes ≥44px: ServiceHero + ServiceCard/RelatedServices "Bekijk" buttons + FAQ `<summary>` (UI-15; the CONTEXT's mislabelled 2nd "UI-11") [wave 2]
+- [x] 07-10-PLAN.md — Conversion CTA target sizes ≥44px: ServiceHero + ServiceCard/RelatedServices "Bekijk" buttons + FAQ `<summary>` (UI-15; the CONTEXT's mislabelled 2nd "UI-11") [wave 2]
 - [ ] 07-12-PLAN.md — Footer brand refresh: PNG logo + 4-pillar copy + live-taxonomy Diensten links + drop 1px border (IG/FB icons deferred, owner-blocked) (UI-11) [wave 2]
 
 **Wave 3** *(polish; UI-05/06/07 verified against the live post-Phase-6 hero)*
@@ -310,7 +310,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
 | 6. Homepage conversion uplift | 6/6 | Complete   | 2026-07-01 |
-| 7. UI/UX & Accessibility Remediation | 5/12 | In Progress|  |
+| 7. UI/UX & Accessibility Remediation | 6/12 | In Progress|  |
 
 ## Backlog
 
