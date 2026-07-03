@@ -56,7 +56,7 @@ const SECTIONS = [
 
 export default function PrivacyBeleidPage() {
   return (
-    <main className="pt-28 pb-20">
+    <main id="main" tabIndex={-1} className="pt-28 pb-20">
       <div className="max-w-3xl mx-auto px-6">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-sm text-on-surface-variant mb-8 font-label">

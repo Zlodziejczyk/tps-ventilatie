@@ -17,7 +17,7 @@ export const metadata = buildMetadata(findBySlug("/")!);
 // client island; the site-wide StickyContactBar stays inherited from app/layout.tsx (D-16).
 export default function Home() {
   return (
-    <main>
+    <main id="main" tabIndex={-1}>
       <HomeHero />
       <ProofBand />
       <ImageBand />

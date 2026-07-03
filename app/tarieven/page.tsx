@@ -12,7 +12,7 @@ export const metadata = buildMetadata(findBySlug("/tarieven")!);
 
 export default function TarievenPage() {
   return (
-    <main className="pt-28 pb-20">
+    <main id="main" tabIndex={-1} className="pt-28 pb-20">
       {/* Header */}
       <header className="max-w-7xl mx-auto px-6 mb-16">
         <AnimateOnScroll>

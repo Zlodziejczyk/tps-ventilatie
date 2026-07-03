@@ -51,7 +51,7 @@ export default async function ServiceDetailPage({ params }: { params: Params }) 
   if (!node) notFound();
 
   return (
-    <main className="pt-28 pb-20">
+    <main id="main" tabIndex={-1} className="pt-28 pb-20">
       {/* Per-page structured data (D-04) — server-rendered, no visual effect */}
       <JsonLd data={serviceJsonLd(node)} />
       <JsonLd data={breadcrumbJsonLd(node)} />

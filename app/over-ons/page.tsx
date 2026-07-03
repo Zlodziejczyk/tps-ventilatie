@@ -25,7 +25,7 @@ function getInitials(name: string) {
 
 export default function OverOnsPage() {
   return (
-    <main className="pt-28 pb-20">
+    <main id="main" tabIndex={-1} className="pt-28 pb-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Breadcrumb */}
         <AnimateOnScroll>

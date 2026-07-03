@@ -16,7 +16,7 @@ export const metadata = buildMetadata(findBySlug("/diensten")!);
 // (D-09); their rich content now lives per-route (seeded in 02-06).
 export default function DienstenPage() {
   return (
-    <main className="pt-28 pb-20">
+    <main id="main" tabIndex={-1} className="pt-28 pb-20">
       {/* Hero */}
       <AnimateOnScroll
         as="header"
