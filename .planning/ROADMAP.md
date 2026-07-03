@@ -254,36 +254,41 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Goal**: Bring every page to WCAG 2.1 AA on the audited dimensions and resolve the remaining visual/brand-consistency nits from the 2026-06-30 UI/UX audit (Playwright + design-intelligence sweep, 8 pages × 4 viewports, score 8.7/10) — so the site launches accessible and on-brand. Only A11Y-01 is launch-gating; the rest is layered hardening + polish.
 **Depends on**: Phase 5 (shared lead-path components: CTABanner, ServiceHero, StickyContactBar, MobileMenu, OfferteForm). Homepage-hero items (UI-05–UI-07) additionally depend on Phase 6's hero rebuild.
-**Requirements**: A11Y-01, A11Y-02, A11Y-03, A11Y-04, UI-05, UI-06, UI-07, UI-08, UI-09, UI-10
+**Requirements**: A11Y-01, A11Y-02, A11Y-03, A11Y-04, UI-05, UI-06, UI-07, UI-08, UI-09, UI-10, UI-11, UI-12, UI-13, UI-15 (UI-14 = 320px spot-check, verified in 07-08; no dedicated plan)
 **Success Criteria** (what must be TRUE):
 
   1. An automated re-audit shows zero solid-background WCAG AA contrast failures on interactive text/controls across all pages — the WhatsApp CTAs (`components/CTABanner.tsx`, `components/ServiceHero.tsx`) and the contact WhatsApp icon read ≥4.5:1 (≥3:1 for the glyph) — verified on the Vercel preview (A11Y-01, UI-10)
-  2. Every page's heading outline nests without level skips (exactly one h1; no h1→h3 or h2→h4 jumps in `WhyTPSSection`, `Footer`, `/diensten`, `/over-ons`), with visual sizing unchanged (A11Y-02)
-  3. Every page exposes a keyboard-reachable skip-link to the existing `<main>` landmark, and all non-inline interactive controls (sticky-bar close, mobile-menu chevrons, carousel arrows) meet a ≥44px hit-area (A11Y-03, A11Y-04)
-  4. The homepage hero is on-brand and all-Dutch — Dutch badge (not "Clean Air Technology"), a calmer brand-teal aurora, and trust-pills that lay out cleanly at 375px — applied to the Phase-6 hero with no regression (UI-05, UI-06, UI-07)
+  2. Every page's heading outline nests without level skips (exactly one h1; the `Footer`, `/diensten`, `/over-ons` skips fixed; the rebuilt homepage nests clean; the WhyTPSSection skip removed at source by deleting the dead file), with visual sizing unchanged (A11Y-02)
+  3. Every page exposes a keyboard-reachable skip-link to the existing `<main>` landmark, and all non-inline interactive controls (sticky-bar close, mobile-menu chevrons, carousel arrows, plus the "Bekijk" conversion CTAs and FAQ toggles) meet a ≥44px hit-area (A11Y-03, A11Y-04, UI-15)
+  4. The live homepage hero is on-brand and all-Dutch — Dutch badge (not "Clean Air Technology"), a calm brand-teal CSS aurora, and clean 375px layout — verified against the post-Phase-6 `HomeHero`/`globals.css` with no regression (UI-05, UI-06, UI-07)
   5. Site-wide interaction polish holds: the diensten mega-menu is keyboard-operable with correct `aria-expanded`/`aria-haspopup`, and the sticky contact bar never occludes footer content at full scroll — re-audit + manual pass green on the preview (UI-08, UI-09)
+  6. Brand/hygiene polish lands: the footer carries the PNG logo + 4-pillar copy + live-taxonomy Diensten links + no 1px border (UI-11), the "Nieuw" badge is legible ≥11px (UI-12), no raw Material-Symbols spans remain (UI-13), and the 5 retired Phase-6 section files are deleted (dead-code cleanup)
 
-**Plans**: 8 plans (4 waves)
+**Plans**: 12 plans (4 waves) — *replanned 2026-07-03 after Phase 6 landed: retargeted the stale hero plan (07-07) to the live `HomeHero`, dropped the dead-file `WhyTPSSection` fix from 07-02, and added the 2026-07-01 mobile re-audit scope (UI-11 footer, UI-12 badge, UI-13 icons, UI-15 CTA targets) + retired-file cleanup.*
 
-**Wave 1** *(local accessibility fixes — shared components, independent of the Phase-6 rebuild; may be pulled forward if launch precedes Phase 6)*
+**Wave 1** *(local accessibility fixes + cleanup — shared components, independent of the Phase-6 rebuild; may be pulled forward if launch precedes Phase 6)*
 
-- [ ] 07-01-PLAN.md — WhatsApp/green contrast: CTABanner + ServiceHero dark-on-green text + contact icon glyph (A11Y-01 launch-gate, UI-10) [wave 1]
-- [ ] 07-02-PLAN.md — Heading-order re-rank: WhyTPSSection h4→h3, Footer h4→h2, over-ons h3→h2, /diensten sr-only h2 (ServiceCard untouched) (A11Y-02) [wave 1]
+- [ ] 07-01-PLAN.md — WhatsApp/green contrast: CTABanner + ServiceHero dark-on-green text + contact icon glyph; + CTABanner raw-icon→Icon swap (A11Y-01 launch-gate, UI-10, UI-13) [wave 1]
+- [ ] 07-02-PLAN.md — Heading-order re-rank: Footer h4→h2, over-ons h3→h2, /diensten sr-only h2 (ServiceCard untouched; WhyTPSSection dropped — dead file) (A11Y-02) [wave 1]
 - [ ] 07-04-PLAN.md — Touch targets ≥44px: sticky-bar close, mobile-menu chevrons, review-carousel arrows (A11Y-04) [wave 1]
+- [ ] 07-11-PLAN.md — Cleanup: delete the 5 retired Phase-6 homepage section files (HeroSection/ServicesSection/PricingSection/WhyTPSSection/ReviewsSection — zero importers) [wave 1]
 
 **Wave 2** *(blocked on Wave 1 — re-touches the same page files)*
 
 - [ ] 07-03-PLAN.md — Skip-link "Naar inhoud" in layout + `id="main"` on all 8 `<main>` landmarks (A11Y-03) [wave 2]
+- [ ] 07-10-PLAN.md — Conversion CTA target sizes ≥44px: ServiceHero + ServiceCard/RelatedServices "Bekijk" buttons + FAQ `<summary>` (UI-15; the CONTEXT's mislabelled 2nd "UI-11") [wave 2]
+- [ ] 07-12-PLAN.md — Footer brand refresh: PNG logo + 4-pillar copy + live-taxonomy Diensten links + drop 1px border (IG/FB icons deferred, owner-blocked) (UI-11) [wave 2]
 
-**Wave 3** *(polish; UI-05/06/07 depend on the Phase-6 hero rebuild — verify-and-remediate)*
+**Wave 3** *(polish; UI-05/06/07 verified against the live post-Phase-6 hero)*
 
 - [ ] 07-05-PLAN.md — Sticky-bar bottom spacer so it never occludes the footer (UI-08) [wave 3]
 - [ ] 07-06-PLAN.md — Mega-menu keyboard/ARIA: aria-haspopup/expanded + focus-open + Escape (UI-09) [wave 3]
-- [ ] 07-07-PLAN.md — Homepage hero brand/Dutch: Dutch badge, teal aurora, clean 375px pills — post-Phase-6 (UI-05, UI-06, UI-07) [wave 3]
+- [ ] 07-07-PLAN.md — Live homepage hero verify-and-record (HomeHero + globals.css): Dutch badge, calm teal CSS aurora, clean 375px — retargeted off the dead HeroSection (UI-05, UI-06, UI-07) [wave 3]
+- [ ] 07-09-PLAN.md — "Nieuw" badge font ≥11px: Navbar, MobileMenu, diensten hub (UI-12) [wave 3]
 
 **Wave 4** *(blocked on all — preview verification gate, `autonomous: false`)*
 
-- [ ] 07-08-PLAN.md — Push→Vercel preview + `re-audit.mjs`: 0 contrast fails, 0 heading skips, skip-link, ≥44px targets + manual UI pass
+- [ ] 07-08-PLAN.md — Push→Vercel preview + `re-audit.mjs`: 0 contrast fails, 0 heading skips, skip-link, ≥44px targets + manual UI pass (incl. footer refresh, badges, CTA targets, retired-file build check, UI-14 320px spot-check)
 
 **Cross-cutting constraints** (hold across plans):
 - Keep the Atmospheric Clarity design system: no 1px section borders (tonal layering), no `#000` text (use `on-surface` `#141D1F`), business data via the `SITE` constant, icons via the `Icon` wrapper.
@@ -305,7 +310,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
 | 6. Homepage conversion uplift | 6/6 | Complete   | 2026-07-01 |
-| 7. UI/UX & Accessibility Remediation | 0/8 | Planned | - |
+| 7. UI/UX & Accessibility Remediation | 0/12 | Planned | - |
 
 ## Backlog
 
@@ -317,7 +322,7 @@ Deferred items captured outside the active phase sequence. Review or promote wit
 
 All 43 v1 requirements mapped to exactly one phase (IA 9, CONT 10, LEAD 6, SEO 10, QA 8). No orphans, no duplicates. BLOG-01 and other v2 items are intentionally excluded from this launch roadmap.
 
-Phase 7 introduces a post-audit launch-hardening group (A11Y-01…04, UI-05…10 — 10 items) additive to the original 43; these come from the 2026-06-30 UI/UX audit, not the initial requirements scope.
+Phase 7 introduces a post-audit launch-hardening group additive to the original 43: A11Y-01…04 + UI-05…10 from the 2026-06-30 UI/UX audit (10 items), plus UI-11…15 from the 2026-07-01 mobile re-audit (footer refresh, Nieuw badge, raw-icon cleanup, 320px robustness, conversion-CTA target sizes). None come from the initial requirements scope.
 
 | Phase | Requirements | Count |
 |-------|--------------|-------|

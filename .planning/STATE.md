@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 last_updated: "2026-07-01T15:32:06.272Z"
-last_activity: 2026-07-01 -- Phase 6 execution started
+last_activity: 2026-07-03 -- Phase 7 replanned (8 to 12 plans) after Phase 6 landed
 progress:
   total_phases: 7
   completed_phases: 4
@@ -24,10 +24,10 @@ See: .planning/PROJECT.md (updated 2026-06-02)
 
 ## Current Position
 
-Phase: 6 (homepage-conversion-uplift) — COMPLETE & FINALIZED (all 6 plans; preview build green; owner-reviewed)
-Plan: 6 of 6
-Status: Phase 6 finalized — homepage approved on preview; no open items. Ready to merge to main (go-live) on owner go-ahead.
-Last activity: 2026-07-03 -- Phase 6 finalized (owner reviewed homepage; WTW/MV brands + erkend badges in; brand-color polish waived)
+Phase: 7 (ui-ux-and-accessibility-remediation) — REPLANNED & READY TO EXECUTE (12 plans, 4 waves)
+Plan: 0 of 12
+Status: Phase 7 replanned 2026-07-03 (surgical update, 8→12 plans) after Phase 6 landed. Kept 5 valid a11y plans; retargeted 07-07 to the live HomeHero (dead HeroSection dropped); dropped 07-02's dead-file WhyTPSSection fix; folded UI-13 into 07-01; added 07-09 (UI-12 badge), 07-10 (UI-15 CTA targets), 07-11 (retired-file cleanup), 07-12 (UI-11 footer refresh). Ready to execute. Phase 6 remains COMPLETE & FINALIZED on main/Vercel pre-prod.
+Last activity: 2026-07-03 -- Phase 7 replanned (12 plans); Phase 6 previously finalized (owner-approved homepage on preview)
 
 Progress: [██████████] 97%
 

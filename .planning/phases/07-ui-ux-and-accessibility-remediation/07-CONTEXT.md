@@ -103,3 +103,19 @@
 - **UI-14 · 320px robustness (smallest devices).** At 320px the hero rotating-word span + a couple CTA cards (`bg-on-primary-fixed rounded-3xl`) + the CTABanner tel button overflow their box by ~16–57px (clipped, no page scroll). Original audit only tested ≥375px. Low priority; verify once at 320.
 
 **Baseline still strong (mobile re-audit):** 0 page-level horizontal scroll at any width; mobile menu, contact form, and 768px tablet all clean. Harness + 89 screenshots retained in the session scratchpad; re-runnable against `:3100` or a preview.
+
+---
+
+## ADDENDUM — Replan reconciliation (2026-07-03, after Phase 6 landed)
+
+Phase 6 (homepage conversion uplift) shipped and merged before Phase 7 executed, changing the ground truth. Phase 7 was **surgically replanned** (8 → 12 plans). Key reconciliations:
+
+- **ID collision fixed:** there were TWO "UI-11" items above — the **footer brand refresh** (keeps **UI-11**, plan 07-12) and the **mobile conversion-CTA target sizes** (line 100), which is renamed **UI-15** (plan 07-10) to remove the clash.
+- **UI-05 / UI-06 / UI-07 already satisfied by Phase 6.** The homepage was rebuilt (`app/page.tsx` → `HomeHero / ProofBand / ImageBand / ClosingCTA` in `app/page-sections/home/`), retiring the old `HeroSection.tsx`. The live `HomeHero` badge is Dutch (`{SITE.tagline}`), the aurora is a calm pure-CSS `.aurora`/`.blob` (teal `#a8dff0`/`#b8e8d0`/`#baeaff`, not the loud WebGL `SoftAurora`), and the old absolute `bottom-8` pill row is gone. Plan **07-07** is now **verify-and-record** against the live files, NOT a remediation of the dead `HeroSection.tsx`.
+- **UI-13 split:** CTABanner's raw icon spans → folded into **07-01** (same file as A11Y-01); PricingSection's raw spans are resolved for free by **deleting** that dead file in **07-11**.
+- **A11Y-02 WhyTPSSection skip:** that section is now dead code — dropped from 07-02 and **deleted** in 07-11 (removes the skip at source). The 3 still-live skips (Footer, over-ons, /diensten) remain in 07-02.
+- **Retired-file cleanup (07-11):** deletes the 5 orphaned Phase-6 section files (HeroSection, ServicesSection, PricingSection, WhyTPSSection, ReviewsSection — zero importers), per STATE.md.
+- **Site-wide WhatsApp treatment split (surfaced, owner to decide):** Phase 6's homepage uses a neutral-pill+primary-glyph WhatsApp CTA; 07-01 applies the locked dark-on-green decision to CTABanner/ServiceHero/contact. Two treatments now coexist — 07-08 flags this for the owner at preview.
+- **UI-14 (320px):** kept as a verify-only spot-check inside 07-08 (no dedicated plan). The old "hero rotating-word span" overflow is moot (the new HomeHero H1 is static).
+
+New plan map: **07-09** = UI-12 (Nieuw badge), **07-10** = UI-15 (conversion CTA targets), **07-11** = retired-file cleanup, **07-12** = UI-11 (footer refresh). 07-03/04/05/06 unchanged.
