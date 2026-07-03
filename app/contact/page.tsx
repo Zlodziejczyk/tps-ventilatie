@@ -77,7 +77,7 @@ export default function ContactPage() {
                 className="flex items-center gap-4 p-4 bg-[#25D366]/10 rounded-xl hover:bg-[#25D366]/20 transition-colors group"
               >
                 <div className="w-12 h-12 rounded-xl bg-[#25D366]/20 flex items-center justify-center">
-                  <Icon name="chat" filled className="text-[#25D366]" />
+                  <Icon name="chat" filled className="text-on-surface" />
                 </div>
                 <div>
                   <p className="text-sm text-on-surface-variant">WhatsApp</p>
