@@ -88,7 +88,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                               }
                               aria-expanded={isOpen}
                               aria-label={`${pillar.navTitle} diensten ${isOpen ? "inklappen" : "uitklappen"}`}
-                              className="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer"
+                              className="flex items-center justify-center min-h-11 min-w-11 p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors cursor-pointer"
                             >
                               <Icon
                                 name="expand_more"
