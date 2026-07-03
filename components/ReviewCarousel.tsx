@@ -150,14 +150,14 @@ export function ReviewCarousel({
       {/* Navigation arrows */}
       <button
         onClick={prev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-md hover:bg-primary hover:text-on-primary transition-colors cursor-pointer hidden lg:flex"
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-11 h-11 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-md hover:bg-primary hover:text-on-primary transition-colors cursor-pointer hidden lg:flex"
         aria-label="Vorige review"
       >
         <Icon name="chevron_left" />
       </button>
       <button
         onClick={next}
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-md hover:bg-primary hover:text-on-primary transition-colors cursor-pointer hidden lg:flex"
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-11 h-11 rounded-full bg-surface-container-high text-on-surface flex items-center justify-center shadow-md hover:bg-primary hover:text-on-primary transition-colors cursor-pointer hidden lg:flex"
         aria-label="Volgende review"
       >
         <Icon name="chevron_right" />
