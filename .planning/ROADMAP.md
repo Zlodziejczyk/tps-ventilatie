@@ -269,7 +269,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Wave 1** *(local accessibility fixes + cleanup — shared components, independent of the Phase-6 rebuild; may be pulled forward if launch precedes Phase 6)*
 
 - [x] 07-01-PLAN.md — WhatsApp/green contrast: CTABanner + ServiceHero dark-on-green text + contact icon glyph; + CTABanner raw-icon→Icon swap (A11Y-01 launch-gate, UI-10, UI-13) [wave 1]
-- [ ] 07-02-PLAN.md — Heading-order re-rank: Footer h4→h2, over-ons h3→h2, /diensten sr-only h2 (ServiceCard untouched; WhyTPSSection dropped — dead file) (A11Y-02) [wave 1]
+- [x] 07-02-PLAN.md — Heading-order re-rank: Footer h4→h2, over-ons h3→h2, /diensten sr-only h2 (ServiceCard untouched; WhyTPSSection dropped — dead file) (A11Y-02) [wave 1]
 - [ ] 07-04-PLAN.md — Touch targets ≥44px: sticky-bar close, mobile-menu chevrons, review-carousel arrows (A11Y-04) [wave 1]
 - [ ] 07-11-PLAN.md — Cleanup: delete the 5 retired Phase-6 homepage section files (HeroSection/ServicesSection/PricingSection/WhyTPSSection/ReviewsSection — zero importers) [wave 1]
 
@@ -310,7 +310,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
 | 6. Homepage conversion uplift | 6/6 | Complete   | 2026-07-01 |
-| 7. UI/UX & Accessibility Remediation | 1/12 | In Progress|  |
+| 7. UI/UX & Accessibility Remediation | 2/12 | In Progress|  |
 
 ## Backlog
 
