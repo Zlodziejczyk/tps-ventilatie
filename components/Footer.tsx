@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SITE } from "@/lib/constants";
 
 export function Footer() {
@@ -7,12 +8,21 @@ export function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         {/* Brand */}
         <div className="space-y-6">
-          <div className="font-headline font-bold text-2xl text-primary">
-            {SITE.name}
-          </div>
+          {/* Opaque white-bg PNG (RGB, no alpha) — kept on a white chip like the
+              Navbar; business name announced via alt for SEO/accessibility. */}
+          <span className="relative block w-14 h-14 rounded-full bg-white shadow-sm overflow-hidden">
+            <Image
+              src="/tps-logo.png"
+              alt={SITE.name}
+              fill
+              sizes="56px"
+              className="object-contain p-0.5"
+            />
+          </span>
           <p className="text-on-surface-variant leading-relaxed">
-            Uw specialist in hoogwaardige ventilatieoplossingen voor een gezond
-            en comfortabel binnenklimaat.
+            Specialist in gezond binnenklimaat — airconditioning, warmtepompen
+            en ventilatie (WTW en mechanisch). Advies, installatie en onderhoud
+            in {SITE.city} en omgeving.
           </p>
         </div>
 
