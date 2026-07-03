@@ -10,10 +10,9 @@
 // renders the verified "Erkend installateur" badge.
 //
 // owner-provided (2026-07-02): the WTW/MV brands Thomas installs — Zehnder (his
-// preferred/main), Duco, and Itho Daalderop (the budget option). He listed these as
-// brands he INSTALLS, not as attested erkend-installateur/dealer status, so they carry
-// `erkendInstallateur: false` (no verified badge — no over-claim). WTW = Zehnder, Duco,
-// Itho; MV = Zehnder, Duco.
+// preferred/main), Duco, and Itho Daalderop (the budget option). WTW = Zehnder, Duco,
+// Itho; MV = Zehnder, Duco. Owner confirmed erkend installateur for these too
+// (2026-07-03) → `erkendInstallateur: true`, so BrandGrid renders the verified badge.
 //
 // The `blurb` fields are forward-compatible install-context DATA (04-07); brand install
 // CONTENT also reaches visitors via the Installatie node intros (04-03/04-04). Logos stay
@@ -59,7 +58,7 @@ export const BRANDS = {
     logo: "/images/brands/zehnder.svg",
     blurb:
       "Zehnder is een toonaangevende fabrikant van warmteterugwinning (WTW) en ventilatie. Wij installeren Zehnder-systemen om hun hoge rendement, stille werking en betrouwbaarheid.",
-    erkendInstallateur: false,
+    erkendInstallateur: true,
   },
   duco: {
     id: "duco",
@@ -67,7 +66,7 @@ export const BRANDS = {
     logo: "/images/brands/duco.svg",
     blurb:
       "Duco levert vraaggestuurde ventilatie- en warmteterugwinsystemen. Wij installeren Duco-oplossingen voor een gezond binnenklimaat op maat van uw woning.",
-    erkendInstallateur: false,
+    erkendInstallateur: true,
   },
   "itho-daalderop": {
     id: "itho-daalderop",
@@ -75,7 +74,7 @@ export const BRANDS = {
     logo: "/images/brands/itho-daalderop.svg",
     blurb:
       "Itho Daalderop is een bekende Nederlandse fabrikant van ventilatie- en WTW-systemen. Wij installeren Itho-units als betrouwbare, prijsbewuste keuze.",
-    erkendInstallateur: false,
+    erkendInstallateur: true,
   },
 } as const;
 
