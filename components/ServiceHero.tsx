@@ -140,7 +140,7 @@ export function ServiceHero({
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 signature-gradient text-on-primary px-7 py-3 rounded-lg font-semibold transition-transform active:scale-95 shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              className="inline-flex items-center gap-2 signature-gradient text-on-primary px-7 py-3 min-h-[44px] rounded-lg font-semibold transition-transform active:scale-95 shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
               <Icon name="request_quote" className="text-xl" />
               Offerte aanvragen

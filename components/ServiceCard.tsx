@@ -58,7 +58,7 @@ export function ServiceCard({
             {primaryAction && (
               <Link
                 href={primaryAction.href}
-                className="signature-gradient text-on-primary px-5 py-2.5 rounded-lg font-semibold text-sm transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                className="inline-flex items-center justify-center min-h-[44px] signature-gradient text-on-primary px-5 py-2.5 rounded-lg font-semibold text-sm transition-transform active:scale-95 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 {primaryAction.label}
               </Link>
