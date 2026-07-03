@@ -64,6 +64,14 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-on-surface font-body">
+        {/* Keyboard skip link (A11Y-03, WCAG 2.4.1) — first focusable element,
+            invisible until focused, then painted above the fixed navbar. */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[10000] focus:rounded-lg focus:bg-surface-container-lowest focus:px-4 focus:py-2 focus:font-semibold focus:text-on-surface focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary"
+        >
+          Naar inhoud
+        </a>
         {/* Site-wide HVACBusiness node — the single business JSON-LD every page carries (D-04) */}
         <JsonLd data={businessJsonLd()} />
         <Navbar />
