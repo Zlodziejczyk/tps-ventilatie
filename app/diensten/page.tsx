@@ -40,6 +40,7 @@ export default function DienstenPage() {
 
       {/* 4 pillar cards — the routes into each pillar page */}
       <section className="max-w-7xl mx-auto px-6 mb-24">
+        <h2 className="sr-only">Onze vakgebieden</h2>
         <StaggerChildren className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {pillars().map((pillar) => (
             <StaggerItem key={urlFor(pillar)}>
