@@ -81,8 +81,14 @@ export function Navbar() {
                   >
                     <Link
                       href={link.href}
+                      aria-haspopup="menu"
+                      aria-expanded={active === link.label}
                       onMouseEnter={() => openDropdown(link.label)}
                       onMouseLeave={scheduleClose}
+                      onFocus={() => openDropdown(link.label)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Escape") setActive(null);
+                      }}
                       className={`transition-colors font-medium flex items-center gap-1 ${
                         pathname === link.href || pathname.startsWith(link.href + "#")
                           ? "text-primary"
