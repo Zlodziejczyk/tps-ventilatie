@@ -93,8 +93,9 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-outline-variant/20 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
+      {/* Bottom bar — separated by tonal layering (a surface-token step + spacing),
+          not a 1px hairline, per the Atmospheric-Clarity design system. */}
+      <div className="max-w-7xl mx-auto mt-16 rounded-2xl bg-surface-container px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
         <div>&copy; {new Date().getFullYear()} {SITE.name}. {SITE.tagline}.</div>
         <div className="flex gap-6">
           <span>KvK: {SITE.kvk}</span>
