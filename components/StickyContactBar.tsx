@@ -40,7 +40,13 @@ export function StickyContactBar() {
   }
 
   return (
-    <div
+    <>
+      {/* Normal-flow spacer reserves bottom space = bar height so the fixed bar
+          never occludes the last footer row (KvK/BTW) at full scroll (UI-08).
+          Taller <560px where the bar wraps to two rows; disappears with the bar
+          when dismissed (whole component returns null). */}
+      <div aria-hidden="true" className="h-20 min-[560px]:h-16" />
+      <div
       className="glass-nav fixed inset-x-0 bottom-0 z-[9990] shadow-[0_-8px_32px_rgba(0,101,128,0.14)] transition-transform duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
       style={{
         transform: show ? "none" : "translateY(125%)",
@@ -100,5 +106,6 @@ export function StickyContactBar() {
         </div>
       </div>
     </div>
+    </>
   );
 }
