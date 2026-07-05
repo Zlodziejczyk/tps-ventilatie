@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SITE } from "@/lib/constants";
+import { pillars, urlFor } from "@/lib/services/registry";
 
 export function Footer() {
   return (
@@ -30,26 +31,16 @@ export function Footer() {
         <div>
           <h2 className="font-bold text-on-surface mb-6">Diensten</h2>
           <ul className="space-y-4 text-on-surface-variant">
-            <li>
-              <Link href="/diensten" className="hover:text-primary transition-colors">
-                WTW Onderhoud
-              </Link>
-            </li>
-            <li>
-              <Link href="/diensten" className="hover:text-primary transition-colors">
-                Unit Vervangen
-              </Link>
-            </li>
-            <li>
-              <Link href="/diensten" className="hover:text-primary transition-colors">
-                Kanalen Reinigen
-              </Link>
-            </li>
-            <li>
-              <Link href="/diensten" className="hover:text-primary transition-colors">
-                Airconditioning
-              </Link>
-            </li>
+            {pillars().map((pillar) => (
+              <li key={pillar.pillarSlug}>
+                <Link
+                  href={urlFor(pillar)}
+                  className="hover:text-primary transition-colors"
+                >
+                  {pillar.navTitle}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
