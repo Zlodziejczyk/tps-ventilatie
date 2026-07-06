@@ -281,7 +281,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 3** *(polish; UI-05/06/07 verified against the live post-Phase-6 hero)*
 
-- [ ] 07-05-PLAN.md — Sticky-bar bottom spacer so it never occludes the footer (UI-08) [wave 3]
+- [x] 07-05-PLAN.md — Sticky-bar bottom spacer so it never occludes the footer (UI-08) [wave 3]
 - [x] 07-06-PLAN.md — Mega-menu keyboard/ARIA: aria-haspopup/expanded + focus-open + Escape (UI-09) [wave 3]
 - [ ] 07-07-PLAN.md — Live homepage hero verify-and-record (HomeHero + globals.css): Dutch badge, calm teal CSS aurora, clean 375px — retargeted off the dead HeroSection (UI-05, UI-06, UI-07) [wave 3]
 - [ ] 07-09-PLAN.md — "Nieuw" badge font ≥11px: Navbar, MobileMenu, diensten hub (UI-12) [wave 3]
@@ -310,7 +310,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
 | 6. Homepage conversion uplift | 6/6 | Complete   | 2026-07-01 |
-| 7. UI/UX & Accessibility Remediation | 8/12 | In Progress|  |
+| 7. UI/UX & Accessibility Remediation | 9/12 | In Progress|  |
 
 ## Backlog
 
