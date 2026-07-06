@@ -190,7 +190,7 @@ function DienstenPanel() {
                 {pillar.navTitle}
               </span>
               {pillar.pillarSlug === "warmtepompen" && (
-                <span className="shrink-0 whitespace-nowrap bg-tertiary-fixed text-on-tertiary-fixed text-[9px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                <span className="shrink-0 whitespace-nowrap bg-tertiary-fixed text-on-tertiary-fixed text-[11px] px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
                   Nieuw
                 </span>
               )}

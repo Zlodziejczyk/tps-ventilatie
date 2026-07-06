@@ -46,7 +46,7 @@ export default function DienstenPage() {
             <StaggerItem key={urlFor(pillar)}>
               <div className="relative h-full">
                 {pillar.pillarSlug === "warmtepompen" && (
-                  <span className="absolute top-3 right-3 z-10 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                  <span className="absolute top-3 right-3 z-10 bg-tertiary-fixed text-on-tertiary-fixed text-[11px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
                     Nieuw
                   </span>
                 )}
