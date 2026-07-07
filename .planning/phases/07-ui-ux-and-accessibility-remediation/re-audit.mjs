@@ -1,8 +1,8 @@
 import { chromium } from "playwright";
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const BASE = "https://tps-ventilatie-mpan4b7q6-pushly-projects.vercel.app";
-const OUT = "/private/tmp/claude-501/-Users-brickpro-macos-Library-CloudStorage-OneDrive-Personal-work-Polaris360-Projects-TPS-Ventilatie/4f5a886e-039d-44f3-a858-be3063a3d352/scratchpad";
+const BASE = "https://tps-ventilatie-itrnmxzqr-pushly-projects.vercel.app";
+const OUT = "/private/tmp/claude-501/-Users-brickpro-macos-Library-CloudStorage-OneDrive-Personal-work-Polaris360-Projects-TPS-Ventilatie/a36a732a-5eab-4a08-b0d1-400c52741a62/scratchpad";
 const SHOTS = `${OUT}/shots`;
 mkdirSync(SHOTS, { recursive: true });
 

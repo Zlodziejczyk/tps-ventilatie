@@ -1,0 +1,2167 @@
+{
+  "base": "https://tps-ventilatie-r6q8rfhg1-pushly-projects.vercel.app",
+  "pages": {
+    "/": {
+      "desktop": {
+        "title": "TPS klimaattechniek | Airco, warmtepomp & ventilatie Zoetermeer",
+        "metaDesc": "Specialist in airconditioning, warmtepompen en ventilatie in Zoetermeer en omgeving.",
+        "lang": "nl",
+        "hasViewport": true,
+        "viewportContent": "width=device-width, initial-scale=1",
+        "skipLink": true,
+        "bodyFontPx": 16,
+        "horizScroll": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "h1Count": 1,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Airco, warmtepomp & ventilatie — goed geregeld in Zoetermeer"
+          },
+          {
+            "level": 2,
+            "text": "Vraag vrijblijvend een offerte aan"
+          },
+          {
+            "level": 2,
+            "text": "Vier specialismen, één aanspreekpunt"
+          },
+          {
+            "level": 3,
+            "text": "Airconditioning"
+          },
+          {
+            "level": 3,
+            "text": "Warmtepompen"
+          },
+          {
+            "level": 3,
+            "text": "WTW Unit"
+          },
+          {
+            "level": 3,
+            "text": "Mechanische Ventilatie"
+          },
+          {
+            "level": 2,
+            "text": "Wat onze klanten zeggen"
+          },
+          {
+            "level": 2,
+            "text": "Klaar voor een gezond binnenklimaat?"
+          },
+          {
+            "level": 2,
+            "text": "Diensten"
+          },
+          {
+            "level": 2,
+            "text": "Bedrijf"
+          },
+          {
+            "level": 2,
+            "text": "Contact"
+          }
+        ],
+        "headingIssues": [],
+        "img": {
+          "total": 3,
+          "missingAlt": [],
+          "decorative": 1,
+          "withAlt": 2
+        },
+        "unlabeledControls": [],
+        "noAccessibleName": [],
+        "smallTargets": [
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 45,
+            "h": 24,
+            "label": "Home",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 96,
+            "h": 24,
+            "label": "Dienstenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 94,
+            "h": 24,
+            "label": "Tarievenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 72,
+            "h": 24,
+            "label": "Over Ons",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 60,
+            "h": 24,
+            "label": "Contact",
+            "under24": false
+          },
+          {
+            "sel": "a.hidden.lg:inline-flex",
+            "w": 173,
+            "h": 40,
+            "label": "Offerte Aanvragen",
+            "under24": false
+          },
+          {
+            "sel": "input.mt-0.5.h-4",
+            "w": 16,
+            "h": 16,
+            "label": "",
+            "under24": true
+          },
+          {
+            "sel": "a.text-primary.underline",
+            "w": 76,
+            "h": 15,
+            "label": "privacybeleid",
+            "under24": true
+          },
+          {
+            "sel": "a.btn-hover.inline-flex",
+            "w": 115,
+            "h": 24,
+            "label": "Bekijk dienstarrow_forward",
+            "under24": false
+          },
+          {
+            "sel": "button.btn-hover.signature-gradient",
+            "w": 111,
+            "h": 40,
+            "label": "request_quoteOfferte",
+            "under24": false
+          },
+          {
+            "sel": "a.btn-hover.inline-flex",
+            "w": 115,
+            "h": 24,
+            "label": "Bekijk dienstarrow_forward",
+            "under24": false
+          },
+          {
+            "sel": "button.btn-hover.signature-gradient",
+            "w": 111,
+            "h": 40,
+            "label": "request_quoteOfferte",
+            "under24": false
+          },
+          {
+            "sel": "a.btn-hover.inline-flex",
+            "w": 115,
+            "h": 24,
+            "label": "Bekijk dienstarrow_forward",
+            "under24": false
+          },
+          {
+            "sel": "button.btn-hover.signature-gradient",
+            "w": 111,
+            "h": 40,
+            "label": "request_quoteOfferte",
+            "under24": false
+          },
+          {
+            "sel": "a.btn-hover.inline-flex",
+            "w": 115,
+            "h": 24,
+            "label": "Bekijk dienstarrow_forward",
+            "under24": false
+          },
+          {
+            "sel": "button.btn-hover.signature-gradient",
+            "w": 111,
+            "h": 40,
+            "label": "request_quoteOfferte",
+            "under24": false
+          }
+        ],
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.hidden.lg:inline-flex"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 18,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "chatVerstuur via WhatsApp",
+            "sel": "button.w-full.signature-gradient"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "chat",
+            "sel": "span.material-symbols-outlined.text-[22px]"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quoteOfferte",
+            "sel": "button.btn-hover.signature-gradient"
+          },
+          {
+            "ratio": 4.54,
+            "required": 4.5,
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 254, 255)",
+            "bg": "rgb(37,127,156)",
+            "overGradientOrImage": false,
+            "pass": true,
+            "text": "JO",
+            "sel": "span.flex.h-9"
+          },
+          {
+            "ratio": 4.54,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 254, 255)",
+            "bg": "rgb(37,127,156)",
+            "overGradientOrImage": false,
+            "pass": true,
+            "text": "CT",
+            "sel": "div.flex.h-12"
+          }
+        ]
+      },
+      "mobile": {
+        "horizScroll": false,
+        "scrollW": 375,
+        "innerW": 375,
+        "smallTargets": [
+          {
+            "sel": "input.mt-0.5.h-4",
+            "w": 16,
+            "h": 16,
+            "label": "",
+            "under24": true
+          },
+          {
+            "sel": "a.text-primary.underline",
+            "w": 76,
+            "h": 15,
+            "label": "privacybeleid",
+            "under24": true
+          },
+          {
+            "sel": "a.btn-hover.inline-flex",
+            "w": 115,
+            "h": 24,
+            "label": "Bekijk dienstarrow_forward",
+            "under24": false
+          },
+          {
+            "sel": "button.btn-hover.signature-gradient",
+            "w": 111,
+            "h": 40,
+            "label": "request_quoteOfferte",
+            "under24": false
+          },
+          {
+            "sel": "a.btn-hover.inline-flex",
+            "w": 115,
+            "h": 24,
+            "label": "Bekijk dienstarrow_forward",
+            "under24": false
+          },
+          {
+            "sel": "button.btn-hover.signature-gradient",
+            "w": 111,
+            "h": 40,
+            "label": "request_quoteOfferte",
+            "under24": false
+          },
+          {
+            "sel": "a.btn-hover.inline-flex",
+            "w": 115,
+            "h": 24,
+            "label": "Bekijk dienstarrow_forward",
+            "under24": false
+          },
+          {
+            "sel": "button.btn-hover.signature-gradient",
+            "w": 111,
+            "h": 40,
+            "label": "request_quoteOfferte",
+            "under24": false
+          },
+          {
+            "sel": "a.btn-hover.inline-flex",
+            "w": 115,
+            "h": 24,
+            "label": "Bekijk dienstarrow_forward",
+            "under24": false
+          },
+          {
+            "sel": "button.btn-hover.signature-gradient",
+            "w": 111,
+            "h": 40,
+            "label": "request_quoteOfferte",
+            "under24": false
+          }
+        ],
+        "bodyFontPx": 16,
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 18,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "chatVerstuur via WhatsApp",
+            "sel": "button.w-full.signature-gradient"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "chat",
+            "sel": "span.material-symbols-outlined.text-[22px]"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quoteOfferte",
+            "sel": "button.btn-hover.signature-gradient"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quoteOfferte",
+            "sel": "a.btn-hover.signature-gradient"
+          },
+          {
+            "ratio": 4.54,
+            "required": 4.5,
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 254, 255)",
+            "bg": "rgb(37,127,156)",
+            "overGradientOrImage": false,
+            "pass": true,
+            "text": "JO",
+            "sel": "span.flex.h-9"
+          },
+          {
+            "ratio": 4.54,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 254, 255)",
+            "bg": "rgb(37,127,156)",
+            "overGradientOrImage": false,
+            "pass": true,
+            "text": "CT",
+            "sel": "div.flex.h-12"
+          }
+        ]
+      }
+    },
+    "/contact": {
+      "desktop": {
+        "title": "Contact | TPS klimaattechniek",
+        "metaDesc": "Neem contact op met TPS klimaattechniek voor advies of een vrijblijvende offerte.",
+        "lang": "nl",
+        "hasViewport": true,
+        "viewportContent": "width=device-width, initial-scale=1",
+        "skipLink": true,
+        "bodyFontPx": 16,
+        "horizScroll": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "h1Count": 1,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Contact"
+          },
+          {
+            "level": 2,
+            "text": "Stuur ons een bericht"
+          },
+          {
+            "level": 2,
+            "text": "Contactgegevens"
+          },
+          {
+            "level": 2,
+            "text": "Diensten"
+          },
+          {
+            "level": 2,
+            "text": "Bedrijf"
+          },
+          {
+            "level": 2,
+            "text": "Contact"
+          }
+        ],
+        "headingIssues": [],
+        "img": {
+          "total": 2,
+          "missingAlt": [],
+          "decorative": 1,
+          "withAlt": 1
+        },
+        "unlabeledControls": [],
+        "noAccessibleName": [],
+        "smallTargets": [
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 45,
+            "h": 24,
+            "label": "Home",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 96,
+            "h": 24,
+            "label": "Dienstenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 94,
+            "h": 24,
+            "label": "Tarievenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 72,
+            "h": 24,
+            "label": "Over Ons",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 60,
+            "h": 24,
+            "label": "Contact",
+            "under24": false
+          },
+          {
+            "sel": "a.hidden.lg:inline-flex",
+            "w": 173,
+            "h": 40,
+            "label": "Offerte Aanvragen",
+            "under24": false
+          },
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 39,
+            "h": 20,
+            "label": "Home",
+            "under24": true
+          },
+          {
+            "sel": "input.mt-1.h-4",
+            "w": 16,
+            "h": 16,
+            "label": "",
+            "under24": true
+          },
+          {
+            "sel": "a.text-primary.underline",
+            "w": 89,
+            "h": 17,
+            "label": "privacybeleid",
+            "under24": true
+          }
+        ],
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.hidden.lg:inline-flex"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 18,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "chatVerstuur via WhatsApp",
+            "sel": "button.w-full.signature-gradient"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "chat",
+            "sel": "span.material-symbols-outlined.text-[22px]"
+          }
+        ]
+      },
+      "mobile": {
+        "horizScroll": false,
+        "scrollW": 375,
+        "innerW": 375,
+        "smallTargets": [
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 39,
+            "h": 20,
+            "label": "Home",
+            "under24": true
+          },
+          {
+            "sel": "input.mt-1.h-4",
+            "w": 16,
+            "h": 16,
+            "label": "",
+            "under24": true
+          },
+          {
+            "sel": "a.text-primary.underline",
+            "w": 89,
+            "h": 17,
+            "label": "privacybeleid",
+            "under24": true
+          }
+        ],
+        "bodyFontPx": 16,
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 18,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "chatVerstuur via WhatsApp",
+            "sel": "button.w-full.signature-gradient"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "chat",
+            "sel": "span.material-symbols-outlined.text-[22px]"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quoteOfferte",
+            "sel": "a.btn-hover.signature-gradient"
+          }
+        ]
+      }
+    },
+    "/diensten": {
+      "desktop": {
+        "title": "Klimaattechniek Zoetermeer | TPS klimaattechniek",
+        "metaDesc": "Airconditioning, warmtepompen en ventilatie in Zoetermeer en omgeving.",
+        "lang": "nl",
+        "hasViewport": true,
+        "viewportContent": "width=device-width, initial-scale=1",
+        "skipLink": true,
+        "bodyFontPx": 16,
+        "horizScroll": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "h1Count": 1,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Onze diensten"
+          },
+          {
+            "level": 3,
+            "text": "Airconditioning"
+          },
+          {
+            "level": 3,
+            "text": "Warmtepompen"
+          },
+          {
+            "level": 3,
+            "text": "WTW Unit"
+          },
+          {
+            "level": 3,
+            "text": "Mechanische Ventilatie"
+          },
+          {
+            "level": 2,
+            "text": "Wat klanten over ons zeggen"
+          },
+          {
+            "level": 2,
+            "text": "Niet zeker welke dienst u nodig heeft?"
+          },
+          {
+            "level": 2,
+            "text": "Diensten"
+          },
+          {
+            "level": 2,
+            "text": "Bedrijf"
+          },
+          {
+            "level": 2,
+            "text": "Contact"
+          }
+        ],
+        "headingIssues": [
+          "Skipped from h1 to h3 (\"Airconditioning\")"
+        ],
+        "img": {
+          "total": 2,
+          "missingAlt": [],
+          "decorative": 1,
+          "withAlt": 1
+        },
+        "unlabeledControls": [],
+        "noAccessibleName": [],
+        "smallTargets": [
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 45,
+            "h": 24,
+            "label": "Home",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 96,
+            "h": 24,
+            "label": "Dienstenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 94,
+            "h": 24,
+            "label": "Tarievenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 72,
+            "h": 24,
+            "label": "Over Ons",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 60,
+            "h": 24,
+            "label": "Contact",
+            "under24": false
+          },
+          {
+            "sel": "a.hidden.lg:inline-flex",
+            "w": 173,
+            "h": 40,
+            "label": "Offerte Aanvragen",
+            "under24": false
+          },
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.hidden.lg:inline-flex"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-[20px]"
+          },
+          {
+            "ratio": 4.54,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 254, 255)",
+            "bg": "rgb(37,127,156)",
+            "overGradientOrImage": false,
+            "pass": true,
+            "text": "JO",
+            "sel": "div.w-12.h-12"
+          }
+        ]
+      },
+      "mobile": {
+        "horizScroll": false,
+        "scrollW": 375,
+        "innerW": 375,
+        "smallTargets": [
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "bodyFontPx": 16,
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Bekijk airconditioning",
+            "sel": "a.inline-flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-[20px]"
+          },
+          {
+            "ratio": 4.54,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 254, 255)",
+            "bg": "rgb(37,127,156)",
+            "overGradientOrImage": false,
+            "pass": true,
+            "text": "JO",
+            "sel": "div.w-12.h-12"
+          }
+        ]
+      }
+    },
+    "/diensten/airconditioning": {
+      "desktop": {
+        "title": "Airconditioning in de regio Zoetermeer | TPS klimaattechniek",
+        "metaDesc": "Airconditioning: installatie, onderhoud en reparatie in Zoetermeer en omgeving.",
+        "lang": "nl",
+        "hasViewport": true,
+        "viewportContent": "width=device-width, initial-scale=1",
+        "skipLink": true,
+        "bodyFontPx": 16,
+        "horizScroll": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "h1Count": 1,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Airconditioning"
+          },
+          {
+            "level": 2,
+            "text": "Onze airconditioning diensten"
+          },
+          {
+            "level": 3,
+            "text": "Installatie"
+          },
+          {
+            "level": 3,
+            "text": "Onderhoud"
+          },
+          {
+            "level": 3,
+            "text": "Reparatie & storing"
+          },
+          {
+            "level": 3,
+            "text": "Advies"
+          },
+          {
+            "level": 2,
+            "text": "Veelgestelde vragen"
+          },
+          {
+            "level": 2,
+            "text": "Andere diensten"
+          },
+          {
+            "level": 3,
+            "text": "Warmtepompen"
+          },
+          {
+            "level": 3,
+            "text": "WTW Unit"
+          },
+          {
+            "level": 3,
+            "text": "Mechanische Ventilatie"
+          },
+          {
+            "level": 3,
+            "text": "Benieuwd naar de tarieven?"
+          },
+          {
+            "level": 2,
+            "text": "Interesse in airconditioning?"
+          },
+          {
+            "level": 2,
+            "text": "Diensten"
+          },
+          {
+            "level": 2,
+            "text": "Bedrijf"
+          },
+          {
+            "level": 2,
+            "text": "Contact"
+          }
+        ],
+        "headingIssues": [],
+        "img": {
+          "total": 3,
+          "missingAlt": [],
+          "decorative": 1,
+          "withAlt": 2
+        },
+        "unlabeledControls": [],
+        "noAccessibleName": [],
+        "smallTargets": [
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 45,
+            "h": 24,
+            "label": "Home",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 96,
+            "h": 24,
+            "label": "Dienstenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 94,
+            "h": 24,
+            "label": "Tarievenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 72,
+            "h": 24,
+            "label": "Over Ons",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 60,
+            "h": 24,
+            "label": "Contact",
+            "under24": false
+          },
+          {
+            "sel": "a.hidden.lg:inline-flex",
+            "w": 173,
+            "h": 40,
+            "label": "Offerte Aanvragen",
+            "under24": false
+          },
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.hidden.lg:inline-flex"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-xl"
+          }
+        ]
+      },
+      "mobile": {
+        "horizScroll": false,
+        "scrollW": 375,
+        "innerW": 375,
+        "smallTargets": [
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "bodyFontPx": 16,
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-xl"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Bekijk dienst",
+            "sel": "a.inline-flex.items-center"
+          }
+        ]
+      }
+    },
+    "/tarieven": {
+      "desktop": {
+        "title": "Tarieven | TPS klimaattechniek",
+        "metaDesc": "Transparante prijzen voor ventilatie en airconditioning — inclusief BTW en voorrijkosten.",
+        "lang": "nl",
+        "hasViewport": true,
+        "viewportContent": "width=device-width, initial-scale=1",
+        "skipLink": true,
+        "bodyFontPx": 16,
+        "horizScroll": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "h1Count": 1,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Onze Tarieven"
+          },
+          {
+            "level": 2,
+            "text": "WTW Unit Vervangen"
+          },
+          {
+            "level": 3,
+            "text": "Itho Daalderop HRU 200 ECO"
+          },
+          {
+            "level": 3,
+            "text": "Itho Daalderop HRU 350 ECO"
+          },
+          {
+            "level": 3,
+            "text": "Itho Daalderop HRU 300 ECO"
+          },
+          {
+            "level": 3,
+            "text": "Zehnder Comfoair E300/400"
+          },
+          {
+            "level": 3,
+            "text": "Zehnder Comfoair Q350/450/600"
+          },
+          {
+            "level": 3,
+            "text": "Orcon HRC Ecomax 300/400"
+          },
+          {
+            "level": 2,
+            "text": "Onderhoud & Reinigen"
+          },
+          {
+            "level": 2,
+            "text": "Klaar voor schone lucht?"
+          },
+          {
+            "level": 2,
+            "text": "Diensten"
+          },
+          {
+            "level": 2,
+            "text": "Bedrijf"
+          },
+          {
+            "level": 2,
+            "text": "Contact"
+          }
+        ],
+        "headingIssues": [],
+        "img": {
+          "total": 8,
+          "missingAlt": [],
+          "decorative": 1,
+          "withAlt": 7
+        },
+        "unlabeledControls": [],
+        "noAccessibleName": [],
+        "smallTargets": [
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 45,
+            "h": 24,
+            "label": "Home",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 96,
+            "h": 24,
+            "label": "Dienstenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 94,
+            "h": 24,
+            "label": "Tarievenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 72,
+            "h": 24,
+            "label": "Over Ons",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 60,
+            "h": 24,
+            "label": "Contact",
+            "under24": false
+          },
+          {
+            "sel": "a.hidden.lg:inline-flex",
+            "w": 173,
+            "h": 40,
+            "label": "Offerte Aanvragen",
+            "under24": false
+          },
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 39,
+            "h": 20,
+            "label": "Home",
+            "under24": true
+          },
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.hidden.lg:inline-flex"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.w-full.py-3"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-[20px]"
+          },
+          {
+            "ratio": 1.05,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(241,251,254)",
+            "overGradientOrImage": false,
+            "pass": false,
+            "text": "air",
+            "sel": "span.material-symbols-outlined"
+          },
+          {
+            "ratio": 1.05,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(241,251,254)",
+            "overGradientOrImage": false,
+            "pass": false,
+            "text": "WTW Unit",
+            "sel": "span.hidden.sm:inline"
+          }
+        ]
+      },
+      "mobile": {
+        "horizScroll": false,
+        "scrollW": 375,
+        "innerW": 375,
+        "smallTargets": [
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 39,
+            "h": 20,
+            "label": "Home",
+            "under24": true
+          },
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "bodyFontPx": 16,
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.w-full.py-3"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quoteOfferte",
+            "sel": "a.btn-hover.signature-gradient"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-[20px]"
+          },
+          {
+            "ratio": 1.05,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(241,251,254)",
+            "overGradientOrImage": false,
+            "pass": false,
+            "text": "air",
+            "sel": "span.material-symbols-outlined"
+          },
+          {
+            "ratio": 1.05,
+            "required": 4.5,
+            "fontSizePx": 12,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(241,251,254)",
+            "overGradientOrImage": false,
+            "pass": false,
+            "text": "WTW",
+            "sel": "span.sm:hidden"
+          }
+        ]
+      }
+    },
+    "/over-ons": {
+      "desktop": {
+        "title": "Over ons | TPS klimaattechniek",
+        "metaDesc": "Maak kennis met TPS klimaattechniek, uw specialist in schone lucht.",
+        "lang": "nl",
+        "hasViewport": true,
+        "viewportContent": "width=device-width, initial-scale=1",
+        "skipLink": true,
+        "bodyFontPx": 16,
+        "horizScroll": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "h1Count": 1,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Over Ons"
+          },
+          {
+            "level": 2,
+            "text": "Gecertificeerd"
+          },
+          {
+            "level": 2,
+            "text": "Snel & Betrouwbaar"
+          },
+          {
+            "level": 2,
+            "text": "Persoonlijk Contact"
+          },
+          {
+            "level": 2,
+            "text": "Transparante Prijzen"
+          },
+          {
+            "level": 2,
+            "text": "Wat klanten over ons zeggen"
+          },
+          {
+            "level": 2,
+            "text": "Klaar voor een gezonder binnenklimaat?"
+          },
+          {
+            "level": 2,
+            "text": "Diensten"
+          },
+          {
+            "level": 2,
+            "text": "Bedrijf"
+          },
+          {
+            "level": 2,
+            "text": "Contact"
+          }
+        ],
+        "headingIssues": [],
+        "img": {
+          "total": 3,
+          "missingAlt": [],
+          "decorative": 1,
+          "withAlt": 2
+        },
+        "unlabeledControls": [],
+        "noAccessibleName": [],
+        "smallTargets": [
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 45,
+            "h": 24,
+            "label": "Home",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 96,
+            "h": 24,
+            "label": "Dienstenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 94,
+            "h": 24,
+            "label": "Tarievenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 72,
+            "h": 24,
+            "label": "Over Ons",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 60,
+            "h": 24,
+            "label": "Contact",
+            "under24": false
+          },
+          {
+            "sel": "a.hidden.lg:inline-flex",
+            "w": 173,
+            "h": 40,
+            "label": "Offerte Aanvragen",
+            "under24": false
+          },
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 39,
+            "h": 20,
+            "label": "Home",
+            "under24": true
+          },
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.hidden.lg:inline-flex"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-[20px]"
+          },
+          {
+            "ratio": 4.54,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 254, 255)",
+            "bg": "rgb(37,127,156)",
+            "overGradientOrImage": false,
+            "pass": true,
+            "text": "JO",
+            "sel": "div.w-12.h-12"
+          }
+        ]
+      },
+      "mobile": {
+        "horizScroll": false,
+        "scrollW": 375,
+        "innerW": 375,
+        "smallTargets": [
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 39,
+            "h": 20,
+            "label": "Home",
+            "under24": true
+          },
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "bodyFontPx": 16,
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quoteOfferte",
+            "sel": "a.btn-hover.signature-gradient"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-[20px]"
+          },
+          {
+            "ratio": 4.54,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 700,
+            "large": false,
+            "color": "rgb(255, 254, 255)",
+            "bg": "rgb(37,127,156)",
+            "overGradientOrImage": false,
+            "pass": true,
+            "text": "JO",
+            "sel": "div.w-12.h-12"
+          }
+        ]
+      }
+    },
+    "/diensten/airconditioning/installatie": {
+      "desktop": {
+        "title": "Airco laten installeren | TPS klimaattechniek",
+        "metaDesc": "Laat uw airco vakkundig installeren door TPS klimaattechniek in de regio Zoetermeer.",
+        "lang": "nl",
+        "hasViewport": true,
+        "viewportContent": "width=device-width, initial-scale=1",
+        "skipLink": true,
+        "bodyFontPx": 16,
+        "horizScroll": false,
+        "scrollW": 1440,
+        "innerW": 1440,
+        "h1Count": 1,
+        "headings": [
+          {
+            "level": 1,
+            "text": "Airco laten installeren"
+          },
+          {
+            "level": 2,
+            "text": "list_altStap voor stap"
+          },
+          {
+            "level": 3,
+            "text": "Opname & positiebepaling"
+          },
+          {
+            "level": 3,
+            "text": "Montage binnen- en buitenunit"
+          },
+          {
+            "level": 3,
+            "text": "Leidingwerk & vacuümtrekken"
+          },
+          {
+            "level": 3,
+            "text": "Testen & oplevering"
+          },
+          {
+            "level": 2,
+            "text": "Veelgestelde vragen"
+          },
+          {
+            "level": 2,
+            "text": "Andere airconditioning diensten"
+          },
+          {
+            "level": 3,
+            "text": "Onderhoud"
+          },
+          {
+            "level": 3,
+            "text": "Reparatie & storing"
+          },
+          {
+            "level": 3,
+            "text": "Advies"
+          },
+          {
+            "level": 2,
+            "text": "Offerte voor installatie?"
+          },
+          {
+            "level": 2,
+            "text": "Diensten"
+          },
+          {
+            "level": 2,
+            "text": "Bedrijf"
+          },
+          {
+            "level": 2,
+            "text": "Contact"
+          }
+        ],
+        "headingIssues": [],
+        "img": {
+          "total": 2,
+          "missingAlt": [],
+          "decorative": 1,
+          "withAlt": 1
+        },
+        "unlabeledControls": [],
+        "noAccessibleName": [],
+        "smallTargets": [
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 45,
+            "h": 24,
+            "label": "Home",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 96,
+            "h": 24,
+            "label": "Dienstenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 94,
+            "h": 24,
+            "label": "Tarievenexpand_more",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 72,
+            "h": 24,
+            "label": "Over Ons",
+            "under24": false
+          },
+          {
+            "sel": "a.transition-colors.font-medium",
+            "w": 60,
+            "h": 24,
+            "label": "Contact",
+            "under24": false
+          },
+          {
+            "sel": "a.hidden.lg:inline-flex",
+            "w": 173,
+            "h": 40,
+            "label": "Offerte Aanvragen",
+            "under24": false
+          },
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 40,
+            "h": 20,
+            "label": "Home",
+            "under24": true
+          },
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 59,
+            "h": 20,
+            "label": "Diensten",
+            "under24": true
+          },
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 102,
+            "h": 20,
+            "label": "Airconditioning",
+            "under24": true
+          },
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Offerte Aanvragen",
+            "sel": "a.hidden.lg:inline-flex"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-xl"
+          }
+        ]
+      },
+      "mobile": {
+        "horizScroll": false,
+        "scrollW": 375,
+        "innerW": 375,
+        "smallTargets": [
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 40,
+            "h": 20,
+            "label": "Home",
+            "under24": true
+          },
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 59,
+            "h": 20,
+            "label": "Diensten",
+            "under24": true
+          },
+          {
+            "sel": "a.hover:text-primary.transition-colors",
+            "w": 102,
+            "h": 20,
+            "label": "Airconditioning",
+            "under24": true
+          },
+          {
+            "sel": "a.text-white.underline",
+            "w": 173,
+            "h": 20,
+            "label": "Ga naar contactpagina",
+            "under24": true
+          }
+        ],
+        "bodyFontPx": 16,
+        "contrastFlags": [
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 16,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "WhatsApp",
+            "sel": "a.flex.items-center"
+          },
+          {
+            "ratio": 1,
+            "required": 3,
+            "fontSizePx": 24,
+            "fontWeight": 400,
+            "large": true,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "request_quote",
+            "sel": "span.material-symbols-outlined.text-xl"
+          },
+          {
+            "ratio": 1,
+            "required": 4.5,
+            "fontSizePx": 14,
+            "fontWeight": 600,
+            "large": false,
+            "color": "rgb(255, 255, 255)",
+            "bg": "rgb(255,255,255)",
+            "overGradientOrImage": true,
+            "pass": false,
+            "text": "Bekijk dienst",
+            "sel": "a.inline-flex.items-center"
+          }
+        ]
+      }
+    }
+  },
+  "perf": {
+    "/": {
+      "ttfbMs": 98,
+      "domContentLoadedMs": 689,
+      "loadMs": 1025,
+      "fcpMs": 720,
+      "requestCount": 95,
+      "totalTransferKb": 573,
+      "byType": {
+        "link": 5,
+        "script": 16,
+        "img": 2,
+        "fetch": 71
+      },
+      "biggestResources": [
+        {
+          "name": "0gesd7ldqki8q.js",
+          "kb": 84
+        },
+        {
+          "name": "0h4bq73pogmtb.js",
+          "kb": 71
+        },
+        {
+          "name": "83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+          "kb": 48
+        },
+        {
+          "name": "0257pdz1-imal.js",
+          "kb": 41
+        },
+        {
+          "name": "09t2isllljna7.js",
+          "kb": 40
+        },
+        {
+          "name": "fba5a26ea33df6a3-s.p.0eehd8tgys7nv.woff2",
+          "kb": 27
+        }
+      ]
+    },
+    "/contact": {
+      "ttfbMs": 97,
+      "domContentLoadedMs": 583,
+      "loadMs": 1180,
+      "fcpMs": 564,
+      "requestCount": 63,
+      "totalTransferKb": 483,
+      "byType": {
+        "link": 5,
+        "script": 16,
+        "img": 1,
+        "fetch": 39,
+        "iframe": 1
+      },
+      "biggestResources": [
+        {
+          "name": "0gesd7ldqki8q.js",
+          "kb": 84
+        },
+        {
+          "name": "0h4bq73pogmtb.js",
+          "kb": 71
+        },
+        {
+          "name": "83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2",
+          "kb": 48
+        },
+        {
+          "name": "0257pdz1-imal.js",
+          "kb": 41
+        },
+        {
+          "name": "09t2isllljna7.js",
+          "kb": 40
+        },
+        {
+          "name": "fba5a26ea33df6a3-s.p.0eehd8tgys7nv.woff2",
+          "kb": 27
+        }
+      ]
+    }
+  },
+  "notes": [
+    "Discovered service page: /diensten/airconditioning/installatie"
+  ],
+  "focusProbe": [
+    {
+      "tag": "a",
+      "label": "Naar inhoud",
+      "outlineWidth": "1px",
+      "outlineStyle": "none",
+      "boxShadow": "present"
+    },
+    {
+      "tag": "a",
+      "label": "TPS klimaattechniek home",
+      "outlineWidth": "1px",
+      "outlineStyle": "auto",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "a",
+      "label": "Home",
+      "outlineWidth": "1px",
+      "outlineStyle": "auto",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "a",
+      "label": "Dienstenexpand_more",
+      "outlineWidth": "1px",
+      "outlineStyle": "auto",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "a",
+      "label": "ac_unitAirconditioning",
+      "outlineWidth": "1px",
+      "outlineStyle": "auto",
+      "boxShadow": "none"
+    },
+    {
+      "tag": "a",
+      "label": "Installatie",
+      "outlineWidth": "1px",
+      "outlineStyle": "auto",
+      "boxShadow": "none"
+    }
+  ]
+}
