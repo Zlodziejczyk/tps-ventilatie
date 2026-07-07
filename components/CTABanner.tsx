@@ -32,9 +32,9 @@ export function CTABanner({ heading, description }: CTABannerProps) {
               href={SITE.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-hover flex items-center gap-3 bg-[#25D366] text-on-surface px-6 py-3 rounded-xl font-bold hover:opacity-90 transition-opacity focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2"
+              className="btn-hover flex items-center gap-3 bg-surface-container-lowest text-on-primary-fixed px-6 py-3 rounded-xl font-bold hover:bg-primary-fixed transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
-              <Icon name="chat" />
+              <Icon name="chat" className="text-primary" />
               WhatsApp
             </a>
           </div>
