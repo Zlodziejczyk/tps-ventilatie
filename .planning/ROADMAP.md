@@ -19,7 +19,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 4: Content Fill & Editorial Gate** - Unique, accurate, owner-reviewed Dutch copy on every page (the launch quality gate)
 - [ ] **Phase 5: Lead Capture, Form Security & Launch QA** - Secure lead path with instant owner notification, the static-vs-hybrid decision gate, and the launch-readiness QA pass
 - [x] **Phase 6: Homepage conversion uplift** - Premium conversion-optimized home page (proof-forward hero, equal 4-pillar grid, trust/contact band) built from the validated sketch findings (completed 2026-07-01)
-- [ ] **Phase 7: UI/UX & Accessibility Remediation** - Bring every page to WCAG 2.1 AA (contrast, heading order, skip-link/landmarks, touch targets) and apply brand-consistency polish, from the 2026-06-30 UI/UX audit (8.7/10)
+- [x] **Phase 7: UI/UX & Accessibility Remediation** - Bring every page to WCAG 2.1 AA (contrast, heading order, skip-link/landmarks, touch targets) and apply brand-consistency polish, from the 2026-06-30 UI/UX audit (8.7/10) (completed 2026-07-07)
 
 ## Phase Details
 
@@ -288,7 +288,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 4** *(blocked on all — preview verification gate, `autonomous: false`)*
 
-- [ ] 07-08-PLAN.md — Push→Vercel preview + `re-audit.mjs`: 0 contrast fails, 0 heading skips, skip-link, ≥44px targets + manual UI pass (incl. footer refresh, badges, CTA targets, retired-file build check, UI-14 320px spot-check)
+- [x] 07-08-PLAN.md — Push→Vercel preview + `re-audit.mjs`: 0 contrast fails, 0 heading skips, skip-link, ≥44px targets + manual UI pass (incl. footer refresh, badges, CTA targets, retired-file build check, UI-14 320px spot-check)
 
 **Cross-cutting constraints** (hold across plans):
 - Keep the Atmospheric Clarity design system: no 1px section borders (tonal layering), no `#000` text (use `on-surface` `#141D1F`), business data via the `SITE` constant, icons via the `Icon` wrapper.
@@ -310,7 +310,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 | 4. Content Fill & Editorial Gate | 8/9 | In Progress|  |
 | 5. Lead Capture, Form Security & Launch QA | 5/6 | In Progress|  |
 | 6. Homepage conversion uplift | 6/6 | Complete   | 2026-07-01 |
-| 7. UI/UX & Accessibility Remediation | 11/12 | In Progress|  |
+| 7. UI/UX & Accessibility Remediation | 12/12 | Complete   | 2026-07-07 |
 
 ## Backlog
 
