@@ -55,7 +55,7 @@ The two flags (`span.material-symbols-outlined "air"`, `span.sm:hidden "WTW"`, w
 
 ## Remaining genuine human checks (cannot be screenshotted)
 
-- **UI-09 keyboard mega-menu** — confirm Tab opens the desktop Diensten dropdown and Escape closes it (real key-press test).
+- **UI-09 keyboard mega-menu** — ✅ CONFIRMED by owner (2026-07-08): Tab focuses the Diensten trigger (visible focus ring) → mega-menu opens; Escape closes it with focus retained on the trigger. Keyboard-operable, no trap, visible focus.
 - **UI-15 FAQ `<summary>` ≥44px** — the harness `smallTargets` selector doesn't measure `<summary>`; eyeball an FAQ accordion on a service page.
 - **UI-14 320px spot-check** — quick pass at 320px for clipped cards / CTA overflow (low priority).
 
@@ -65,7 +65,7 @@ The two flags (`span.material-symbols-outlined "air"`, `span.sm:hidden "WTW"`, w
   - **Build:** ✅ green — the `c2b6da8` Vercel preview (`itrnmxzqr`) build **compiled successfully in 21s** (all routes, incl. every page using CTABanner/ServiceHero); confirmed via build logs.
   - **Deployed VISUAL confirmation: ✅ CONFIRMED on production (2026-07-08).** After merging the branch to `main`, the production deploy (`8k2j3eshe`, commit `cb155c0`) built in 9s and a targeted Playwright check verified the unified WhatsApp CTAs render correctly: **CTABanner** = white pill + dark text (`rgb(0,31,41)`) + teal chat glyph, **17.1:1**, 167×48px (matches its sibling Bel pill on the dark band — see `cta-band.png`); **ServiceHero** = `surface-container-high` pill + dark text + teal glyph, **14.01:1**, 421×52px (see `wa-service.png`). Both ≥44px, AA-safe, visually clean. The earlier `itrnmxzqr` preview stall was a transient Vercel output-deploy issue (a fresh build of the same commit deployed in 9s).
     - _My quick probe also flagged the MobileMenu WhatsApp (white on `signature-gradient`, off-screen at desktop) at 1.11:1 — a gradient false-positive (the authoritative `re-audit.mjs` excludes gradients via `overGradientOrImage`); intentionally left as the primary-CTA emphasis, unchanged by this work._
-- **Footer IG/FB social icons** — still pending owner-provided Instagram + Facebook URLs (footer + JSON-LD `sameAs`). Unchanged.
+- **Footer IG/FB social icons** — **deferred to post-launch** (owner decision, 2026-07-08); revisit with the Instagram + Facebook URLs then (footer + JSON-LD `sameAs`).
 
 ## Verification provenance
 
