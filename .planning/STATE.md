@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-last_updated: "2026-07-08T00:00:00.000Z"
-last_activity: 2026-07-08
+last_updated: "2026-07-09T00:00:00.000Z"
+last_activity: 2026-07-09
 progress:
   total_phases: 7
-  completed_phases: 6
+  completed_phases: 7
   total_plans: 53
-  completed_plans: 52
-  percent: 86
+  completed_plans: 53
+  percent: 100
 ---
 
 # Project State
@@ -20,16 +20,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-02)
 
 **Core value:** Turn local search demand into contacted leads — a prospect in the Zoetermeer region finds TPS, trusts it, reaches out, and the owner is notified instantly.
-**Current focus:** Phase 07 — ui-ux-and-accessibility-remediation
+**Current focus:** Launch prep — all 53 plans complete (100%); remaining gate = owner whole-site sign-off + attaching `tpsklimaattechniek.nl`
 
 ## Current Position
 
-Phase: 07 (ui-ux-and-accessibility-remediation) — ✅ COMPLETE (verified on preview 2026-07-08)
-Plan: 12 of 12 (all SUMMARYs present)
-Status: Phase complete — A11Y-01..04 + UI-05..15 verified green on the Vercel preview (07-08 re-audit)
-Last activity: 2026-07-08
+Phase: 05 (lead-capture-form-security-launch-qa) — ✅ COMPLETE (05-06 launch-QA closed 2026-07-09). All 7 phases / 53 plans done.
+Plan: 05-06 of 6 (final SUMMARY written) — milestone v1.0 at 53/53 plans
+Status: Milestone plan-complete. Lead path verified secure/fast/reliable on preview; SEO-10 CWV accepted (throttle-bound; desktop LCP 1.7s; field-monitored). Remaining launch gate = owner whole-site sign-off + domain attach.
+Last activity: 2026-07-09
 
-Progress: [██████████] 100% (phase 7)
+Progress: [██████████] 100% (53/53 plans, 7/7 phases)
 
 ## Performance Metrics
 
@@ -105,7 +105,7 @@ None yet.
 - ✅ RESOLVED (intake 2026-06-28): certifications + dealer status FINALIZED by owner / Pushly editorial sign-off — erkendInstallateur=true for Daikin + Mitsubishi (Electric/Heavy/Ecodan), BRL 100/200 surfaced; F-gassen/STEK chase dropped (upload requirement waived, physical certs held on-site); anti-claim gate patterns lifted.
 - ✅ RESOLVED (intake 2026-06-28): service radius confirmed 60 km + 8 service areas; NAP corrections applied (BTW NL859640929B01, slogan "Specialist in gezond binnenklimaat"); opening hours Ma–za 08:00–17:30 added (SITE + JSON-LD + contact); legalName "TPS services" added; REVIEW_RATING 4,9/34 set (real Google data) → aggregateRating emits.
 - ✅ RESOLVED (Phase 3 D-01): canonical host locked to apex `https://tpsventilatie.nl` for launch (live-confirmed: www→apex 301 in place); brand name stays "TPS klimaattechniek" (name≠domain); tpsklimaattechniek.nl migration deferred to v2 (DOM-V2-01).
-- Phase 5 depends on the GHL instant-notification workflow being configured for a live end-to-end test.
+- ✅ RESOLVED (05-06, 2026-07-09): GHL "Website - Webhook Form" workflow live (real contact 2026-06-30); owner notification is WhatsApp-first (owner pinged on Send) + silent GHL capture. Rate-limit = honeypot-only (Upstash not provisioned — accepted). Lead path verified on preview; SEO-10 CWV accepted as throttle-bound (desktop LCP 1.7s) + field-monitored.
 - 04-09 Task 1 (map intake → gated slots) ✅ DONE 2026-06-28; company "Verhaal van Thomas" rewritten (experience/specialisaties/merken). STILL PENDING from owner: Instagram + Facebook URLs (footer + JSON-LD sameAs), project + portrait photos, logo placement (PNG in hand), and the whole-site Vercel-preview sign-off (Task 2) before batch-flipping review->published (Task 3). Async. Resume with /gsd-execute-phase 4.
 - 04-09 REVISE cycle (owner preview review 2026-06-28): TIER 1 branding fixes ✅ SHIPPED (quick task 260628-q2u). TIER 2 ServiceHero redesign ✅ DONE + SHIPPED to preview (quick task 260628-4d3, b55de17) — preview https://tps-ventilatie-klwgq6xyn-pushly-projects.vercel.app (Vercel CI build PASSED: gates 27/27, TS clean, 32 pages; service page renders the new two-column hero). This preview carries TIER 1 + TIER 2 together. **Owner reviewed 2026-06-28** → TIER 2 approved; two follow-ups: (a) header logo too small → chose logo-only enlarged (drop wordmark) ✅ DONE (6fd2655), redeployed → preview https://tps-ventilatie-9jg4cvqqk-pushly-projects.vercel.app; (b) hero/site imagery → owner generated the 6-image set in Nano Banana (Gemini); Claude sips-optimized → public/images/heroes/ + WIRED IN (f91b783): the 4 pillar pages show their scene in the ServiceHero right column (service detail pages keep the trust card), over-ons gets the human trust shot. home-hero.jpg staged for the Phase 6 homepage rebuild (NOT wired — avoids throwaway). New preview https://tps-ventilatie-o6jc9yc6h-pushly-projects.vercel.app (build PASSED; verified pillar images + over-ons trust + service-detail card intact + 200s). Open imagery polish: wtw shot still shows faint AI fake-brand bottles on a background shelf (no ImageMagick locally to clone → re-roll with the strengthened prompt, or accept); invented polo logos left as generic uniforms (optional TPS-logo swap via Nano Banana). Prompts + STYLE BLOCK in IMAGE-PROMPTS-nano-banana.md. TIER 3 manufacturer/cert logos + homepage trust band still owner-blocked. (2026-06-29) Owner review #3 → pillar hero REWORKED + de-localised: LEAN hero (H1 + lead sentence + scannable key-point chips + balanced 4:3 image; commit 62edb6c) with the full description moved to a new `ServiceIntro` prose section below (readable column, chunked, SEO text stays on-page); the 4 pillar H1s de-localised to service-only ('Airconditioning'/'Warmtepompen'/'Warmteterugwinning (WTW)'/'Mechanische ventilatie') + metaTitles → 'in de regio Zoetermeer' (commit 56afb37 — visible Zoetermeer funnel removed, light geo kept only in <title>; body already had one regional coverage line; sub-service H1s were already city-free). New preview https://tps-ventilatie-r6znbcg6f-pushly-projects.vercel.app (build PASSED, verified H1s + chips + prose + image). FUTURE SEO: per-town location pages (programmatic) for local ranking, not city-in-every-header. NEXT: owner eyeballs preview r6znbcg6f → whole-site sign-off → then 04-09 Task 3.
 

@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Routes & Service-Page Templates** - Data-driven hub + pillar + sub-service pages (~22) generated from the taxonomy with taxonomy-derived nav (completed 2026-06-05)
 - [x] **Phase 3: SEO Infrastructure** - Sitemap, robots, JSON-LD, canonical/OG, GBP alignment, and analytics + Search Console across every page (completed 2026-06-06)
 - [ ] **Phase 4: Content Fill & Editorial Gate** - Unique, accurate, owner-reviewed Dutch copy on every page (the launch quality gate)
-- [ ] **Phase 5: Lead Capture, Form Security & Launch QA** - Secure lead path with instant owner notification, the static-vs-hybrid decision gate, and the launch-readiness QA pass
+- [x] **Phase 5: Lead Capture, Form Security & Launch QA** - Secure lead path with instant owner notification, the static-vs-hybrid decision gate, and the launch-readiness QA pass
 - [x] **Phase 6: Homepage conversion uplift** - Premium conversion-optimized home page (proof-forward hero, equal 4-pillar grid, trust/contact band) built from the validated sketch findings (completed 2026-07-01)
 - [x] **Phase 7: UI/UX & Accessibility Remediation** - Bring every page to WCAG 2.1 AA (contrast, heading order, skip-link/landmarks, touch targets) and apply brand-consistency polish, from the 2026-06-30 UI/UX audit (8.7/10) (completed 2026-07-07)
 
@@ -204,7 +204,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 05-06-PLAN.md — External infra (Vercel env/Upstash/GHL) + preview launch-QA: build gate, secure-path, QA-08 live notify, mobile CWV gate (QA-08, SEO-10) `autonomous: false` [wave 4]
+- [x] 05-06-PLAN.md — External infra (Vercel env/Upstash/GHL) + preview launch-QA: build gate, secure-path, QA-08 live notify, mobile CWV gate (QA-08, SEO-10) `autonomous: false` [wave 4] ✅ 2026-07-09 — infra live (honeypot-only), 11/12 green, SEO-10 accepted (throttle-bound; desktop LCP 1.7s; field-monitored via Speed Insights)
 
 **Cross-cutting constraints** (hold across plans):
 - The hybrid flip (05-01) changes the whole build — sequence it first; every later plan validates on a **Vercel preview** (no local `next build`/`tsx` — OneDrive deadlock).
