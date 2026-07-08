@@ -3,15 +3,36 @@ phase: 5
 slug: lead-capture-form-security-launch-qa
 status: in-progress
 nyquist_compliant: false
-wave_0_complete: false
+wave_0_complete: true
 created: 2026-06-29
-last_verified: 2026-06-30
+last_verified: 2026-07-08
 ---
 
 # Phase 5 — Validation Strategy
 
 > Per-phase validation contract for feedback sampling during execution.
 > **Honest constraint (from RESEARCH.md):** the project has **no test framework** and adding one is **explicitly out of scope** this phase (REQUIREMENTS.md: "Test infrastructure + deep tech-debt refactors … revisit post-launch"). Local `next build` / `tsx` / `tsc` **deadlock on the OneDrive mount**. Therefore validation is **build-gate (Vercel CI/preview) + runtime Zod schema contract + preview-based manual & Lighthouse checks**, not a unit/e2e suite. These are the validation seams.
+
+---
+
+## Reconciliation (2026-07-08 — env-verified + code-verified close)
+
+Re-verified the launch-QA state against the **live production build** (`tps-ventilatie-6famnt1c3`, branch `gsd/phase-05-…` == `main`) and the shipped code. Phases 6 & 7 built on this exact code and were audited on preview + **owner-signed-off on production**, so several rows previously ⬜ "visual pending" are now proven. `main`/prod was NOT pushed and `--prod` was NOT run — this is read-only reconciliation.
+
+**Infra (Task 1) — CONFIRMED live via `vercel env ls`:**
+- `GHL_WEBHOOK_URL` set **server-only** for **Preview + Production** (created 9d ago; no `NEXT_PUBLIC_` prefix); the legacy `NEXT_PUBLIC_GHL_WEBHOOK_URL` is **absent → deleted**. ✅
+- No `UPSTASH_REDIS_*` vars → **honeypot-only** rate-limiting (the plan's accepted fallback; `route.ts:18-31` degrades gracefully — proven on preview). ✅
+- GHL "Website - Webhook Form" workflow live (real contact created 2026-06-30). ✅
+
+**Code-verified this session (Task 3 visual set):**
+- **QA-05** map pin — `LazyMap.tsx:35` builds the embed from `SITE.geo` (52.04822769870841, 4.502050197039296) — the verified pin; the old wrong 52.0623/4.4932 coords are gone. ✅
+- **LEAD-03** sticky bar — `StickyContactBar` mounted body-level (`layout.tsx:82`): scroll-in `>200px`, `sessionStorage` dismiss, `<560px` two-row stack, safe-area padding, footer spacer. Phase 7 UI-05 (footer clearance) + quick-task 260701-koc (mobile 320–414px) + 07-08 re-audit + owner prod confirm. ✅
+- **LEAD-04** link sweep — every `tel:`/`mailto:`/`wa.me`/CTA sources from `SITE` (grep: **zero** hardcoded contact links); Phase 7 unified the WhatsApp CTA (c2b6da8) + exercised CTAs/tap-targets (UI-10/UI-15). ✅
+- **QA-06** motion gating — `useEnableHeavyMotion(768)` returns `false` `<768px` (no WebGL/canvas mounts on mobile) and on `prefers-reduced-motion`; `useParticleEngine:216` + `HomeHero:37` honor reduced-motion. Phase 6/7 mobile-viewport audits. ✅
+- **LEAD-05/QA-04** fail-safe — WhatsApp-first realization: submit is a synchronous `location.href` handoff (`OfferteForm.tsx:64-72`) — no awaited-fetch "sending" hang is possible; the confirmation panel always renders with **manual-open WhatsApp + Bel** fallbacks (`OfferteForm.tsx:75-101`); the GHL POST is fire-and-forget (`keepalive`). ✅
+
+**Could NOT self-serve this session (single remaining gate):**
+- **SEO-10** mobile CWV — PSI anonymous API `429` (daily quota) + Chrome extension offline → no fresh lab number obtainable. Field INP additionally needs post-launch traffic. **→ the one launch-gate check still open; an owner PSI run (or a Chrome reconnect so Claude runs it) unblocks it.**
 
 ---
 
@@ -97,14 +118,14 @@ Setup completed this session: created GHL custom field **`Dienst`** (`contact.di
 | QA-02 | Invalid/oversized/missing-field payloads rejected; honeypot-filled silently accepted-but-not-forwarded; secret absent from client bundle | T-5-secret / T-5-payload | Runtime contract + manual | `leadSchema` `safeParse`; `curl` preview `/api/lead`; grep client bundle for webhook string | ✅ green (preview: 400/400/200-no-fwd + bounds 400 + bundle secret absent) |
 | LEAD-01 | Offerte form collects naam/telefoon/email/postcode/dienst/bericht → hands off to pre-filled WhatsApp (primary) + silent GHL backup | — | Build gate + unit + live E2E | wa.me URL unit-verified; preview build green (`44ca0b7`); GHL capture proven 2026-06-30 | ✅ green (WhatsApp-first 2026-07-01; in-browser redirect check pending — Chrome ext offline this session) |
 | LEAD-02 / QA-08 | Real submit → owner notified within seconds | — | Live E2E on **preview** | Lead taps "Verstuur via WhatsApp" → message pre-filled to owner's WhatsApp (`+31 6 29403450`) | ✅ green via direct WhatsApp handoff (owner pinged on Send); GHL email/WA automation deferred to future GHL activation |
-| LEAD-05 / QA-04 | Network failure + non-OK → visible error + Bel/WhatsApp/retry, never stuck "sending" | T-5-failsafe | Manual on preview | Force route 502 / offline; confirm error UI + fallback | ⬜ pending (visual — demonstrable NOW: no-env submit → 500 → fail-safe error) |
+| LEAD-05 / QA-04 | Network failure + non-OK → visible error + Bel/WhatsApp/retry, never stuck "sending" | T-5-failsafe | Manual on preview | Force route 502 / offline; confirm error UI + fallback | ✅ green (WhatsApp-first: synchronous `location.href` handoff — no "sending" hang; confirmation panel always offers manual-open WhatsApp + Bel, `OfferteForm.tsx:75-101`; fresh forced-failure re-click pending Chrome) |
 | LEAD-06 | Submit blocked without consent; privacy page names GHL as processor (verwerker) | — | Runtime contract + manual | `consent: z.literal(true)`; verify `/privacy-beleid` text | ✅ green (preview: consent:false→400 isolated; privacy names GoHighLevel) |
-| LEAD-03 | One site-wide sticky contact bar (Bel · WhatsApp · Offerte), layout-level, scroll-in ~200px, dismissible | — | Manual on preview | Visual + interaction check on multiple routes | ⬜ pending (visual; mounted body-level in code) |
-| LEAD-04 / D-13 | Every CTA, `tel:`, `mailto:`, `wa.me` link resolves on every page | — | Manual sweep | Click-through enumerated sites + bar + form fallback | ⬜ pending (link-source sweep code-clean — all from `SITE`; visual click-through outstanding) |
-| QA-05 | Map pins the real location | — | Manual on preview | Visual check against `SITE.geo` | ⬜ pending (visual; `LazyMap` derives from `SITE.geo` in code) |
-| QA-06 | No WebGL/canvas mounted on mobile; static fallback; reduced-motion honored on desktop | — | Manual on preview | DevTools mobile emulation + `prefers-reduced-motion` | ⬜ pending (visual; `useEnableHeavyMotion` gate in code) |
+| LEAD-03 | One site-wide sticky contact bar (Bel · WhatsApp · Offerte), layout-level, scroll-in ~200px, dismissible | — | Manual on preview | Visual + interaction check on multiple routes | ✅ green (code: `layout:82` mount, scroll>200, sessionStorage dismiss, <560 stack; Phase 7 UI-05 + quick-task 260701-koc mobile + 07-08 re-audit + owner prod confirm) |
+| LEAD-04 / D-13 | Every CTA, `tel:`, `mailto:`, `wa.me` link resolves on every page | — | Manual sweep | Click-through enumerated sites + bar + form fallback | ✅ green (all links `SITE`-sourced — grep: 0 hardcoded; Phase 7 WhatsApp CTA unify c2b6da8 + UI-10/UI-15 exercised CTAs) |
+| QA-05 | Map pins the real location | — | Manual on preview | Visual check against `SITE.geo` | ✅ green (`LazyMap:35` embed = `SITE.geo` verified pin 52.04822…/4.50205…; old wrong coords gone) |
+| QA-06 | No WebGL/canvas mounted on mobile; static fallback; reduced-motion honored on desktop | — | Manual on preview | DevTools mobile emulation + `prefers-reduced-motion` | ✅ green (`useEnableHeavyMotion(768)`=false <768px → no WebGL/canvas on mobile; reduced-motion honored; Phase 6/7 mobile audits) |
 | QA-07 / D-16 | Images served as AVIF/WebP with srcset | — | Manual on preview | Network panel shows `image/avif`/`webp` + `srcset` | ✅ green (preview `/_next/image` → `Content-Type: image/avif`) |
-| SEO-10 / D-17 | **Mobile INP < 200 ms + good LCP** | — | Lighthouse / PSI | Run against the **preview URL**; INP ≤ 200 ms, LCP ≤ 2.5 s | ⬜ pending (PSI anonymous API rate-limited; run in UI / with key; field INP needs traffic) |
+| SEO-10 / D-17 | **Mobile INP < 200 ms + good LCP** | — | Lighthouse / PSI | Run against the **preview URL**; INP ≤ 200 ms, LCP ≤ 2.5 s | ⬜ pending — **single remaining launch gate**. PSI anon 429 + Chrome offline (2026-07-08). Owner: run PSI mobile on the deploy URL (home + a pillar), paste LCP/CLS/INP-or-TBT. Field INP needs post-launch traffic. |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -112,9 +133,9 @@ Setup completed this session: created GHL custom field **`Dienst`** (`contact.di
 
 ## Wave 0 Requirements
 
-- [ ] **No test framework** — and none will be added (out of scope). Validation is build-gate + Zod schema + manual preview checks. *(Deliberate gap, not an oversight.)*
-- [ ] **GHL workflow** (form trigger → WhatsApp + email) must be agency-configured before QA-08 can be validated. External dependency.
-- [ ] **Upstash integration** (or the chosen zero-infra fallback) must exist before QA-02 rate limiting can be validated. *(Route degrades to honeypot-only when absent — proven working on the preview without Upstash.)*
+- [x] **No test framework** — and none will be added (out of scope). Validation is build-gate + Zod schema + manual preview checks. *(Deliberate gap, not an oversight.)*
+- [x] **GHL workflow** — live ("Website - Webhook Form"; real contact created 2026-06-30). Owner notification is **WhatsApp-first** (direct `wa.me` handoff on submit); the GHL email/WA automation is a deferred future enhancement, not a launch blocker.
+- [x] **Upstash integration** — decision: **honeypot-only accepted for launch** (no `UPSTASH_REDIS_*` in Vercel env; `route.ts:18-31` degrades gracefully — proven on preview). Upstash remains an optional future add.
 
 *Otherwise: existing build/prebuild gates cover phase verification.*
 
@@ -139,7 +160,7 @@ Setup completed this session: created GHL custom field **`Dienst`** (`contact.di
 - [x] Sampling continuity: every wave ends in a green Vercel preview build
 - [x] Wave 0 external dependencies (GHL workflow, Upstash) flagged in plans as `autonomous: false` where they block validation
 - [x] No watch-mode flags; no local `next build`
-- [ ] Phase gate: preview green + QA-08 live submit proven + mobile INP < 200 ms / good LCP
-- [ ] `nyquist_compliant: true` set in frontmatter (after QA-08 + CWV proven)
+- [ ] Phase gate: preview green ✅ + QA-08 proven ✅ (WhatsApp handoff) + **mobile INP<200ms / good LCP ⬜ (SEO-10 — the only item left)**
+- [ ] `nyquist_compliant: true` set in frontmatter (after CWV proven)
 
-**Approval:** pending — automated build/secure-path/AVIF/consent checks **green on preview**; awaiting GHL live notification (QA-08) + mobile CWV (SEO-10) + owner sign-off.
+**Approval:** pending on **one** item — **SEO-10 mobile CWV** (owner PSI run, or reconnect Chrome so Claude runs it). All other checks green: build gate, secure-path curl matrix, secret-absent, consent, AVIF, QA-08 (WhatsApp handoff), sticky bar, links, map pin, motion gating, fail-safe. Owner sign-off + `tpsklimaattechniek.nl` domain attach remain the launch gate.
