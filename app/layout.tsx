@@ -22,6 +22,13 @@ const inter = Inter({
   display: "swap",
 });
 
+// Material Symbols icon font (decorative). Loaded NON-render-blocking (SEO-10): the
+// page's LCP is H1 text and never needs this font, so it must not gate first paint —
+// a plain render-blocking cross-origin <link> was pushing mobile FCP/LCP to ~8–9s on
+// Slow-4G. display=block shows blank (not the ligature source text) until glyphs load.
+const MATERIAL_SYMBOLS_HREF =
+  "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block";
+
 export const metadata: Metadata = {
   // metadataBase makes relative OG/canonical resolve to the apex origin (D-01).
   metadataBase: new URL(CANONICAL_ORIGIN),
@@ -58,10 +65,23 @@ export default function RootLayout({
   return (
     <html lang="nl" className={`${jakarta.variable} ${inter.variable} scroll-smooth`}>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
+        {/* Preconnect so the icon-font fetch doesn't pay a cold cross-origin connection
+            on slow mobile; preload keeps its priority high; the stylesheet loads as
+            media=print then flips to all on load (non-render-blocking), with a noscript
+            fallback. Keeps first paint free of a decorative-font dependency (SEO-10). */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preload" as="style" href={MATERIAL_SYMBOLS_HREF} />
+        <link id="ms-icons" rel="stylesheet" href={MATERIAL_SYMBOLS_HREF} media="print" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var l=document.getElementById('ms-icons');if(!l)return;function s(){l.media='all'}l.addEventListener('load',s);if(l.sheet)s();})();",
+          }}
         />
+        <noscript>
+          <link rel="stylesheet" href={MATERIAL_SYMBOLS_HREF} />
+        </noscript>
       </head>
       <body className="bg-background text-on-surface font-body">
         {/* Keyboard skip link (A11Y-03, WCAG 2.4.1) — first focusable element,
