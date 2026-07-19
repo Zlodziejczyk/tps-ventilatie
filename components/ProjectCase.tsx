@@ -8,9 +8,28 @@ interface ProjectCaseProps {
 }
 
 // One showcased job on /projecten: title + period/tag chips, a short story, and
-// the photo grid. Landscape photos span two columns so mixed-orientation sets
-// stay balanced. Tonal card surface — no 1px borders (design system).
+// the photo grid. Grid shape adapts to the photo set so no case renders a hole:
+// 2 portraits fill a 2-col row; a portrait+landscape pair packs one 3-col row
+// (landscape at 3/2 so both cells are equal height); sets with a landscape use
+// 2 cols with the landscape full-width at 16/9. Tonal card — no 1px borders.
+function gridClass(count: number, landscapes: number): string {
+  const base = "grid grid-cols-1 gap-3 md:gap-4";
+  if (count === 1) return base;
+  if (count === 2 && landscapes === 1) return `${base} sm:grid-cols-2 lg:grid-cols-3`;
+  if (landscapes === 0) return count === 2 ? `${base} sm:grid-cols-2` : `${base} sm:grid-cols-2 lg:grid-cols-3`;
+  return `${base} sm:grid-cols-2`;
+}
+
+function photoClass(orientation: "portrait" | "landscape", count: number): string {
+  const base = "relative rounded-2xl overflow-hidden";
+  if (orientation === "portrait") return `${base} aspect-[3/4]`;
+  if (count === 1) return `${base} aspect-[16/9]`;
+  if (count === 2) return `${base} aspect-[3/2] sm:col-span-2`;
+  return `${base} aspect-[16/9] sm:col-span-2`;
+}
+
 export function ProjectCase({ project }: ProjectCaseProps) {
+  const landscapes = project.photos.filter((p) => p.orientation === "landscape").length;
   return (
     <AnimateOnScroll as="article" className="bg-surface-container-low rounded-3xl p-6 md:p-10">
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2 mb-4">
@@ -36,21 +55,17 @@ export function ProjectCase({ project }: ProjectCaseProps) {
         {project.summary}
       </p>
 
-      <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+      <StaggerChildren className={gridClass(project.photos.length, landscapes)}>
         {project.photos.map((photo) => (
           <StaggerItem
             key={photo.src}
-            className={
-              photo.orientation === "landscape"
-                ? "relative aspect-[4/3] sm:col-span-2 rounded-2xl overflow-hidden"
-                : "relative aspect-[3/4] rounded-2xl overflow-hidden"
-            }
+            className={photoClass(photo.orientation, project.photos.length)}
           >
             <Image
               src={photo.src}
               alt={photo.alt}
               fill
-              sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+              sizes="(min-width: 1024px) 600px, (min-width: 640px) 50vw, 100vw"
               className="object-cover"
               loading="lazy"
             />
