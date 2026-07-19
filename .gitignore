@@ -44,3 +44,6 @@ next-env.d.ts
 # Reference files (not part of the app)
 .stitch/
 .firecrawl/
+
+# Owner photo source dump (renamed originals + Live Photo clips) — see iCloud Photos/PHOTOS.md
+iCloud Photos/
