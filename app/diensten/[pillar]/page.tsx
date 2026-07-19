@@ -8,6 +8,7 @@ import { ServiceIntro } from "@/components/ServiceIntro";
 import { BrandGrid } from "@/components/BrandGrid";
 import { ServiceFAQ } from "@/components/ServiceFAQ";
 import { RelatedServices } from "@/components/RelatedServices";
+import { RecentWorkStrip } from "@/components/RecentWorkStrip";
 import { CTABanner } from "@/components/CTABanner";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import {
@@ -143,6 +144,10 @@ export default async function PillarPage({ params }: { params: Params }) {
       </section>
 
       <BrandGrid brandIds={brandsForPillar(pillar)} />
+
+      {/* Real install photos (260719-t62) — airco only until Thomas supplies
+          warmtepomp/WTW material; RecentWorkStrip reads lib/projects.ts. */}
+      {pillar === "airconditioning" && <RecentWorkStrip />}
 
       <ServiceFAQ faqs={node.content.faqs} localAngle={node.content.localAngle} />
 
