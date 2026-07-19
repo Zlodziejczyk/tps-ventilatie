@@ -135,6 +135,26 @@ const STATIC_PAGES: PageNode[] = [
   },
   {
     type: "static",
+    pathSegment: "projecten",
+    status: "draft",
+    primaryKeyword: "airco installatie Zoetermeer voorbeelden",
+    searchIntent: "commercieel",
+    secondaryKeywords: ["airco projecten", "airco laten installeren voorbeelden"],
+    navTitle: "Projecten",
+    navDescription: "Recente installaties uit de regio, door ons eigen team",
+    icon: "photo_library",
+    // Showcase of real owner-supplied install photos (quick task 260719-t62).
+    // Body content lives in lib/projects.ts + app/projecten/page.tsx; this node
+    // carries SEO metadata and puts the page in sitemap/robots via policy.ts
+    // (static type ⇒ indexable, same as the other content statics).
+    content: draftShell(
+      "Ons werk",
+      "Ons werk – airco-installaties Zoetermeer | TPS klimaattechniek",
+      "Bekijk recente installaties van TPS klimaattechniek in Zoetermeer en omgeving: wandunits, vloermodellen, multi-splits en maatwerk-oplossingen.",
+    ),
+  },
+  {
+    type: "static",
     pathSegment: "over-ons",
     status: "draft",
     primaryKeyword: "TPS klimaattechniek",
