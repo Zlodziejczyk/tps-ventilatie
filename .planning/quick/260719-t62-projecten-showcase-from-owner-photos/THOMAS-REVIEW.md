@@ -6,11 +6,13 @@ pagina **/projecten** ("Ons werk") en als fotostrook op de airco-pagina.
 Alles is anoniem (geen adressen, geen namen, maand-precisie). Graag één keer
 checken en akkoord geven vóór livegang.
 
-## 1. Check bij livegang (per klant)
+## 1. Check bij livegang (per klant) — ✅ BEVESTIGD
 
-We gebruiken 21 foto's uit 9 klussen (juni–juli). Kun je bevestigen dat deze
-klanten het goed vinden dat een foto van hun installatie (zonder adres/naam)
-op de site staat? Het gaat om deze klussen:
+**Status 2026-07-20 (via Oskar):** alle aangeleverde klusfoto's hebben
+klant-toestemming — foto's zouden anders niet zijn opgestuurd. Geen actie meer
+nodig; de tabel hieronder blijft staan als register van wat er live staat.
+
+We gebruiken 21 foto's uit 9 klussen (juni–juli), zonder adres/naam:
 
 | # | Klus | Foto's op site |
 |---|------|----------------|
