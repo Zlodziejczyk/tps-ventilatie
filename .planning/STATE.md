@@ -116,7 +116,8 @@ None yet.
 | 260628-q2u | TIER 1 branding fixes (04-revise): Navbar brand+logo, stale brand refs, Nieuw badge clip | 2026-06-28 | 8fbd954 | [260628-q2u-tier-1-branding-fixes-04-revise-navbar-b](./quick/260628-q2u-tier-1-branding-fixes-04-revise-navbar-b/) |
 | 260628-4d3 | TIER 2 (04-revise): ServiceHero redesign — two-column, lead/supporting split + engineered trust card (defect #4 walls of text) | 2026-06-28 | b55de17 | [260628-4d3-tier-2-servicehero-redesign](./quick/260628-4d3-tier-2-servicehero-redesign/) |
 | 260701-koc | Fix StickyContactBar mobile shatter — content-sized single-row pills (<560px), digits dropped on mobile; verified 320/360/390/414 (bar 258px→114px). Rest of mobile audit → Phase 7 | 2026-07-01 | e72464f | [260701-koc-fix-stickycontactbar-mobile-layout-compa](./quick/260701-koc-fix-stickycontactbar-mobile-layout-compa/) |
-| 260719-t62 | Projecten showcase from owner photos — /projecten (7 cases, 21 foto's) + airco RecentWorkStrip + nav/footer/sitemap; 4 foto's excluded (privacy/kwaliteit); THOMAS-REVIEW.md consent gate open | 2026-07-19 | 4e6dd4d | [260719-t62-projecten-showcase-from-owner-photos](./quick/260719-t62-projecten-showcase-from-owner-photos/) |
+| 260719-t62 | Projecten showcase from owner photos — /projecten (7 cases, 21 foto's) + airco RecentWorkStrip + nav/footer/sitemap; 4 foto's excluded (privacy/kwaliteit); consent bevestigd 2026-07-20 | 2026-07-19 | 4e6dd4d | [260719-t62-projecten-showcase-from-owner-photos](./quick/260719-t62-projecten-showcase-from-owner-photos/) |
+| 260720-rgj | Photo treatment synthesis (sketch 004 winner A+C+D) — kalme petrol grade sitewide, strip-duotone met hover-reveal (hover-only devices), technische labels op /projecten | 2026-07-20 | 5ba3195 | [260720-rgj-photo-treatment-synthesis-from-sketch-00](./quick/260720-rgj-photo-treatment-synthesis-from-sketch-00/) |
 
 ## Deferred Items
 

@@ -2,7 +2,7 @@
 quick_id: 260720-rgj
 slug: photo-treatment-synthesis-from-sketch-00
 created: 2026-07-20
-status: in-progress
+status: complete
 mode: quick
 execution: inline (OneDrive constraint)
 must_haves:
