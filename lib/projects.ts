@@ -8,6 +8,8 @@ export interface ProjectPhoto {
   src: string;
   alt: string;
   orientation: "portrait" | "landscape";
+  /** Small technical chip on /projecten case photos ("Toshiba · zolder") — sketch 004 variant D. */
+  label?: string;
 }
 
 export interface Project {
@@ -33,11 +35,13 @@ export const PROJECTS: Project[] = [
       {
         src: "/images/projecten/airco-omkasting-eikenhout-vide.jpg",
         alt: "Airco-binnendeel weggewerkt achter een eikenhouten lamellen-omkasting in een woonruimte met vide",
+        label: "Maatwerk · vide",
         orientation: "portrait",
       },
       {
         src: "/images/projecten/airco-omkasting-eikenhout-detail.jpg",
         alt: "Close-up van de eikenhouten maatwerk-omkasting rond het airco-binnendeel",
+        label: "Maatwerk · detail",
         orientation: "portrait",
       },
     ],
@@ -54,16 +58,19 @@ export const PROJECTS: Project[] = [
       {
         src: "/images/projecten/toshiba-wandunit-zwart-zolder.jpg",
         alt: "Matzwarte Toshiba-wandunit met zwarte leidinggoot op een zolderkamer",
+        label: "Toshiba · zolder",
         orientation: "portrait",
       },
       {
         src: "/images/projecten/toshiba-wandunit-zwart-interieur.jpg",
         alt: "Matzwarte Toshiba-wandunit naast industriële hanglampen",
+        label: "Toshiba · interieur",
         orientation: "portrait",
       },
       {
         src: "/images/projecten/toshiba-buitendelen-duo-dakkapel.jpg",
         alt: "Twee Toshiba-buitendelen naast elkaar op het platte dak van een dakkapel",
+        label: "2× buitendeel · dakkapel",
         orientation: "landscape",
       },
     ],
@@ -80,11 +87,13 @@ export const PROJECTS: Project[] = [
       {
         src: "/images/projecten/daikin-perfera-vloermodel-slaapkamer.jpg",
         alt: "Daikin Perfera-vloermodel airco onder een raam in een slaapkamer",
+        label: "Daikin · vloermodel",
         orientation: "portrait",
       },
       {
         src: "/images/projecten/daikin-buitendelen-plat-dak-zonnepanelen.jpg",
         alt: "Twee Daikin-buitendelen op een plat dak naast zonnepanelen",
+        label: "2× buitendeel · plat dak",
         orientation: "landscape",
       },
     ],
@@ -101,6 +110,7 @@ export const PROJECTS: Project[] = [
       {
         src: "/images/projecten/buitendelen-trio-daikin-mitsubishi.jpg",
         alt: "Drie airco-buitendelen van Daikin en Mitsubishi Heavy Industries op een rij op een plat dak",
+        label: "Daikin + Mitsubishi HI · plat dak",
         orientation: "landscape",
       },
     ],
@@ -117,6 +127,7 @@ export const PROJECTS: Project[] = [
       {
         src: "/images/projecten/toshiba-daiseikai-buitendelen-duo.jpg",
         alt: "Twee Toshiba Daiseikai-buitendelen op rubberen dempers tegen een witte gevel",
+        label: "Toshiba Daiseikai · gevel",
         orientation: "landscape",
       },
     ],
@@ -133,16 +144,19 @@ export const PROJECTS: Project[] = [
       {
         src: "/images/projecten/mitsubishi-wandunit-hoek.jpg",
         alt: "Witte Mitsubishi Heavy Industries-wandunit in een hoek bij het raam",
+        label: "Mitsubishi HI · wandunit",
         orientation: "portrait",
       },
       {
         src: "/images/projecten/mitsubishi-buitendeel-dak-closeup.jpg",
         alt: "Mitsubishi Heavy Industries-buitendeel op het dak met ingevulde kenplaat koelinstallatie",
+        label: "Mitsubishi HI · dak",
         orientation: "portrait",
       },
       {
         src: "/images/projecten/mitsubishi-buitendeel-terras.jpg",
         alt: "Mitsubishi Heavy Industries-buitendeel op trillingsdempers op een terras",
+        label: "Mitsubishi HI · terras",
         orientation: "portrait",
       },
     ],
@@ -159,16 +173,19 @@ export const PROJECTS: Project[] = [
       {
         src: "/images/projecten/daikin-vloermodel-woonkamer.jpg",
         alt: "Daikin-vloermodel airco naast openslaande tuindeuren in een woonkamer",
+        label: "Daikin · vloermodel",
         orientation: "portrait",
       },
       {
         src: "/images/projecten/daikin-wandunit-nis.jpg",
         alt: "Daikin-wandunit geplaatst in een nis boven het raam",
+        label: "Daikin · wandunit in nis",
         orientation: "portrait",
       },
       {
         src: "/images/projecten/daikin-buitendelen-rij-gevel.jpg",
         alt: "Twee Daikin-buitendelen op een rij langs de gevel met nette leidinggoten",
+        label: "Daikin · buitendelen",
         orientation: "portrait",
       },
     ],

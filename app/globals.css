@@ -218,3 +218,50 @@
   -webkit-mask: radial-gradient(circle 4px at center, transparent 96%, #000);
   mask: radial-gradient(circle 4px at center, transparent 96%, #000);
 }
+
+/* Project-photo treatment (sketch 004 winner: synthese A+C+D, 260720-rgj) —
+   real install photos are visually heterogeneous (brick reds, warm oak, dark
+   attics) and heavier than the light surfaces. One calm petrol grade unifies
+   them (A); the RecentWorkStrip thumbs rest in petrol duotone and reveal true
+   color on hover/focus, hover-capable devices only (C) — touch gets the grade.
+   Bare classes (NOT @utility), mirroring .aurora. Overlays clip via the
+   wrapper's rounded overflow-hidden. */
+.photo-grade {
+  filter: saturate(0.78) contrast(0.93) brightness(1.07);
+}
+.photo-frame {
+  position: relative;
+}
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-primary);
+  opacity: 0.07;
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+@media (hover: hover) {
+  .photo-duo .photo-grade {
+    filter: grayscale(1) contrast(0.92) brightness(1.12);
+    transition: filter 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  .photo-duo::after {
+    opacity: 0.85;
+    transition: opacity 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  .photo-duo:hover .photo-grade,
+  .photo-duo:focus-within .photo-grade {
+    filter: saturate(0.78) contrast(0.93) brightness(1.07);
+  }
+  .photo-duo:hover::after,
+  .photo-duo:focus-within::after {
+    opacity: 0.07;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-duo .photo-grade,
+  .photo-duo::after {
+    transition: none;
+  }
+}

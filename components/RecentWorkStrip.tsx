@@ -34,14 +34,14 @@ export function RecentWorkStrip() {
           {RECENT_WORK_PHOTOS.map((photo) => (
             <StaggerItem
               key={photo.src}
-              className="relative aspect-square rounded-2xl overflow-hidden"
+              className="photo-frame photo-duo relative aspect-square rounded-2xl overflow-hidden"
             >
               <Image
                 src={photo.src}
                 alt={photo.alt}
                 fill
                 sizes="(min-width: 768px) 25vw, 50vw"
-                className="object-cover"
+                className="object-cover photo-grade"
                 loading="lazy"
               />
             </StaggerItem>

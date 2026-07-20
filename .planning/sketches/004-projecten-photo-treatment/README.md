@@ -2,7 +2,7 @@
 sketch: 004
 name: projecten-photo-treatment
 question: "How do 21 heterogeneous install photos (mixed colors/angles/backgrounds, heavier than the light site) embed harmoniously into Atmospheric Clarity surfaces?"
-winner: null
+winner: "Synthese A + C(strip) + D(labels)"
 tags: [photos, projecten, treatment, imagery]
 ---
 
