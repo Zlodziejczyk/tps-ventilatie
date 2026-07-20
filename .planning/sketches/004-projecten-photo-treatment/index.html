@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sketch 004 — Projecten fototreatment</title>
+<link rel="stylesheet" href="../themes/default.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); padding-top: 54px; }
+  .viewport { margin: 0 auto; transition: max-width .3s; }
+
+  /* ---- variant nav ---- */
+  #variant-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 9998; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); padding: 10px 16px; display: flex; gap: 8px; font-family: var(--font-body); box-shadow: 0 8px 24px -18px rgba(0,101,128,.4); flex-wrap: wrap; }
+  .variant-tab { border: 0; background: var(--color-surface-2); color: var(--color-text-muted); padding: 7px 14px; border-radius: 99px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .variant-tab.active { background: var(--color-primary); color: #fff; }
+  .variant { display: none; }
+  .variant.active { display: block; }
+
+  /* ---- shared page scaffolding (mimics /projecten) ---- */
+  .page { max-width: 1120px; margin: 0 auto; padding: 48px 24px 96px; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--color-primary); font-weight: 700; margin-bottom: 10px; }
+  h1 { font-family: var(--font-headline); font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.02em; margin-bottom: 10px; }
+  h1 .tint { color: var(--color-primary); }
+  .lede { color: var(--color-text-muted); max-width: 56ch; margin-bottom: 40px; }
+  .note { font-size: 13px; color: var(--color-text-faint); margin-top: 6px; }
+
+  .case { border-radius: 24px; padding: 32px; margin-bottom: 36px; background: var(--color-bg-tint); }
+  .case-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+  .case h2 { font-family: var(--font-headline); font-weight: 700; font-size: 1.5rem; }
+  .chip { font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 99px; background: rgba(0,101,128,.10); color: var(--color-primary); }
+  .chip.ghost { background: var(--color-surface-3); color: var(--color-text-muted); }
+  .case p { color: var(--color-text-muted); max-width: 62ch; margin-bottom: 22px; font-size: .95rem; }
+
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); }
+  .ph { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; }
+  .ph.land { aspect-ratio: 3/2; grid-column: span 2; }
+  .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  .strip { border-radius: 24px; padding: 32px; background: var(--color-bg-tint); }
+  .strip-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .strip h2 { font-family: var(--font-headline); font-weight: 700; font-size: 1.35rem; }
+  .strip .sub { color: var(--color-text-muted); font-size: .9rem; margin-top: 3px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; background: var(--color-primary); color: #fff; padding: 11px 20px; border-radius: 12px; font-weight: 700; font-size: .9rem; text-decoration: none; transition: background .2s; }
+  .btn:hover { background: var(--color-primary-hover); }
+  .strip-grid { display: grid; gap: 14px; grid-template-columns: repeat(4, 1fr); }
+  .strip .ph { aspect-ratio: 1/1; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr 1fr; } .ph.land { grid-column: span 2; } .strip-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* engineered motif: top-accent reveal on hover (design DNA) */
+  .ph::before { content: ""; position: absolute; top: 0; left: 0; right: 100%; height: 3px; background: var(--gradient-signature); z-index: 3; transition: right .35s ease; }
+  .ph:hover::before { right: 0; }
+  @media (prefers-reduced-motion: reduce) { .ph::before, .ph img, .ph::after { transition: none !important; } }
+
+  /* =========================================================
+     A — KALM KLEURENPALET: one cool grade over full-colour photos
+     ========================================================= */
+  .t-grade .ph img { filter: saturate(.78) contrast(.93) brightness(1.07); }
+  .t-grade .ph::after { content: ""; position: absolute; inset: 0; background: var(--color-primary); opacity: .07; mix-blend-mode: color; pointer-events: none; }
+
+  /* =========================================================
+     B — GALERIJ-PASSE-PARTOUT: white mat frames on the light wall
+     ========================================================= */
+  .t-mat .case, .t-mat .strip { background: transparent; padding: 8px 0; }
+  .t-mat .grid, .t-mat .strip-grid { gap: 22px; }
+  .t-mat .ph { background: var(--color-surface); padding: 10px; border-radius: 18px; box-shadow: 0 22px 44px -24px rgba(0,101,128,.35); aspect-ratio: auto; }
+  .t-mat .ph img { position: static; display: block; width: 100%; height: auto; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; filter: saturate(.9); }
+  .t-mat .ph.land img { aspect-ratio: 3/2; }
+  .t-mat .strip .ph img { aspect-ratio: 1/1; }
+  .t-mat .ph::before { left: 10px; right: calc(100% - 10px); top: 10px; border-radius: 3px; }
+  .t-mat .ph:hover::before { right: 10px; }
+  .t-mat .cap { font-size: 12px; color: var(--color-text-faint); padding: 8px 4px 2px; font-weight: 500; }
+
+  /* =========================================================
+     C — TEAL DUOTONE, KLEUR BIJ HOVER
+     ========================================================= */
+  .t-duo .ph img { filter: grayscale(1) contrast(.92) brightness(1.12); transition: filter .45s ease; }
+  .t-duo .ph::after { content: ""; position: absolute; inset: 0; background: var(--color-primary); mix-blend-mode: color; opacity: .85; pointer-events: none; transition: opacity .45s ease; }
+  .t-duo .ph:hover img, .t-duo .ph:focus-within img { filter: none; }
+  .t-duo .ph:hover::after, .t-duo .ph:focus-within::after { opacity: 0; }
+  .t-duo .hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-faint); margin-top: 14px; }
+  .t-duo .hint .dot { width: 8px; height: 8px; border-radius: 99px; background: var(--color-accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: .3 } }
+
+  /* =========================================================
+     D — ATMOSFERISCH INGEBED: feathered edges melt into surface
+     ========================================================= */
+  .t-fade .ph { border-radius: 20px; }
+  .t-fade .ph img { filter: saturate(.82) contrast(.94) brightness(1.06); -webkit-mask-image: radial-gradient(140% 140% at 50% 42%, #000 55%, transparent 98%); mask-image: radial-gradient(140% 140% at 50% 42%, #000 55%, transparent 98%); }
+  .t-fade .case, .t-fade .strip { background: var(--color-bg-tint); }
+  .t-fade .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,101,128,.04) 0%, rgba(0,101,128,.09) 100%); mix-blend-mode: multiply; pointer-events: none; -webkit-mask-image: radial-gradient(140% 140% at 50% 42%, #000 55%, transparent 98%); mask-image: radial-gradient(140% 140% at 50% 42%, #000 55%, transparent 98%); }
+  .t-fade .tech { position: absolute; left: 14px; bottom: 12px; z-index: 4; font-size: 11px; font-weight: 600; letter-spacing: .06em; color: var(--color-primary-hover); background: rgba(255,255,255,.82); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: 99px; }
+
+  /* ---- toolbar ---- */
+  #sketch-tools { position: fixed; bottom: 12px; right: 12px; z-index: 9999; font-family: system-ui; font-size: 12px; background: rgba(0,0,0,.72); color: #fff; padding: 8px 12px; border-radius: 8px; opacity: .4; transition: opacity .2s; display: flex; gap: 8px; align-items: center; }
+  #sketch-tools:hover { opacity: 1; }
+  #sketch-tools button { border: 0; border-radius: 5px; padding: 3px 8px; cursor: pointer; background: #333; color: #fff; font-size: 11px; }
+</style>
+</head>
+<body>
+<div id="variant-nav">
+  <button class="variant-tab active" data-variant="a">A: Kalm kleurenpalet</button>
+  <button class="variant-tab" data-variant="b">B: Galerij-passe-partout</button>
+  <button class="variant-tab" data-variant="c">C: Duotone → kleur</button>
+  <button class="variant-tab" data-variant="d">D: Atmosferisch ingebed</button>
+</div>
+
+<div class="viewport" id="viewport">
+
+  <!-- ============ VARIANT A ============ -->
+  <div id="variant-a" class="variant active t-grade">
+    <div class="page">
+      <div class="eyebrow">Variant A — één koele kleurgrade over alles</div>
+      <h1>Ons <span class="tint">werk</span></h1>
+      <p class="lede">Foto's houden hun echte kleur, maar krijgen één gezamenlijke "TPS-grade": iets minder verzadiging, iets lichter, een vleug petrol. De rode baksteen en het warme hout kalmeren richting het palet van de site.</p>
+      <article class="case">
+        <div class="case-head"><h2>Matzwarte multi-split door drie kamers</h2><span class="chip">Toshiba</span><span class="chip ghost">juni 2026</span></div>
+        <p>Drie slaapkamers gekoeld met matzwarte binnendelen; buitendelen samen uit het zicht op de dakkapel.</p>
+        <div class="grid">
+          <div class="ph"><img src="../../../public/images/projecten/toshiba-wandunit-zwart-zolder.jpg" alt=""></div>
+          <div class="ph land"><img src="../../../public/images/projecten/toshiba-buitendelen-duo-dakkapel.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-vloermodel-woonkamer.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/airco-omkasting-eikenhout-vide.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-buitendelen-rij-gevel.jpg" alt=""></div>
+        </div>
+      </article>
+      <section class="strip">
+        <div class="strip-head"><div><h2>Recent geplaatst in de regio</h2><div class="sub">Echte installaties van ons eigen team — geen stockfoto's.</div></div><a class="btn" href="#">Bekijk ons werk →</a></div>
+        <div class="strip-grid">
+          <div class="ph"><img src="../../../public/images/projecten/toshiba-wandunit-zwart-zolder.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-vloermodel-woonkamer.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-buitendeel-plat-dak-grind.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/mitsubishi-buitendeel-dak-closeup.jpg" alt=""></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ============ VARIANT B ============ -->
+  <div id="variant-b" class="variant t-mat">
+    <div class="page">
+      <div class="eyebrow">Variant B — passe-partout: foto's als ingelijste prints</div>
+      <h1>Ons <span class="tint">werk</span></h1>
+      <p class="lede">Elke foto in een wit passe-partout met zachte, koel getinte schaduw — als een galerijwand. De lijst geeft élk beeld dezelfde rand, waardoor kleurverschillen als "verzameling" lezen in plaats van als ruis. Onderschriften dragen het verhaal.</p>
+      <article class="case">
+        <div class="case-head"><h2>Matzwarte multi-split door drie kamers</h2><span class="chip">Toshiba</span><span class="chip ghost">juni 2026</span></div>
+        <p>Drie slaapkamers gekoeld met matzwarte binnendelen; buitendelen samen uit het zicht op de dakkapel.</p>
+        <div class="grid">
+          <div class="ph"><img src="../../../public/images/projecten/toshiba-wandunit-zwart-zolder.jpg" alt=""><div class="cap">Zolderkamer — wandunit &amp; zwart kanaal</div></div>
+          <div class="ph land"><img src="../../../public/images/projecten/toshiba-buitendelen-duo-dakkapel.jpg" alt=""><div class="cap">Dakkapel — dubbele buitenunit</div></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-vloermodel-woonkamer.jpg" alt=""><div class="cap">Vloermodel bij de tuindeuren</div></div>
+          <div class="ph"><img src="../../../public/images/projecten/airco-omkasting-eikenhout-vide.jpg" alt=""><div class="cap">Maatwerk eiken omkasting</div></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-buitendelen-rij-gevel.jpg" alt=""><div class="cap">Nette rij langs de gevel</div></div>
+        </div>
+      </article>
+      <section class="strip">
+        <div class="strip-head"><div><h2>Recent geplaatst in de regio</h2><div class="sub">Echte installaties van ons eigen team — geen stockfoto's.</div></div><a class="btn" href="#">Bekijk ons werk →</a></div>
+        <div class="strip-grid">
+          <div class="ph"><img src="../../../public/images/projecten/toshiba-wandunit-zwart-zolder.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-vloermodel-woonkamer.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-buitendeel-plat-dak-grind.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/mitsubishi-buitendeel-dak-closeup.jpg" alt=""></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ============ VARIANT C ============ -->
+  <div id="variant-c" class="variant t-duo">
+    <div class="page">
+      <div class="eyebrow">Variant C — petrol duotone in rust, echte kleur bij aanraken</div>
+      <h1>Ons <span class="tint">werk</span></h1>
+      <p class="lede">In rust zijn alle foto's één petrol-monochroom — maximale rust en 100% merk. Beweeg je muis (of tik) over een foto en de echte kleuren komen terug. Eén tastvolle interactie, zoals de rest van de site.</p>
+      <span class="hint"><span class="dot"></span> beweeg over een foto voor echte kleur</span>
+      <article class="case" style="margin-top:18px">
+        <div class="case-head"><h2>Matzwarte multi-split door drie kamers</h2><span class="chip">Toshiba</span><span class="chip ghost">juni 2026</span></div>
+        <p>Drie slaapkamers gekoeld met matzwarte binnendelen; buitendelen samen uit het zicht op de dakkapel.</p>
+        <div class="grid">
+          <div class="ph"><img src="../../../public/images/projecten/toshiba-wandunit-zwart-zolder.jpg" alt=""></div>
+          <div class="ph land"><img src="../../../public/images/projecten/toshiba-buitendelen-duo-dakkapel.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-vloermodel-woonkamer.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/airco-omkasting-eikenhout-vide.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-buitendelen-rij-gevel.jpg" alt=""></div>
+        </div>
+      </article>
+      <section class="strip">
+        <div class="strip-head"><div><h2>Recent geplaatst in de regio</h2><div class="sub">Echte installaties van ons eigen team — geen stockfoto's.</div></div><a class="btn" href="#">Bekijk ons werk →</a></div>
+        <div class="strip-grid">
+          <div class="ph"><img src="../../../public/images/projecten/toshiba-wandunit-zwart-zolder.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-vloermodel-woonkamer.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-buitendeel-plat-dak-grind.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/mitsubishi-buitendeel-dak-closeup.jpg" alt=""></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ============ VARIANT D ============ -->
+  <div id="variant-d" class="variant t-fade">
+    <div class="page">
+      <div class="eyebrow">Variant D — foto's smelten in het oppervlak (atmosferisch)</div>
+      <h1>Ons <span class="tint">werk</span></h1>
+      <p class="lede">Geen harde fotoranden: elk beeld heeft gevederde randen die oplossen in de tonale kaart, plus de kalme grade uit A. Een klein technisch label (merk · maand) geeft het de "engineered" toets. Het meest atmosferisch — foto's worden onderdeel van de pagina in plaats van erop geplakt.</p>
+      <article class="case">
+        <div class="case-head"><h2>Matzwarte multi-split door drie kamers</h2><span class="chip">Toshiba</span><span class="chip ghost">juni 2026</span></div>
+        <p>Drie slaapkamers gekoeld met matzwarte binnendelen; buitendelen samen uit het zicht op de dakkapel.</p>
+        <div class="grid">
+          <div class="ph"><img src="../../../public/images/projecten/toshiba-wandunit-zwart-zolder.jpg" alt=""><span class="tech">TOSHIBA · ZOLDER</span></div>
+          <div class="ph land"><img src="../../../public/images/projecten/toshiba-buitendelen-duo-dakkapel.jpg" alt=""><span class="tech">2× BUITENDEEL · DAKKAPEL</span></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-vloermodel-woonkamer.jpg" alt=""><span class="tech">DAIKIN · VLOERMODEL</span></div>
+          <div class="ph"><img src="../../../public/images/projecten/airco-omkasting-eikenhout-vide.jpg" alt=""><span class="tech">MAATWERK · EIKEN</span></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-buitendelen-rij-gevel.jpg" alt=""><span class="tech">DAIKIN · GEVEL</span></div>
+        </div>
+      </article>
+      <section class="strip">
+        <div class="strip-head"><div><h2>Recent geplaatst in de regio</h2><div class="sub">Echte installaties van ons eigen team — geen stockfoto's.</div></div><a class="btn" href="#">Bekijk ons werk →</a></div>
+        <div class="strip-grid">
+          <div class="ph"><img src="../../../public/images/projecten/toshiba-wandunit-zwart-zolder.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-vloermodel-woonkamer.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/daikin-buitendeel-plat-dak-grind.jpg" alt=""></div>
+          <div class="ph"><img src="../../../public/images/projecten/mitsubishi-buitendeel-dak-closeup.jpg" alt=""></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+</div>
+
+<div id="sketch-tools">
+  <span>004</span>
+  <button data-width="375px">📱</button>
+  <button data-width="768px">💻</button>
+  <button data-width="">🖥</button>
+</div>
+
+<script>
+// Listener-based (no inline onclick) — the Artifact CSP blocks inline handlers.
+document.querySelectorAll('.variant-tab').forEach(btn => btn.addEventListener('click', () => {
+  document.querySelectorAll('.variant').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.variant-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('variant-' + btn.dataset.variant).classList.add('active');
+  btn.classList.add('active');
+}));
+document.querySelectorAll('#sketch-tools button').forEach(btn => btn.addEventListener('click', () => {
+  document.getElementById('viewport').style.maxWidth = btn.dataset.width;
+}));
+</script>
+</body>
+</html>
