@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-last_updated: "2026-07-09T00:00:00.000Z"
-last_activity: 2026-07-09
+status: shipped
+last_updated: "2026-08-12T00:00:00.000Z"
+last_activity: 2026-08-12
 progress:
   total_phases: 7
   completed_phases: 7
@@ -17,19 +17,18 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-06-02)
+See: .planning/PROJECT.md (updated 2026-08-12)
 
 **Core value:** Turn local search demand into contacted leads — a prospect in the Zoetermeer region finds TPS, trusts it, reaches out, and the owner is notified instantly.
-**Current focus:** Launch prep — all 53 plans complete (100%); remaining gate = owner whole-site sign-off + attaching `tpsklimaattechniek.nl`
+**Current focus:** 🎉 Milestone **v1.0 "Launch" SHIPPED 2026-08-12** — owner sign-off cleared 2026-08-05, branch merged to `main`, prod pre-prod deploy green. Only remaining step to a public launch = attach `tpsklimaattechniek.nl` + flip `CANONICAL_ORIGIN` (DOM-V2-01). Next: `/gsd-new-milestone`.
 
 ## Current Position
 
-Phase: 05 (lead-capture-form-security-launch-qa) — ✅ COMPLETE (05-06 launch-QA closed 2026-07-09). All 7 phases / 53 plans done.
-Plan: 05-06 of 6 (final SUMMARY written) — milestone v1.0 at 53/53 plans
-Status: Milestone plan-complete. Lead path verified secure/fast/reliable on preview; SEO-10 CWV accepted (throttle-bound; desktop LCP 1.7s; field-monitored). Remaining launch gate = owner whole-site sign-off + domain attach.
-Last activity: 2026-07-09
+🎉 **Milestone v1.0 "Launch" COMPLETE & ARCHIVED (2026-08-12)** — 7/7 phases, 53/53 plans, 43/43 v1 requirements. Tagged `v1.0`. Archives in `.planning/milestones/`.
+Status: Shipped. Site is launch-ready and running pre-prod on Vercel (no public domain yet). Between milestones — ready for `/gsd-new-milestone`.
+Last activity: 2026-08-12
 
-Progress: [██████████] 100% (53/53 plans, 7/7 phases)
+Progress: [██████████] 100% (53/53 plans, 7/7 phases) — v1.0 shipped
 
 ## Performance Metrics
 
@@ -121,11 +120,16 @@ None yet.
 
 ## Deferred Items
 
-Items acknowledged and carried forward from previous milestone close:
+Items acknowledged and deferred at v1.0 milestone close (2026-08-12):
 
 | Category | Item | Status | Deferred At |
 |----------|------|--------|-------------|
-| *(none)* | | | |
+| perf | SEO-10 mobile CWV — accepted throttle-bound (desktop LCP 1.7s green); field-monitored via Speed Insights; do NOT re-chase synthetic PSI | accepted | v1.0 |
+| owner-ops | GSC verify + sitemap submit, Vercel Analytics enable, www→apex 301, live Rich-Results test — all in docs/seo-owner-runbook.md | documented | v1.0 |
+| backlog | 999.1 Branded OG / social-share card (needs owner logo asset) | backlog | v1.0 |
+| owner-blocked | IG/FB footer social icons + JSON-LD sameAs (owner to supply URLs) | pending owner | v1.0 |
+| security | Upstash rate-limiting not provisioned — honeypot-only (route degrades gracefully) | accepted | v1.0 |
+| launch | DOM-V2-01 — attach tpsklimaattechniek.nl + flip CANONICAL_ORIGIN (the public-launch step) | pending owner-timed | v1.0 |
 
 ## Session Continuity
 
