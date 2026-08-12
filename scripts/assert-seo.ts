@@ -4,7 +4,7 @@
 // milestone per REQUIREMENTS; Node built-ins suffice).
 //
 // Run on demand:  npx tsx scripts/assert-seo.ts
-// Locks the Phase-3 SEO invariants: the indexing policy yields exactly the 4
+// Locks the Phase-3 SEO invariants: the indexing policy yields exactly the 5
 // static content pages, the sitemap carries only absolute canonical-origin URLs, the
 // canonical origin is the `www` host (no trailing slash), and the site-wide JSON-LD is HVACBusiness
 // with a stable @id and NO ratings yet. Exits non-zero (assertion throws) on any
@@ -22,12 +22,14 @@ import { isIndexable, absoluteUrl, sitemapEntries } from "@/lib/seo/policy";
 import { businessJsonLd, faqJsonLd } from "@/lib/seo/jsonld";
 import { REVIEW_RATING } from "@/lib/reviews";
 
-// (1) Exactly the 4 static content pages are indexable, in canonical-URL terms.
+// (1) Exactly the 5 static content pages are indexable, in canonical-URL terms.
+// `/projecten` joined the indexable set when the showcase shipped (quick task
+// 260719-t62); this assertion still said 4 and had been failing since.
 const indexableUrls = PAGES.filter(isIndexable).map(urlFor).sort();
 assert.deepEqual(
   indexableUrls,
-  ["/", "/contact", "/over-ons", "/tarieven"],
-  `isIndexable must yield exactly the 4 static content pages, got: ${indexableUrls.join(", ")}`,
+  ["/", "/contact", "/over-ons", "/projecten", "/tarieven"],
+  `isIndexable must yield exactly the 5 static content pages, got: ${indexableUrls.join(", ")}`,
 );
 
 // (2) The noindex set: privacy-beleid, the hub, and any draft service are excluded.
@@ -39,9 +41,9 @@ assert.equal(
   "draft service must be noindex",
 );
 
-// (3) Sitemap holds exactly 4 entries, every url absolute on the canonical origin.
+// (3) Sitemap holds exactly 5 entries, every url absolute on the canonical origin.
 const entries = sitemapEntries();
-assert.equal(entries.length, 4, `sitemapEntries must hold 4 entries, got ${entries.length}`);
+assert.equal(entries.length, 5, `sitemapEntries must hold 5 entries, got ${entries.length}`);
 for (const entry of entries) {
   assert.ok(
     entry.url.startsWith("https://www.tpsklimaattechniek.nl"),

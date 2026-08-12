@@ -71,6 +71,34 @@ retired brand.
 **The real gate is the Vercel preview build on this branch** — per the project's
 established workaround for the OneDrive deadlock. Not yet pushed.
 
+## Pre-existing defect found and fixed
+
+The preview build revealed that `scripts/assert-seo.ts` **had already been failing
+before this task**, for an unrelated reason: it asserted exactly **4** indexable
+pages / sitemap entries, but the live sitemap serves **5**. `/projecten` joined the
+indexable set when the showcase shipped (quick task `260719-t62`) and these
+assertions were never updated. The stale in-file comment even anticipated it
+("stay valid until nodes actually publish").
+
+Because this task already modified that file, leaving a knowingly-dead gate behind
+was not acceptable. Corrected against values empirically verified on the preview:
+
+- expected indexable set → `["/", "/contact", "/over-ons", "/projecten", "/tarieven"]`
+- `entries.length` → 5
+
+## Verified on the preview build
+
+`tps-ventilatie-git-feat-rebrand-canonica-e80baa-pushly-projects.vercel.app`
+(deployment `dpl_4ArKf79sVznnfaZXtDqigazHQqqY`, READY in 32s):
+
+```
+<link rel="canonical" href="https://www.tpsklimaattechniek.nl"/>
+<meta property="og:url" content="https://www.tpsklimaattechniek.nl"/>
+robots.txt  Host: https://www.tpsklimaattechniek.nl
+            Sitemap: https://www.tpsklimaattechniek.nl/sitemap.xml
+sitemap.xml 5 locs, all on the new origin
+```
+
 ## Follow-ups
 
 - Push branch → confirm Vercel preview builds green (the actual gate).
