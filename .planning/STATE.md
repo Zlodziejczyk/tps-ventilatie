@@ -20,13 +20,13 @@ progress:
 See: .planning/PROJECT.md (updated 2026-08-12)
 
 **Core value:** Turn local search demand into contacted leads — a prospect in the Zoetermeer region finds TPS, trusts it, reaches out, and the owner is notified instantly.
-**Current focus:** 🎉 Milestone **v1.0 "Launch" SHIPPED 2026-08-12** — owner sign-off cleared 2026-08-05, branch merged to `main`, prod pre-prod deploy green. Only remaining step to a public launch = attach `tpsklimaattechniek.nl` + flip `CANONICAL_ORIGIN` (DOM-V2-01). Next: `/gsd-new-milestone`.
+**Current focus:** 🎉 Milestone **v1.0 "Launch" SHIPPED 2026-08-12** — owner sign-off cleared 2026-08-05, branch merged to `main`, prod deploy green. **DOM-V2-01 DONE 2026-08-12: `tpsklimaattechniek.nl` is LIVE and `CANONICAL_ORIGIN` is flipped** (branch `feat/rebrand-canonical-and-favicon`, pending preview + merge). Next: `/gsd-new-milestone`.
 
 ## Current Position
 
 🎉 **Milestone v1.0 "Launch" COMPLETE & ARCHIVED (2026-08-12)** — 7/7 phases, 53/53 plans, 43/43 v1 requirements. Tagged `v1.0`. Archives in `.planning/milestones/`.
-Status: Shipped. Site is launch-ready and running pre-prod on Vercel (no public domain yet). Between milestones — ready for `/gsd-new-milestone`.
-Last activity: 2026-08-12
+Status: Shipped and PUBLIC. `https://www.tpsklimaattechniek.nl` serves the site over Vercel with a valid cert (apex 308→www); the dd24 contact-verification suspension that was blocking the domain was cleared 2026-08-12. Between milestones — ready for `/gsd-new-milestone`.
+Last activity: 2026-08-12 - Completed quick tasks 260812-un4 (CANONICAL_ORIGIN flip) and 260812-311 (brand favicon)
 
 Progress: [██████████] 100% (53/53 plans, 7/7 phases) — v1.0 shipped
 
@@ -117,6 +117,8 @@ None yet.
 | 260701-koc | Fix StickyContactBar mobile shatter — content-sized single-row pills (<560px), digits dropped on mobile; verified 320/360/390/414 (bar 258px→114px). Rest of mobile audit → Phase 7 | 2026-07-01 | e72464f | [260701-koc-fix-stickycontactbar-mobile-layout-compa](./quick/260701-koc-fix-stickycontactbar-mobile-layout-compa/) |
 | 260719-t62 | Projecten showcase from owner photos — /projecten (7 cases, 21 foto's) + airco RecentWorkStrip + nav/footer/sitemap; 4 foto's excluded (privacy/kwaliteit); consent bevestigd 2026-07-20 | 2026-07-19 | 4e6dd4d | [260719-t62-projecten-showcase-from-owner-photos](./quick/260719-t62-projecten-showcase-from-owner-photos/) |
 | 260720-rgj | Photo treatment synthesis (sketch 004 winner A+C+D) — kalme petrol grade sitewide, strip-duotone met hover-reveal (hover-only devices), technische labels op /projecten | 2026-07-20 | 5ba3195 | [260720-rgj-photo-treatment-synthesis-from-sketch-00](./quick/260720-rgj-photo-treatment-synthesis-from-sketch-00/) |
+| 260812-un4 | Flip CANONICAL_ORIGIN → https://www.tpsklimaattechniek.nl (domain live after dd24 verification suspension lifted); www is Vercel Production, apex 308→www. SITE.email unchanged per owner. assert-seo NOT run locally (OneDrive deadlock) — Vercel preview is the gate | 2026-08-12 | a98567a | [260812-un4-flip-canonical-origin-to-new-domain](./quick/260812-un4-flip-canonical-origin-to-new-domain/) |
+| 260812-311 | Brand favicon from tps-logo.png — KLIMAATTECHNIEK sub-wordmark painted out (measured band, dependency-free Node PNG surgery), ring-outside flood-filled transparent; icon.png 256 + apple-icon.png 180 opaque + favicon.ico 16/32/48 | 2026-08-12 | 512d34e | [260812-311-favicon-brand-emblem](./quick/260812-311-favicon-brand-emblem/) |
 
 ## Deferred Items
 
