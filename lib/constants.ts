@@ -43,11 +43,12 @@ export const SITE = {
   whatsappUrl: "https://wa.me/31629403450",
 } as const;
 
-// Canonical origin (D-01) — the apex, live-confirmed (RESEARCH §1) as the served
-// primary (www→apex 301 in place). This is the ONLY place the origin string is
+// Canonical origin (D-01) — the `www` host on the rebranded domain, live-confirmed
+// 2026-08-12 as the served primary (Vercel Production = www; apex 308→www). Replaces
+// the retired `tpsventilatie.nl` brand. This is the ONLY place the origin string is
 // written: metadataBase, every absolute canonical, OG `url`, sitemap `<loc>`,
 // robots `Sitemap:`, and JSON-LD `url`/`@id` all import it. No trailing slash.
-export const CANONICAL_ORIGIN = "https://tpsventilatie.nl";
+export const CANONICAL_ORIGIN = "https://www.tpsklimaattechniek.nl";
 
 // Google Search Console verification token (D-06). Public by design (read from a
 // NEXT_PUBLIC_ env var) — not a secret. Empty string when unset so downstream

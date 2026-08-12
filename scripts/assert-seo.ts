@@ -5,8 +5,8 @@
 //
 // Run on demand:  npx tsx scripts/assert-seo.ts
 // Locks the Phase-3 SEO invariants: the indexing policy yields exactly the 4
-// static content pages, the sitemap carries only absolute-apex URLs, the canonical
-// origin is the apex (no trailing slash), and the site-wide JSON-LD is HVACBusiness
+// static content pages, the sitemap carries only absolute canonical-origin URLs, the
+// canonical origin is the `www` host (no trailing slash), and the site-wide JSON-LD is HVACBusiness
 // with a stable @id and NO ratings yet. Exits non-zero (assertion throws) on any
 // drift. Separate from the whole-phase build gate (03-08-3 / npm run build).
 
@@ -39,20 +39,30 @@ assert.equal(
   "draft service must be noindex",
 );
 
-// (3) Sitemap holds exactly 4 entries, every url absolute-apex.
+// (3) Sitemap holds exactly 4 entries, every url absolute on the canonical origin.
 const entries = sitemapEntries();
 assert.equal(entries.length, 4, `sitemapEntries must hold 4 entries, got ${entries.length}`);
 for (const entry of entries) {
   assert.ok(
-    entry.url.startsWith("https://tpsventilatie.nl"),
-    `sitemap url must be absolute apex, got ${entry.url}`,
+    entry.url.startsWith("https://www.tpsklimaattechniek.nl"),
+    `sitemap url must be absolute on the canonical origin, got ${entry.url}`,
   );
 }
 
-// (4) Canonical origin is the apex with no trailing slash; root keeps its slash.
-assert.equal(CANONICAL_ORIGIN, "https://tpsventilatie.nl", "CANONICAL_ORIGIN must be the apex, no trailing slash");
-assert.equal(absoluteUrl("/"), "https://tpsventilatie.nl/", "absoluteUrl('/') keeps the root slash");
-assert.equal(absoluteUrl("/contact"), "https://tpsventilatie.nl/contact", "non-root carries no trailing slash");
+// (4) Canonical origin is the www host with no trailing slash; root keeps its slash.
+// www (not the apex) is the Vercel Production domain — the apex 308-redirects to it,
+// so canonicals must not point at a redirecting host.
+assert.equal(
+  CANONICAL_ORIGIN,
+  "https://www.tpsklimaattechniek.nl",
+  "CANONICAL_ORIGIN must be the www host, no trailing slash",
+);
+assert.equal(absoluteUrl("/"), "https://www.tpsklimaattechniek.nl/", "absoluteUrl('/') keeps the root slash");
+assert.equal(
+  absoluteUrl("/contact"),
+  "https://www.tpsklimaattechniek.nl/contact",
+  "non-root carries no trailing slash",
+);
 
 // (5) Site-wide business JSON-LD is HVACBusiness, stable @id, geoRadius 60000.
 // aggregateRating is gated on REVIEW_RATING (D-17): absent until the owner supplies

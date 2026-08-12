@@ -10,27 +10,27 @@ const SECTIONS = [
   {
     title: "1) Waarborgen Privacy",
     content:
-      "Het waarborgen van de privacy van bezoekers van tpsventilatie.nl is een belangrijke taak voor ons. Daarom beschrijven we in onze privacy policy welke informatie we verzamelen en hoe we deze informatie gebruiken.",
+      "Het waarborgen van de privacy van bezoekers van tpsklimaattechniek.nl is een belangrijke taak voor ons. Daarom beschrijven we in onze privacy policy welke informatie we verzamelen en hoe we deze informatie gebruiken.",
   },
   {
     title: "2) Toestemming",
     content:
-      "Door de informatie en de diensten op tpsventilatie.nl te gebruiken, gaat u akkoord met onze privacy policy en de voorwaarden die wij hierin hebben opgenomen.",
+      "Door de informatie en de diensten op tpsklimaattechniek.nl te gebruiken, gaat u akkoord met onze privacy policy en de voorwaarden die wij hierin hebben opgenomen.",
   },
   {
     title: "3) Vragen",
     content:
-      "Als u meer informatie wilt ontvangen, of vragen hebt over de privacy policy van TPS klimaattechniek en specifiek tpsventilatie.nl, kun u ons benaderen via e-mail. Ons e-mailadres is info@tpsventilatie.nl.",
+      "Als u meer informatie wilt ontvangen, of vragen hebt over de privacy policy van TPS klimaattechniek en specifiek tpsklimaattechniek.nl, kun u ons benaderen via e-mail. Ons e-mailadres is info@tpsventilatie.nl.",
   },
   {
     title: "4) Monitoren gedrag bezoeker",
     content:
-      "tpsventilatie.nl maakt gebruik van verschillende technieken om bij te houden wie de website bezoekt, hoe deze bezoeker zich op de website gedraagt en welke pagina's worden bezocht. Dat is een gebruikelijke manier van werken voor websites omdat het informatie oplevert die bijdraagt aan de kwaliteit van de gebruikerservaring. De informatie die we, via cookies, registreren, bestaat uit onder meer IP-adressen, het type browser en de bezochte pagina's. Tevens monitoren we waar bezoekers de website voor het eerst bezoeken en vanaf welke pagina ze vertrekken. Deze informatie houden we anoniem bij en is niet gekoppeld aan andere persoonlijke informatie.",
+      "tpsklimaattechniek.nl maakt gebruik van verschillende technieken om bij te houden wie de website bezoekt, hoe deze bezoeker zich op de website gedraagt en welke pagina's worden bezocht. Dat is een gebruikelijke manier van werken voor websites omdat het informatie oplevert die bijdraagt aan de kwaliteit van de gebruikerservaring. De informatie die we, via cookies, registreren, bestaat uit onder meer IP-adressen, het type browser en de bezochte pagina's. Tevens monitoren we waar bezoekers de website voor het eerst bezoeken en vanaf welke pagina ze vertrekken. Deze informatie houden we anoniem bij en is niet gekoppeld aan andere persoonlijke informatie.",
   },
   {
     title: "5) Gebruik van cookies",
     content:
-      "tpsventilatie.nl plaatst cookies bij bezoekers. Dat doen we om informatie te verzamelen over de pagina's die gebruikers op onze website bezoeken, om bij te houden hoe vaak bezoekers terug komen en om te zien welke pagina's het goed doen op de website. Ook houden we bij welke informatie de browser deelt.",
+      "tpsklimaattechniek.nl plaatst cookies bij bezoekers. Dat doen we om informatie te verzamelen over de pagina's die gebruikers op onze website bezoeken, om bij te houden hoe vaak bezoekers terug komen en om te zien welke pagina's het goed doen op de website. Ook houden we bij welke informatie de browser deelt.",
   },
   {
     title: "6) Cookies uitschakelen",
@@ -40,17 +40,17 @@ const SECTIONS = [
   {
     title: "7) Cookies van derde partijen",
     content:
-      "Het is mogelijk dat derde partijen, zoals Google, op onze website adverteren of dat wij gebruik maken van een andere dienst. Daarvoor plaatsen deze derde partijen in sommige gevallen cookies. Deze cookies zijn niet door tpsventilatie.nl te beïnvloeden.",
+      "Het is mogelijk dat derde partijen, zoals Google, op onze website adverteren of dat wij gebruik maken van een andere dienst. Daarvoor plaatsen deze derde partijen in sommige gevallen cookies. Deze cookies zijn niet door tpsklimaattechniek.nl te beïnvloeden.",
   },
   {
     title: "8) Privacy policy van adverteerders/derde partijen",
     content:
-      "Voor meer informatie over de privacy policy van onze adverteerders en derde partijen die verbonden zijn aan deze website, kun u terecht op de websites van deze respectievelijke partijen. tpsventilatie.nl kan geen invloed uitoefenen op deze cookies en de privacy policy van door derden geplaatste cookies. Deze cookies vallen buiten het bereik van de privacy policy van tpsventilatie.nl.",
+      "Voor meer informatie over de privacy policy van onze adverteerders en derde partijen die verbonden zijn aan deze website, kun u terecht op de websites van deze respectievelijke partijen. tpsklimaattechniek.nl kan geen invloed uitoefenen op deze cookies en de privacy policy van door derden geplaatste cookies. Deze cookies vallen buiten het bereik van de privacy policy van tpsklimaattechniek.nl.",
   },
   {
     title: "9) Verwerkers — contactformulier",
     content:
-      "Wanneer u via een formulier op tpsventilatie.nl een aanvraag of bericht verstuurt, worden de door u ingevulde gegevens (zoals naam, telefoonnummer, e-mailadres, postcode en uw bericht) namens TPS klimaattechniek verwerkt en opgeslagen door GoHighLevel. GoHighLevel treedt hierbij op als verwerker en gebruikt deze gegevens uitsluitend om uw aanvraag bij ons af te handelen en u te kunnen beantwoorden. Wij verstrekken uw gegevens niet aan andere partijen voor andere doeleinden.",
+      "Wanneer u via een formulier op tpsklimaattechniek.nl een aanvraag of bericht verstuurt, worden de door u ingevulde gegevens (zoals naam, telefoonnummer, e-mailadres, postcode en uw bericht) namens TPS klimaattechniek verwerkt en opgeslagen door GoHighLevel. GoHighLevel treedt hierbij op als verwerker en gebruikt deze gegevens uitsluitend om uw aanvraag bij ons af te handelen en u te kunnen beantwoorden. Wij verstrekken uw gegevens niet aan andere partijen voor andere doeleinden.",
   },
 ];
 
@@ -69,7 +69,7 @@ export default function PrivacyBeleidPage() {
           Privacy Beleid
         </h1>
         <p className="text-on-surface-variant mb-12">
-          Privacy policy voor TPS klimaattechniek, eigenaar van tpsventilatie.nl
+          Privacy policy voor TPS klimaattechniek, eigenaar van tpsklimaattechniek.nl
         </p>
 
         <div className="space-y-10">

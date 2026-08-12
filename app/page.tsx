@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { findBySlug } from "@/lib/services/registry";
 
 // Home had no metadata export — add one via the shared builder so it gets an
-// absolute self-canonical (https://tpsventilatie.nl/) + OG/Twitter + index (D-05).
+// absolute self-canonical (https://www.tpsklimaattechniek.nl/) + OG/Twitter + index (D-05).
 export const metadata = buildMetadata(findBySlug("/")!);
 
 // Phase-6 homepage rebuild (D-01/D-02). Server Component composing the four new home
