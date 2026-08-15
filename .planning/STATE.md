@@ -20,7 +20,7 @@ progress:
 See: .planning/PROJECT.md (updated 2026-08-12)
 
 **Core value:** Turn local search demand into contacted leads — a prospect in the Zoetermeer region finds TPS, trusts it, reaches out, and the owner is notified instantly.
-**Current focus:** 🎉 Milestone **v1.0 "Launch" SHIPPED 2026-08-12** — owner sign-off cleared 2026-08-05, branch merged to `main`, prod deploy green. **DOM-V2-01 DONE 2026-08-12: `tpsklimaattechniek.nl` is LIVE and `CANONICAL_ORIGIN` is flipped** (branch `feat/rebrand-canonical-and-favicon`, pending preview + merge). Next: `/gsd-new-milestone`.
+**Current focus:** 🎉 Milestone **v1.0 "Launch" SHIPPED 2026-08-12** — owner sign-off cleared 2026-08-05, branch merged to `main`, prod deploy green. **DOM-V2-01 DONE: `tpsklimaattechniek.nl` is LIVE and `CANONICAL_ORIGIN` is flipped** — merged to `main` (`82d897b`) and verified in production 2026-08-15: canonical/robots/sitemap all on `https://www.tpsklimaattechniek.nl`, brand favicon replacing the Next.js default, apex 308→www. Next: `/gsd-new-milestone`.
 
 ## Current Position
 
