@@ -2,13 +2,28 @@
 
 ## What This Is
 
-TPS klimaattechniek is a Zoetermeer-based climate-technology installer — airconditioning, heat pumps (warmtepompen), and ventilation (WTW + mechanical). This is their marketing website: a **launch-ready ~22-page, SEO-driven, lead-generation site** (v1.0 shipped 2026-08-12), rebuilt from the original 6-page proposal into a full multi-service climate-tech surface with a secure lead path and instant owner notification. It currently runs **pre-prod on Vercel** (`tps-ventilatie.vercel.app`) — the one remaining step to go publicly live is attaching the `tpsklimaattechniek.nl` domain.
+TPS klimaattechniek is a Zoetermeer-based climate-technology installer — airconditioning, heat pumps (warmtepompen), and ventilation (WTW + mechanical). This is their marketing website: a **launch-ready ~22-page, SEO-driven, lead-generation site** (v1.0 shipped 2026-08-12), rebuilt from the original 6-page proposal into a full multi-service climate-tech surface with a secure lead path and instant owner notification. It went **publicly live on `https://www.tpsklimaattechniek.nl` on 2026-08-12** (Vercel; apex 308→www).
 
 Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + one server `/api/lead` route), TypeScript, and Tailwind CSS v4 ("Atmospheric Clarity" design system), deployed on Vercel. Built and maintained by Pushly.nl for the client (owner: Thomas / Tomasz) as an ongoing development + maintenance engagement.
 
 ## Core Value
 
 **Turn local search demand into contacted leads.** A prospect in the Zoetermeer region looking for airco, heat-pump, or ventilation work finds TPS, trusts it, and reaches out — and the owner is notified instantly. Every workstream (service depth, SEO, content, conversion) serves this one outcome. *(Verified still correct at v1.0 close.)*
+
+## Current Milestone: v1.1 Rebrand Migration & SEO Ranking Push
+
+**Goal:** Finish the TPS Ventilatie → TPS klimaattechniek migration end-to-end and make the site genuinely rank — starting by un-hiding the 22 service pages Google currently cannot index.
+
+**Target features:**
+
+1. **Unlock indexation** — flip the 21 `review` + 8 `draft` taxonomy nodes to `published` so `/diensten` + 4 pillars + 17 sub-services drop `noindex` and enter the sitemap. *Everything else in this milestone compounds on this.*
+2. **Retire the old brand, reversibly** — per-URL 301 map for the 9 `tpsventilatie.nl` URLs → new equivalents, via the old domain attached to Vercel + redirects in `next.config.ts`. WordPress left intact and backed up; rollback = revert 2 A records.
+3. **Google Business Profile optimization** — rename, website URL, categories, services, service area, photos, Q&A, posts, review-request flow (admin access now held).
+4. **Off-site NAP & citation cleanup** — every external "TPS Ventilatie" / old-domain mention corrected (KvK, directories, socials, dealer listings, Maps duplicates).
+5. **On-page SEO depth pass** — keyword→page mapping, title/meta rewrite against real queries, internal-linking architecture across the 22 pages, schema enrichment, competitor gap fill.
+6. **Blog / kennisbank (BLOG-01)** — light MDX engine + 3–5 evergreen, locally-framed articles linking into the pillars.
+7. **Search Console end-to-end** — verify, submit sitemap, request indexing, then track coverage + queries as the milestone's success evidence.
+8. **Brand cleanup tail** — IG/FB footer icons + JSON-LD `sameAs`; rename repo + Vercel project `tps-ventilatie` → `tpsklimaattechniek`.
 
 ## Current State
 
@@ -20,6 +35,9 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 - Secure hybrid lead path: `/api/lead` server route (server-only GHL secret + Zod + honeypot), WhatsApp-first owner notification, site-wide sticky contact bar. Real inbound lead verified 2026-06-30.
 - Conversion-rebuilt homepage + WCAG 2.1 AA across all pages.
 - Post-milestone: `/projecten` showcase (7 cases, 21 owner photos) + unified photo treatment, merged to main.
+- **Public since 2026-08-12** on `https://www.tpsklimaattechniek.nl` (DOM-V2-01 done — `CANONICAL_ORIGIN` flipped, brand favicon shipped, apex 308→www, verified in production 2026-08-15).
+
+**🚨 Blocker discovered 2026-08-19 (recon for v1.1):** the entire service surface is **invisible to Google**. `sitemap.xml` carries only 5 URLs (`/`, `/tarieven`, `/projecten`, `/over-ons`, `/contact`); `/diensten` and every pillar + sub-service page serves `<meta name="robots" content="noindex, follow">`. Cause is mechanical, not a bug: `lib/seo/policy.ts:isIndexable()` gates hub/pillar/service on `status === "published"`, and the registry holds **21 × `review` + 8 × `draft`, 0 × `published`** — the Phase-4 Task-3 batch flip was never executed even though owner editorial sign-off cleared 2026-08-05. The 22-page SEO surface v1.0 was built to create has never been indexable.
 
 **Tech:** Next.js 16 App Router (hybrid), React 19, TypeScript strict, Tailwind v4. Deployed on Vercel (pre-prod; no public domain yet).
 
@@ -44,17 +62,25 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 
 ### Active
 
-<!-- Next-milestone candidates. Fresh, formally-scoped requirements are defined via /gsd-new-milestone. -->
+<!-- v1.1 scope. Formally numbered with REQ-IDs in REQUIREMENTS.md. -->
 
-- [ ] **Domain go-live (DOM-V2-01)** — attach `tpsklimaattechniek.nl`; flip `CANONICAL_ORIGIN` in `lib/constants.ts` (feeds canonicals/sitemap/robots/JSON-LD/OG); 301 plan + GBP + citation updates. *The single step to a public launch.*
-- [ ] Post-launch owner ops — GSC verification + sitemap submission, Vercel Analytics enable, www→apex 301, live Rich-Results test (all in `docs/seo-owner-runbook.md`)
-- [ ] Light MDX blog / kennisbank — 3–5 evergreen, locally-framed articles with internal links to pillars (BLOG-01, v1.x fast-follow)
-- [ ] Branded OG / social-share card (backlog 999.1) — replace grey-fan default with a logo'd 1200×630 card
-- [ ] IG/FB footer social icons + JSON-LD `sameAs` — once the owner supplies URLs
+- [ ] **Publish the service surface** — flip 21 `review` + 8 `draft` nodes to `published`; 22 pages leave `noindex` and join the sitemap. Highest-leverage item in the milestone.
+- [ ] **Reversible old-brand retirement** — back up the WordPress site off-host, repoint only `tpsventilatie.nl` apex + `www` A records to Vercel, per-URL 301 map for the 9 old URLs, WP install left untouched for rollback.
+- [ ] **Mail preservation** — MX, the `mail` A record, and SPF on `tpsventilatie.nl` survive the repoint; `info@tpsventilatie.nl` keeps working indefinitely; SPF `a` mechanism tidied to `mx` + `include`.
+- [ ] **Google Business Profile optimization** — rename to TPS klimaattechniek, website URL → new domain, categories/services/service area, photos, Q&A, posts, review-request flow.
+- [ ] **Off-site NAP & citation cleanup** — KvK, directories, socials, dealer/supplier listings, Google Maps duplicates.
+- [ ] **On-page SEO depth pass** — keyword→page map, title/meta rewrite, internal-linking architecture, schema enrichment, competitor content-gap fill.
+- [ ] **Blog / kennisbank (BLOG-01)** — light MDX engine + 3–5 evergreen, locally-framed articles with internal links to pillars.
+- [ ] **Search Console end-to-end** — verify property, submit sitemap, request indexing, monitor coverage + queries as milestone success evidence.
+- [ ] **IG/FB footer icons + JSON-LD `sameAs`** — owner supplies URLs; entity signal supporting the rebrand.
+- [ ] **Rename repo + Vercel project** `tps-ventilatie` → `tpsklimaattechniek` — last place the old brand lives internally.
 
 ### Out of Scope
 
-- Per-location / per-neighbourhood pages — only after Search Console shows converting queries (BLOG-02, data-gated); generic town-name-swapped pages remain an anti-feature (thin-content)
+- Per-location / per-neighbourhood pages — **gate reaffirmed for v1.1**: only after Search Console shows converting queries (BLOG-02, data-gated); generic town-name-swapped pages remain an anti-feature (thin-content)
+- Deleting the old WordPress install — explicitly excluded; the client may want to revert, so WP stays intact on cyberfolks and rollback is a 2-record DNS revert
+- Migrating `info@tpsventilatie.nl` to an `@tpsklimaattechniek.nl` mailbox — owner chose to keep the old address alive indefinitely; the cyberfolks subscription stays for mail
+- Upstash rate-limiting on `/api/lead` — declined again for v1.1; honeypot-only remains accepted
 - Full GHL CRM pipelines / nurture automation beyond simple notification — later milestone
 - Headless CMS for owner self-service editing — content stays in-repo until the owner needs it
 - Automated test infrastructure + deep tech-debt refactors (PricingTabs split) — QA scope was blockers + hardening
@@ -65,8 +91,12 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 
 ## Context
 
-- **Launch-ready, pre-prod:** v1.0 is complete and green on Vercel pre-prod; the public launch is gated only on the `tpsklimaattechniek.nl` domain attach (owner-timed).
-- **Deployment model:** `main` + Vercel = pre-prod work env, no public domain. `tpsventilatie.nl` is the OLD LiteSpeed site (to be scrapped). Real launch domain = `tpsklimaattechniek.nl`. `CANONICAL_ORIGIN` currently `https://tpsventilatie.nl` → switch at domain-attach.
+- **Live since 2026-08-12:** `https://www.tpsklimaattechniek.nl` serves v1.0 on Vercel with a valid cert; apex 308→www; `CANONICAL_ORIGIN` = `https://www.tpsklimaattechniek.nl`. `main` deploys to production.
+- **Indexation is the v1.1 headline:** despite being live, only 5 of ~27 pages are indexable. See Current State — the taxonomy `status` flip is the single lever.
+- **Old-site topology (verified 2026-08-19):** `tpsventilatie.nl` = WordPress 7.1 + Oxygen + Contact Form 7 on LiteSpeed at `195.78.67.39` (`s161.cyber-folks.pl`), NS `ns1/ns2.opeiron.com`, returns 200 with title "TPS Ventilatie". 9 pages, 0 posts. Its `robots.txt` advertises `/wp-sitemap.xml`, which 404s.
+- **Mail and web share one box.** `mail.tpsventilatie.nl` → `195.78.67.39`, SPF `v=spf1 a mx include:_spf.cyberfolks.pl -all`. Keeping `info@tpsventilatie.nl` alive means keeping the cyberfolks subscription (mail-only is fine). The apex/`www` A records are separable from MX + the `mail` A record — that separation is what makes the Vercel repoint safe. ⚠️ The SPF `a` mechanism silently stops authorizing the mail server once the apex repoints; tidy to `mx` + `include`.
+- **New-domain DNS:** registrar/DNS at dd24 (Key-Systems); NS stays at dd24, NOT Vercel — moving it would drop the live Titan mail records (`mx0101/mx0102.titan.email` + SPF).
+- **Access held for v1.1:** admin on the TPS Google Business Profile, and on the old site's hosting. Search Console is ours to run end-to-end this milestone.
 - **Agency engagement:** built + maintained by Pushly.nl (Oskar) for client TPS (owner Thomas/Tomasz). Signed engagement PL-2026-004.
 - **GoHighLevel:** used lightly in v1 — WhatsApp-first owner notification + silent capture-of-record. Rate-limiting honeypot-only (Upstash deferred).
 - **Known limitations carried:** SEO-10 mobile PSI is throttle-bound (field-monitored, don't re-chase); no automated tests; 999.1 branded OG card pending owner logo asset.
@@ -96,6 +126,12 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 | QA scope = blockers + hardening (defer tests/refactors) | Reach launch without over-investing pre-launch | ✅ Good |
 | Deployment: main/Vercel = pre-prod; attach `tpsklimaattechniek.nl` at finalize | `tpsventilatie.nl` is the old site to be scrapped | — Pending domain attach (DOM-V2-01) |
 | Keep content in-repo (MDX/data), no CMS yet | Avoid CMS overhead; owner not self-editing | ✅ Good |
+| **v1.1:** retire the old site by DNS repoint, not by deleting WP | Client may want to revert; repointing 2 A records touches the old host zero times and rolls back in minutes | — Planned |
+| **v1.1:** per-URL 301 map (9 URLs) over a blanket redirect | Old pages hold the current rankings; per-page targets pass relevance instead of reading as soft-404s | — Planned |
+| **v1.1:** redirects expressed in `next.config.ts`, not `.htaccess` | Version-controlled, reviewable, testable in CI; no orphaned rules on a host nobody watches | — Planned |
+| **v1.1:** keep `info@tpsventilatie.nl` indefinitely (owner call) | Avoids a mailbox migration mid-rebrand; cyberfolks stays as a mail-only subscription | — Planned |
+| **v1.1:** flip all 21 `review` nodes straight to `published` | Editorial sign-off already cleared 2026-08-05 — the missing flip is an execution slip, not an open gate | — Planned |
+| **v1.1:** regio/location pages stay gated | Still no GSC data (nothing has been indexable); building them now would be the thin-content anti-feature | — Planned |
 
 ## Evolution
 
@@ -104,4 +140,4 @@ This document evolves at phase transitions and milestone boundaries.
 **After each milestone** (via `/gsd-complete-milestone`): full review of all sections; Core Value check; audit Out of Scope; update Context with current state.
 
 ---
-*Last updated: 2026-08-12 after v1.0 "Launch" milestone*
+*Last updated: 2026-08-19 — v1.1 "Rebrand Migration & SEO Ranking Push" milestone started*

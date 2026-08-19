@@ -1,34 +1,33 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: shipped
-last_updated: "2026-08-12T00:00:00.000Z"
-last_activity: 2026-08-12
+milestone: v1.1
+milestone_name: Rebrand Migration & SEO Ranking Push
+status: planning
+last_updated: "2026-08-19T21:24:20.244Z"
+last_activity: 2026-08-19
 progress:
-  total_phases: 7
-  completed_phases: 7
-  total_plans: 53
-  completed_plans: 53
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-08-12)
+See: .planning/PROJECT.md (updated 2026-08-19)
 
 **Core value:** Turn local search demand into contacted leads — a prospect in the Zoetermeer region finds TPS, trusts it, reaches out, and the owner is notified instantly.
-**Current focus:** 🎉 Milestone **v1.0 "Launch" SHIPPED 2026-08-12** — owner sign-off cleared 2026-08-05, branch merged to `main`, prod deploy green. **DOM-V2-01 DONE: `tpsklimaattechniek.nl` is LIVE and `CANONICAL_ORIGIN` is flipped** — merged to `main` (`82d897b`) and verified in production 2026-08-15: canonical/robots/sitemap all on `https://www.tpsklimaattechniek.nl`, brand favicon replacing the Next.js default, apex 308→www. Next: `/gsd-new-milestone`.
+**Current focus:** 🚀 Milestone **v1.1 "Rebrand Migration & SEO Ranking Push"** started 2026-08-19. v1.0 shipped and the site is PUBLIC on `https://www.tpsklimaattechniek.nl`. **🚨 Headline finding from v1.1 recon:** the whole service surface is invisible to Google — `sitemap.xml` lists only 5 URLs and `/diensten` + all pillar/sub-service pages serve `noindex, follow`, because `lib/seo/policy.ts:isIndexable()` requires `status === "published"` and the registry holds 21 × `review` + 8 × `draft` + 0 × `published` (the Phase-4 Task-3 flip was never executed). Unblocking that is item #1. Also in scope: reversible retirement of the old `tpsventilatie.nl` WordPress site via per-URL 301s, GBP optimization, NAP/citation cleanup, on-page SEO depth, blog/kennisbank, GSC end-to-end, IG/FB `sameAs`, and the repo/Vercel rename. Next: defining requirements.
 
 ## Current Position
 
-🎉 **Milestone v1.0 "Launch" COMPLETE & ARCHIVED (2026-08-12)** — 7/7 phases, 53/53 plans, 43/43 v1 requirements. Tagged `v1.0`. Archives in `.planning/milestones/`.
-Status: Shipped and PUBLIC. `https://www.tpsklimaattechniek.nl` serves the site over Vercel with a valid cert (apex 308→www); the dd24 contact-verification suspension that was blocking the domain was cleared 2026-08-12. Between milestones — ready for `/gsd-new-milestone`.
-Last activity: 2026-08-12 - Completed quick tasks 260812-un4 (CANONICAL_ORIGIN flip) and 260812-311 (brand favicon)
-
-Progress: [██████████] 100% (53/53 plans, 7/7 phases) — v1.0 shipped
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-08-19 — Milestone v1.1 started
 
 ## Performance Metrics
 
