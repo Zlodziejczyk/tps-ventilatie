@@ -292,6 +292,14 @@ valid rather than 404 — but it must sit *after* them so it never shadows a rea
 `noindex` would funnel every scrap of legacy equity into a wall — the worst possible sequencing, and
 the easy mistake to make because the redirect work feels more urgent.
 
+**Corrected ordering — the GBP name change goes AFTER citations (revised 2026-08-20).** An earlier draft
+of this file put the whole GBP pass before citation cleanup, reasoning that GBP is the canonical record
+others should match. PITFALLS research overturned that **for the name field specifically**: editing name
++ categories + URL in one session reads to Google's automated systems as a *listing takeover*, and the
+documented safe practice is to let the outside world agree on the new name **first**, then change the
+profile name last and in isolation. Hence the split into **9a** (low-risk field edits, early) and **9b**
+(the name change, after citations). Everything except the name still follows the original logic.
+
 ## Anti-Patterns
 
 ### Anti-Pattern 1: Appending kennisbank URLs directly to `app/sitemap.ts`
