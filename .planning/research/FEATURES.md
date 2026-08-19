@@ -1,259 +1,180 @@
 # Feature Research
 
-**Domain:** Dutch local climate-tech / HVAC installer lead-generation website (airco, warmtepompen, WTW, mechanische ventilatie) — Zoetermeer + regio
-**Researched:** 2026-06-02
-**Confidence:** HIGH (multiple live NL competitor sites audited directly; certification, ISDE, and BTW rules verified against RVO/Belastingdienst-adjacent sources and 2026 industry coverage)
+**Domain:** Local-SEO growth programme for a Dutch climate-tech installer (airco, warmtepompen, WTW, mechanische ventilatie) mid-rebrand
+**Researched:** 2026-08-20
+**Confidence:** HIGH for GBP + NAP mechanics (sourced); MEDIUM for exact GBP category label wording in the NL interface — flagged `[VERIFY IN GBP UI]`
 
-## How to read this
-
-This is a **lead-gen brochure site**, not a webshop. "Conversion" = the prospect contacts TPS (offerte / call / WhatsApp). Every feature below is judged by one question: *does it help a Zoetermeer-region homeowner trust TPS and reach out?* Features are mapped to the 4 pillars where it matters: **Airco**, **Warmtepompen (WP)**, **WTW**, **Mechanische Ventilatie (MV)**.
-
-The single most important market-specific finding, repeated throughout: **ISDE subsidie and BTW rules differ per pillar.** Getting this wrong is both a trust-killer and a compliance/credibility risk (see anti-features). Summary table:
-
-| Pillar | ISDE subsidie? | Notes |
-|--------|----------------|-------|
-| **Warmtepompen** (lucht/water, hybride) | ✅ YES — the headline subsidy | 2026: hybride start ~€1.025 + €225/kW; all-electric up to ~€13k. The flagship "subsidie" hook. |
-| **WTW / balansventilatie (type D)** & **vraaggestuurd MV (C+)** | ✅ YES — **new from 1-1-2026** | €400, but **only combined with ≥1 insulation measure**. Newly relevant — most competitors haven't updated yet (opportunity). |
-| **Airco** (lucht/lucht split) | ❌ NO | Split airco = air-air heat pump, explicitly excluded from ISDE. Stating otherwise is misinformation. |
-
----
+> Written inline by the orchestrator after the Features research subagent died twice on this OneDrive mount.
 
 ## Feature Landscape
 
 ### Table Stakes (Users Expect These)
 
-Missing any of these makes a NL installer site feel incomplete or untrustworthy. Every credible competitor audited (AircoProfs, Aircoland, DEK, Koelklimaattechniek) has most of them.
-
-| Feature | Why Expected | Complexity | Notes |
-|---------|--------------|------------|-------|
-| **Offerte aanvragen** flow (free, no-obligation quote) | The #1 conversion action for every NL installer. "Gratis offerte" / "vrijblijvend" is universal phrasing. Already wired (GHL). | LOW | Have the form; needs reassurance copy ("gratis", "vrijblijvend", "binnen 24 uur reactie") + a clear `/offerte` destination, not just a contact page. |
-| **Click-to-call phone (`tel:`)** prominent in header/hero | Older + urgent (storing) prospects call. Every competitor shows a number in the header. | LOW | Already in `SITE`/CTABanner — ensure it is visible in the Navbar, not only the footer. |
-| **WhatsApp contact** (floating + links) | Standard low-friction NL channel; AircoProfs and DEK both expose it. PROJECT v1 explicitly wants a site-wide floating affordance. | LOW | `wa.me/31629403450` already used in CTABanner/MobileMenu — promote to a persistent floating button. |
-| **Certification / keurmerk trust block** (F-gassen/STEK at minimum) | F-gassen certification is the **legal floor** for any airco/WP refrigerant work since 2020. Buyers increasingly check it. Aircoland/AircoProfs lead with it. | LOW–MED | Display only what TPS genuinely holds (see "certifications" detail below). Per pillar — F-gassen for airco/WP; InstallQ/BRL 6000 angle for WP. |
-| **Reviews / beoordelingen with score + count** | Social proof is decisive locally. AircoProfs shows "Google 4.7/5, 167 reviews"; Koelklimaattechniek "9.7/10, 228 (Kiyoh)". A carousel already exists. | LOW–MED | Consolidate to one source (PROJECT says so). **Google Reviews** is the right primary platform (SEO + Maps + recognizable). Show real score + count + link to GBP. |
-| **Pricing transparency** (indicative prijzen, *incl. BTW*, "geen verborgen kosten") | NL buyers expect a price range before they call; "alles inclusief, geen verborgen kosten" is a recurring trust line. AircoProfs/Aircoland show ranges; weak sites (DEK) hide it and feel evasive. | MED | Tarieven page exists. Airco/WTW/MV = indicative all-in ranges incl. BTW. **WP = quote-based** (per PROJECT) — say so explicitly rather than omitting. State voorrijkosten policy. |
-| **Service-area presentation** (Zoetermeer + named regio towns) | Confirms "do you even come to me?" + drives local SEO. Every competitor lists municipalities (Aircoland 20+, AircoProfs per-neighbourhood). | LOW–MED | **Fix the 50 km vs 100 km inconsistency (launch blocker).** One canonical radius/town list in `lib/constants.ts`. |
-| **Per-service content** for each pillar (Installatie / Onderhoud / Reparatie-Storing / Advies) | Buyers expect to find their exact need. PROJECT's IA (hub + 4 pillars + ~20 sub-pages) matches the market. | MED–HIGH | The data-driven template (already planned) is the right call. WP must be promoted from absent to first-class; Airco from stub to first-class. |
-| **Brand authority** (Daikin, Mitsubishi Electric / Heavy, Ecodan) logos + "erkend/authorized installateur" | Brand association is a primary trust lever; every airco competitor lists brands. Authorized-dealer status materially boosts credibility + warranty story. | LOW | List the brands TPS installs; claim "erkend/geautoriseerd installateur" **only** where true. Daikin "Stand By Me" / dealer-locator listing is a real signal. |
-| **Garantie / warranty terms** stated | "Hoeveel jaar garantie?" is a top FAQ. AircoProfs (1yr install +2 factory, →5 with contract), Koelklimaat (2–5yr, 10yr compressor). | LOW | State install warranty + factory warranty + how a maintenance contract extends it. |
-| **Onderhoud + storing/reparatie offer** (incl. response-time promise) | Recurring revenue + trust. "Binnen 48 uur storing verholpen" (Aircoland), 24/7 storingsdienst (Dijkstra/Grijzeboom) are common. | LOW–MED | Even a simple "snelle storingsservice in de regio" with a realistic SLA. Maps to all 4 pillars (esp. airco/WP storing). |
-| **Company legitimacy** (KvK, BTW-nummer, address) | NL buyers verify KvK; absence reads as fly-by-night. Footer already has KvK/BTW. | LOW | Keep in footer; mirror into LocalBusiness/HVACBusiness JSON-LD. |
-| **FAQ** (per pillar + general) | Pre-empts the same questions and feeds SEO (FAQ schema). AircoProfs has 9, Aircoland 6, covering permits, cost, heating, subsidie, warranty. | MED | Strong table-stakes for SEO. Cover: kosten, garantie, subsidie/ISDE (per pillar!), VvE/vergunning, geluid, onderhoudsfrequentie. |
-| **Google Maps embed + route** | "Where are you / how do I get there" + local trust. Contact page already has an embed. | LOW | **Fix the placeholder pin to the verified location (launch blocker).** |
-| **Mobile-first responsive + fast** | Majority of local searches are mobile; Core Web Vitals affect ranking. | MED | Static export helps; verify page-speed (a PROJECT SEO task). |
+| Feature | Complexity | Owner-blocked? | Notes |
+|---|---|---|---|
+| **GBP primary category correct** | Low | No | Primary category is the single largest Maps ranking lever. `HVAC contractor` (NL: *Installatiebedrijf voor verwarming en airconditioning*) `[VERIFY IN GBP UI]`. The classic own-goal is picking a generic *Aannemer / General contractor* — it removes you from airco- and warmtepomp-specific queries entirely |
+| **GBP secondary categories, ≤4** | Low | No | Up to 9 allowed; practitioners advise ≤4 so classification stays sharp. Candidates: *Airconditioningmonteur*, *Reparatiebedrijf voor airconditioning*, *Ventilatiebedrijf*, *Warmtepompleverancier* |
+| **GBP name = exact brand** | Low | No | Must become `TPS klimaattechniek`. Keyword-stuffing the name (e.g. "TPS klimaattechniek \| Airco Zoetermeer") is a suspension trigger — see PITFALLS |
+| **GBP website URL → new domain** | Low | No | Must be `https://www.tpsklimaattechniek.nl` (the `www` production host, not the 308-ing apex) |
+| **GBP opening hours** | Low | No | Already known: Ma–za 08:00–17:30. Recency of hours is cited as one of the top-three Maps factors |
+| **GBP service area configured** | Low | ⚠️ Partly | Service-area business, no storefront walk-ins. Feeds from `SITE.serviceAreas` — **which is still marked `owner-review-pending` in the code** |
+| **GBP Services list populated** | Med | No | Should mirror the 21 taxonomy service nodes — a rare case where our data model maps 1:1 onto a GBP feature |
+| **NAP identical everywhere** | Med | No | Inconsistent NAP is repeatedly named the biggest blocker to local visibility. See the three-names problem below |
+| **Sitemap submitted + indexed** | Low | No | Currently moot — only 5 URLs are indexable. Gated on the status flip |
+| **Reviews recent and flowing** | Med | ⚠️ Yes | 4,9 / 34 is a genuine asset. Review *recency* is a ranking factor, so a steady trickle beats a big historical count |
 
 ### Differentiators (Competitive Advantage)
 
-Where TPS can stand out. These align with TPS's core value (turn local search demand into contacted leads) and its 4-USP positioning (Gecertificeerd, Snel, Persoonlijk, Transparant). Don't chase all of them — pick the ones that reinforce trust + conversion.
-
-| Feature | Value Proposition | Complexity | Notes |
-|---------|-------------------|------------|-------|
-| **Accurate per-pillar ISDE / subsidie guidance** (esp. WP + the *new 2026 WTW/ventilatie* subsidy) | Most competitors are vague or stale on subsidie; the **ventilatie ISDE (from 1-1-2026)** is brand-new and underexploited. Being correct + current is a genuine trust + SEO edge, and directly relevant to TPS's ventilation roots. | MED | "Transparant" USP made concrete. Show: WP amounts, WTW €400 (+insulation condition), and honestly that **airco ≠ ISDE**. Link RVO. Keep amounts in one data file (they change yearly). |
-| **"Eigen monteurs, geen onderaannemers"** + named team / "Verhaal van Thomas" | Personal, owner-led trust beats anonymous lead-aggregators (Airco-Expres etc.). Directly the "Persoonlijk" USP. AircoProfs uses "eigen monteurs" as a selling point. | LOW | Over-ons already has Thomas's story; surface this line site-wide. Strong against faceless competitors. |
-| **Transparent indicative pricing per pillar incl. all-in framing** | Few local rivals publish clear *all-in incl. BTW, geen verborgen kosten* numbers; doing so converts price-shoppers who bounce off "neem contact op". | MED | The "Transparant" USP made concrete. Airco/WTW/MV ranges; WP "vanaf / op aanvraag" with what's included. Beats DEK's no-pricing approach. |
-| **Fast, specific response promise** ("binnen X uur reactie", instant owner notification) | Speed-to-lead wins in HVAC. PROJECT v1 already adds instant owner WhatsApp/email notification — make the *promise* visible to the user ("binnen 24 uur reactie"). The "Snel" USP. | LOW | The notification (GHL workflow) is backend; the on-page **promise** is the differentiator. Don't over-promise — match the SLA the owner can keep. |
-| **Per-location / per-neighbourhood landing pages** done well (unique content) | AircoProfs's 6 Zoetermeer-neighbourhood pages are a clear local-SEO moat. Genuinely useful, locally-worded pages rank where thin rivals don't. | MED–HIGH | **Caveat (see anti-features):** must be genuinely unique per page, not town-name-swapped boilerplate, or Google won't index. Pillar × region matrix. |
-| **Onderhoudscontract** offering (priority storing, reduced rates, material discount) | Recurring revenue + retention; signals a serious operator. Dijkstra/AircoProfs use contracts to extend warranty + give priority. | MED | Even a single clear contract tier ("jaarlijks onderhoud, opzegbaar, voorrang bij storing"). Maps to airco/WP/WTW/MV. |
-| **HVACBusiness / Service / FAQ JSON-LD + GBP alignment** | The business block (stars, hours, click-to-call) above organic results is powered by LocalBusiness markup + GBP. A structured-data edge punches above a small site's weight. | MED | Use `HVACBusiness` subtype (more specific than generic LocalBusiness), Service schema per pillar, FAQPage schema. Already a PROJECT SEO task — flag the *specific* type. |
-| **Light blog / kennisbank** (SEO + trust) | Ranks for informational queries ("airco of warmtepomp?", "kost airco onderhoud", "ISDE 2026"); feeds internal links to service pages. PROJECT scopes a light blog/FAQ. | MED | Start small, evergreen + locally framed. Don't build a heavy CMS (see anti-features) — MDX/in-repo per PROJECT. |
-| **VvE / vergunning guidance** (apartments) | Zoetermeer has many flats/VvE's; AircoProfs differentiates with VvE permission help + documentation. Reduces a real buyer blocker. | LOW–MED | A short "airco in een appartement / VvE-toestemming" section. Mostly airco (outdoor-unit placement) + MV. |
-| **Energy-savings / running-cost framing** (airco-as-heating, gas-vs-airco) | AircoProfs's gas-vs-airco savings table reframes airco as an investment. Bridges naturally to the warmtepomp pillar. | LOW–MED | Honest, sourced numbers. Useful cross-sell from airco → WP. |
+| Feature | Complexity | Owner-blocked? | Notes |
+|---|---|---|---|
+| **21 indexable service pages** | Low (flip) | No | Most local installers run 5–10 thin pages. A 21-page taxonomy where each node has ≥120-word intro, steps and 3–6 FAQs is a real moat — **already built and already passing the content gate**, just switched off |
+| **Real project showcase** | Done | No | `/projecten` with 21 owner photos across 7 cases. Most competitors use stock imagery. Underused as an SEO asset — currently indexable but barely linked from service pages |
+| **Verified dealer status surfaced** | Done | No | Daikin + Mitsubishi erkend installateur, BRL 100/200. Feeds E-E-A-T |
+| **Manufacturer dealer-locator listings** | Low | ⚠️ Yes | Daikin / Mitsubishi "vind een installateur" pages are high-trust citations most competitors never claim. Needs owner credentials |
+| **Kennisbank with genuine expertise** | Med | No | Cost breakdowns and subsidy explainers written by an actual installer outrank content-farm equivalents |
+| **FAQ schema already emitting** | Done | No | 3–6 FAQs per service node already feed `FAQPage` JSON-LD |
+| **Google Posts cadence** | Low | ⚠️ Yes | Needs a supply of owner photos/updates. Modest direct ranking effect; real effect on profile conversion |
 
 ### Anti-Features (Commonly Requested, Often Problematic)
 
-Things that look appealing for an HVAC lead-gen site but create trust, compliance, or maintenance problems. Documented to prevent scope creep and credibility damage.
+| Anti-feature | Why it's wrong |
+|---|---|
+| **Per-town / per-neighbourhood pages** | Explicitly out of scope in PROJECT.md, and correctly so. Town-name-swapped pages are the canonical thin-content penalty. Gate stays until GSC shows converting queries |
+| **Keywords in the GBP business name** | Direct violation of Google's representation guidelines; a common cause of hard suspension. Risks the 34 reviews |
+| **Photo geotagging (EXIF) for Maps ranking** | Folklore. Google strips EXIF on upload. Zero measurable effect |
+| **Buying citations in bulk / 500-directory blasts** | Low-quality directories add nothing and multiply the NAP surface you must later correct — actively harmful mid-rebrand |
+| **Claiming ISDE subsidy for airconditioning** | Factually wrong — ISDE covers heat pumps, not airco. PROJECT.md already lists this as a standing anti-claim, and `scripts/assert-no-forbidden-claims.ts` gates it in the build |
+| **Review gating / incentivised reviews** | Against Google policy; risks the profile's most valuable asset |
+| **A second GBP listing for the new brand name** | Would split the 34 reviews and create a duplicate. **Rename the existing listing — never create a new one** |
+| **Chasing synthetic mobile PSI** | PROJECT.md records SEO-10 as accepted throttle-bound; do not re-open |
 
-| Feature | Why Requested | Why Problematic | Alternative |
-|---------|---------------|-----------------|-------------|
-| **Claiming ISDE subsidie for airco** (or vague "subsidie mogelijk!" on airco pages) | "Subsidie" is a powerful hook; tempting to slap it everywhere. | **Factually wrong** — split airco (lucht/lucht) is excluded from ISDE. Misleads buyers, invites disappointment + complaints, undermines the "Transparant" USP, and is a misinformation risk. | Be explicit per pillar: airco ❌, WP ✅, WTW/MV ✅ (2026, +insulation). Honesty here *is* the differentiator. |
-| **Quoting a "6% / 9% BTW op airco"** without legal grounding | Competitors and BE sources circulate "6% btw" claims; copying them seems pro-buyer. | In **NL, heat pumps stay 21% in 2026** (the 6% is Belgium). Insulation *labour* is 9% (materials 21%); airco BTW claims are inconsistent and easily wrong. Stating a wrong rate is a credibility/compliance landmine. | Don't publish a BTW rate you haven't verified for NL + the specific service. Show prices **incl. BTW** as a total; let the offerte state the breakdown. If unsure, omit the rate, not the transparency. |
-| **Hardcoded standardized heat-pump price tables** | Pricing transparency is good; full WP price lists feel complete. | WP cost varies hugely by home (kW, emitters, hybride vs all-electric); a fixed table will be wrong, set false expectations, and is explicitly **out of scope** per PROJECT (quote-based for now). | WP = "indicatie vanaf / prijs op maat via offerte" + what's included + the subsidie context. Keep firm published prices to airco/WTW/MV where they're more standard. |
-| **Generic town-name-swapped location pages at scale** | Easy way to "cover" 20+ towns for SEO. | Google detects near-duplicate location pages and **won't index** them; can drag down site quality. Wasted effort. | Fewer, genuinely unique pages (local landmarks, neighbourhoods, real project context) — AircoProfs-style — prioritised by demand. Quality over count. |
-| **Instant online price calculator / "boek nu" booking** | Feels modern, frictionless, "Tesla-like". | This is a **consultative, site-survey-dependent** purchase (placement, electrics, VvE). A self-serve price/booking sets wrong expectations and skips the qualification the owner needs. High build cost, low fit. | Keep the **offerte → human contact** model. The detailed-form approach (Airco Innovatie's m³/unit/placement wizard) captures qualification *without* auto-pricing. |
-| **Over-long mandatory quote form (10+ required fields)** | More data per lead seems better; Airco Innovatie collects a lot. | Long required forms **kill conversion** for a small operator who can ask details on the call. Friction beats data here. | Keep v1 form short (name, contact, postcode/plaats, dienst, bericht). Optional detail fields / photo upload as *optional*. Speed-to-lead > rich form. |
-| **Heavy headless CMS now** | Self-service editing sounds future-proof. | Owner is not self-editing yet; CMS adds ops overhead and is **out of scope** per PROJECT. | Content in-repo (MDX/data files), Claude-drafted + owner-reviewed. Revisit CMS only when the owner needs self-service. |
-| **Live chat / chatbot / AI assistant** | Trendy engagement widget. | Needs staffing to be useful; an unmanned bot frustrates and competes with the WhatsApp + phone + form channels already chosen for v1. Duplicate comms surface. | WhatsApp *is* the lightweight chat channel here. Skip bots in v1. |
-| **Fake / unverifiable trust badges or unowned certifications** | Padding the trust block looks stronger. | Claiming STEK/BRL/InstallQ/authorized-dealer status TPS doesn't hold is a serious credibility + (for some) legal risk; easily disproven. | Display only genuinely-held certs/brands. If F-gassen is the only formal one, lead with it confidently + lean on reviews, brand, and the personal/owner story. |
-| **Newsletter signup / heavy lead-magnet funnels** | Standard "capture the email" marketing. | Low intent for a one-off install purchase; distracts from the offerte CTA and adds GDPR/AVG surface for little return. | Single-minded focus on offerte / call / WhatsApp. One primary CTA per page. |
-| **Aggressive cookie/marketing-tag stack** | "We need all the analytics + retargeting." | AVG/cookie-consent friction + page-speed cost hurt a trust-first local site. PROJECT v1 only needs GA4/Vercel Analytics + Search Console. | Minimal, consent-correct analytics (GA4 or Vercel Analytics) + GSC. Defer ad pixels. |
+## The Three-Names Problem (specific to this business)
 
----
+Citation cleanup here is harder than a normal rebrand because **three names are legitimately in circulation**:
+
+| Name | Where it is correct | Where it must not appear |
+|---|---|---|
+| `TPS klimaattechniek` | Brand — GBP, website, directories, socials | — |
+| `TPS services` | KvK legal entity (`SITE.legalName`, emitted as JSON-LD `legalName`) | Should not be the GBP name or the directory display name |
+| `TPS Ventilatie` | **Nowhere, going forward** | Everywhere — this is the cleanup target |
+
+A naive "find and replace the old name" sweep will trip over `TPS services`, which is *correct* in the KvK
+register and in structured data. The cleanup requirement must therefore be *"every public-facing brand
+mention reads `TPS klimaattechniek`; `TPS services` remains only as the registered legal entity"* — not
+"eliminate every name that isn't the brand".
+
+Second wrinkle: **`SITE.email` is still `info@tpsventilatie.nl`** by owner decision. So the old domain
+remains publicly visible in the NAP record even after the rebrand. Any citation audit will keep flagging
+it; that is expected and accepted, and should be written down so it isn't "fixed" by mistake.
+
+## Dutch Citation Landscape
+
+Consensus guidance is **15–30 well-chosen directories**, selected on indexation, relevance and region,
+driven from **one master NAP profile** used verbatim everywhere.
+
+| Tier | Sources | Why |
+|---|---|---|
+| **Tier 1 — must** | Google Business Profile, KvK register, Apple Maps/Business Connect, Bing Places | The entity backbone. GBP alone outweighs the rest combined |
+| **Tier 2 — high value NL** | De Telefoongids / Gouden Gids, Telefoonboek.nl, Openingstijden.nl, Trustoo, Werkspot | Well-indexed NL aggregators; commonly cited as the practical core set |
+| **Tier 3 — sector** | Daikin + Mitsubishi dealer locators, BRL/certification registers, regional ondernemersverenigingen | Highest trust, lowest competition — most installers never claim these |
+| **Tier 4 — skip** | Bulk directory packages | See anti-features |
+
+**Honest weighting:** GBP optimization is where the leverage is. Citations mostly function as *corroboration*
+— they prevent Google from doubting the entity rather than actively boosting it. Mid-rebrand that corroborating
+role is unusually important, because conflicting old-brand data is exactly what makes an entity ambiguous.
+
+## Kennisbank — what actually earns its place
+
+| Article type | Value | Notes |
+|---|---|---|
+| **Cost breakdown** ("Wat kost een warmtepomp in 2026?") | High | Highest-intent informational query in this sector; links naturally into pillar + `/tarieven` |
+| **ISDE subsidy explainer** | High | Genuine recurring demand. ⚠️ Must state plainly that ISDE does **not** cover airconditioning — the accuracy is itself a differentiator |
+| **Comparison** ("WTW vs mechanische ventilatie") | High | Maps onto two existing pillars; strong internal-link anchor |
+| **Maintenance how-to / frequency** | Medium | Supports the onderhoud service nodes; low competition |
+| **Buying guide** ("Welke airco past bij mijn woning?") | Medium | Commercial-investigation intent, feeds the advies nodes |
+| **Company news / "wij zijn verhuisd"** | ~Zero | Classic filler |
+
+**Shape:** 3–5 articles, 1200–2000 words, each linking to ≥2 pillar pages and ≥1 sub-service, published
+steadily rather than in one dump. Quality bar should match the taxonomy's: if an article cannot clear
+something like the ≥120-word-intro / real-structure standard, it should not ship.
 
 ## Feature Dependencies
 
 ```
-[Per-pillar service pages (data-driven template)]
-    └──requires──> [Service taxonomy in lib/constants/data]
-                       └──enables──> [Per-pillar FAQ + Service JSON-LD]
-                       └──enables──> [Per-location pages (pillar × region)]
+Status flip (21 review → published)
+   ├──► GSC sitemap submission        [pointless before the flip]
+   ├──► Legacy 301 redirects          [MUST come after — else equity hits noindex pages]
+   ├──► Internal linking work         [needs live targets]
+   └──► Kennisbank internal links     [needs live pillar targets]
 
-[Accurate ISDE/subsidie guidance]
-    └──requires──> [Per-pillar content model] (airco vs WP vs WTW/MV differ)
-    └──requires──> [Single subsidie-data source] (amounts change yearly)
+GBP rename + URL + categories
+   └──► Citation cleanup              [GBP is the canonical record others must match]
 
-[Reviews score + count on-page]
-    └──requires──> [One canonical review source = Google Business Profile]
-                       └──enables──> [Review/AggregateRating in JSON-LD + GBP stars]
+SITE.serviceAreas owner curation
+   └──► GBP service area + JSON-LD areaServed   [OWNER-BLOCKED]
 
-[Secure offerte submission + instant owner notification]
-    └──requires──> [Resolve client-exposed GHL webhook]  ⚠️ (server route vs output:"export")
-    └──enables──> ["binnen 24 uur reactie" promise being truthful]
-
-[Service-area presentation]
-    └──requires──> [Fix 50km/100km radius inconsistency]  ⚠️ launch blocker
-    └──feeds──> [Per-location pages] [LocalBusiness/HVACBusiness JSON-LD geo]
-
-[HVACBusiness JSON-LD] ──enhances──> [Local SEO / GBP business block]
-[Light blog/kennisbank] ──enhances──> [Service pages] (internal links, informational queries)
-[Floating WhatsApp] ──enhances──> [All pages] (persistent low-friction conversion)
-
-[Self-serve price calculator] ──conflicts──> [Consultative offerte model] (skips qualification)
-[Long mandatory form]        ──conflicts──> [Speed-to-lead / high conversion]
-[Airco "subsidie" claim]     ──conflicts──> [Transparant USP + factual accuracy]
+Owner supplies IG/FB URLs
+   └──► Footer icons + JSON-LD sameAs           [OWNER-BLOCKED]
 ```
 
 ### Dependency Notes
 
-- **Service pages require the taxonomy first:** PROJECT's data-driven template means defining the pillar × sub-service taxonomy once unlocks pages, FAQ, Service schema, and location pages together. Build the taxonomy/data model before content.
-- **ISDE guidance requires per-pillar modelling:** because eligibility splits by pillar (and WTW/MV only from 2026 with an insulation condition), subsidie content cannot be a single global block — it must live per pillar, sourced from one amounts file.
-- **Truthful response promise requires the secured lead path:** "binnen 24 uur reactie" is only safe to advertise once the form reliably delivers (resolve the webhook exposure + add network error handling so leads don't silently fail).
-- **Per-location pages depend on a fixed service area + unique content:** resolve the radius inconsistency first; then only build location pages you can make genuinely unique (anti-feature: boilerplate).
-- **Reviews on-page depend on one canonical source:** pick Google Business Profile as the single source (SEO + recognizability), then drive AggregateRating schema and the carousel from it.
-- **Calculator/long-form conflict with the model:** the consultative offerte flow is the product; auto-pricing and over-long forms work against it — keep them out.
-
----
+- **The flip gates almost everything.** Redirects, GSC, internal linking and kennisbank links all
+  depend on the service pages being indexable and linkable.
+- **GBP precedes citations.** Correct the canonical record first, then propagate.
+- **Two owner-blocked items** — `serviceAreas` curation and IG/FB URLs — should be chased early so they
+  don't stall a phase late.
 
 ## MVP Definition
 
-### Launch With (v1) — must-have for going live as a credible 4-pillar lead site
+### Launch With (v1.1 core)
 
-These map directly to PROJECT's Active list + launch blockers. Ruthlessly: trust signals + the 4 pillars + working conversion + the SEO/QA floor.
+- Flip 21 `review` → `published`; author + publish the `/diensten` hub
+- Rewrite `assert-seo.ts` to a relational invariant (must precede the flip)
+- GSC: verify **all variants of both domains**, submit sitemap, monitor coverage
+- Legacy 301 map (9 URLs) + `assert-redirects.ts`, after the flip
+- GBP: rename, URL, primary + ≤4 secondary categories, hours, service area, Services list
+- NAP master profile + Tier 1 & Tier 2 citation cleanup
 
-- [ ] **4-pillar IA**: `/diensten` hub + Airco, Warmtepompen, WTW, Mechanische Ventilatie pillar pages (data-driven template) — *core of becoming "klimaattechniek"; WP + Airco promoted to first-class*
-- [ ] **Per-pillar core sub-services** (at least Installatie / Onderhoud / Reparatie-Storing / Advies) — *buyers must find their exact need*
-- [ ] **Offerte flow** with reassurance copy ("gratis", "vrijblijvend", "binnen 24 uur reactie") + **short** form (name, contact, postcode/plaats, dienst, bericht) — *the primary conversion*
-- [ ] **Secured lead path + instant owner notification** (resolve webhook exposure, add network error handling, input validation/schema, honeypot) — *leads must not silently fail; blocker*
-- [ ] **Floating WhatsApp** + verified `tel:`/`mailto:`/`wa.me` on every page — *low-friction conversion, PROJECT v1*
-- [ ] **Certification/keurmerk trust block** — F-gassen/STEK (+ any genuinely-held BRL/InstallQ/VCA), per-pillar — *legal-floor trust signal; only what's true*
-- [ ] **Reviews** consolidated to Google Business Profile, score + count + link, on home + key pages — *decisive social proof; PROJECT wants one source*
-- [ ] **Pricing transparency**: indicative all-in *incl. BTW, geen verborgen kosten* for Airco/WTW/MV; WP = "op maat via offerte" with inclusions + voorrijkosten policy stated — *the Transparant USP; don't hide it like DEK*
-- [ ] **Accurate per-pillar ISDE/subsidie note** (WP ✅, WTW/MV ✅ 2026+insulation, airco ❌) sourced/linked — *trust + the new-2026 ventilation angle; avoids the subsidie anti-feature*
-- [ ] **Brand authority** block (Daikin, Mitsubishi Electric/Heavy, Ecodan) with accurate "erkend installateur" claims — *primary trust lever*
-- [ ] **Garantie + onderhoud/storing** statements with a realistic SLA — *top buyer questions*
-- [ ] **Service area**: canonical Zoetermeer + regio list/radius (**fix 50/100km**), presented per pillar — *"do you come to me" + local SEO*
-- [ ] **FAQ** per pillar + general (kosten, garantie, subsidie, VvE/vergunning, geluid, onderhoud) — *trust + FAQ schema*
-- [ ] **Technical + local SEO floor**: `sitemap.xml`, `robots.txt`, **HVACBusiness + Service + FAQ JSON-LD**, OG/Twitter meta, GBP alignment, NAP consistency, page-speed pass — *can't run SEO blind; PROJECT scope*
-- [ ] **Measurement**: GA4 or Vercel Analytics + Google Search Console + sitemap submission
-- [ ] **QA blockers fixed**: Maps pin to verified location, radius consistency, form error handling — *launch blockers*
+### Add After Validation (v1.x)
 
-### Add After Validation (v1.x) — once leads are flowing and SEO is indexing
+- Tier 3 sector citations (dealer locators — owner credentials)
+- Kennisbank articles 4–5
+- Google Posts cadence
+- Structured review-request flow
 
-- [ ] **Per-location / per-neighbourhood pages** (pillar × region), genuinely unique — *trigger: confirm which town/pillar queries actually convert in GSC before scaling pages*
-- [ ] **Light blog / kennisbank** (evergreen, locally framed; internal links to pillars) — *trigger: SEO baseline live + a few high-value query gaps identified*
-- [ ] **Onderhoudscontract** offering with tiers (voorrang, gereduceerd tarief) — *trigger: install volume justifying a recurring-service funnel*
-- [ ] **VvE / appartement** guidance section — *trigger: meaningful share of Zoetermeer flat enquiries*
-- [ ] **Energy-savings / gas-vs-airco** framing + airco→WP cross-sell content — *trigger: airco pillar performing, push the WP upsell*
-- [ ] **Brand-specific install content** (Daikin / Mitsubishi Electric / Heavy / Ecodan) — *trigger: per-brand search demand; PROJECT already plans this in content*
-- [ ] **Callback-request** option ("bel mij terug") alongside the form — *trigger: if phone-preferers are bouncing*
+### Future Consideration (v2+)
 
-### Future Consideration (v2+) — defer until product-market fit / owner readiness
-
-- [ ] **Headless CMS** — *defer: only when the owner wants self-service editing (out of scope now)*
-- [ ] **Full GHL CRM pipelines / nurture automation** — *defer: v1 is notify-only; full CRM is a later milestone per PROJECT*
-- [ ] **Customer portal / online appointment scheduling** — *defer: consultative model doesn't need it pre-PMF*
-- [ ] **Standardized WP pricing tooling / configurator** — *defer: until a real price model exists (out of scope now)*
-- [ ] **Multi-language (EN)** — *defer: market is Dutch (`nl`) only for now*
-- [ ] **Domain migration to tpsklimaattechniek.nl** — *defer: owner to verify; not blocking, per PROJECT*
-
----
+- Per-town pages — **only** once GSC shows converting queries
+- 999.1 branded OG card (deferred by owner this milestone; asset now available)
+- Upstash rate-limiting (declined again)
 
 ## Feature Prioritization Matrix
 
-| Feature | User Value | Implementation Cost | Priority |
-|---------|------------|---------------------|----------|
-| 4-pillar IA + data-driven service template | HIGH | HIGH | P1 |
-| Offerte flow (short form) + reassurance copy | HIGH | LOW | P1 |
-| Secured lead path + owner notification + error handling | HIGH | MEDIUM | P1 |
-| Floating WhatsApp + verified contact links | HIGH | LOW | P1 |
-| Certification/keurmerk trust block (true only) | HIGH | LOW | P1 |
-| Reviews (Google) score+count on-page | HIGH | LOW | P1 |
-| Pricing transparency (Airco/WTW/MV incl. BTW; WP on aanvraag) | HIGH | MEDIUM | P1 |
-| Accurate per-pillar ISDE/subsidie note | HIGH | MEDIUM | P1 |
-| Brand authority block | MEDIUM | LOW | P1 |
-| Service-area canonical (fix 50/100km) | HIGH | LOW | P1 |
-| Garantie + onderhoud/storing statements | MEDIUM | LOW | P1 |
-| FAQ per pillar + general | MEDIUM | MEDIUM | P1 |
-| SEO floor (sitemap/robots/JSON-LD HVACBusiness/OG) | HIGH | MEDIUM | P1 |
-| Analytics + Search Console | MEDIUM | LOW | P1 |
-| Maps pin fix + radius fix (QA blockers) | HIGH | LOW | P1 |
-| Per-location / neighbourhood pages (unique) | HIGH | HIGH | P2 |
-| Light blog / kennisbank | MEDIUM | MEDIUM | P2 |
-| Onderhoudscontract offering | MEDIUM | MEDIUM | P2 |
-| VvE / appartement guidance | MEDIUM | LOW | P2 |
-| Energy-savings framing + airco→WP cross-sell | MEDIUM | LOW | P2 |
-| Brand-specific install content | MEDIUM | MEDIUM | P2 |
-| Callback-request option | LOW | LOW | P2 |
-| Headless CMS | LOW (now) | HIGH | P3 |
-| Full CRM automation / nurture | MEDIUM | HIGH | P3 |
-| Customer portal / online booking | LOW | HIGH | P3 |
-| Price calculator / configurator | LOW (anti-fit) | HIGH | P3 |
-
-**Priority key:** P1 = must have for launch · P2 = should have, add after validation · P3 = nice to have / future
-
----
-
-## Competitor Feature Analysis
-
-Audited directly (live pages) unless noted. "Strong" = AircoProfs-class full stack; "Weak" = thin/evasive.
-
-| Feature | AircoProfs (strong) | DEK Installaties (regional, thinner) | Koelklimaattechniek (mid) | TPS Approach (recommended) |
-|---------|---------------------|--------------------------------------|---------------------------|----------------------------|
-| Offerte CTA | "Gratis offerte", 7+ placements, "binnen 1 uur in je inbox" | "Offerte aanvragen" ×3, "vrijblijvend" | Quote + "gratis indicatie" forms | Short offerte form, "gratis/vrijblijvend, binnen 24u reactie" — prominent, repeated |
-| WhatsApp | ✅ dedicated number + link | ✅ wa.me link | — | ✅ floating site-wide (v1) |
-| Certifications shown | F-gassen, **BRL 100**, **VCA**, MetaalUnie | "gecertificeerd" (vague, none named) | KvK/BTW only | Name **only genuinely-held** (F-gassen/STEK ± BRL/InstallQ/VCA); lead with F-gassen |
-| Reviews | **Google 4.7/5 (167)** + named testimonials | Google badge, no score/count | **Kiyoh 9.7/10 (228)** | **Google** score+count+link; consolidate to one source |
-| Pricing transparency | Ranges per model, **"alles inclusief, geen verborgen kosten"**, avg quote | ❌ none (feels evasive) | Maintenance €-ranges; no product prices | Airco/WTW/MV all-in incl. BTW ranges; **WP on aanvraag** (stated) |
-| ISDE / subsidie | ✅ correct: "split airco komt **niet** in aanmerking" | ❌ none | — | ✅ per-pillar accuracy + **new 2026 WTW/MV** angle (differentiator) |
-| Brands | Mitsubishi Heavy (93%), Daikin | Mitsubishi Heavy, LG, Daikin; Elga/Intergas (WP) | Daikin, Panasonic, Mitsubishi, LG, Samsung… | Daikin, Mitsubishi Electric/Heavy, **Ecodan (WP)** — accurate authorized claims |
-| Garantie | 1yr install +2 factory (→5 w/ contract) | ❌ not stated | 2–5yr; 10yr compressor | State install+factory+contract-extension |
-| Storing/onderhoud SLA | 3-wk install; service-aanvragen | maintenance/repair mentioned | annual maintenance | Realistic regio storing SLA + onderhoud (v1), contract tiers (v2) |
-| Local/area pages | ✅ **6 Zoetermeer-neighbourhood** pages (moat) | "regio Zoetermeer e.o." (vague) | 3 towns | Canonical area first; unique location pages in v2 |
-| FAQ | ✅ 9 (permits, warranty, subsidie, heating) | ❌ none | ✅ basic | Per-pillar FAQ + schema (v1) |
-| Personal/owner trust | "Eigen monteurs, geen onderaannemers" | gediplomeerde vakmensen | — | **"Verhaal van Thomas" + eigen monteurs** — lean into Persoonlijk USP |
-| Speed/SEO | fast, neighbourhood SEO | basic | webshop-ish | Static + HVACBusiness JSON-LD + GBP (v1) |
-
-**Read of the field:** the market floor is rising — strong rivals combine transparent all-in pricing, real review scores, named certifications, WhatsApp, per-area SEO, and FAQ. Weak rivals (and lead-aggregators) skip pricing/certs and feel evasive or faceless. **TPS's wedge:** be the *honest, certified, personal, transparent* local operator — correct per-pillar subsidie (incl. the under-exploited 2026 ventilation ISDE), real Google reviews, all-in pricing where it's standard, and Thomas's owner-led story — rather than out-spending aggregators on page count.
-
----
+| Feature | Impact | Effort | Priority |
+|---|---|---|---|
+| Status flip (21 pages) | **Very High** | Very Low | **1** |
+| `assert-seo.ts` rewrite | High (prevents recurrence) | Low | **2** — blocks the flip |
+| `/diensten` hub content | High | Medium | 3 |
+| GSC verify + submit | High | Low | 4 |
+| GBP optimization | **Very High** | Medium | 5 |
+| Legacy 301 map | High | Medium | 6 |
+| Internal linking | Medium-High | Medium | 7 |
+| Citation cleanup | Medium | High (manual) | 8 |
+| Kennisbank | Medium | High | 9 |
+| Repo/Vercel rename | ~Zero SEO | Low | 10 — last |
 
 ## Sources
 
-Live competitor pages audited:
-- [AircoProfs — Zoetermeer](https://www.aircoprofs.nl/airconditioning/zoetermeer/) (strongest reference: pricing, reviews 4.7/167, certs F-gassen/BRL100/VCA, WhatsApp, neighbourhood pages, FAQ, correct airco-ISDE exclusion)
-- [Aircoland — Zoetermeer](https://www.aircoland.com/airco-zoetermeer/) (STEK-led, price range incl. btw, 48u storing, wide service area, FAQ)
-- [DEK Installaties (Zoetermeer)](https://dek-installaties.nl) (regional, vague certs, no pricing — weak reference)
-- [Koelklimaattechniek — Zoetermeer](https://www.koelklimaattechniekwebwinkel.nl/airco-zoetermeer/) (Kiyoh 9.7/228, 5yr nazorg, maintenance pricing)
-- [Airco Innovatie — offerte form](https://aircoinnovatie.nl/offerte-ontvangen/) (detailed multi-field qualification form pattern)
-- [KH Installaties](https://khinstallaties.nl/) · [Indoor Comfort (Zuid-Holland)](https://www.indoorcomfort.nl/) · [Aircotech Klimaat (Den Haag)](https://www.aircotechklimaat.nl/) · [Dijkstra Klimaattechniek](https://dijkstra-klimaattechniek.nl/airco-onderhoud/) · [Grijzeboom (Amsterdam)](https://grijzeboom.com/) (24/7 storing, onderhoudscontract, multi-pillar klimaattechniek patterns)
-
-Certifications & quality marks:
-- [Kiwa — STEK-certificaat](https://www.kiwa.com/nl/nl/services/certificering/stek-certificaat-het-keurmerk-voor-de-koeltechnische-sector/) · [Ondernemersplein — F-gassen certificaat](https://ondernemersplein.overheid.nl/wetten-en-regels/certificaat-voor-werken-met-f-gassen/) (F-gassen mandatory since 2020; STEK no longer legally required but still a recognised mark)
-- [InstallQ — Warmtepompinstallaties](https://installq.nl/warmtepomp-installaties) · [KvINL — BRL6000](https://kvinl.nl/brl6000/) · [Kiwa — BRL 6000-21](https://www.kiwa.com/nl/nl/diensten/certificering/brl-6000-21/) (InstallQ recognition; CentraalRegisterTechniek.nl / EchteInstallateur.nl public registers)
-- [Daikin dealer-locator / erkend installateur](https://www.daikin.be/nl_be/particulier/dealer-locator.html) · [Technische Service — BRL-100 + Daikin/Mitsubishi dealer](https://www.technischeservice.nl/airco-assen) (authorized-dealer + BRL100/F-gassen pattern)
-
-ISDE / subsidie (per pillar):
-- [RVO — ISDE Warmtepomp woningeigenaren](https://www.rvo.nl/subsidies-financiering/isde/woningeigenaren/warmtepomp) · [RVO — ISDE Ventilatie woningeigenaren](https://www.rvo.nl/subsidies-financiering/isde/woningeigenaren/ventilatie) (ventilatie in ISDE from 1-1-2026)
-- [Ventilatieland — ISDE op ventilatie vanaf 1-1-2026](https://www.ventilatieland.nl/nl_NL/blog/item/ventilatie-is-officieel-onderdeel-van-isde-subsidie-vanaf-1-januari-2026-wat-moet-je-weten-2095/) (€400, type C+/D, insulation-combination condition)
-- [AircoProfs FAQ + Simpel Subsidie](https://simpelsubsidie.nl/blogs/Kan-ik-subsidie-voor-mijn-airco-krijgen) / [NIBE — ISDE warmtepomp 2026](https://aardgasvrij.nibenl.eu/kosten-en-subsidie/subsidie-voor-een-warmtepomp) (airco/lucht-lucht NOT eligible; WP amounts 2026)
-
-Pricing transparency & BTW:
-- [Slimster — kosten airco plaatsen 2026](https://slimster.nl/airco/kosten-airco-plaatsen/) · [Aircoland — kosten airco](https://www.aircoland.com/kosten-airco/) (all-in framing, voorrijkosten itemised separately, "geen kleine lettertjes")
-- [Belastingdienst — btw isoleren van woningen (9% arbeid)](https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/zakelijk/btw/tarieven_en_vrijstellingen/diensten_9_btw/werkzaamheden_aan_woningen/isoleren_van_woningen) · [Warmtepomp-gids — BTW warmtepomp 2026](https://www.warmtepomp-gids.nl/subsidie/btw/) (NL heat pumps remain 21% in 2026; 6% is Belgium — anti-feature basis)
-
-Reviews & local SEO:
-- [Kiyoh vs Trustpilot](https://kiyoh.com/en/trustpilot-vs-kiyoh/) / [Fenj — reviews op website](https://www.fenj.nl/reviews-op-website-plaatsen/) (Google = primary for local SEO + recognizability; Kiyoh common for NL SME)
-- [ATX Marketing — schema voor dienstverleners (HVACBusiness/Service/FAQ)](https://atxmarketing.nl/schema-markup-dienstverleners/) · [WeTalkSEO — locatiepagina's](https://www.wetalkseo.nl/locatiepaginas-uitgelegd-zo-versterk-je-je-lokale-seo-strategie/) (use HVACBusiness subtype; avoid duplicate location pages)
+- [Google Business Profile for HVAC: Full Guide With Best Practices — ServiceTitan](https://www.servicetitan.com/blog/hvac-google-business-profile)
+- [How to Rank Your HVAC Company on Google Maps — RS Gonzales](https://rsgonzales.com/blog/rank-hvac-company-google-maps/)
+- [Google Bedrijfsprofiel optimaliseren: 14 tips — RabbitBlast](https://www.rabbitblast.nl/14-manieren-om-je-google-bedrijfsprofiel-echt-te-optimaliseren/)
+- [SEO voor installateurs — zzpwebsitemaken.nl](https://zzpwebsitemaken.nl/seo-voor-installateurs/)
+- [Local SEO in 2026: Complete Gids — Hiveminds](https://hiveminds.nl/seo/local-seo/local-seo-2026-complete-gids)
+- [Lokale SEO voor bedrijven: 10 strategieën voor 2026 — OnlineLabs](https://www.onlinelabs.nl/blog/lokale-seo-voor-bedrijven-10-essentiele-strategieen)
+- [Bedrijvengidsen linkbuilding in 2026 — LinkbuildingExperts](https://www.linkbuildingexperts.nl/linkbuilding/bedrijvengidsen-linkbuilding/)
+- Repo reads: `lib/constants.ts` (`SITE`), `lib/services/*` (21 review nodes), `scripts/assert-no-forbidden-claims.ts`
 
 ---
-*Feature research for: Dutch local climate-tech (airco / warmtepompen / WTW / mechanische ventilatie) installer lead-gen site — Zoetermeer + regio*
-*Researched: 2026-06-02*
+*Feature research for: local-SEO growth programme mid-rebrand*
+*Researched: 2026-08-20 (inline — subagents unavailable on this mount)*
