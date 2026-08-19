@@ -1,473 +1,357 @@
 # Architecture Research
 
-**Domain:** Taxonomy-driven local-service marketing site + SEO infrastructure on Next.js 16 App Router (`output: "export"`)
-**Researched:** 2026-06-02
-**Confidence:** HIGH (route/sitemap/MDX mechanics verified against official Next.js 16.2.7 docs, dated 2026-06-01; thin-content guidance is established SEO practice + MEDIUM-confidence community consensus)
+**Domain:** Multi-service local-SEO marketing site — rebrand/domain migration + indexation unlock
+**Researched:** 2026-08-19
+**Confidence:** HIGH (grounded in direct reads of the live codebase + verified live DNS/HTTP probes)
 
-> Scope note: This researches **how to architect the NEW work** (taxonomy service-page system + SEO infra + light MDX blog + the form security boundary). The existing system — server components default, client islands, `lib/constants.ts` as single source of truth, `output: "export"` — is already mapped in `.planning/codebase/ARCHITECTURE.md` and is **extended, not re-litigated**. The one open existing decision this research closes is the static-export-vs-hybrid form boundary (see Integration Points).
-
----
-
-## The Central Constraint (read this first)
-
-Everything below is shaped by one hard fact, verified against the official static-export guide:
-
-**Under `output: "export"`, every dynamic route MUST enumerate all its params at build time and set `dynamicParams = false`.** `dynamicParams: true` and "dynamic route without `generateStaticParams`" are explicitly listed as *unsupported*. There is no on-demand rendering, no ISR, no runtime fallback.
-
-This is not a limitation to work around — it is a **perfect fit** for a finite, known taxonomy of ~20-30 service pages. The taxonomy IS the param source. You define the tree once; `generateStaticParams` walks it; Next.js emits one static `.html` per node. The same constraint, however, makes the secure form route impossible without leaving `output: "export"` (see Integration Points → External Services).
-
----
+> Written inline by the orchestrator after three consecutive research subagents died on this
+> OneDrive mount. Every claim below is verified against the actual files or a live probe —
+> nothing here is recalled. External-doc claims are marked `[VERIFY]`.
 
 ## Standard Architecture
 
-### System Overview
+### System Overview — as it exists today
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                       DATA / TAXONOMY LAYER  (lib/)                    │
-│                  the single source of truth — no JSX                  │
-│  ┌────────────────────┐  ┌───────────────────┐  ┌─────────────────┐  │
-│  │ lib/services/      │  │ lib/services/      │  │ lib/services/   │  │
-│  │   taxonomy.ts      │  │   content/*.ts     │  │   brands.ts     │  │
-│  │ (tree: pillar →    │  │ (per-page unique   │  │ (Daikin, Mits-  │  │
-│  │  sub → brand;      │  │  copy, FAQs,       │  │  ubishi E/H/    │  │
-│  │  slugs, relations) │  │  steps, USPs)      │  │  Ecodan specs)  │  │
-│  └─────────┬──────────┘  └─────────┬─────────┘  └────────┬────────┘  │
-│            │   typed via lib/services/types.ts            │           │
-└────────────┼─────────────────────┼──────────────────────┼───────────┘
-             │ generateStaticParams │ getServiceBySlug()   │
-             ▼                      ▼                       ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│                    ROUTE / TEMPLATE LAYER  (app/diensten/)            │
-│  app/diensten/page.tsx            → hub (4 pillar cards)              │
-│  app/diensten/[pillar]/page.tsx   → pillar template (lists subs)     │
-│  app/diensten/[pillar]/[service]/page.tsx → sub-service template     │
-│       └─ generateStaticParams() enumerates the whole tree            │
-│       └─ generateMetadata() per node   └─ dynamicParams = false      │
-└────────────────────────────┬─────────────────────────────────────────┘
-                             │ composes
-                             ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│              PRESENTATION LAYER  (components/service/, components/seo/)│
-│  ServiceHero  ServiceSteps  ServiceFAQ  BrandGrid  RelatedServices    │
-│  Breadcrumbs                                                          │
-│  ── SEO components (render-only, no styling) ──                       │
-│  JsonLd  (LocalBusiness | Service | BreadcrumbList | FAQPage)         │
-│  ┌──────────────────────────────────────────────────────────────┐    │
-│  │ reuses existing chrome: CTABanner, AnimateOnScroll, Icon,    │    │
-│  │ StaggerChildren, ContactForm, Navbar, Footer (unchanged)     │    │
-│  └──────────────────────────────────────────────────────────────┘    │
-└──────────────────────────────────────────────────────────────────────┘
-                             ▲ ▲
-        build-time emits ────┘ └──── build-time emits
-┌────────────────────────────┐  ┌──────────────────────────────────────┐
-│  app/sitemap.ts            │  │  light MDX content (blog / FAQ)       │
-│  app/robots.ts             │  │  content/blog/*.mdx + gray-matter     │
-│  → static /sitemap.xml,    │  │  app/blog/[slug]/page.tsx             │
-│    /robots.txt in out/     │  │  (dynamic import + generateStaticParams)│
-│  (import same taxonomy)    │  │                                       │
-└────────────────────────────┘  └──────────────────────────────────────┘
+│  ROUTING / RENDER  (app/)                                            │
+├──────────────────────────────────────────────────────────────────────┤
+│  ┌──────────┐ ┌───────────────┐ ┌────────────────────────┐          │
+│  │ page.tsx │ │ diensten/     │ │ diensten/[pillar]/     │          │
+│  │ (statics)│ │ [pillar]/     │ │   [service]/page.tsx   │          │
+│  └────┬─────┘ └──────┬────────┘ └───────────┬────────────┘          │
+│       │              │                      │                        │
+│  ┌────┴──────────────┴──────────────────────┴────┐  ┌─────────────┐  │
+│  │ generateMetadata() → robots directive          │  │ api/lead    │  │
+│  └────────────────────┬───────────────────────────┘  │ (server)    │  │
+│  ┌──────────────┐ ┌───┴──────────┐                   └─────────────┘  │
+│  │ sitemap.ts   │ │ robots.ts    │                                    │
+│  └──────┬───────┘ └───┬──────────┘                                    │
+├─────────┴─────────────┴───────────────────────────────────────────────┤
+│  POLICY  (lib/seo/)                                                   │
+│  ┌─────────────────────────────────────────────────────────────────┐ │
+│  │ policy.ts — isIndexable() · absoluteUrl() · sitemapEntries()     │ │
+│  │   THE single gate. sitemap membership CANNOT drift from robots.  │ │
+│  └──────────────────────────┬──────────────────────────────────────┘ │
+│  ┌────────────────────┐     │                                         │
+│  │ jsonld.ts          │     │                                         │
+│  └────────────────────┘     │                                         │
+├─────────────────────────────┴─────────────────────────────────────────┤
+│  DATA  (lib/services/, lib/constants.ts)                              │
+│  ┌──────────────┐ ┌──────────────────┐ ┌──────────────────────────┐  │
+│  │ types.ts     │ │ registry.ts      │ │ constants.ts             │  │
+│  │ PageNode +   │ │ PAGES · urlFor() │ │ SITE (NAP)               │  │
+│  │ Zod schemas  │ │ lookups          │ │ CANONICAL_ORIGIN         │  │
+│  │ canonicalPath│ │                  │ │                          │  │
+│  └──────┬───────┘ └────────┬─────────┘ └──────────────────────────┘  │
+│         │  airconditioning.ts · warmtepompen.ts · wtw.ts ·            │
+│         │  mechanische-ventilatie.ts   (node data files)              │
+├─────────┴─────────────────────────────────────────────────────────────┤
+│  BUILD GATES  (scripts/, npm prebuild)                                │
+│  validate-taxonomy · assert-registry · assert-seo · assert-site-shape │
+│  assert-no-forbidden-claims · assert-gate-blocks                      │
+└───────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Component Responsibilities
 
-| Component | Responsibility | Typical Implementation |
-|-----------|----------------|------------------------|
-| `lib/services/taxonomy.ts` | The tree: pillars → sub-services → brand relations. Slugs, parent/child links, which brands apply. **Structure only, minimal copy.** | A typed const array/object. The skeleton that `generateStaticParams` and `sitemap.ts` both read. |
-| `lib/services/content/*.ts` | Per-page **unique** content: intro prose, process steps, FAQ Q&A, local angle, price note. One file per pillar keeps files small. | Typed records keyed by service slug. This is where thin-content is defeated — every node carries hand-written Dutch copy. |
-| `lib/services/brands.ts` | Brand facts (Daikin, Mitsubishi Electric/Heavy, Ecodan): model lines, strengths, install specifics. | Typed const; referenced by both climate pillars to inject brand-specific paragraphs. |
-| `lib/services/types.ts` | `Pillar`, `SubService`, `Brand`, `ServicePageData` types + `getServiceBySlug`, `getAllServiceParams`, `getSiblings` accessors. | Pure TS. The contract between data and templates. |
-| `app/diensten/page.tsx` | Hub. Server component. Lists 4 pillars, light intro. | Reads taxonomy top level; renders `PillarCard` grid. |
-| `app/diensten/[pillar]/page.tsx` | Pillar template. Lists that pillar's sub-services + brand grid. | `generateStaticParams` → 4 pillars; `generateMetadata` per pillar. |
-| `app/diensten/[pillar]/[service]/page.tsx` | Sub-service template — the workhorse (~20+ pages). | `generateStaticParams` enumerates **all** pillar×service pairs; `generateMetadata` per node; renders from `content/*.ts`. |
-| `components/service/*` | Template building blocks: `ServiceHero`, `ServiceSteps`, `ServiceFAQ`, `BrandGrid`, `RelatedServices`, `Breadcrumbs`. Server components where possible. | Presentational; data passed as props. No data fetching inside. |
-| `components/seo/JsonLd.tsx` | Renders one `<script type="application/ld+json">`. Variant builders for LocalBusiness / Service / BreadcrumbList / FAQPage. | Server component — serializes object to a script tag into static HTML. Zero client JS. |
-| `app/sitemap.ts` | Programmatic sitemap. Imports taxonomy + MDX list → URL array. | Static Route Handler; emits `out/sitemap.xml` at build. |
-| `app/robots.ts` | Robots rules + sitemap pointer. | Static Route Handler; emits `out/robots.txt`. |
-| `content/blog/*.mdx` + `app/blog/[slug]/page.tsx` | Light blog/FAQ. MDX files read at build via `gray-matter` for frontmatter; dynamic-imported into a `[slug]` template. | `@next/mdx` + `gray-matter`; `generateStaticParams` from a build-time file glob; `dynamicParams = false`. |
+| Component | Responsibility | Implementation |
+|-----------|----------------|----------------|
+| `lib/services/types.ts` | The `PageNode` discriminated union, all Zod schemas, and `canonicalPath()` — the single URL derivation | Zod 4; content rules status-gated |
+| `lib/services/registry.ts` | Assembles `PAGES`; sole `urlFor()`; lookups; `validateTaxonomy()` | Justified aggregation module (D-05), not a barrel |
+| `lib/seo/policy.ts` | **The single indexability gate.** `isIndexable()`, `absoluteUrl()`, `sitemapEntries()` | Pure functions, server-safe |
+| `app/sitemap.ts` | Emits sitemap from `sitemapEntries()` — no hardcoded route list | `force-static` |
+| `app/robots.ts` | Open crawl policy + AI-crawler allows + `host` + sitemap pointer | `force-static` |
+| `lib/constants.ts` | `SITE` (NAP) + `CANONICAL_ORIGIN` — sole business-data source | Module constants |
+| `scripts/assert-*.ts` | Build-time invariant gates run via `tsx` | `node:assert/strict`, exit non-zero on drift |
 
----
+## The Central Finding: indexability is data, not code
 
-## Recommended Project Structure
+`isIndexable()` is already correct and needs **no change**:
+
+```typescript
+export function isIndexable(node: PageNode): boolean {
+  if (node.type === "static") return node.pathSegment !== "privacy-beleid";
+  return node.status === "published";
+}
+```
+
+Measured reality of `PAGES` (28 nodes, enumerated live via `tsx`):
+
+| Status | Count | Nodes | Indexable today? |
+|---|---|---|---|
+| `review` | 21 | 4 pillars + 17 sub-services | **No** — needs `published` |
+| `draft` | 7 | 6 statics + the `/diensten` hub | statics **yes** (type exemption); hub **no** |
+
+Two consequences that shape the whole milestone:
+
+1. **The 21 `review` nodes are safe to flip.** `pageSchema.superRefine` applies `publishedContentSchema`
+   to `review` **and** `published` alike — intro ≥120 words, ≥1 step, 3–6 FAQs, unique canonical URL,
+   unique `primaryKeyword`. All 21 already satisfy the anti-thin-content bar today, or the build
+   would already be failing. Flipping them is a pure data edit with a green gate.
+2. **The `/diensten` hub is NOT safe to flip.** It is built by `draftShell(...)` with `intro: ""`,
+   `steps: []`, `faqs: []`. Setting `status: "published"` makes the Zod gate apply the content
+   rules and the **build will fail**. The hub needs real content authored first.
+
+The 6 statics carrying `status: "draft"` while being indexable is a latent data-hygiene wart —
+harmless today (the `type === "static"` branch never reads `status`) but actively misleading. Normalising
+them is cheap and prevents a future reader "fixing" the wrong thing.
+
+## The Guard Rail Is Pinned To The Broken State
+
+`scripts/assert-seo.ts` does not merely fail to catch this regression — it **enforces** it:
+
+```typescript
+assert.deepEqual(indexableUrls,
+  ["/", "/contact", "/over-ons", "/projecten", "/tarieven"], ...);
+assert.equal(isIndexable(findBySlug("/diensten")!), false, "draft hub must be noindex");
+assert.equal(entries.length, 5, ...);
+```
+
+Git history confirms the anti-pattern: commit `82d897b` is titled *"assert-seo expected 4 indexable
+pages, site serves 5"* — the assertion was **patched to match reality** rather than reconsidered. It is
+a snapshot test masquerading as an invariant, and it will hard-fail the moment we flip.
+
+**It must be rewritten to a relational invariant** that is true before *and* after the flip:
+
+```typescript
+// Relational — survives any future publish, catches real drift.
+for (const node of PAGES) {
+  const inSitemap = sitemapUrls.has(absoluteUrl(urlFor(node)));
+  assert.equal(inSitemap, isIndexable(node),
+    `${urlFor(node)}: sitemap membership must equal isIndexable()`);
+}
+// Floor, not an exact list — catches silent mass-noindex without pinning a count.
+assert.ok(sitemapEntries().length >= 27, `expected >= 27 indexable pages`);
+assert.equal(isIndexable(findBySlug("/privacy-beleid")!), false);
+```
+
+This is the single highest-value structural change in the milestone: it converts a class of silent,
+months-long regression into a build failure.
+
+## Recommended Structure — new + modified
 
 ```
-app/
-├── diensten/
-│   ├── page.tsx                       # hub: 4 pillar cards + intro
-│   ├── [pillar]/
-│   │   ├── page.tsx                   # pillar template (lists subs + brands)
-│   │   └── [service]/
-│   │       └── page.tsx               # sub-service template (the 20+ pages)
-│   └── _components/                   # (optional) diensten-only bits not reused
-├── blog/
-│   ├── page.tsx                       # blog index (reads frontmatter list)
-│   └── [slug]/
-│       └── page.tsx                   # MDX renderer via dynamic import
-├── sitemap.ts                         # programmatic, imports taxonomy
-├── robots.ts                          # static rules + sitemap URL
-└── layout.tsx                         # (existing) + site-wide JSON-LD WebSite/LocalBusiness
-
-components/
-├── service/                           # NEW — reusable service-template parts
-│   ├── ServiceHero.tsx
-│   ├── ServiceSteps.tsx
-│   ├── ServiceFAQ.tsx                 # also emits FAQPage JSON-LD
-│   ├── BrandGrid.tsx
-│   ├── RelatedServices.tsx            # internal-linking engine
-│   ├── Breadcrumbs.tsx                # visual + drives BreadcrumbList JSON-LD
-│   └── PillarCard.tsx
-├── seo/                               # NEW — render-only structured data
-│   ├── JsonLd.tsx                     # generic <script> serializer
-│   └── schema.ts                      # builders: localBusiness(), service(), breadcrumb(), faqPage()
-└── (existing chrome unchanged: Navbar, Footer, CTABanner, Icon, AnimateOnScroll, …)
-
 lib/
-├── services/                          # NEW — the taxonomy + content model
-│   ├── taxonomy.ts                    # the tree (structure, slugs, relations)
-│   ├── types.ts                       # types + accessors (getServiceBySlug, getAllServiceParams)
-│   ├── brands.ts                      # Daikin / Mitsubishi E,H / Ecodan facts
-│   └── content/
-│       ├── airconditioning.ts         # per-sub-service unique copy + FAQs
-│       ├── warmtepompen.ts
-│       ├── wtw.ts
-│       └── mechanische-ventilatie.ts
-├── blog.ts                            # NEW — getAllPosts(), getPostBySlug() (gray-matter + fs)
-├── seo.ts                             # NEW — site constants: BASE_URL, default OG, geo coords
-└── constants.ts                       # (existing) SITE, NAV_LINKS — extend dropdowns from taxonomy
+├── services/            # MODIFIED — status flips only, no shape change
+│   ├── airconditioning.ts        review → published (×5)
+│   ├── warmtepompen.ts           review → published (×5)
+│   ├── wtw.ts                    review → published (×6)
+│   ├── mechanische-ventilatie.ts review → published (×5)
+│   └── registry.ts               hub: content authored, then → published
+├── seo/
+│   ├── policy.ts        # UNCHANGED — already correct
+│   └── redirects.ts     # NEW — typed legacy→current URL map, single source
+└── content/             # NEW — kennisbank layer
+    ├── types.ts                  Article + Zod schema, reusing PageStatus
+    └── articles/*.mdx            3–5 evergreen articles
 
-content/
-└── blog/
-    ├── waarom-wtw-onderhoud.mdx       # frontmatter: title, description, date, pillar
-    └── …
+app/
+├── kennisbank/
+│   ├── page.tsx         # NEW — index
+│   └── [slug]/page.tsx  # NEW — article route
+└── sitemap.ts           # MODIFIED — articles join via policy, not a parallel list
 
-mdx-components.tsx                     # NEW (root) — required by @next/mdx; maps prose styles
+scripts/
+├── assert-seo.ts        # REWRITE — relational invariant (see above)
+└── assert-redirects.ts  # NEW — no chains, no loops, every target 200
+next.config.ts           # MODIFIED — host-conditional redirects from lib/seo/redirects.ts
 ```
 
 ### Structure Rationale
 
-- **`lib/services/` (data) is physically separate from `app/diensten/` (templates).** This is the single most important boundary and the direct antidote to the existing `CONCERNS.md` anti-pattern where `app/diensten/page.tsx` mixes 400 lines of inline data arrays (`AIRCO_CARDS`, `MV_BENEFITS`…) with JSX. Templates import data; they never define it. Owner content edits happen in `lib/services/content/*.ts`, never inside JSX.
-- **Split content by pillar (`content/airconditioning.ts`, …), not one mega-file.** Honors the project rule "many small files > few large files" (target 200-400 lines) and prevents recreating the 620-line `PricingTabs` monolith for content.
-- **`taxonomy.ts` (skeleton) is separate from `content/*.ts` (flesh).** `sitemap.ts` and `generateStaticParams` only need the lightweight tree; they should not import every paragraph of prose. Keeps the build graph clean and makes "what pages exist?" answerable in one file.
-- **`components/seo/` is render-only, design-system-agnostic.** JSON-LD has no visual output, so it lives apart from `components/service/` (which is styled). This also means SEO components carry **zero** "Atmospheric Clarity" coupling and add **zero** client JS.
-- **`components/service/` mirrors the existing `app/page-sections/` philosophy but promoted to reusable** — because, unlike home sections, these parts render across 20+ pages. (Per `STRUCTURE.md`: "Anything reused across multiple pages belongs in `components/`.")
-- **`lib/constants.ts` dropdowns derived from taxonomy.** The Navbar `DIENSTEN_DROPDOWN` should be generated from `taxonomy.ts` (or at least kept in lockstep) so nav never drifts from the actual page set — eliminating a whole class of the duplication bugs flagged in `CONCERNS.md`.
-
----
+- **`lib/seo/redirects.ts` as a typed module, not inline config.** A 9-entry map inline in
+  `next.config.ts` is untestable. As a typed export it can be asserted in CI (every target
+  resolves to a live 200; no target is itself a redirect source) and diffed in review.
+- **`lib/content/` mirrors `lib/services/`.** Articles get a `status` field reusing `PageStatus`
+  so the *same* editorial gate governs them. Articles must join `sitemapEntries()` through
+  `policy.ts` — never via a second list in `app/sitemap.ts`, which would recreate exactly the
+  drift class `policy.ts` exists to prevent.
 
 ## Architectural Patterns
 
-### Pattern 1: Taxonomy-as-data-source with nested `generateStaticParams` (the core pattern)
+### Pattern 1: Single-source indexability (already established — extend, never bypass)
 
-**What:** A two-segment dynamic route `app/diensten/[pillar]/[service]/`. The **leaf** `page.tsx` enumerates the entire tree bottom-up, returning every `{ pillar, service }` pair. Verified mechanic (Next.js 16 docs): *"`app/products/[category]/[product]/page.js` can generate params for **both** `[category]` and `[product]`."*
+**What:** One predicate decides both sitemap membership and the per-page `robots` directive.
+**Trade-off:** Every new page type must be taught to `policy.ts`. That friction is the point.
+**Rule for v1.1:** kennisbank articles integrate by extending `isIndexable()` with an article
+branch and joining the `PAGES`-equivalent iteration — *not* by appending to `app/sitemap.ts`.
 
-**When to use:** Finite, known taxonomy where all pages are buildable at deploy time. Exactly this project.
+### Pattern 2: Host-conditional redirects
 
-**Trade-offs:**
-- (+) One template generates N pages. Add a service to `taxonomy.ts` → a new SEO page appears on next build. No new files.
-- (+) Builds zero-config under `output: "export"` once `dynamicParams = false`.
-- (−) Adding a page requires a redeploy (acceptable — content is in-repo by decision, no CMS).
-- (−) All variants share a template, so **content uniqueness must be enforced by data, not layout** (see Pattern 4).
+**What:** One Vercel project serves two domains; the retiring host maps 9 legacy paths to current URLs.
 
-**Example:**
-```tsx
-// app/diensten/[pillar]/[service]/page.tsx
-import { getAllServiceParams, getServiceBySlug } from "@/lib/services/types";
-
-export const dynamicParams = false; // REQUIRED for output: "export"
-
-export function generateStaticParams() {
-  // bottom-up: returns [{ pillar: "airconditioning", service: "installatie" }, ...]
-  return getAllServiceParams();
-}
-
-export async function generateMetadata({ params }) {
-  const { pillar, service } = await params;          // params is a Promise in Next 16
-  const data = getServiceBySlug(pillar, service);
-  return { title: data.metaTitle, description: data.metaDescription,
-           alternates: { canonical: `/diensten/${pillar}/${service}` } };
-}
-
-export default async function ServicePage({ params }) {
-  const { pillar, service } = await params;
-  const data = getServiceBySlug(pillar, service);    // pulls unique copy + FAQs
-  // compose ServiceHero / ServiceSteps / BrandGrid / ServiceFAQ / RelatedServices
-}
-```
-
-> **Alternative considered — flat `[...slug]` catch-all:** Could collapse hub/pillar/service into one `app/diensten/[[...slug]]`. **Rejected:** loses per-level template clarity, makes `generateMetadata` branch on slug length, and complicates breadcrumb logic. Two explicit nested segments is more maintainable for a fixed 3-level depth.
-
-> **Top-down alternative (valid too):** put `generateStaticParams` for `[pillar]` in `app/diensten/[pillar]/layout.tsx` and only `[service]` in the leaf. Use this **if** you add a shared pillar layout (e.g., a pillar-wide sidebar). For now, bottom-up from the leaf is simpler — fewer files.
-
-### Pattern 2: SEO components as pure render-only server components
-
-**What:** JSON-LD is injected by rendering `<script type="application/ld+json">{JSON.stringify(schema)}</script>` from a **server component**. It serializes straight into the static HTML at build — no client hydration, no `next-seo` dependency needed. Confirmed as the current official Next.js recommendation.
-
-**When to use:** Every page that wants rich results. Per-page `Service` + `BreadcrumbList` (+ `FAQPage` where FAQs exist); site-wide `LocalBusiness`/`WebSite` once in `app/layout.tsx`.
-
-**Trade-offs:**
-- (+) Zero runtime cost, zero client JS, no hydration-mismatch risk (server-only render avoids the double-injection problem that plagues client-component JSON-LD).
-- (+) Schema builders are plain functions → trivially unit-testable, type-safe.
-- (−) You hand-build schema objects (or add a tiny helper). Acceptable; avoids a dependency.
-
-**Example:**
-```tsx
-// components/seo/JsonLd.tsx  (server component)
-export function JsonLd({ schema }: { schema: Record<string, unknown> }) {
-  return (
-    <script type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-  );
-}
-// components/seo/schema.ts
-export const service = (d) => ({ "@context": "https://schema.org", "@type": "Service",
-  name: d.h1, areaServed: { "@type": "City", name: "Zoetermeer" },
-  provider: { "@type": "LocalBusiness", name: SITE.name }, /* … */ });
-```
-
-> Security note (matches global rules): JSON-LD content here is **build-time, author-controlled** Dutch copy from `lib/`, never user input — so `dangerouslySetInnerHTML` is safe in this context. Never feed form/user data into it.
-
-### Pattern 3: Programmatic sitemap/robots from the same taxonomy
-
-**What:** `app/sitemap.ts` exports a default function returning a `MetadataRoute.Sitemap` array, built by mapping over `taxonomy.ts` (+ static pages + MDX slugs). `app/robots.ts` returns rules + the sitemap URL. Both are **static Route Handlers** — verified: *"Route Handlers will render a static response when running `next build`"* (GET-only, no `Request` access) — so they emit `out/sitemap.xml` and `out/robots.txt` cleanly under `output: "export"`.
-
-**When to use:** Always, for this project. Single source means a new service page is auto-listed in the sitemap.
-
-**Trade-offs:**
-- (+) Sitemap can never drift from the page set — both read one tree.
-- (−) `lastModified` must be sourced from data (e.g., a `updated` field per content record), since there's no git/runtime mtime at static-build time. Hardcode-or-omit is fine for launch.
-
-**Example:**
-```ts
-// app/sitemap.ts
-import type { MetadataRoute } from "next";
-import { getAllServiceParams } from "@/lib/services/types";
-import { BASE_URL } from "@/lib/seo";
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const services = getAllServiceParams().map(({ pillar, service }) => ({
-    url: `${BASE_URL}/diensten/${pillar}/${service}`,
-    changeFrequency: "monthly" as const, priority: 0.8,
+```typescript
+// next.config.ts — shape only; mechanism to be confirmed by STACK research [VERIFY]
+async redirects() {
+  return LEGACY_REDIRECTS.map(({ from, to }) => ({
+    source: from,
+    has: [{ type: "host", value: "(www\\.)?tpsventilatie\\.nl" }],
+    destination: `${CANONICAL_ORIGIN}${to}`,
+    permanent: true, // 308; see chain analysis below
   }));
-  const statics = ["", "/diensten", "/tarieven", "/over-ons", "/contact", "/blog"]
-    .map((p) => ({ url: `${BASE_URL}${p}`, priority: p === "" ? 1 : 0.7 }));
-  return [...statics, ...services];
 }
 ```
 
-### Pattern 4: Anti-thin-content by construction (the differentiator)
+**Trade-off:** couples the retiring domain's behaviour to the live app's deploy cycle — a bad
+deploy breaks the redirects. Mitigated by `assert-redirects.ts` in the build gate.
 
-**What:** Because 20+ pages share one template, Google's "thin/duplicate content" risk is real and is the #1 failure mode of programmatic SEO. The defense is **structural**: the template renders *slots*, and the **data model makes unique content mandatory** to fill them. A page with empty unique copy should look obviously broken in review.
+### Pattern 3: Relational build assertions over snapshot assertions
 
-**When to use:** Every templated service page. This is non-negotiable for the SEO goal.
-
-**Trade-offs:**
-- (+) Pages are genuinely distinct → indexable, rankable.
-- (−) Real human (Claude-drafted, owner-reviewed) Dutch copy must exist for each node. This is content work, not code — and it gates launch quality, not the build.
-
-**How (concrete tactics, each enforced by a typed field):**
-1. **Required unique intro** — `content.intro: string` (≥ ~120 words). Per sub-service, hand-written. No shared boilerplate paragraph.
-2. **Service-specific process steps** — `content.steps: Step[]`. "Installatie" steps ≠ "Onderhoud" steps ≠ "Reparatie & Storing" steps.
-3. **Unique FAQ set per page** — `content.faqs: {q,a}[]` (3-6 each). Doubles as `FAQPage` JSON-LD. Different questions per service/brand.
-4. **Brand-specific paragraphs** — pull from `brands.ts` so Daikin vs Mitsubishi Heavy pages read differently even for the same sub-service.
-5. **Local angle** — weave Zoetermeer + regio (Pijnacker, Nootdorp, Berkel…) and a "service-area" line varied per page; ties to `LocalBusiness`/`areaServed`.
-6. **Differentiated metadata** — `metaTitle`/`metaDescription` per node (template helper allowed, but body must vary), each with a self-canonical.
-7. **Internal-linking via `RelatedServices`** — each page links to siblings (same pillar) + parent pillar + 1-2 cross-pillar relevant pages, with **descriptive Dutch anchor text** (not "lees meer"). This builds topical clusters and distributes link equity. Breadcrumbs add another internal-link layer.
-8. **No accidental duplicate pages** — ensure exactly one URL per concept; set `alternates.canonical` on every page; keep `trailingSlash` consistent so `/x` and `/x/` don't both index.
-
-> Rule of thumb: if you could swap two pages' `<h1>` and a reader wouldn't notice, the content is thin. The data model should make that impossible.
-
-### Pattern 5: Light MDX blog/FAQ via dynamic import (static-export-safe)
-
-**What:** `@next/mdx` + `gray-matter`. MDX files in `content/blog/`. A `app/blog/[slug]/page.tsx` reads the directory at build (`fs` + `gray-matter`, server-only), `generateStaticParams` returns the slugs, and the page `await import("@/content/${slug}.mdx")` renders it. `dynamicParams = false`. Verified working with `output: "export"`.
-
-**When to use:** The "light blog / FAQ for SEO + trust" requirement. Don't over-build a CMS (out of scope by decision).
-
-**Trade-offs:**
-- (+) Authoring is plain Markdown; React components embeddable (e.g., a `<CTABanner/>` mid-post).
-- (+) Frontmatter (`title`, `description`, `date`, `pillar`) powers the blog index list and per-post metadata.
-- (−) `@next/mdx` doesn't parse frontmatter natively → add `gray-matter` (or `remark-frontmatter`). One small dep.
-- (−) `fs`/glob only run server-side at build (fine here).
-
-**Example:**
-```tsx
-// app/blog/[slug]/page.tsx
-export const dynamicParams = false;
-export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug })); // lib/blog.ts: fs + gray-matter
-}
-export default async function Post({ params }) {
-  const { slug } = await params;
-  const { default: Content } = await import(`@/content/blog/${slug}.mdx`);
-  return <article className="prose">{<Content />}</article>;
-}
-```
-Required wiring: `pageExtensions: ["ts","tsx","md","mdx"]` in `next.config`, root `mdx-components.tsx`, and (because remark/rehype are ESM) keep config as `next.config.ts`/`.mjs`.
-
----
+**What:** Assert *relationships that must always hold*, not *values that happen to be true now*.
+**Why it matters here:** the snapshot form of `assert-seo.ts` let a 22-page noindex survive a full
+milestone and two "fix" commits.
 
 ## Data Flow
 
-### Build-time generation flow (the important one — this is a static site)
+### Indexability (the flip)
 
 ```
-next build
-   │
-   ├─ generateStaticParams (leaf service page)
-   │     reads lib/services/taxonomy.ts ──► [{pillar,service} × ~20+]
-   │
-   ├─ for each param: render ServicePage (server component)
-   │     getServiceBySlug() ──► lib/services/content/*.ts + brands.ts
-   │        ├─ ServiceHero / ServiceSteps / BrandGrid / ServiceFAQ / RelatedServices
-   │        └─ JsonLd(service) + JsonLd(breadcrumb) + JsonLd(faqPage)
-   │     ──► out/diensten/<pillar>/<service>.html   (fully static, SEO-ready)
-   │
-   ├─ app/sitemap.ts   reads same taxonomy ──► out/sitemap.xml
-   ├─ app/robots.ts                          ──► out/robots.txt
-   │
-   └─ app/blog/[slug]  reads content/blog/*.mdx (fs+gray-matter) ──► out/blog/<slug>.html
+lib/services/*.ts  status: "review" → "published"
+        ↓
+registry.ts  PAGES  ──────────────┬──────────────────────┐
+        ↓                         ↓                      ↓
+policy.ts isIndexable()    generateMetadata()      sitemapEntries()
+        ↓                         ↓                      ↓
+   (single truth)        <meta robots> per page      /sitemap.xml
+                                  ↓                      ↓
+                          noindex → indexable      5 URLs → 27 URLs
 ```
 
-### Runtime flow (client) — minimal by design
+### Legacy traffic
 
 ```
-Browser loads static HTML (already contains copy + JSON-LD)
-   │
-   ├─ Client islands hydrate: Navbar dropdown, MobileMenu, ContactForm,
-   │     AnimateOnScroll, ReviewCarousel, SoftAurora  (unchanged existing)
-   │
-   └─ ContactForm submit ─► see Integration Points (the one network call)
+GET https://tpsventilatie.nl/wtw-unit-vervangen/
+        ↓  (apex A → Vercel)
+Vercel edge → next.config redirects[] · host matches legacy domain
+        ↓
+301/308 → https://www.tpsklimaattechniek.nl/diensten/wtw/vervangen
+        ↓
+200 — MUST be a direct hit, never a further redirect
 ```
 
-### Key Data Flows
+**Redirect-chain hazard — the load-bearing detail.** Two redirects already exist in the topology,
+both **verified live 2026-08-19**:
 
-1. **Taxonomy → pages:** one tree drives route generation, page content, nav dropdowns, and sitemap. Change the tree once; everything follows.
-2. **Content record → page + JSON-LD + FAQ:** a single `ServicePageData` record feeds the visual template *and* the structured data — FAQs render as accordion UI **and** `FAQPage` schema from the same array (write once).
-3. **Internal links:** `RelatedServices` + `Breadcrumbs` compute links from taxonomy relations, producing the topical-cluster link graph SEO needs.
+- `https://www.tpsventilatie.nl/` → **301** → `https://tpsventilatie.nl/`  (legacy www→apex)
+- `https://tpsklimaattechniek.nl/` → **308** → `https://www.tpsklimaattechniek.nl/`  (new apex→www)
 
----
+So a naive map is doubly chained. An inbound link to `www.tpsventilatie.nl/wtw-unit-vervangen/`
+would walk `legacy-www → legacy-apex → new-apex → new-www` — **three hops** — bleeding equity and
+risking Google abandoning the chain. A map written only against the legacy apex still leaves two.
+**Prevention — three rules, all mechanically checkable:**
+1. Every `destination` is built from `CANONICAL_ORIGIN` (already the `www` host), never hand-typed.
+2. **Both** legacy hostnames are attached to the Vercel project and **both** A records repoint, so the
+   `has: host` matcher covers `tpsventilatie.nl` *and* `www.tpsventilatie.nl` — each going directly to
+   the final target in ONE hop. Repointing only the apex leaves the legacy `www` 301 stranded on the
+   old host and preserves the chain.
+3. `assert-redirects.ts` fails the build unless every target returns a direct 200 (not a redirect).
 
-## Scaling Considerations
+### Proposed legacy → current URL map (9 entries)
 
-This is a brochure/lead site; "scale" means **page count and build time**, not concurrent users (static files on Vercel CDN handle traffic trivially).
+All 10 sources verified HTTP 200 on the legacy site and all 11 targets verified HTTP 200 on the
+new site, 2026-08-19.
 
-| Scale | Architecture adjustments |
-|-------|--------------------------|
-| ~20-40 pages (this milestone) | Single `sitemap.ts`, one taxonomy file, content split by pillar. Build is seconds. No special handling. |
-| ~100-500 pages (add cities × services later) | If you templatize per-city (e.g., `[pillar]/[service]/[city]`), watch the **thin-content multiplier** — city pages need real local differentiation or Google treats them as doorway pages. Keep one sitemap until ~10k URLs. |
-| 10k+ URLs | Split sitemaps via `generateSitemaps` (Google's 50k/file limit). Not remotely needed here; noted for completeness. |
+| Legacy URL | Target | Confidence |
+|---|---|---|
+| `/` | `/` | certain |
+| `/over-ons/` | `/over-ons` | certain |
+| `/contact/` | `/contact` | certain |
+| `/privacy-beleid/` | `/privacy-beleid` | certain |
+| `/wtw-unit-vervangen/` | `/diensten/wtw/vervangen` | certain |
+| `/wtw-unit-onderhoud-reinigen/` | `/diensten/wtw/onderhoud-reinigen` | certain |
+| `/wtw-unit-inregelen/` | `/diensten/wtw/inregelen` | certain |
+| `/mechanische-ventilatie-vervangen/` | `/diensten/mechanische-ventilatie/vervangen` | certain |
+| `/mechanische-ventilatie-onderhoud-reinigen/` | `/diensten/mechanische-ventilatie/onderhoud-reinigen` | certain |
+| `/mechanische-ventilatie-dakventilator/` | `/diensten/mechanische-ventilatie/aanleggen` | **judgement** — no exact equivalent; nearest topical match |
 
-### Scaling Priorities
+Note the legacy site uses **trailing slashes**; the new app is `trailingSlash: false`. Sources must be
+written with the trailing slash to match real inbound links. A catch-all `/:path*` → `/` fallback should
+follow the 9 explicit rules so unmapped legacy URLs (media, `/feed/`, `/wp-json/`) still land somewhere
+valid rather than 404 — but it must sit *after* them so it never shadows a real mapping.
 
-1. **First "bottleneck" is editorial, not technical:** the constraint is *writing unique copy per page*, not generating them. The architecture deliberately front-loads this (typed required fields) so quality is visible in review.
-2. **Build time:** trivial at this scale. Only relevant if a future city-expansion pushes hundreds of MDX imports — then consider precompiling a content index.
+## Build Order (dependency-derived)
 
----
+| # | Step | Depends on | Why here |
+|---|---|---|---|
+| 1 | Rewrite `assert-seo.ts` to relational form | — | Must land **before** the flip or the flip cannot build |
+| 2 | Flip 21 `review` → `published` | 1 | The unlock. 21 pages indexable, sitemap 5 → 26 |
+| 3 | Author `/diensten` hub content, then publish | 1 | Blocked on writing; sitemap → 27 |
+| 4 | Normalise the 6 statics' `status` | 1 | Data hygiene; no behaviour change |
+| 5 | GSC verify + submit sitemap | 2,3 | Pointless before there is anything to index |
+| 6 | Baseline capture — rankings, GSC export, DNS snapshot, WP backup | — | **Must precede 7.** Irreversible-step insurance |
+| 7 | Legacy redirect map + `assert-redirects.ts` | 2,3,6 | Targets must be indexable *before* equity is pointed at them |
+| 8 | DNS repoint of legacy apex + `www` | 7 | **One-way door in practice.** External propagation delay |
+| 9 | GBP rename + URL + categories | 2,3 | High-stakes; see PITFALLS |
+| 10 | NAP / citation cleanup | 9 | GBP is the canonical record others should match |
+| 11 | On-page depth + internal linking | 2,3 | Compounding, not blocking |
+| 12 | Kennisbank (MDX) | 1,2 | Independent; can run parallel |
+| 13 | Repo + Vercel project rename | everything | Cosmetic, highest collateral risk — do last |
+
+**Ordering rule that matters most:** steps 2–3 gate step 7. Pointing 301s at pages that are still
+`noindex` would funnel every scrap of legacy equity into a wall — the worst possible sequencing, and
+the easy mistake to make because the redirect work feels more urgent.
 
 ## Anti-Patterns
 
-### Anti-Pattern 1: Inline data arrays inside page/template JSX
+### Anti-Pattern 1: Appending kennisbank URLs directly to `app/sitemap.ts`
 
-**What people do:** Define `const AIRCO_CARDS = [...]`, `const STEPS = [...]` at the top of `page.tsx` (exactly what `app/diensten/page.tsx` does today — 400 lines).
-**Why it's wrong:** Couples content to layout, blocks reuse across the 20+ pages, makes owner content edits require reading JSX, and is precisely the tech-debt `CONCERNS.md` flags. At 20+ pages it compounds into an unmaintainable mess.
-**Do this instead:** All content in `lib/services/content/*.ts`, typed. Templates are layout-only and receive data as props.
+**What people do:** `return [...sitemapEntries(), ...articles.map(...)]`.
+**Why it's wrong:** recreates precisely the drift `policy.ts` exists to prevent — sitemap membership
+would no longer imply an indexable robots directive. This is how the current 22-page bug is shaped.
+**Do this instead:** teach `isIndexable()` about articles; let `sitemapEntries()` remain the only emitter.
 
-### Anti-Pattern 2: One mega service-data file
+### Anti-Pattern 2: Snapshot assertions in build gates
 
-**What people do:** Put the entire taxonomy + all copy + all FAQs in a single `lib/services.ts`.
-**Why it's wrong:** Recreates the 620-line `PricingTabs` monolith problem; merge-conflict magnet; violates the 200-400-line file norm.
-**Do this instead:** `taxonomy.ts` (skeleton) + `content/<pillar>.ts` (one per pillar) + `brands.ts` + `types.ts`. Small, cohesive, navigable.
+**What people do:** `assert.equal(entries.length, 5)`, then bump the number when it fails.
+**Why it's wrong:** demonstrated here — the gate green-lit a fully noindexed service surface, twice.
+**Do this instead:** assert relationships and floors.
 
-### Anti-Pattern 3: Shipping templated pages with shared/boilerplate body copy
+### Anti-Pattern 3: Hand-typed redirect destinations
 
-**What people do:** Reuse the same intro paragraph and FAQ set across every sub-service, swapping only the service name.
-**Why it's wrong:** Google's duplicate/thin-content and doorway-page detection demotes or de-indexes the whole cluster — actively harming the SEO goal the project exists for.
-**Do this instead:** Enforce unique `intro`, `steps`, and `faqs` per node via required typed fields (Pattern 4). Treat "two pages indistinguishable but for the H1" as a launch blocker.
+**What people do:** `destination: "https://tpsklimaattechniek.nl/diensten/wtw/vervangen"`.
+**Why it's wrong:** the apex 308s to `www`, so every hand-typed apex URL silently adds a hop; and it
+duplicates `CANONICAL_ORIGIN`, so a future origin change misses it.
+**Do this instead:** always `${CANONICAL_ORIGIN}${urlFor(node)}`, asserted in CI.
 
-### Anti-Pattern 4: Forgetting `dynamicParams = false` (or expecting fallback)
+### Anti-Pattern 4: Publishing the hub without content
 
-**What people do:** Add a dynamic route, ship to `output: "export"`, assume unlisted slugs render on demand.
-**Why it's wrong:** Unsupported under static export — build errors or silently missing pages. There is no runtime to render the fallback.
-**Do this instead:** Every dynamic segment: `export const dynamicParams = false;` + exhaustive `generateStaticParams`. A 404 for an unknown slug is the correct, intended behavior.
-
-### Anti-Pattern 5: JSON-LD in a client component
-
-**What people do:** Render structured data from a `"use client"` component.
-**Why it's wrong:** Causes double-injection on hydration (server HTML + client re-render) and ships needless JS. A known foot-gun.
-**Do this instead:** Render `<script type="application/ld+json">` from a **server** component (default). It bakes into static HTML once. (Also keeps it off the `"use client"` bundle per the existing architecture's boundary rule.)
-
-### Anti-Pattern 6: Vanity catch-all route that swallows the whole `/diensten` tree
-
-**What people do:** `app/diensten/[[...slug]]/page.tsx` to "handle everything."
-**Why it's wrong:** Forces length-based branching in `generateMetadata`/render, tangles breadcrumbs, and obscures which pages exist. Fixed 3-level depth doesn't need it.
-**Do this instead:** Explicit `[pillar]` and `[pillar]/[service]` segments. Clear, typed, greppable.
-
----
+**What people do:** flip all statuses in one sed pass.
+**Why it's wrong:** the hub's `draftShell` fails `publishedContentSchema` — the build breaks, and the
+tempting "fix" is to weaken the gate that protects the whole site from thin content.
+**Do this instead:** treat hub content as authoring work with its own task.
 
 ## Integration Points
 
 ### External Services
 
-| Service | Integration pattern | Notes |
-|---------|---------------------|-------|
-| **GoHighLevel webhook (lead form)** | **DECISION REQUIRED — binary, no middle ground.** See below. | The project's flagged open decision. |
-| **Google Search Console** | Submit `out/sitemap.xml` URL post-deploy. | Programmatic sitemap (Pattern 3) makes this one-and-done. |
-| **GA4 / Vercel Analytics** | Client `<Script>` in `layout.tsx`; or Vercel Analytics package. | Vercel Analytics works on static export; GA4 via `next/script` afterInteractive. |
-| **MDX content (`@next/mdx`)** | Build-time, local files. | Not a runtime service; sources from `content/blog/`. |
-
-**The form decision — static-export vs hybrid (closing the open question):**
-
-The static-export guide is explicit: under `output: "export"`, **Route Handlers that rely on `Request` are unsupported, and Server Actions are unsupported.** A secure server-side proxy *requires* reading the incoming request body server-side. Therefore:
-
-> **You cannot have both a true secure server-side form route AND `output: "export"`. It is binary.**
-
-- **Option A — Keep `output: "export"` (recommended for this milestone).** Form stays client→GHL webhook. Mitigate the exposed-webhook risk (per `CONCERNS.md`) *within* static constraints: **honeypot field + timing check + Zod validation client-side + GHL-side rate limiting**. The webhook URL is still public, but spam surface is reduced. Owner notification (the actual requirement) works today. **Lowest change, keeps every benefit of full static.** The `NEXT_PUBLIC_` exposure becomes an accepted, documented risk.
-- **Option B — Drop `output: "export"`, deploy as standard Vercel app.** Removes one line of config; site stays ~99% statically prerendered (SSG) but gains **one** serverless Route Handler `app/api/lead/route.ts` (POST). Move the webhook to a **server-only** env var (no `NEXT_PUBLIC_`); the handler validates (Zod) + forwards. Client never sees the webhook. Fully resolves the security finding. Cost: lose `out/` portability (now Vercel-coupled), and `next/image` optimization becomes available again (a side benefit). **This is the only path to a genuinely secured form.**
-
-**Recommendation:** Because the project is *already on Vercel* and the security concern is real (anyone can spam the GHL webhook), **Option B is the architecturally correct long-term answer** — and it costs almost nothing since Vercel SSG keeps all pages static except the one API route. **If** the milestone wants to stay strictly static for launch simplicity, **Option A with honeypot + Zod + GHL rate-limiting** is an acceptable v1. The roadmap should treat this as an explicit either/or decision, ideally resolved *before* the form-hardening phase, because it changes `next.config.ts` and where `submitForm` posts.
+| Service | Integration | Gotchas |
+|---|---|---|
+| Vercel (2nd domain) | Attach `tpsventilatie.nl`; host-conditional redirects | Mechanism to confirm `[VERIFY]`; must not disturb primary domain |
+| dd24 DNS (new domain) | Unchanged | NS must stay at dd24 — moving drops Titan mail |
+| opeiron/cyberfolks DNS (legacy) | Change **only** apex + `www` A records | MX + `mail` A + SPF must survive; webmail and `wp-admin` live on the apex path and **will break** |
+| Google Search Console | Verify, submit sitemap | Verification method `[VERIFY]` |
+| Google Business Profile | Rename, URL, categories | Highest-stakes; 34 reviews at risk. See PITFALLS |
 
 ### Internal Boundaries
 
 | Boundary | Communication | Notes |
-|----------|---------------|-------|
-| `lib/services/` ↔ `app/diensten/` | Typed accessor functions (`getServiceBySlug`, `getAllServiceParams`) | Templates depend on the **types/accessors**, never reach into raw arrays — keeps the data shape swappable (CMS later). |
-| `lib/services/` ↔ `app/sitemap.ts` | Imports lightweight `taxonomy.ts` only | Sitemap doesn't pull full content — keeps build graph lean. |
-| `lib/services/` ↔ `lib/constants.ts` (Navbar) | Dropdown derived from taxonomy | Eliminates nav-vs-pages drift (a `CONCERNS.md` duplication class). |
-| `components/service/` ↔ `components/seo/` | FAQ array passed to both UI accordion and `faqPage()` builder | Write-once content, two outputs (visual + schema). |
-| Content (`content/*.ts`, `*.mdx`) ↔ templates | Build-time only | No runtime fetch; everything resolved at `next build`. |
-
----
-
-## Suggested Build Order (for the roadmap)
-
-Dependency-driven; each layer unblocks the next. This is the recommended phase ordering rationale for the roadmap.
-
-1. **Taxonomy + data model first** (`lib/services/types.ts`, `taxonomy.ts`, `brands.ts`, empty `content/*.ts` shells).
-   *Why first:* every other layer reads it. Lock the shape before building templates. Defines the URL structure and the sitemap simultaneously.
-2. **Route + templates** (`app/diensten/[pillar]/[service]/page.tsx` + `[pillar]/page.tsx` + hub; `components/service/*`).
-   *Why second:* needs the data contract; produces visible pages (even with placeholder copy) to validate the generation mechanic and `dynamicParams = false` under `output: "export"` early.
-3. **SEO infrastructure** (`components/seo/`, per-page `generateMetadata`, `app/sitemap.ts`, `app/robots.ts`, site-wide `LocalBusiness` JSON-LD, OG/Twitter meta, breadcrumbs).
-   *Why third:* layers onto existing templates; mechanically independent of final copy. Closes the `CONCERNS.md` "missing SEO infra" gap.
-4. **Content fill** (Claude-drafted unique Dutch copy + FAQs per node; brand paragraphs; local angle) — the **thin-content defense executed**.
-   *Why fourth:* the slowest, review-gated work; the architecture makes its absence visible (empty required fields), so it can proceed in parallel/last without blocking the build. **This phase, not the build, is where launch quality is won.**
-5. **Light MDX blog/FAQ** (`@next/mdx` wiring, `content/blog/`, `app/blog/`).
-   *Why fifth:* additive, lower priority than the core service surface; independent of the taxonomy.
-6. **Form security decision + hardening** (resolve Option A/B; Zod + honeypot; network-error handling).
-   *Why last among build work:* it's the one cross-cutting config decision; deciding it late avoids reworking `next.config.ts` mid-stream, but it **must** be decided before final QA.
-
-> **Research flags for the roadmap:** Phase 6 (form boundary) needs an explicit decision gate — it's the only item that can change `next.config.ts` globally. Phase 4 (content) is editorial-heavy and the true quality gate; budget accordingly. Phases 1-3 are standard, well-supported Next.js 16 patterns (HIGH confidence, no deep research needed).
-
----
+|---|---|---|
+| `registry.ts` → `policy.ts` | direct import of `PAGES` | Keep unidirectional |
+| `policy.ts` → `sitemap.ts` / `generateMetadata()` | function call | The invariant; never bypass |
+| `types.ts` ← `registry.ts` | `canonicalPath` lives in `types.ts` | Deliberate, avoids a cycle |
+| `lib/seo/redirects.ts` → `next.config.ts` | build-time import | New; must stay pure/serialisable |
+| `lib/content/` → `policy.ts` | extend `isIndexable()` | Must not create a parallel sitemap source |
 
 ## Sources
 
-- Next.js 16.2.7 — `generateStaticParams` (nested/multiple dynamic segments, bottom-up & top-down, `dynamicParams`): https://nextjs.org/docs/app/api-reference/functions/generate-static-params — HIGH (official, lastUpdated 2026-06-01)
-- Next.js 16.2.7 — Static Exports guide (supported/unsupported features; Route Handlers render static GET responses; `dynamicParams: true` unsupported; no Server Actions / Request-reading handlers): https://nextjs.org/docs/app/guides/static-exports — HIGH (official, 2026-06-01)
-- Next.js 16.2.7 — `sitemap.(xml|ts)` file convention (programmatic sitemap as cached Route Handler, `MetadataRoute.Sitemap`, `generateSitemaps`): https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap — HIGH (official, 2026-06-01)
-- Next.js 16.2.7 — MDX guide (`@next/mdx`, `mdx-components.tsx`, dynamic-import + `generateStaticParams` + `dynamicParams=false`, frontmatter via gray-matter/remark-frontmatter): https://nextjs.org/docs/app/guides/mdx — HIGH (official, 2026-06-01)
-- Next.js — JSON-LD guide (render `<script application/ld+json>` from server component; client-component double-injection caveat): https://nextjs.org/docs/app/guides/json-ld — MEDIUM-HIGH (official guide; hydration caveat corroborated by community)
-- Existing system context: `.planning/codebase/ARCHITECTURE.md`, `STRUCTURE.md`, `CONCERNS.md` (anti-patterns to avoid: inline data in `app/diensten/page.tsx`, 620-line `PricingTabs`, review/pricing duplication, missing sitemap/robots/JSON-LD, client-exposed webhook) — HIGH (direct repo analysis)
-- Thin/duplicate/doorway-content guidance for programmatic SEO: established Google Search guidance + community consensus — MEDIUM (well-established practice; not a single citable doc)
+- Direct reads: `lib/seo/policy.ts`, `lib/services/types.ts`, `lib/services/registry.ts`,
+  `app/sitemap.ts`, `app/robots.ts`, `next.config.ts`, `scripts/assert-seo.ts`, `package.json`
+- Live enumeration of `PAGES` by status via `npx tsx` (28 nodes: 21 review / 7 draft)
+- Live probes 2026-08-19: HTTP status + `robots` meta on 5 service URLs; `sitemap.xml` (5 URLs);
+  `dig` on both domains; old-site WP REST inventory (9 pages, 0 posts)
+- Git history: `82d897b`, `82d897b`-adjacent SEO commits
 
 ---
-*Architecture research for: taxonomy-driven local-service site + SEO infra on Next.js 16 `output: "export"`*
-*Researched: 2026-06-02*
+*Architecture research for: rebrand/domain migration + indexation unlock on a Next.js 16 local-SEO site*
+*Researched: 2026-08-19 (inline — subagents unavailable)*
