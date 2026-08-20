@@ -91,6 +91,47 @@ Aanbeveling: laten staan (zichtbaarheid > afmelding voor een lokaal installatieb
 
 ---
 
+## 6. Indexatie controleren — `verify-indexation.ts`
+
+Sinds Phase 8 staan alle 27 pagina's op `published` en in de sitemap. Er is een
+script dat controleert of dat op de **live site** ook echt zo is — niet in de
+data, maar in wat Google daadwerkelijk terugkrijgt.
+
+**Draaien:**
+
+```bash
+npx tsx scripts/verify-indexation.ts https://www.tpsklimaattechniek.nl
+```
+
+Het script controleert vier dingen op elke URL uit de sitemap:
+
+1. de sitemap bevat precies **27** URL's (het aantal dat `INDEXABLE_FLOOR` vastlegt);
+2. elke URL geeft **direct een 200** terug — geen tussenliggende redirect;
+3. geen enkele pagina stuurt een `noindex` mee;
+4. de canonical van elke pagina wijst naar zichzelf.
+
+**Wanneer draaien:** na elke productie-deploy die aan pagina's, statussen of SEO-code
+raakt. Bij twijfel: gewoon draaien, het duurt een paar seconden.
+
+**Wat een foutmelding betekent.** Het script noemt altijd de pagina én wat er mis is:
+
+| Melding | Betekenis |
+|---|---|
+| `sitemap lists N URLs, expected exactly 27` | Er staat een pagina **minder** in de sitemap dan zou moeten — er is dus een pagina uit de index gevallen. **Zoek uit wélke pagina en waarom.** Verlaag het getal NIET om de melding weg te krijgen; dat is precies hoe de vorige fout maandenlang onopgemerkt bleef. Staat er juist een pagina méér in, dan is er iets in de index gekomen dat de build-gate niet kent. |
+| `expected a direct 200, got 3xx` | Een URL in de sitemap wordt doorgestuurd in plaats van direct geserveerd. |
+| `emits noindex in its own metadata` | Een pagina staat in de sitemap maar zegt tegen Google dat hij niet geïndexeerd mag worden — precies de tegenstrijdigheid die Phase 8 heeft opgelost. Meestal staat de `status` van die pagina niet (meer) op `published`. |
+| `canonical points at …, not at itself` | De pagina verwijst als "origineel" naar een andere URL. |
+
+> Op een Vercel *preview*-URL (`*.vercel.app`) zet Vercel zelf een
+> `X-Robots-Tag: noindex` op álle pagina's. Dat is normaal — het script meldt dat het
+> die header daar overslaat en controleert hem alleen op de productie-URL.
+
+**Waarom handmatig?** Dit project heeft geen CI. Het automatisch laten meelopen na
+elke productie-deploy is een bewuste keuze voor **Phase 9 (Measurement Foundation)**,
+niet iets dat hier vergeten is.
+
+---
+
 ### Samenvatting — wat hangt waarvan af
 - **JSON-LD `geo` + GBP-pin + Phase-5 maps-embed** delen dezelfde geverifieerde coördinaat (§5).
 - **Sitemap-inhoud groeit vanzelf** zodra Phase 4 service-pagina's op `published` zet — niets handmatig bijwerken.
