@@ -3,13 +3,13 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Rebrand Migration & SEO Ranking Push
 status: executing
-last_updated: "2026-08-20T11:36:31.338Z"
-last_activity: 2026-08-20 -- Phase 08 planning complete
+last_updated: "2026-08-20T12:01:00.717Z"
+last_activity: 2026-08-20 -- Phase 08 execution started
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 5
-  completed_plans: 0
+  completed_plans: 1
   percent: 0
 ---
 
@@ -20,14 +20,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-08-19)
 
 **Core value:** Turn local search demand into contacted leads — a prospect in the Zoetermeer region finds TPS, trusts it, reaches out, and the owner is notified instantly.
-**Current focus:** 🚀 Milestone **v1.1 "Rebrand Migration & SEO Ranking Push"** started 2026-08-19. v1.0 shipped and the site is PUBLIC on `https://www.tpsklimaattechniek.nl`. **🚨 Headline finding from v1.1 recon:** the whole service surface is invisible to Google — `sitemap.xml` lists only 5 URLs and `/diensten` + all pillar/sub-service pages serve `noindex, follow`, because `lib/seo/policy.ts:isIndexable()` requires `status === "published"` and the registry holds 21 × `review` + 8 × `draft` + 0 × `published` (the Phase-4 Task-3 flip was never executed). Unblocking that is item #1. Also in scope: reversible retirement of the old `tpsventilatie.nl` WordPress site via per-URL 301s, GBP optimization, NAP/citation cleanup, on-page SEO depth, blog/kennisbank, GSC end-to-end, IG/FB `sameAs`, and the repo/Vercel rename. Next: defining requirements.
+**Current focus:** Phase 08 — indexation-unlock
 
 ## Current Position
 
-Phase: 8 of 13 — Indexation Unlock (not started)
-Plan: —
-Status: Ready to execute
-Last activity: 2026-08-20 -- Phase 08 planning complete
+Phase: 08 (indexation-unlock) — EXECUTING
+Plan: 1 of 5
+Status: Executing Phase 08
+Last activity: 2026-08-20 -- Phase 08 execution started
 
 **Phase sequence:** 8 Indexation Unlock → 9 Measurement Foundation → 10 Reversible Old-Brand Migration
 → 11 Local Presence (GBP & Citations) → 12 On-Page Depth & Kennisbank → 13 Brand Tail
@@ -153,15 +153,15 @@ Items acknowledged and deferred at v1.0 milestone close (2026-08-12):
 
 ## Session Continuity
 
-Last session: 2026-08-20T10:42:15.277Z
+Last session: 2026-08-20T12:01:00.712Z
 
 Last session: 2026-07-01 — Phase 6 executed end-to-end (6/6 plans, 3 waves, inline sequential per OneDrive constraint).
-Stopped at: Phase 8 context gathered
+Stopped at: Completed 08-01-PLAN.md
 POST-EXECUTION FIXES (2026-07-01, after owner visual review — screenshot audit added): (a) hero H1 gradient shipped as blue blocks — signature-gradient's `background` shorthand defeats bg-clip-text; fixed with a dedicated `gradient-text` @utility using background-image (commit 7a24d54); (b) ImageBand reframed to a content-cropped home-hero-crop.jpg (blank wall removed via sharp) + pillar cards gained hover depth + aurora opacity bumped (commit 10fa4e4). Verified via Playwright screenshots (desktop 1440 + mobile 390) — all good. LESSON: green Vercel build ≠ visually correct; always screenshot-audit after UI deploy (see memory visual-verify-after-ui-deploy).
 WTW/MV BRANDS DONE (owner 2026-07-02→03): WTW = Zehnder (preferred)/Duco/Itho Daalderop, MV = Zehnder/Duco added to BRANDS + wired to the Vervangen nodes; erkendInstallateur:true (owner confirmed 2026-07-03 → verified badge renders on WTW/MV pillar pages, commit 4387d1a). Neutral fallback gone on homepage pillar grid + pillar pages. Verified on preview. Brand-mark square colors are approximate tints — owner WAIVED the official-color/logo swap (accepted as final, no open item).
 FINALIZED 2026-07-03 — owner reviewed the homepage and approved; no open items for Phase 6. Merged branch → main (FF, commit 5ab3c5e); Vercel production deploy READY + verified on tps-ventilatie.vercel.app.
 DEPLOYMENT MODEL (owner-clarified 2026-07-03): main + Vercel = PRE-PROD work env, NO public domain attached. `tpsventilatie.nl` is the OLD LiteSpeed site (NOT Vercel) and will be SCRAPPED. The real launch domain = `tpsklimaattechniek.nl`, attached only when the whole site is fully finalized. At domain-attach: switch CANONICAL_ORIGIN (lib/constants.ts, currently https://tpsventilatie.nl) → tpsklimaattechniek.nl (feeds canonicals/sitemap/robots/JSON-LD/OG). See memory [[tps-deploy-and-integrations]].
 NEXT (owner-driven, non-blocking): (1) continue finishing the site on main/Vercel pre-prod; (2) optional behavioral spot-check (compact submit → /api/lead 200 + WhatsApp; pillar Offerte pre-select+scroll); (3) Phase 7 (UI/UX & a11y remediation) deletes the retired section files; (4) at full finalize: attach tpsklimaattechniek.nl + swap CANONICAL_ORIGIN.
-Resume file: .planning/phases/08-indexation-unlock/08-CONTEXT.md
+Resume file: None
 
 Session resumed: 2026-06-29 — restored context; frontier = Phase 5 planning (CONTEXT.md ready, decision gate resolved to hybrid). Phase 4 editorial gate remains async/owner-blocked on Thomas's whole-site sign-off (preview r6znbcg6f).
