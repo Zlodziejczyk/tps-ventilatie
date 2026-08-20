@@ -129,9 +129,9 @@ completed: 2026-08-20
 | Authored content on served HTML | lead sentence + all 10 intro sentences, 4 step titles **and** bodies, 5 FAQ questions **and** answers, localAngle line — **all present** ✅ |
 | JSON-LD in served HTML | `FAQPage` ×1, `BreadcrumbList` ×1 ✅ |
 | Desktop 1440 visual | ✅ Reviewed. Order renders as designed: hero → intro (2 paragraphs, lead included) → 4-column pillar card grid → "Stap voor stap" 2×2 numbered steps → werkgebied line → "Veelgestelde vragen" accordions → reviews → CTA. No layout defect. |
-| Mobile 390 visual | ⚠️ **NOT CAPTURED** — see below |
+| Mobile 390 visual | ✅ **Completed in 08-05** (against production, once the Playwright browser download finally landed) — see 08-05-SUMMARY.md |
 
-**Mobile screenshot blocked by tooling, not by the code.** The Chrome extension's capture is fixed at 1316 px wide and ignores `resize_window` (verified at 390 px and 500 px — the page did not reflow), and `npx playwright install chromium` does not complete in this environment (three attempts, no bytes written to the browser cache). What can be said without a screenshot: the three sections added here — `ServiceIntro`, `ServiceSteps`, `ServiceFAQ` — are the *same components already rendering on all 21 pillar and sub-service pages*, which passed the Phase-7 mobile a11y audit and have been live for weeks; the hub reuses their containers unchanged. That is a structural argument, not a visual one, and it is recorded as such. **This acceptance criterion is NOT met and is carried into 08-05.**
+**Mobile screenshot was blocked by tooling during this plan** (resolved later in 08-05 — see that summary for the captured result). The blocker at the time: The Chrome extension's capture is fixed at 1316 px wide and ignores `resize_window` (verified at 390 px and 500 px — the page did not reflow), and `npx playwright install chromium` does not complete in this environment (three attempts, no bytes written to the browser cache). What can be said without a screenshot: the three sections added here — `ServiceIntro`, `ServiceSteps`, `ServiceFAQ` — are the *same components already rendering on all 21 pillar and sub-service pages*, which passed the Phase-7 mobile a11y audit and have been live for weeks; the hub reuses their containers unchanged. That was a structural argument, not a visual one. **The criterion was carried into 08-05 and has since been met** — the Chromium download completed during that plan and both viewports were captured against production with no defects and no horizontal overflow.
 
 **Owner notification (D-21): NOT SENT — awaiting operator authorization.** The plan calls for sending Thomas the preview link with a note that `/diensten` carries new copy and goes live unless he objects. Messaging the client is an outward-facing action, so it was surfaced to the operator rather than sent unilaterally. Execution was NOT blocked on it, exactly as D-21 directs. The copy carries no pricing, certification or subsidy claims, and reverting is a one-line `status` change.
 
@@ -143,7 +143,7 @@ None — no external service configuration required.
 
 - **Ready for 08-05**, the closing landing: write `scripts/verify-indexation.ts`, run it against the preview, merge, run it against production.
 - `INDEXABLE_FLOOR = 27` is exported and enforced; 08-05 imports it rather than re-deriving.
-- Two items carry forward for the operator: the mobile visual check and the Thomas notification.
+- One item carries forward for the operator: the Thomas notification (the mobile visual check was completed in 08-05).
 
 ---
 *Phase: 08-indexation-unlock*
