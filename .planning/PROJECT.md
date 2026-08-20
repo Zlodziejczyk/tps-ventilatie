@@ -37,7 +37,9 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 - Post-milestone: `/projecten` showcase (7 cases, 21 owner photos) + unified photo treatment, merged to main.
 - **Public since 2026-08-12** on `https://www.tpsklimaattechniek.nl` (DOM-V2-01 done — `CANONICAL_ORIGIN` flipped, brand favicon shipped, apex 308→www, verified in production 2026-08-15).
 
-**🚨 Blocker discovered 2026-08-19 (recon for v1.1):** the entire service surface is **invisible to Google**. `sitemap.xml` carries only 5 URLs (`/`, `/tarieven`, `/projecten`, `/over-ons`, `/contact`); `/diensten` and every pillar + sub-service page serves `<meta name="robots" content="noindex, follow">`. Cause is mechanical, not a bug: `lib/seo/policy.ts:isIndexable()` gates hub/pillar/service on `status === "published"`, and the registry holds **21 × `review` + 8 × `draft`, 0 × `published`** — the Phase-4 Task-3 batch flip was never executed even though owner editorial sign-off cleared 2026-08-05. The 22-page SEO surface v1.0 was built to create has never been indexable.
+**✅ RESOLVED 2026-08-20 (Phase 8) — the surface is live and indexable.** Production `sitemap.xml` now serves **27 URLs**; all 21 service pages plus the `/diensten` hub return HTTP 200 with `index, follow` and no `noindex` anywhere, verified on live HTTP responses by the committed probe `scripts/verify-indexation.ts`. The `/diensten` hub was authored (170-word orientation intro, the 4-step TPS traject, 5 routing FAQs) and published as the 27th page. `isIndexable()` is now one predicate — `status === "published"` for every node type — so indexability is purely data. **The root cause is the durable lesson:** the SEO build gate hardcoded `sitemapEntries().length === 5` and deep-equalled a fixed URL list, so it actively *enforced* the broken state and would have blocked its own fix; when it failed, the expected number was bumped to match reality (commit `82d897b`) instead of the assumption being questioned. Two sibling guards had been silently RED for weeks because nothing executed them. All eight guards are now build-blocking in `prebuild` (1.7s), assert relationships and named floors rather than snapshots, and each ships with a perturbation proof that it fails when the world breaks.
+
+**The state that was fixed (recorded 2026-08-19):** the entire service surface was **invisible to Google**. `sitemap.xml` carries only 5 URLs (`/`, `/tarieven`, `/projecten`, `/over-ons`, `/contact`); `/diensten` and every pillar + sub-service page serves `<meta name="robots" content="noindex, follow">`. Cause is mechanical, not a bug: `lib/seo/policy.ts:isIndexable()` gates hub/pillar/service on `status === "published"`, and the registry holds **21 × `review` + 8 × `draft`, 0 × `published`** — the Phase-4 Task-3 batch flip was never executed even though owner editorial sign-off cleared 2026-08-05. The 22-page SEO surface v1.0 was built to create has never been indexable.
 
 **Tech:** Next.js 16 App Router (hybrid), React 19, TypeScript strict, Tailwind v4. Deployed on Vercel (pre-prod; no public domain yet).
 
@@ -60,11 +62,14 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 - ✓ WCAG 2.1 AA remediation (contrast, heading order, skip-link, ≥44px targets) + brand polish — v1.0 (Phase 7)
 - ✓ `/projecten` showcase from owner photos + unified photo treatment — v1.0 post-milestone quick tasks
 
+<!-- Delivered in v1.1 -->
+- ✓ **Publish the service surface** — 21 service nodes + the authored `/diensten` hub published; production sitemap 5 → 27 URLs, zero `noindex` on the service surface. Validated in Phase 8: Indexation Unlock (IDX-01…05)
+- ✓ **Regression-proof indexation gate** — relational invariant (sitemap membership ⇔ `isIndexable()` per node) + a single named `INDEXABLE_FLOOR`, all eight guards build-blocking, each with an executed perturbation proof, plus a committed live-output probe run at preview and production. Validated in Phase 8 (IDX-01)
+
 ### Active
 
 <!-- v1.1 scope. Formally numbered with REQ-IDs in REQUIREMENTS.md. -->
 
-- [ ] **Publish the service surface** — flip 21 `review` + 8 `draft` nodes to `published`; 22 pages leave `noindex` and join the sitemap. Highest-leverage item in the milestone.
 - [ ] **Reversible old-brand retirement** — back up the WordPress site off-host, repoint only `tpsventilatie.nl` apex + `www` A records to Vercel, per-URL 301 map for the 9 old URLs, WP install left untouched for rollback.
 - [ ] **Mail preservation** — MX, the `mail` A record, and SPF on `tpsventilatie.nl` survive the repoint; `info@tpsventilatie.nl` keeps working indefinitely; SPF `a` mechanism tidied to `mx` + `include`.
 - [ ] **Google Business Profile optimization** — rename to TPS klimaattechniek, website URL → new domain, categories/services/service area, photos, Q&A, posts, review-request flow.
@@ -140,4 +145,4 @@ This document evolves at phase transitions and milestone boundaries.
 **After each milestone** (via `/gsd-complete-milestone`): full review of all sections; Core Value check; audit Out of Scope; update Context with current state.
 
 ---
-*Last updated: 2026-08-19 — v1.1 "Rebrand Migration & SEO Ranking Push" milestone started*
+*Last updated: 2026-08-20 — Phase 8 (Indexation Unlock) complete; the service surface is live and indexable in production*
