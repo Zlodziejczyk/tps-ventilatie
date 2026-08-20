@@ -139,7 +139,7 @@ domain and 404s previously shared preview URLs. It must never be able to jeopard
 | 5. Lead Capture, Form Security & Launch QA | v1.0 | 6/6 | Complete | 2026-07-09 |
 | 6. Homepage conversion uplift | v1.0 | 6/6 | Complete | 2026-07-01 |
 | 7. UI/UX & Accessibility Remediation | v1.0 | 12/12 | Complete | 2026-07-07 |
-| 8. Indexation Unlock | v1.1 | 1/5 | In Progress|  |
+| 8. Indexation Unlock | v1.1 | 2/5 | In Progress|  |
 | 9. Measurement Foundation | v1.1 | 0/? | Not started | — |
 | 10. Reversible Old-Brand Migration | v1.1 | 0/? | Not started | — |
 | 11. Local Presence — GBP & Citations | v1.1 | 0/? | Not started | — |
