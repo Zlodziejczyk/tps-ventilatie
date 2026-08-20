@@ -14,8 +14,8 @@
 
 - [x] **IDX-01**: The SEO build gate asserts a *relational* invariant — sitemap membership equals `isIndexable()` for every node, plus a minimum indexable-page floor — instead of a hardcoded page list
 - [x] **IDX-02**: All 21 `review` service nodes (4 pillars + 17 sub-services) are `published` and serve no `noindex` directive in production HTML
-- [ ] **IDX-03**: The `/diensten` hub carries real content clearing the anti-thin-content bar (≥120-word intro, ≥1 step, 3–6 FAQs) and is published
-- [ ] **IDX-04**: Production `sitemap.xml` lists all 27 indexable pages
+- [x] **IDX-03**: The `/diensten` hub carries real content clearing the anti-thin-content bar (≥120-word intro, ≥1 step, 3–6 FAQs) and is published
+- [x] **IDX-04**: Production `sitemap.xml` lists all 27 indexable pages
 - [x] **IDX-05**: The 6 static nodes carry a `status` consistent with their actual indexability, so the data no longer misleads a reader
 
 ### Measurement & Search Console (MEAS)
@@ -110,8 +110,8 @@ Populated during roadmap creation.
 |---|---|---|
 | IDX-01 | Phase 8 | Complete |
 | IDX-02 | Phase 8 | Complete |
-| IDX-03 | Phase 8 | Pending |
-| IDX-04 | Phase 8 | Pending |
+| IDX-03 | Phase 8 | Complete |
+| IDX-04 | Phase 8 | Complete |
 | IDX-05 | Phase 8 | Complete |
 | MEAS-01 | Phase 9 | Pending |
 | MEAS-02 | Phase 9 | Pending |
