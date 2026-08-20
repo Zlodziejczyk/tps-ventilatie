@@ -27,7 +27,7 @@ Full phase detail, success criteria, decisions, and deferred items: [`milestones
 **Milestone goal:** Finish the TPS Ventilatie → TPS klimaattechniek migration end-to-end and make the site
 genuinely rank — starting by un-hiding the 21 service pages Google has never been allowed to index.
 
-- [ ] Phase 8: Indexation Unlock (IDX-01…05)
+- [x] Phase 8: Indexation Unlock (IDX-01…05) (completed 2026-08-20)
 - [ ] Phase 9: Measurement Foundation (MEAS-01…06)
 - [ ] Phase 10: Reversible Old-Brand Migration (MIG-01…10)
 - [ ] Phase 11: Local Presence — GBP & Citations (GBP-01…08, NAP-01…05)
@@ -139,7 +139,7 @@ domain and 404s previously shared preview URLs. It must never be able to jeopard
 | 5. Lead Capture, Form Security & Launch QA | v1.0 | 6/6 | Complete | 2026-07-09 |
 | 6. Homepage conversion uplift | v1.0 | 6/6 | Complete | 2026-07-01 |
 | 7. UI/UX & Accessibility Remediation | v1.0 | 12/12 | Complete | 2026-07-07 |
-| 8. Indexation Unlock | v1.1 | 4/5 | In Progress|  |
+| 8. Indexation Unlock | v1.1 | 5/5 | Complete   | 2026-08-20 |
 | 9. Measurement Foundation | v1.1 | 0/? | Not started | — |
 | 10. Reversible Old-Brand Migration | v1.1 | 0/? | Not started | — |
 | 11. Local Presence — GBP & Citations | v1.1 | 0/? | Not started | — |
