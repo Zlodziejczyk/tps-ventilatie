@@ -34,9 +34,25 @@ export function absoluteUrl(path: string): string {
   return path === "/" ? `${CANONICAL_ORIGIN}/` : `${CANONICAL_ORIGIN}${path}`;
 }
 
+// THE governed collection — the set of nodes the indexing policy has authority over
+// (D-05). Everything downstream reads the surface through here rather than naming the
+// registry array: `sitemapEntries()` below derives from it, and the invariant checker
+// in ./invariants iterates it, so neither one is coupled to where the nodes come from.
+//
+// This is the single extension point. A new indexable entity type (Phase 12's
+// kennisbank articles are the next one) joins the index by being returned HERE — never
+// by a second URL list appended to app/sitemap.ts. A parallel list would reintroduce
+// exactly the sitemap-vs-robots drift this module exists to prevent, and the invariant
+// checker flags any sitemap entry with no backing node for that reason.
+export function indexableSurface(): PageNode[] {
+  return PAGES;
+}
+
 // One sitemap entry per indexable node, `url` absolute via absoluteUrl(urlFor(node)).
 // `lastModified` is omitted for now (no per-node timestamp source yet). The return
 // shape is structurally a MetadataRoute.Sitemap, consumed by app/sitemap.ts.
 export function sitemapEntries(): { url: string; lastModified?: Date }[] {
-  return PAGES.filter(isIndexable).map((node) => ({ url: absoluteUrl(urlFor(node)) }));
+  return indexableSurface()
+    .filter(isIndexable)
+    .map((node) => ({ url: absoluteUrl(urlFor(node)) }));
 }
