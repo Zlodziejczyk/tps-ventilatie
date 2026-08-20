@@ -22,7 +22,7 @@
 
 import assert from "node:assert/strict";
 import { CANONICAL_ORIGIN } from "@/lib/constants";
-import { findBySlug } from "@/lib/services/registry";
+import { findBySlug, pillars, childrenOf, urlFor } from "@/lib/services/registry";
 import { isIndexable, absoluteUrl, sitemapEntries } from "@/lib/seo/policy";
 import { checkIndexationInvariants } from "@/lib/seo/invariants";
 import { businessJsonLd, faqJsonLd } from "@/lib/seo/jsonld";
@@ -62,6 +62,53 @@ assert.equal(
   "the home page must be indexable — the single most costly page to lose, and the one a predicate change is most likely to take down",
 );
 
+// (2b) The service surface, asserted BY NAME (D-02 structural half). A bare count
+//      is not enough: growth in one place can mask a page going dark somewhere else,
+//      and "one pillar quietly stopped being indexed" is a revenue event nobody would
+//      notice for months. So every pillar and every sub-service is checked
+//      individually, and the traversal itself is checked so the loops cannot pass
+//      vacuously by iterating an empty list.
+const allPillars = pillars();
+assert.equal(
+  allPillars.length,
+  4,
+  `pillars() must return 4 pillars, got ${allPillars.length} — if this is 0 the loops below would pass vacuously`,
+);
+for (const pillar of allPillars) {
+  assert.ok(
+    isIndexable(pillar),
+    `pillar "${pillar.pillarSlug}" (${urlFor(pillar)}) is NOT indexable — the service surface has partially collapsed. A dark pillar takes its whole sub-service branch out of the index with it.`,
+  );
+}
+
+let subServiceCount = 0;
+for (const pillar of allPillars) {
+  for (const service of childrenOf(pillar.pillarSlug)) {
+    subServiceCount += 1;
+    assert.ok(
+      isIndexable(service),
+      `sub-service ${urlFor(service)} is NOT indexable — it was published and has gone dark.`,
+    );
+  }
+}
+// A FLOOR, not an equality (D-02): a legitimately added sub-service must not require
+// a gate edit. A drop means a page left the surface — find what disappeared.
+assert.ok(
+  subServiceCount >= 17,
+  `expected at least 17 sub-services, found ${subServiceCount} — a sub-service page has left the routable surface.`,
+);
+
+// (2c) The /diensten hub is still non-indexable at this landing: its content shell is
+//      empty and the Zod content bar (assert-gate-blocks proof D) refuses to let it
+//      publish until 08-04 authors real copy.
+//      *** THIS ASSERTION IS INVERTED IN 08-04 *** — when the hub publishes it becomes
+//      `true`, and it joins the named belts above rather than being deleted.
+assert.equal(
+  isIndexable(findBySlug("/diensten")!),
+  false,
+  "the /diensten hub must still be non-indexable — it publishes in 08-04 once its content is authored (invert this assertion there)",
+);
+
 // (3) Canonical origin is the www host with no trailing slash; root keeps its slash.
 // www (not the apex) is the Vercel Production domain — the apex 308-redirects to it,
 // so canonicals must not point at a redirecting host.
@@ -99,5 +146,7 @@ assert.equal(geoCircle.geoRadius, 60000, "areaServed GeoCircle radius must be 60
 assert.equal(faqJsonLd(findBySlug("/contact")!), null, "faqJsonLd must be null on an empty-faq node");
 
 console.log(
-  `✅ SEO policy OK — indexation invariant holds (sitemap membership ⇔ isIndexable, ${sitemapEntries().length} entries, all absolute on the canonical origin, none orphaned), privacy-beleid noindex, www canonical, HVACBusiness @id (geoRadius 60000), faq null-on-empty.`,
+  `✅ SEO policy OK — indexation invariant holds (sitemap membership ⇔ isIndexable, ${sitemapEntries().length} entries, all absolute on the canonical origin, none orphaned); ` +
+    `4/4 pillars + ${subServiceCount} sub-services indexable by name, hub still draft, privacy-beleid noindex; ` +
+    `www canonical, HVACBusiness @id (geoRadius 60000), faq null-on-empty.`,
 );
