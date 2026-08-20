@@ -3,7 +3,8 @@
 // node:assert-only (no jest/vitest — test frameworks are out of scope this
 // milestone per REQUIREMENTS; Node built-ins suffice).
 //
-// Run on demand:  npx tsx scripts/assert-seo.ts
+// Wired into `npm run prebuild` — build-blocking on every Vercel build (D-01).
+// Run standalone:  npx tsx scripts/assert-seo.ts
 // Locks the SEO invariants on the REAL surface. The indexation section is no
 // longer a snapshot of "what is": it runs the relational checker from
 // lib/seo/invariants.ts, which requires sitemap membership to EQUAL

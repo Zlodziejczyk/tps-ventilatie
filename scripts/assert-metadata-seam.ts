@@ -3,7 +3,8 @@
 // node:assert-only (no jest/vitest — test frameworks are out of scope this
 // milestone per REQUIREMENTS; Node built-ins suffice).
 //
-// Run on demand:  npx tsx scripts/assert-metadata-seam.ts
+// Wired into `npm run prebuild` — build-blocking on every Vercel build (D-01).
+// Run standalone:  npx tsx scripts/assert-metadata-seam.ts
 // Guards the ONE bypass the relational indexation invariant cannot see (D-04).
 // checkIndexationInvariants() reasons about taxonomy nodes; it is structurally
 // blind to a route that hand-writes its own robots directive in its metadata

@@ -1,7 +1,8 @@
-// Build-time CLI — the prebuild taxonomy gate (wired in package.json as
-// "prebuild": "tsx scripts/validate-taxonomy.ts"). npm runs this BEFORE
-// `next build`; a non-zero exit aborts the build, making taxonomy validation
-// genuinely build-blocking (D-07/D-08).
+// Build-time CLI — the first link in the prebuild guard chain (package.json
+// `prebuild` runs all eight guards; this one leads because a broken taxonomy
+// makes every later assertion meaningless). npm runs the chain BEFORE
+// `next build`; a non-zero exit from any guard aborts the build, making all of
+// them genuinely build-blocking (D-07/D-08, extended by Phase-8 D-01).
 //
 // console.log / console.error / process.exit are INTENTIONAL and correct here —
 // this is a build-time CLI, NOT shipped runtime code (so the no-console-in-

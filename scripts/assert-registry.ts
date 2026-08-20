@@ -3,7 +3,8 @@
 // node:assert-only (no jest/vitest — test frameworks are out of scope this
 // milestone per REQUIREMENTS; Node 26 built-ins suffice).
 //
-// Run on demand:  npx tsx scripts/assert-registry.ts
+// Wired into `npm run prebuild` — build-blocking on every Vercel build (D-01).
+// Run standalone:  npx tsx scripts/assert-registry.ts
 // Validates Crit 1 / IA-01: the unified PAGES array is the full routable
 // surface, every urlFor() is unique, the D-03 URL policy holds, urlFor agrees
 // with the schema's canonicalPath primitive (no drift), and the taxonomy

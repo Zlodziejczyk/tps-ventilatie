@@ -3,7 +3,8 @@
 // rejects them. node:assert only (no jest/vitest — out of scope this milestone).
 // Intentional console usage (build-time CLI).
 //
-// Run on demand:  npx tsx scripts/assert-gate-blocks.ts
+// Wired into `npm run prebuild` — build-blocking on every Vercel build (D-01).
+// Run standalone:  npx tsx scripts/assert-gate-blocks.ts
 //
 // Two families of proof live here:
 //   (A)-(C)  the Zod taxonomy gate — perturbed clones must fail pagesSchema

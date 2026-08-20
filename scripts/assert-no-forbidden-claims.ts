@@ -10,7 +10,8 @@
 // and prints to stdout/stderr — no fs writes, no network (tight boundary, same as
 // validate-taxonomy.ts / assert-seo.ts).
 //
-// Run on demand:  npx tsx scripts/assert-no-forbidden-claims.ts
+// Wired into `npm run prebuild` — build-blocking on every Vercel build (D-01).
+// Run standalone:  npx tsx scripts/assert-no-forbidden-claims.ts
 //
 // What it locks (the D-13 locked anti-claim list — see docs/anti-claim-checklist.md
 // for the nuance a regex cannot catch, e.g. the per-pillar subsidie rule): the

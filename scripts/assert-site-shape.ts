@@ -3,11 +3,10 @@
 // node:assert-only (no jest/vitest — test frameworks are out of scope this
 // milestone per REQUIREMENTS; Node 26 built-ins suffice).
 //
-// Run on demand:  npx tsx scripts/assert-site-shape.ts
+// Wired into `npm run prebuild` — build-blocking on every Vercel build (D-01).
+// Run standalone:  npx tsx scripts/assert-site-shape.ts
 // Validates Crit 5 / SEO-08: the full structured NAP field set on SITE is
 // present and correctly typed. Exits non-zero (assertion throws) on any gap.
-// This is standalone — it is NOT wired into `prebuild` (that gate validates the
-// taxonomy in plan 01-06; this script validates SITE shape).
 
 import assert from "node:assert/strict";
 import { SITE } from "@/lib/constants";
