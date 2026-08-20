@@ -7,23 +7,24 @@
 // (same rationale as `registry.ts`), not a generic re-export barrel. Pure functions
 // only — no rendering, no I/O, server-safe (never a client module).
 //
-// Indexing rule (RESEARCH §4, the all-draft reality): keys off `type`, not a naive
-// `status === "published"` (every node is currently draft, which would noindex the
-// whole site). Static content pages render real content now → indexable now (except
-// the legal privacy page); hub/pillar/service pages gate on the Phase-4 editorial
-// flip to `published` (CONT-10 — one lever, no parallel list, no Phase-3 rework).
+// Indexing rule (D-20): ONE predicate for every node type — a node is indexable if
+// and only if its `status` is "published". No type branches, no per-page exceptions.
+// Indexability is purely data, so the editorial status flip IS the index lever and a
+// reader of the taxonomy can see what is indexed without reading this file.
+//
+// This replaced a `type === "static"` branch that indexed statics by type and carved
+// out the legal page by pathSegment. That shape made sense while every node was draft,
+// but it meant the data lied: the statics said "draft" while serving index,follow. The
+// legal page is now excluded the same way as everything else — by carrying `draft` —
+// with a named assertion in scripts/assert-seo.ts as the safety belt, since data is
+// easier to get wrong by accident than a code branch is.
 
 import { CANONICAL_ORIGIN } from "@/lib/constants";
 import { PAGES, urlFor } from "@/lib/services/registry";
 import type { PageNode } from "@/lib/services/types";
 
-// The SINGLE place index membership is decided. Static pages render real content
-// independent of the draft taxonomy shells → indexable now (privacy-beleid is the
-// one legal-page exception); hub/pillar/service gate on `status === "published"`.
+// The SINGLE place index membership is decided, for every node type alike.
 export function isIndexable(node: PageNode): boolean {
-  if (node.type === "static") {
-    return node.pathSegment !== "privacy-beleid";
-  }
   return node.status === "published";
 }
 

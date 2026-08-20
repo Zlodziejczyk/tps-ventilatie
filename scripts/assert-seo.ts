@@ -45,14 +45,21 @@ assert.equal(
   "sitemap membership must equal isIndexable(node) for every governed node (see the violations above)",
 );
 
-// (2) Named structural safety belt (D-02/D-20): the legal page can never drift
-//     into the index, whatever the surrounding data does. Hub and pillar
-//     named-indexable assertions join this list in 08-03/08-04, once they are
-//     true — the gate grows one landing at a time rather than asserting a future.
+// (2) Named structural safety belts (D-02/D-20). Since D-20 deleted the type
+//     branch, indexability is pure data — which is easier to get wrong by accident
+//     than a code branch was. These two name the pages where being wrong is most
+//     expensive, in both directions. Hub and pillar assertions join this list in
+//     08-03/08-04, once they are true — the gate grows one landing at a time
+//     rather than asserting a future.
 assert.equal(
   isIndexable(findBySlug("/privacy-beleid")!),
   false,
-  "privacy-beleid must never be indexable",
+  "privacy-beleid must never be indexable — this is the D-20 safety belt that replaced the deleted pathSegment exception in policy.ts",
+);
+assert.equal(
+  isIndexable(findBySlug("/")!),
+  true,
+  "the home page must be indexable — the single most costly page to lose, and the one a predicate change is most likely to take down",
 );
 
 // (3) Canonical origin is the www host with no trailing slash; root keeps its slash.

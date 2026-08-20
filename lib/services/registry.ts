@@ -77,7 +77,7 @@ const STATIC_PAGES: PageNode[] = [
   {
     type: "static",
     pathSegment: "",
-    status: "draft",
+    status: "published",
     primaryKeyword: "airco warmtepomp ventilatie Zoetermeer",
     searchIntent: "commercieel",
     // "TPS klimaattechniek" is over-ons's primaryKeyword — keep it off home's
@@ -95,7 +95,7 @@ const STATIC_PAGES: PageNode[] = [
   {
     type: "static",
     pathSegment: "tarieven",
-    status: "draft",
+    status: "published",
     primaryKeyword: "ventilatie tarieven",
     searchIntent: "commercieel",
     secondaryKeywords: ["airco onderhoud prijs", "airco tarieven"],
@@ -104,8 +104,9 @@ const STATIC_PAGES: PageNode[] = [
     icon: "request_quote",
     // Pricing transparency copy (CONT-05 / D-11). The actual price numbers live in
     // components/PricingTabs.tsx (untouched); this node carries only the all-in /
-    // op-maat framing. Stays status:"draft" — statics index by type via policy.ts,
-    // and the Zod uniqueness gate only bites review/published, so rich body here is safe.
+    // op-maat framing. NOTE: this intro and these FAQs are NOT rendered by
+    // app/tarieven/page.tsx — authored content that appears nowhere, flagged for
+    // Phase 12 (SEO-11…15) to either surface or retire.
     content: draftShell(
       "Onze tarieven",
       "Tarieven | TPS klimaattechniek",
@@ -136,7 +137,7 @@ const STATIC_PAGES: PageNode[] = [
   {
     type: "static",
     pathSegment: "projecten",
-    status: "draft",
+    status: "published",
     primaryKeyword: "airco installatie Zoetermeer voorbeelden",
     searchIntent: "commercieel",
     secondaryKeywords: ["airco projecten", "airco laten installeren voorbeelden"],
@@ -145,8 +146,8 @@ const STATIC_PAGES: PageNode[] = [
     icon: "photo_library",
     // Showcase of real owner-supplied install photos (quick task 260719-t62).
     // Body content lives in lib/projects.ts + app/projecten/page.tsx; this node
-    // carries SEO metadata and puts the page in sitemap/robots via policy.ts
-    // (static type ⇒ indexable, same as the other content statics).
+    // carries SEO metadata and joins sitemap/robots by carrying status "published"
+    // (D-20 — indexability is data now, not a type branch in policy.ts).
     content: draftShell(
       "Ons werk",
       "Ons werk – airco-installaties Zoetermeer | TPS klimaattechniek",
@@ -156,7 +157,7 @@ const STATIC_PAGES: PageNode[] = [
   {
     type: "static",
     pathSegment: "over-ons",
-    status: "draft",
+    status: "published",
     primaryKeyword: "TPS klimaattechniek",
     searchIntent: "navigationeel",
     navTitle: "Over Ons",
@@ -171,7 +172,7 @@ const STATIC_PAGES: PageNode[] = [
   {
     type: "static",
     pathSegment: "contact",
-    status: "draft",
+    status: "published",
     primaryKeyword: "TPS klimaattechniek contact",
     searchIntent: "navigationeel",
     navTitle: "Contact",
@@ -186,6 +187,12 @@ const STATIC_PAGES: PageNode[] = [
   {
     type: "static",
     pathSegment: "privacy-beleid",
+    // NOT indexable, and after D-20 that is expressed in data rather than by a
+    // pathSegment special case in policy.ts. Accepted trade-off: "draft" reads as
+    // "unfinished" for a page that is finished and deliberately kept out of the
+    // index. An `unlisted` status was considered and rejected — it widens the Zod
+    // enum and the type contract shared by all 28 nodes. scripts/assert-seo.ts
+    // asserts this page's non-indexability BY NAME as the safety belt.
     status: "draft",
     primaryKeyword: "privacybeleid TPS klimaattechniek",
     searchIntent: "navigationeel",
@@ -201,7 +208,7 @@ const STATIC_PAGES: PageNode[] = [
 ];
 
 // THE single source of truth — every routable page (1 hub + 4 pillars + 17 subs
-// + 5 static = 27). Nav, sitemap, and JSON-LD all read this one array (IA-01).
+// + 6 static = 28). Nav, sitemap, and JSON-LD all read this one array (IA-01).
 export const PAGES: PageNode[] = [
   HUB_PAGE,
   ...AIRCONDITIONING_PAGES,
