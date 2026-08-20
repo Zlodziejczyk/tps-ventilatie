@@ -82,19 +82,25 @@ assert.equal(
   "a service node missing serviceSlug must fail the discriminated-union gate",
 );
 
-// (D) The hub published with its empty shell must be REJECTED. This is the
-//     assertion that FORCES 08-04 to author real /diensten content before the hub
-//     can publish — without it, the hub could join the index carrying nothing but
-//     metadata. It is the reason the content bar still earns its keep after being
-//     scoped in 08-02.
+// (D) A hub published with an EMPTY content shell must be REJECTED. This is the
+//     assertion that forced 08-04 to author real /diensten content before the hub
+//     could publish — without it, the hub could have joined the index carrying
+//     nothing but metadata. It is the reason the content bar still earns its keep
+//     after being scoped to the rendered types in 08-02.
+//
+//     The perturbation BLANKS THE SHELL explicitly rather than relying on the real
+//     hub happening to be empty. Written the first way it silently stopped testing
+//     anything the moment 08-04 authored the copy — the same decay that turned
+//     perturbation (B) into a no-op. Address the property under test, always.
 const emptyHubClone = structuredClone(PAGES);
 const emptyHub = emptyHubClone.find((node) => node.type === "hub");
 assert(emptyHub, "the clone must contain the hub");
 emptyHub.status = "published";
+emptyHub.content = { ...emptyHub.content, intro: "", steps: [], faqs: [] };
 assert.equal(
   pagesSchema.safeParse(emptyHubClone).success,
   false,
-  "the hub must not be publishable with an empty content shell — 08-04 has to author it first",
+  "a hub with an empty content shell must not be publishable — the umbrella page has to say something before it can be indexed",
 );
 
 // (E) A static published with an empty shell must be ACCEPTED. DELIBERATE, not an

@@ -2,21 +2,41 @@ import { buildMetadata } from "@/lib/seo/metadata";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import { StaggerChildren, StaggerItem } from "@/components/StaggerChildren";
 import { ServiceCard } from "@/components/ServiceCard";
+import { ServiceIntro } from "@/components/ServiceIntro";
+import { ServiceSteps } from "@/components/ServiceSteps";
+import { ServiceFAQ } from "@/components/ServiceFAQ";
 import { ReviewCarousel } from "@/components/ReviewCarousel";
 import { CTABanner } from "@/components/CTABanner";
+import { JsonLd, faqJsonLd, breadcrumbJsonLd } from "@/lib/seo/jsonld";
 import { pillars, urlFor, findBySlug } from "@/lib/services/registry";
 import { REVIEWS } from "@/lib/reviews";
 
-// Hub node is status:"draft" → builder emits noindex,follow and excludes it from
-// the sitemap; it auto-flips to indexed when Phase 4 publishes it (single lever, D-02).
+// The hub's <head> comes from the single metadata seam, and its robots directive
+// follows the node's status through isIndexable (08-02: one predicate, no
+// exceptions). Published in 08-04 once this page could actually show its content.
 export const metadata = buildMetadata(findBySlug("/diensten")!);
 
-// Lean /diensten hub (D-02): a clean router into the 4 pillar pages. The old
-// anchored single-page sections and the scroll-spy navigator are retired
-// (D-09); their rich content now lives per-route (seeded in 02-06).
+// The /diensten hub: a router into the 4 pillar pages that also ANSWERS the
+// question a visitor arrives with — "which of these do I need?" (D-11/D-12). The
+// hero and the 4 cards are unchanged; the authored intro, the shared TPS traject
+// and the routing FAQs were appended in 08-04, never a rebuild.
+//
+// Every authored sentence renders here: the intro through ServiceIntro with
+// includeLead (this page has its own hero, so the default mode would drop the
+// lead sentence), the traject through ServiceSteps, the FAQs and the werkgebied
+// line through ServiceFAQ. The FAQPage markup below is therefore backed by FAQs a
+// visitor can actually see, which is what Google's structured-data policy requires
+// (D-19). Only FAQPage + BreadcrumbList here: the hub is an umbrella page, not a
+// Service, so it deliberately emits no Service node.
 export default function DienstenPage() {
+  const hub = findBySlug("/diensten")!;
+
   return (
     <main id="main" tabIndex={-1} className="pt-28 pb-20">
+      {/* Per-page structured data (D-19) — server-rendered, no visual effect */}
+      <JsonLd data={breadcrumbJsonLd(hub)} />
+      {hub.content.faqs.length > 0 && <JsonLd data={faqJsonLd(hub)!} />}
+
       {/* Hero */}
       <AnimateOnScroll
         as="header"
@@ -37,6 +57,10 @@ export default function DienstenPage() {
           </p>
         </div>
       </AnimateOnScroll>
+
+      {/* Authored orientation copy — full intro incl. its lead sentence, because
+          this page's hero is hardcoded markup rather than a ServiceHero */}
+      <ServiceIntro node={hub} includeLead />
 
       {/* 4 pillar cards — the routes into each pillar page */}
       <section className="max-w-7xl mx-auto px-6 mb-24">
@@ -64,6 +88,12 @@ export default function DienstenPage() {
           ))}
         </StaggerChildren>
       </section>
+
+      {/* The shared TPS traject — true across all four disciplines (D-13) */}
+      <ServiceSteps steps={hub.content.steps} />
+
+      {/* Routing FAQs + werkgebied line (D-16/D-17) */}
+      <ServiceFAQ faqs={hub.content.faqs} localAngle={hub.content.localAngle} />
 
       {/* Trust / reviews strip (D-12) */}
       <section className="bg-surface-container-low py-20 mb-20">
