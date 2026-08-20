@@ -219,10 +219,29 @@ const pageVariantSchema = z.discriminatedUnion("type", [
   staticNodeSchema,
 ]);
 
+// The node types whose PAGE TEMPLATE renders `content.intro`, `content.steps` and
+// `content.faqs` straight out of the shell. Only these are held to the anti-thin-
+// content bar, because only for these does the shell's prose become the page a
+// visitor and a crawler actually see.
+//
+// `static` is deliberately absent (D-20 / IDX-05). Statics are bespoke hand-built
+// routes — app/tarieven/page.tsx, app/over-ons/page.tsx and friends render their own
+// markup — so their taxonomy `content` is SEO metadata plus optional prose, not the
+// page body. Holding them to >=120 words / >=1 step / 3-6 FAQs would force 120+ words
+// and a set of FAQs into five nodes that render none of it: authored content that
+// appears nowhere, which is exactly the "the data says one thing, the page does
+// another" defect this phase exists to remove. Before this scoping, publishing the 5
+// content statics produced 13 Zod violations and could not build at all.
+//
+// The bar itself is UNCHANGED — same thresholds, same rules. Only the set of nodes it
+// governs is narrowed, and it provably still bites there (see scripts/assert-gate-blocks.ts).
+const CONTENT_BAR_TYPES: readonly PageType[] = ["hub", "pillar", "service"];
+
 // One page node: per-variant structure (discriminated union) always; content
-// quality upgraded for review/published.
+// quality upgraded for review/published nodes whose content is rendered from the shell.
 export const pageSchema = pageVariantSchema.superRefine((node, ctx) => {
-  if (node.status === "review" || node.status === "published") {
+  const gated = node.status === "review" || node.status === "published";
+  if (gated && CONTENT_BAR_TYPES.includes(node.type)) {
     const result = publishedContentSchema.safeParse(node.content);
     if (!result.success) {
       for (const issue of result.error.issues) {

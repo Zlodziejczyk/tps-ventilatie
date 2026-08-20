@@ -82,6 +82,39 @@ assert.equal(
   "a service node missing serviceSlug must fail the discriminated-union gate",
 );
 
+// (D) The hub published with its empty shell must be REJECTED. This is the
+//     assertion that FORCES 08-04 to author real /diensten content before the hub
+//     can publish — without it, the hub could join the index carrying nothing but
+//     metadata. It is the reason the content bar still earns its keep after being
+//     scoped in 08-02.
+const emptyHubClone = structuredClone(PAGES);
+const emptyHub = emptyHubClone.find((node) => node.type === "hub");
+assert(emptyHub, "the clone must contain the hub");
+emptyHub.status = "published";
+assert.equal(
+  pagesSchema.safeParse(emptyHubClone).success,
+  false,
+  "the hub must not be publishable with an empty content shell — 08-04 has to author it first",
+);
+
+// (E) A static published with an empty shell must be ACCEPTED. DELIBERATE, not an
+//     oversight (D-20 / IDX-05): statics are bespoke hand-built routes, so their
+//     taxonomy content is metadata, not the page body. Holding them to the
+//     thin-content bar would force 120+ words and a set of FAQs into nodes that
+//     render none of it. Do NOT "fix" this back — the scoping is in
+//     lib/services/types.ts under CONTENT_BAR_TYPES, with the reasoning.
+const publishedStaticClone = structuredClone(PAGES);
+const emptyStatic = publishedStaticClone.find(
+  (node) => node.type === "static" && node.content.intro.trim() === "",
+);
+assert(emptyStatic, "the clone must contain a static with an empty intro");
+emptyStatic.status = "published";
+assert.equal(
+  pagesSchema.safeParse(publishedStaticClone).success,
+  true,
+  "a published static with an empty content shell must VALIDATE — the bar governs only the taxonomy-rendered types",
+);
+
 // Sanity — the unmodified, committed taxonomy still validates.
 assert.equal(
   pagesSchema.safeParse(PAGES).success,
@@ -154,7 +187,8 @@ assert.equal(
 );
 
 console.log(
-  `✅ Gates provably bite — Zod: duplicate primaryKeyword + thin published intro + missing serviceSlug all rejected; ` +
+  `✅ Gates provably bite — Zod: duplicate primaryKeyword + thin published intro + missing serviceSlug + empty published hub all rejected, ` +
+    `empty published static accepted (scoped bar, D-20); ` +
     `invariant: relational break (P1), dropped entry (P2), orphan entry (P3), below floor (P4) each caught by code, ` +
     `and the real surface is clean (P5, ${indexableNow} indexable / ${realEntries.length} entries).`,
 );
