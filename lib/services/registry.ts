@@ -62,10 +62,83 @@ const HUB_PAGE: PageNode = {
   navTitle: "Diensten",
   navDescription: "Airconditioning, warmtepompen en ventilatie",
   icon: "home_repair_service",
+  // Authored in 08-04 (IDX-03). The angle is deliberately ORIENTATION AND ROUTING
+  // — "welke dienst heb ik nodig?" — not a company-capability pitch (that is
+  // /over-ons) and not a "wat is klimaattechniek" explainer (D-12). Because the
+  // questions here are comparative, they structurally cannot overlap the pillars'
+  // decision FAQs. Every sentence below RENDERS on /diensten: the intro through
+  // ServiceIntro with includeLead, the steps through ServiceSteps, the FAQs and the
+  // werkgebied line through ServiceFAQ. No claim about subsidies, certificering or
+  // prices belongs on this umbrella page — those are pillar-specific and gated.
   content: draftShell(
     "Onze diensten",
-    "Klimaattechniek Zoetermeer | TPS klimaattechniek",
-    "Airconditioning, warmtepompen en ventilatie in Zoetermeer en omgeving.",
+    "Klimaattechniek Zoetermeer | Airco, warmtepomp & ventilatie | TPS",
+    "Airco, warmtepomp, WTW of mechanische ventilatie — welke past bij uw woning? TPS klimaattechniek in Zoetermeer helpt u kiezen en installeert het vakkundig.",
+    {
+      intro:
+        "Klimaattechniek is een breed vak, en de meeste mensen weten vooraf niet welke oplossing bij hun woning past. " +
+        "Bij TPS klimaattechniek werken wij aan vier vakgebieden die allemaal hetzelfde doel dienen: een aangename " +
+        "temperatuur en gezonde, frisse lucht in huis. Airconditioning koelt in de zomer en kan in veel gevallen ook " +
+        "verwarmen in het tussenseizoen. Een warmtepomp verwarmt uw woning het hele jaar door en vervangt de cv-ketel " +
+        "geheel of gedeeltelijk. Warmteterugwinning, kortweg WTW, ververst de lucht continu en wint daarbij de warmte " +
+        "uit de afgevoerde lucht terug. Mechanische ventilatie voert vocht en vervuilde lucht af en is vaak de " +
+        "eenvoudigste oplossing in bestaande woningen. Welke richting voor u de juiste is, hangt af van uw woning, uw " +
+        "wensen en wat er nu al aanwezig is. Op deze pagina zetten wij de vier vakgebieden naast elkaar en helpen wij " +
+        "u doorverwijzen naar de dienst die bij uw situatie past. Twijfelt u nog? Dan kijken wij tijdens een " +
+        "vrijblijvende opname met u mee en adviseren wij u eerlijk over de mogelijkheden.",
+      steps: [
+        {
+          title: "Opname op locatie",
+          body:
+            "Wij komen langs, bekijken uw woning en de bestaande installatie en luisteren naar wat u wilt bereiken.",
+        },
+        {
+          title: "Advies en offerte",
+          body:
+            "U krijgt een eerlijk advies over de best passende oplossing, met een heldere offerte waarin alles staat wat erbij hoort.",
+        },
+        {
+          title: "Vakkundige installatie",
+          body:
+            "Onze ervaren monteurs voeren het werk netjes en volgens de normen uit, met zo min mogelijk overlast in huis.",
+        },
+        {
+          title: "Nazorg en onderhoud",
+          body:
+            "Na oplevering leggen wij de bediening uit en kunt u bij ons terecht voor periodiek onderhoud en storingen.",
+        },
+      ],
+      faqs: [
+        {
+          question:
+            "Airco of warmtepomp — wat kan ik het beste kiezen om te verwarmen?",
+          answer:
+            "Een airco is in de eerste plaats een koeloplossing die in het tussenseizoen kan bijverwarmen; een warmtepomp is gebouwd om uw woning het hele jaar te verwarmen en de cv-ketel te ontlasten of te vervangen. Wilt u vooral verkoeling in de zomer met wat extra comfort in het voor- en najaar, bekijk dan Airconditioning hierboven. Gaat het u om de hoofdverwarming van uw woning, kijk dan bij Warmtepompen.",
+        },
+        {
+          question: "WTW of mechanische ventilatie — wat past bij mijn woning?",
+          answer:
+            "Een WTW-systeem voert lucht af en aan en wint de warmte uit de afgevoerde lucht terug; dat vraagt kanalen voor beide richtingen en past daarom goed bij nieuwbouw en grondige renovatie. Mechanische ventilatie voert alleen af en is in bestaande woningen vaak al aanwezig, waardoor vervangen of opwaarderen eenvoudiger is. Wij kijken tijdens de opname wat er in uw woning ligt en wat haalbaar is.",
+        },
+        {
+          question: "Kunt u meerdere disciplines in één opdracht combineren?",
+          answer:
+            "Ja. Veel woningen vragen om een combinatie, bijvoorbeeld een warmtepomp samen met een goede ventilatieoplossing, of airco erbij tijdens een verbouwing. Omdat wij alle vier de vakgebieden zelf uitvoeren, plannen wij het werk in één traject, met één aanspreekpunt en één offerte.",
+        },
+        {
+          question: "In welke plaatsen werkt TPS klimaattechniek?",
+          answer:
+            "Wij zijn gevestigd in Zoetermeer en werken in de wijde regio daaromheen, waaronder Den Haag, Leidschendam-Voorburg, Pijnacker-Nootdorp, Lansingerland, Delft, Gouda en Leiden. Twijfelt u of uw woonplaats binnen ons werkgebied valt? Bel of app ons even, dan zeggen wij het u meteen.",
+        },
+        {
+          question: "Hoe verloopt een opname en zit ik daarna ergens aan vast?",
+          answer:
+            "Een opname duurt meestal ongeveer een uur. Wij bekijken uw woning, meten waar nodig, bespreken uw wensen en leggen uit welke oplossingen realistisch zijn. Daarna ontvangt u een offerte op maat. De opname en de offerte zijn vrijblijvend: u beslist daarna zelf of en wanneer u verdergaat.",
+        },
+      ],
+      localAngle:
+        "TPS klimaattechniek werkt in Zoetermeer en de regio daaromheen — waaronder Den Haag, Leidschendam-Voorburg, Pijnacker-Nootdorp, Lansingerland, Delft, Gouda en Leiden. Dankzij korte aanrijtijden bent u snel geholpen en rekenen wij geen voorrijkosten binnen ons werkgebied.",
+    },
   ),
 };
 
