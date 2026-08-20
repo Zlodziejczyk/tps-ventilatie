@@ -6,7 +6,7 @@ status: planning
 last_updated: "2026-08-19T21:24:20.244Z"
 last_activity: 2026-08-19
 progress:
-  total_phases: 0
+  total_phases: 6
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -24,10 +24,24 @@ See: .planning/PROJECT.md (updated 2026-08-19)
 
 ## Current Position
 
-Phase: Not started (defining requirements)
+Phase: 8 of 13 — Indexation Unlock (not started)
 Plan: —
-Status: Defining requirements
-Last activity: 2026-08-19 — Milestone v1.1 started
+Status: Roadmap approved — ready to plan Phase 8
+Last activity: 2026-08-20 — Milestone v1.1 roadmap created (6 phases, 45 requirements, 100% mapped)
+
+**Phase sequence:** 8 Indexation Unlock → 9 Measurement Foundation → 10 Reversible Old-Brand Migration
+→ 11 Local Presence (GBP & Citations) → 12 On-Page Depth & Kennisbank → 13 Brand Tail
+
+**Load-bearing ordering constraints (from research):**
+- IDX-01 (relational build gate) must land BEFORE IDX-02 (the flip) — the current gate hardcodes
+  `sitemapEntries().length === 5` and would block its own fix.
+- Phase 9 must complete BEFORE Phase 10 — the legacy domain can only be GSC-verified and baselined
+  while it still resolves to WordPress.
+- Phase 8 must complete BEFORE Phase 10 — pointing 301s at still-noindexed pages would funnel all
+  legacy equity into a wall.
+- Inside Phase 11: low-risk GBP edits → citation cleanup → GBP name change LAST and alone (editing
+  name + categories + URL together is the top suspension trigger; 34 reviews at stake).
+- Phase 13 last — the repo/Vercel rename has zero SEO value and changes the `*.vercel.app` domain.
 
 ## Performance Metrics
 

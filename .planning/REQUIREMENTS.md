@@ -108,18 +108,56 @@ Populated during roadmap creation.
 
 | Requirement | Phase | Status |
 |---|---|---|
-| IDX-01…05 | TBD | Pending |
-| MEAS-01…06 | TBD | Pending |
-| MIG-01…10 | TBD | Pending |
-| GBP-01…08 | TBD | Pending |
-| NAP-01…05 | TBD | Pending |
-| SEO-11…15 | TBD | Pending |
-| BLOG-01,03,04,05 | TBD | Pending |
-| BRND-01,02 | TBD | Pending |
+| IDX-01 | Phase 8 | Pending |
+| IDX-02 | Phase 8 | Pending |
+| IDX-03 | Phase 8 | Pending |
+| IDX-04 | Phase 8 | Pending |
+| IDX-05 | Phase 8 | Pending |
+| MEAS-01 | Phase 9 | Pending |
+| MEAS-02 | Phase 9 | Pending |
+| MEAS-03 | Phase 9 | Pending |
+| MEAS-04 | Phase 9 | Pending |
+| MEAS-05 | Phase 9 | Pending |
+| MEAS-06 | Phase 9 | Pending |
+| MIG-01 | Phase 10 | Pending |
+| MIG-02 | Phase 10 | Pending |
+| MIG-03 | Phase 10 | Pending |
+| MIG-04 | Phase 10 | Pending |
+| MIG-05 | Phase 10 | Pending |
+| MIG-06 | Phase 10 | Pending |
+| MIG-07 | Phase 10 | Pending |
+| MIG-08 | Phase 10 | Pending |
+| MIG-09 | Phase 10 | Pending |
+| MIG-10 | Phase 10 | Pending |
+| GBP-01 | Phase 11 | Pending |
+| GBP-02 | Phase 11 | Pending |
+| GBP-03 | Phase 11 | Pending |
+| GBP-04 | Phase 11 | Pending |
+| GBP-05 | Phase 11 | Pending |
+| GBP-06 | Phase 11 | Pending |
+| GBP-07 | Phase 11 | Pending |
+| GBP-08 | Phase 11 | Pending |
+| NAP-01 | Phase 11 | Pending |
+| NAP-02 | Phase 11 | Pending |
+| NAP-03 | Phase 11 | Pending |
+| NAP-04 | Phase 11 | Pending |
+| NAP-05 | Phase 11 | Pending |
+| SEO-11 | Phase 12 | Pending |
+| SEO-12 | Phase 12 | Pending |
+| SEO-13 | Phase 12 | Pending |
+| SEO-14 | Phase 12 | Pending |
+| SEO-15 | Phase 12 | Pending |
+| BLOG-01 | Phase 12 | Pending |
+| BLOG-03 | Phase 12 | Pending |
+| BLOG-04 | Phase 12 | Pending |
+| BLOG-05 | Phase 12 | Pending |
+| BRND-01 | Phase 13 | Pending |
+| BRND-02 | Phase 13 | Pending |
 
 **Coverage:**
 - v1.1 requirements: 45 total
-- Mapped to phases: 0 ⚠️ (roadmap pending)
+- Mapped to phases: 45
+- Unmapped: 0 ✓
 
 ## Open Questions
 
