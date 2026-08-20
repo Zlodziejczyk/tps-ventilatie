@@ -70,8 +70,16 @@ function fail(message: string): void {
 // to be swapped for the base being probed before fetching — WITHOUT this, running
 // the probe against a preview URL would silently fetch PRODUCTION and report a
 // pass for a deployment it never touched. That is the subtlest trap in this file.
-function onBase(loc: string): string {
-  return `${base}${new URL(loc).pathname}`;
+function onBase(loc: string): string | null {
+  try {
+    return `${base}${new URL(loc).pathname}`;
+  } catch {
+    // A <loc> that is not a parseable URL is itself a finding. Returning null
+    // rather than throwing keeps the promise of this script: report EVERY
+    // violation. A throw here would reject the whole concurrent map and leave
+    // the remaining URLs unchecked, so one bad entry could mask real ones.
+    return null;
+  }
 }
 
 async function mapWithConcurrency<T, R>(
@@ -98,7 +106,13 @@ async function main(): Promise<void> {
   const sitemapUrl = `${base}/sitemap.xml`;
   const sitemapRes = await fetch(sitemapUrl, { redirect: "manual" });
   if (sitemapRes.status !== 200) {
-    console.error(`✗ ${sitemapUrl} returned ${sitemapRes.status} — cannot verify anything else.`);
+    const location = sitemapRes.headers.get("location");
+    console.error(
+      `✗ ${sitemapUrl} returned ${sitemapRes.status}` +
+        (location ? ` → ${location}` : "") +
+        " — cannot verify anything else." +
+        (location ? " Probe the host it redirects to, not this one." : ""),
+    );
     process.exit(1);
   }
   const contentType = sitemapRes.headers.get("content-type") ?? "";
@@ -130,6 +144,10 @@ async function main(): Promise<void> {
 
   await mapWithConcurrency(locs, CONCURRENCY, async (loc) => {
     const url = onBase(loc);
+    if (url === null) {
+      fail(`sitemap entry is not a parseable URL: ${loc}`);
+      return;
+    }
     const path = new URL(url).pathname;
 
     let res: Response;
