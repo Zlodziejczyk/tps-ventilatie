@@ -27,7 +27,7 @@ import assert from "node:assert/strict";
 import { pagesSchema } from "@/lib/services/types";
 import type { PageNode } from "@/lib/services/types";
 import { PAGES } from "@/lib/services/registry";
-import { checkIndexationInvariants } from "@/lib/seo/invariants";
+import { checkIndexationInvariants, INDEXABLE_FLOOR } from "@/lib/seo/invariants";
 import {
   absoluteUrl,
   indexableSurface,
@@ -173,19 +173,29 @@ assert.ok(
   `P3: a sitemap URL with no backing node must yield orphan-entry, got: ${codes(p3)}`,
 );
 
-// (P4) Mass de-indexation — a floor one above the current count must trip.
-//      Derived from live data, never hardcoded, so this proof cannot decay.
+// (P4) De-indexation — take ONE published page dark and the REAL floor must trip.
+//      This exercises the shipped INDEXABLE_FLOOR rather than an ad-hoc number, so
+//      the proof is about the constant the build actually enforces. Predicate-
+//      addressed (any published node), so it survives changes to the page set.
 const indexableNow = realNodes.filter(isIndexable).length;
-const p4 = checkIndexationInvariants({ floor: indexableNow + 1 });
+const darkNodes = structuredClone(realNodes) as PageNode[];
+const goDark = darkNodes.find((node) => node.status === "published");
+assert(goDark, "the clone must contain a published node");
+goDark.status = "draft";
+const p4 = checkIndexationInvariants({
+  nodes: darkNodes,
+  entries: realEntries,
+  floor: INDEXABLE_FLOOR,
+});
 assert.ok(
   p4.some((v) => v.code === "below-floor"),
-  `P4: a floor above the current indexable count must yield below-floor, got: ${codes(p4)}`,
+  `P4: losing a published page must breach INDEXABLE_FLOOR (${INDEXABLE_FLOOR}), got: ${codes(p4)}`,
 );
 
 // (P5) The control. Unperturbed reality must yield exactly zero violations —
 //      without this, every proof above could be passing because the checker is
 //      simply always angry.
-const p5 = checkIndexationInvariants();
+const p5 = checkIndexationInvariants({ floor: INDEXABLE_FLOOR });
 assert.equal(
   p5.length,
   0,
@@ -195,6 +205,7 @@ assert.equal(
 console.log(
   `✅ Gates provably bite — Zod: duplicate primaryKeyword + thin published intro + missing serviceSlug + empty published hub all rejected, ` +
     `empty published static accepted (scoped bar, D-20); ` +
-    `invariant: relational break (P1), dropped entry (P2), orphan entry (P3), below floor (P4) each caught by code, ` +
-    `and the real surface is clean (P5, ${indexableNow} indexable / ${realEntries.length} entries).`,
+    `invariant: relational break (P1), dropped entry (P2), orphan entry (P3), a page going dark under the real ` +
+    `INDEXABLE_FLOOR (P4) each caught by code, and the real surface is clean at the floor ` +
+    `(P5, ${indexableNow} indexable / ${realEntries.length} entries, floor ${INDEXABLE_FLOOR}).`,
 );

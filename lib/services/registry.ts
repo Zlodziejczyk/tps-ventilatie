@@ -55,7 +55,7 @@ function draftShell(
 const HUB_PAGE: PageNode = {
   type: "hub",
   segment: "diensten",
-  status: "draft",
+  status: "published",
   primaryKeyword: "klimaattechniek Zoetermeer",
   searchIntent: "commercieel",
   secondaryKeywords: ["klimaatbeheersing", "airco warmtepomp ventilatie"],

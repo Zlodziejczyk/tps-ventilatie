@@ -28,6 +28,21 @@ import { urlFor } from "@/lib/services/registry";
 import type { PageNode } from "@/lib/services/types";
 import { absoluteUrl, indexableSurface, isIndexable, sitemapEntries } from "@/lib/seo/policy";
 
+// THE definition of "complete" for this site, in exactly one place.
+//
+// Derivation: 28 routable nodes in the registry minus privacy-beleid, the single
+// page deliberately kept out of the index = 27.
+//
+// Both the build gate (scripts/assert-seo.ts) and the live probe
+// (scripts/verify-indexation.ts) import THIS constant (D-25), so the thing that
+// checks the data and the thing that checks the served site are structurally
+// incapable of disagreeing about what "complete" means. Deriving it live from the
+// taxonomy was rejected: the probe would then share the source of truth it exists
+// to check independently.
+//
+// Read the below-floor violation message before changing this number.
+export const INDEXABLE_FLOOR = 27;
+
 // One machine-readable failure. `code` is what callers match on (matching on the
 // message would be a snapshot assertion by another name); `url` names the offending
 // page when there is one; `message` is what a human reads in a red build log.

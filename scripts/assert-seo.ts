@@ -24,15 +24,16 @@ import assert from "node:assert/strict";
 import { CANONICAL_ORIGIN } from "@/lib/constants";
 import { findBySlug, pillars, childrenOf, urlFor } from "@/lib/services/registry";
 import { isIndexable, absoluteUrl, sitemapEntries } from "@/lib/seo/policy";
-import { checkIndexationInvariants } from "@/lib/seo/invariants";
+import { checkIndexationInvariants, INDEXABLE_FLOOR } from "@/lib/seo/invariants";
 import { businessJsonLd, faqJsonLd } from "@/lib/seo/jsonld";
 import { REVIEW_RATING } from "@/lib/reviews";
 
-// (1) THE indexation invariant, on real data. Print every violation before the
+// (1) THE indexation invariant, on real data, WITH the floor. The floor arrived
+//     in 08-04 together with the hub publish that satisfies it, so this gate has
+//     never been red on its own account (D-09). Print every violation before the
 //     assertion throws — a red build should show all the damage, not just the
-//     first symptom. No floor is passed here (D-09): the floor is the one
-//     state-dependent check and it lands with the flip that satisfies it.
-const violations = checkIndexationInvariants();
+//     first symptom.
+const violations = checkIndexationInvariants({ floor: INDEXABLE_FLOOR });
 if (violations.length > 0) {
   console.error(`✗ Indexation invariant broken — ${violations.length} violation(s):`);
   for (const violation of violations) {
@@ -98,15 +99,13 @@ assert.ok(
   `expected at least 17 sub-services, found ${subServiceCount} — a sub-service page has left the routable surface.`,
 );
 
-// (2c) The /diensten hub is still non-indexable at this landing: its content shell is
-//      empty and the Zod content bar (assert-gate-blocks proof D) refuses to let it
-//      publish until 08-04 authors real copy.
-//      *** THIS ASSERTION IS INVERTED IN 08-04 *** — when the hub publishes it becomes
-//      `true`, and it joins the named belts above rather than being deleted.
+// (2c) The /diensten hub, the umbrella page every pillar link funnels through. It
+//      was the last page on the service surface still serving noindex; it joined
+//      the index in 08-04 once its content was authored and rendered.
 assert.equal(
   isIndexable(findBySlug("/diensten")!),
-  false,
-  "the /diensten hub must still be non-indexable — it publishes in 08-04 once its content is authored (invert this assertion there)",
+  true,
+  "the /diensten hub must be indexable — it is the umbrella page the whole service surface hangs off",
 );
 
 // (3) Canonical origin is the www host with no trailing slash; root keeps its slash.
@@ -146,7 +145,8 @@ assert.equal(geoCircle.geoRadius, 60000, "areaServed GeoCircle radius must be 60
 assert.equal(faqJsonLd(findBySlug("/contact")!), null, "faqJsonLd must be null on an empty-faq node");
 
 console.log(
-  `✅ SEO policy OK — indexation invariant holds (sitemap membership ⇔ isIndexable, ${sitemapEntries().length} entries, all absolute on the canonical origin, none orphaned); ` +
-    `4/4 pillars + ${subServiceCount} sub-services indexable by name, hub still draft, privacy-beleid noindex; ` +
+  `✅ SEO policy OK — indexation invariant holds (sitemap membership ⇔ isIndexable, ${sitemapEntries().length} entries ` +
+    `vs floor ${INDEXABLE_FLOOR}, all absolute on the canonical origin, none orphaned); ` +
+    `hub + 4/4 pillars + ${subServiceCount} sub-services indexable by name, privacy-beleid noindex; ` +
     `www canonical, HVACBusiness @id (geoRadius 60000), faq null-on-empty.`,
 );
