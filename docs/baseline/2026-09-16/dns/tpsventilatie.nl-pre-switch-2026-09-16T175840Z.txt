@@ -1,0 +1,21 @@
+# DNS snapshot tpsventilatie.nl  taken 2026-09-16T17:58:40Z  queried @ns1.cyberfolks.pl
+# registry delegation: ns1.opeiron.com. ns2.opeiron.com. 
+# DS:   (empty = DNSSEC off)
+
+tpsventilatie.nl.	14400	IN	SOA	ns1.opeiron.com. hostmaster.tpsventilatie.nl. 2024020301 14400 3600 1209600 3600
+tpsventilatie.nl.	14400	IN	NS	ns2.opeiron.com.
+tpsventilatie.nl.	14400	IN	NS	ns1.opeiron.com.
+tpsventilatie.nl.	14400	IN	A	195.78.67.39
+tpsventilatie.nl.	14400	IN	MX	10 mail.tpsventilatie.nl.
+tpsventilatie.nl.	14400	IN	TXT	"v=spf1 a mx include:_spf.cyberfolks.pl -all"
+www.tpsventilatie.nl.	14400	IN	A	195.78.67.39
+mail.tpsventilatie.nl.	14400	IN	A	195.78.67.39
+ftp.tpsventilatie.nl.	14400	IN	A	195.78.67.39
+smtp.tpsventilatie.nl.	14400	IN	A	195.78.67.39
+pop.tpsventilatie.nl.	14400	IN	A	195.78.67.39
+autoconfig.tpsventilatie.nl. 14400 IN	CNAME	autodiscover.s161.cyberfolks.pl.
+autodiscover.s161.cyberfolks.pl. 14400 IN A	195.78.67.39
+autodiscover.s161.cyberfolks.pl. 14400 IN TXT	"v=spf1 a mx include:_spf.cyberfolks.pl -all"
+_dmarc.tpsventilatie.nl. 14400	IN	TXT	"v=DMARC1; p=none; sp=none"
+x._domainkey.tpsventilatie.nl. 14400 IN	TXT	"v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzCZ5IExAsvKFos5wZHEhDCfay5cFlFXKO3W0F1EymQr0S56nS0F3P/JLgYDc7ppOWpGHG2uEQFF4YAbrCGU55O6" "ktPRgfbzKdudRsd2C1rFDTU8uZHBAMTyyg76AUKpQ8jNogqUSdmn5E13GdSQHk/rC4haEkzDwC8aOohaHb1Xv15/2aJq5PLtuIYOY40+pstNPkWUJRWv1w6USE0ZXrbpd5wMYc3gZxNiSzYvMRnxmI" "8naP4IpU2sHs9Bj9IXWRwsi5rzJtuJDPfTPDG8xJXLOzvsWSC9t5pLkrbvqI+IuWzi63uObOdlL3gkLezgg5XoUrplax2ja3w86UH3bPwIDAQAB"
+_autodiscover._tcp.tpsventilatie.nl. 14400 IN SRV 10 10 443 autodiscover.s161.cyberfolks.pl.

@@ -1,0 +1,143 @@
+# Baseline 2026-09-16 — nulmeting vóór de migratie (Phase 9, MEAS-04)
+
+> **Wat is dit?** De vastgelegde staat van DNS, Google Search Console, Google Business Profile,
+> Vercel Analytics en de zoekresultaten **vóórdat Phase 10 het oude domein `tpsventilatie.nl`
+> doorstuurt naar `tpsklimaattechniek.nl`**. Alles wat hier staat is bewijs van "zo was het"; het
+> wordt nooit bijgewerkt, alleen aangevuld met een eigen `taken:`-tijdstip per bestand.
+>
+> **Geen wachtwoorden, tokens of sleutels in deze map.** De `google-site-verification`-tokens die in de
+> DNS-snapshots staan zijn publiek (ze staan in DNS voor iedereen leesbaar) en zijn geen geheim.
+
+Directory aangemaakt: 2026-09-16 · eerste vastlegging: 2026-09-16T17:58Z · laatste aanvulling: zie manifest
+
+---
+
+## 1. Doel en datumregel (D-12, D-17, D-27)
+
+- Deze map is **het** artefact waar succescriterium 3 van Phase 9 naar wijst ("baseline artefact
+  committed: GSC export, ranking snapshot, GBP state, full DNS zone snapshot"). Hij staat in `docs/`
+  (naast `seo-owner-runbook.md`) en niet in `.planning/`, omdat iemand tijdens een incident om 3 uur
+  's nachts hier moet kunnen kijken — planning-mappen worden bij milestone-afsluiting gearchiveerd.
+- **D-27 — datumregel.** De mapnaam is de datum waarop de pre-migratiestaat **voor het eerst** is
+  vastgelegd: 2026-09-16 (beide DNS-zones gesnapshot, beide Domain-properties in GSC geverifieerd,
+  sitemap verwerkt op 27 URL's). Artefacten die later zijn vastgelegd (GSC-exports, GBP-transcriptie,
+  SERP-nulmeting, Vercel-bewijs) dragen hun eigen `taken:`-tijdstip in het manifest hieronder en in het
+  bestand zelf. De map wordt dus **niet** hernoemd als er later iets bijkomt.
+- **De hermeting bij milestone-afsluiting** (de "na"-kant van dezelfde meting) krijgt een **eigen**
+  gedateerde map (`docs/baseline/<datum>/`), zodat er een voor/na-paar ontstaat. Het recept daarvoor
+  staat in §6 (wordt door plan 09-06 ingevuld).
+
+## 2. Manifest
+
+Eén rij per bestand. `taken` is UTC. Rijen met ⬜ worden door het genoemde plan ingevuld of verwijderd.
+
+| bestand | wat bewijst het | taken (UTC) | bron | opnieuw maken |
+|---|---|---|---|---|
+| `dns/tpsventilatie.nl-pre-switch-2026-09-16T175840Z.txt` | De volledige legacy-zone zoals **cyberfolks** (`ns1.cyberfolks.pl`) hem serveerde **vóór** de nameserver-wissel (D-26): SOA-serial `2024020301`, NS `ns1/ns2.opeiron.com`, A `195.78.67.39` (WordPress), MX, SPF met `a`, DMARC `p=none`, DKIM-selector `x`, autoconfig/autodiscover | 2026-09-16T17:58:40Z | `dig @ns1.cyberfolks.pl`, met de hand (sessie 29fcd5a0) | **niet** opnieuw te maken — cyberfolks is niet meer autoritatief; dit is het enige bewijs van de zone-vóór-de-wissel |
+| `dns/tpsklimaattechniek.nl-2026-09-16T175843Z.txt` | De nieuwe zone bij dd24 op het moment van de eerste vastlegging: GSC-TXT `eXe-fYdK…` (D-05 #1), Titan MX/SPF/DKIM (`titan1`), `www` CNAME naar Vercel, apex A `216.198.79.1` | 2026-09-16T17:58:43Z | `dig @ns1.domaindiscount24.net`, met de hand | `bash scripts/snapshot-dns.sh tpsklimaattechniek.nl --out docs/baseline/<datum>/dns` |
+| `dns/dd24-records-to-enter.md` | Het 12-records spiegelplan (D-26): welke records met de hand bij dd24 zijn ingevoerd om de cyberfolks-zone record-voor-record na te bouwen | 2026-09-16T17:58Z | afgeleid uit de pre-switch snapshot | n.v.t. (beslissingsdocument) |
+| `dns/dd24-mirror-verification.txt` | **33/33 PASS**: elke (naam, type) vergeleken tussen `@ns1.cyberfolks.pl` en `@ns1/ns2/ns3.domaindiscount24.net` **vóór** de wissel; DKIM byte-identiek; apex-TXT bij dd24 bevat GSC-token + SPF | 2026-09-16T18:31:00Z | `dig`-vergelijking, met de hand | n.v.t. (eenmalig bewijs; cyberfolks-kant niet meer bevraagbaar als autoritatief) |
+| `dns/dd24-zone-table.jpg` | Screenshot van de dd24 zone-tabel voor `tpsventilatie.nl` na invoer (herkomstbewijs bij het spiegelplan) | 2026-09-16 ±19:20Z | dd24-panel (Chrome) | dd24 → DNS → zone-tabel |
+| `dns/tpsventilatie.nl-2026-09-16T203208Z.txt` | De legacy-zone **na** de wissel, bevraagd bij dd24: delegatie `ns1/2/3.domaindiscount24.net` (D-26), A-records nog steeds `195.78.67.39` (WordPress draait — D-06), GSC-TXT `DvCnCNBb…` aanwezig (D-05 #2, D-07), SPF nog mét `a` (Phase 10 MIG-02 ruimt dat op — hier ongewijzigd) | 2026-09-16T20:32:08Z | `scripts/snapshot-dns.sh` | `bash scripts/snapshot-dns.sh tpsventilatie.nl --out docs/baseline/<datum>/dns` |
+| `dns/tpsklimaattechniek.nl-2026-09-16T203209Z.txt` | De nieuwe zone via het script — record-set identiek aan de vastlegging van 17:58Z (gecontroleerd met `diff` bij 09-01) | 2026-09-16T20:32:09Z | `scripts/snapshot-dns.sh` | idem |
+| `gsc/sitemap-success-27.jpg` | GSC → Sitemaps voor `sc-domain:tpsklimaattechniek.nl`: **Success, 27 ontdekte URL's** (D-10) | 2026-09-16 ±17:38Z | Search Console (Chrome) | GSC → Sitemaps; de machinevorm is `gsc/sitemap-tpsklimaattechniek.nl.json` (09-02) |
+| `gsc/legacy-domain-property-verified.jpg` | GSC → Instellingen → Eigendomsverificatie voor `sc-domain:tpsventilatie.nl`: **"Ownership auto verified"** via DNS-TXT bij dd24 (D-05 #2, D-06) | 2026-09-16 ±19:40Z | Search Console (Chrome) | GSC → Settings → Ownership verification |
+| ⬜ 09-01 · `gbp/gbp-state.md` + screenshots | Google Business Profile: naam, categorieën, website-URL, servicegebied, aantal reviews, beoordeling (D-15) | — | — | — |
+| ⬜ 09-02 · `gsc/serp-queries.json`, `gsc/sitemap-tpsklimaattechniek.nl.json`, `gsc/sitemaps-tpsventilatie.nl.json`, `gsc/performance-*.{json,csv}`, `gsc/shortlist-*.json` | Machinebewijs van D-10 (`submitted === 27`, `errors === 0`), Search-Analytics-export van beide domeinen (D-16), de 24 shortlist-queries met hun eerlijke nullen (D-13), geen sitemap voor het legacy-domein (D-09) | — | — | — |
+| ⬜ 09-03 · `gsc/legacy-url-prefix-status.md`, `gsc/users-and-permissions.md`, `gsc/url-inspection-diensten.png`, `gsc/ownership-verification-www-tpsklimaattechniek.png`, `vercel/web-analytics-enabled.png`, `vercel/speed-insights-enabled.png`, `vercel/insights-view-request.md` | Vijfde property (HTML-tag, D-08), status van de twee legacy URL-prefix-properties (D-05), gedelegeerd eigenaarschap (D-02), D-11-bewijs, Vercel Analytics ingeschakeld + beacon-bewijs (D-24) | — | — | — |
+| ⬜ 09-06 · `serp/serp-baseline.md`, `serp/serp-example-footer.png`, `vercel/analytics-after-24h.md` | Geolokaliseerde SERP-nulmeting voor 24 queries × 2 domeinen met eerlijke nullen (D-13); Analytics rapporteert na ≥24 uur (MEAS-06) | — | — | — |
+
+**Diff-hint bij de DNS-bestanden.** Wie de pre-switch snapshot vergelijkt met de post-switch snapshot
+ziet drie soorten ruis die géén inhoudelijk verschil zijn: (1) TTL 14400 → 28800 en een nieuw
+SOA-record (dd24 beheert de zone nu); (2) de DKIM-TXT van `x._domainkey` wordt door dd24 op een andere
+plek in 255-byte-stukken geknipt dan cyberfolks deed — de aaneengeplakte waarde is byte-identiek
+(zie `dd24-mirror-verification.txt`); (3) de regels `autodiscover.s161.cyberfolks.pl. … A/TXT` in de
+pre-switch snapshot waren extra records uit de *andere* zone die cyberfolks meestuurde, geen records van
+`tpsventilatie.nl`. Alles daarbuiten in een diff is een echte wijziging en dus een bevinding.
+
+## 3. Beslissingen genomen tijdens de uitvoering
+
+### D-26 — Nameservers van `tpsventilatie.nl` verplaatst van cyberfolks naar dd24 (2026-09-16)
+
+**Wat er is gebeurd.** De GSC Domain-property voor `tpsventilatie.nl` kan alleen worden geverifieerd met
+een TXT-record in de **autoritatieve** zone. Die zone stond bij cyberfolks.pl (hosting van de oude
+WordPress-site, nameservers `ns1/ns2.opeiron.com`); niemand aan onze kant heeft die login, en Tomasz was
+niet bereikbaar. De oorspronkelijke aanname (D-03: "de gebruiker plakt het TXT-record in het paneel van
+de legacy-registrar") ging er ten onrechte van uit dat de registrar (dd24) ook de zone beheerde.
+
+**De keuze (expliciet akkoord van Oskar, tweemaal).** De cyberfolks-zone is opgesomd (AXFR geweigerd;
+~40 namen plus wildcard geprobeerd; statisch sinds SOA-serial `2024020301`), **record-voor-record
+gespiegeld bij dd24** — 6×A (`@`, `www`, `mail`, `ftp`, `smtp`, `pop` → `195.78.67.39`), MX 10 `mail`,
+SPF, DMARC `p=none`, DKIM `x._domainkey` (410 tekens, byte-identiek), `autoconfig` CNAME en
+`_autodiscover._tcp` SRV naar `autodiscover.s161.cyberfolks.pl` — met **33/33 vergelijkingen PASS** vóór
+de wissel (`dns/dd24-mirror-verification.txt`), DNSSEC uit, en daarna de nameservers bij dd24 op
+**Standaardnameserver = `ns1/ns2/ns3.domaindiscount24.net`** gezet. Hosting en mail zijn **niet**
+verplaatst en draaien nog bij cyberfolks (server s161). SIDN publiceerde de nieuwe delegatie ±19:35Z;
+de property verifieerde ±19:40Z.
+
+**Rollback** (als mail of site zich vreemd gedraagt en de oorzaak in DNS zit): dd24 → domein
+`tpsventilatie.nl` → tabblad *Whois/Nameserver* → type **"Externe nameserver"** →
+`ns1.cyberfolks.pl`, `ns2.cyberfolks.pl`, `ns3.cyberfolks.pl` → opslaan. cyberfolks houdt zijn zone
+gewoon aan, dus de oude staat komt terug zonder verdere handelingen. Doorlooptijd: registry-TTL ±1 uur
+(3600 s); resolvers kunnen de oude NS-set tot 14400 s vasthouden.
+
+**Restrisico.** Alleen DKIM-selector `x` was vindbaar. Signeert cyberfolks uitgaande mail met een andere
+selector, dan faalt DKIM zacht (DMARC staat op `p=none`, dus mail wordt niet geweigerd). Controle: open een
+echte mail van `info@tpsventilatie.nl`, kijk in de header naar `DKIM-Signature: … s=<selector>`; is dat
+niet `x`, voeg die selector toe bij dd24 (waarde opvragen bij cyberfolks).
+
+**Gevolg voor Phase 10.** De A-record-repoint van `@`/`www` en het weghalen van het `a`-mechanisme uit de
+SPF (MIG-02) gebeuren nu **bij dd24** — geen cyberfolks-toegang nodig. De WordPress-backup en wp-admin
+(MIG-03/04) hebben nog wél cyberfolks- of WP-admin-inloggegevens nodig. Gezien: `tps-ventilatie.nl`
+(met koppelteken) is een los, dood domein bij dd24 (NS lh.pl); onschadelijk.
+
+**Vervangt:** D-03 (TXT door de gebruiker bij de legacy-registrar plakken) en de regel "Moving legacy DNS
+nameservers" in de Out-of-Scope-tabel van `.planning/REQUIREMENTS.md` (die regel wordt in 09-06
+bijgewerkt). **Deze fase wijzigt verder niets in DNS** — alle scripts in deze map lezen alleen.
+
+### D-27 — Deze map heet `2026-09-16`
+
+Zie §1: de datum is de eerste vastlegging van de pre-migratiestaat, niet de datum van het
+context-gesprek (2026-08-24, D-12). Latere artefacten dragen een eigen `taken:`.
+
+### D-03 — vervangen
+
+D-03 (de gebruiker plaatst met de hand een TXT-record bij **beide** registrars) is voor het legacy-domein
+**vervangen door D-26**; voor het nieuwe domein is het TXT-record wél gewoon bij dd24 geplaatst
+(`eXe-fYdK…`, zie de snapshot).
+
+## 4. Regels die blijven gelden
+
+- **D-06 — de legacy-verificatie is afgerond vóórdat Phase 10 iets verplaatst.** `sc-domain:tpsventilatie.nl`
+  is geverifieerd terwijl `tpsventilatie.nl` nog `195.78.67.39` (WordPress, HTTP 200) serveert. Dat is de
+  reden dat Phase 9 vóór Phase 10 staat; het is geen voorkeur maar een harde volgorde.
+- **D-07 — verwijder het `google-site-verification` TXT-record op `tpsventilatie.nl` nooit**, ook niet na
+  de migratie en ook niet "om op te ruimen". De Change of Address (Phase 10) draait vanuit deze property,
+  Google eist minimaal 180 dagen redirects, en Google controleert de verificatie periodiek: verdwijnt het
+  record, dan verliest de property stilletjes haar verificatie. **Hetzelfde geldt voor het TXT-record op
+  `tpsklimaattechniek.nl`.** `scripts/verify-measurement.ts` (09-03) controleert bij elke run dat beide
+  records nog bestaan — een ontbrekend record is daar een fout, geen opschoning.
+- **Alles in deze fase leest DNS alleen** (`dig`, `resolveTxt`). De enige geplande DNS-wijziging op dit
+  project is Phase 10's MIG-02.
+
+## 5. Wat de GSC-screenshots bewijzen (MEAS-03)
+
+- `gsc/sitemap-success-27.jpg` — de sitemap `https://www.tpsklimaattechniek.nl/sitemap.xml` is ingediend
+  in `sc-domain:tpsklimaattechniek.nl` en door Google verwerkt met **27 ontdekte URL's** (D-10). 27 is
+  precies `INDEXABLE_FLOOR` uit `lib/seo/invariants.ts` — hetzelfde getal dat de build-gate en
+  `scripts/verify-indexation.ts` afdwingen. Wijkt Google's aantal ooit af van 27, dan is dat een bevinding,
+  geen afrondingsverschil. De machinevorm van dit bewijs (`sitemaps.get` → `contents[].submitted`) staat in
+  `gsc/sitemap-tpsklimaattechniek.nl.json` (09-02).
+- `gsc/legacy-domain-property-verified.jpg` — `sc-domain:tpsventilatie.nl` "Ownership auto verified" via
+  de DNS-methode (D-05 #2, D-06).
+- Op 2026-09-16 is bovendien voor precies vijf URL's **"Indexering aanvragen"** gedaan (D-11): `/diensten`
+  en de vier pijlers `/diensten/airconditioning`, `/diensten/warmtepompen`, `/diensten/wtw`,
+  `/diensten/mechanische-ventilatie`. Alle vijf meldden al "URL is on Google" met geldige Breadcrumb- en
+  Review-snippet-rich-results. Het URL-inspectie-bewijs (`gsc/url-inspection-diensten.png`) landt in 09-03.
+- Er is **geen** sitemap ingediend voor het legacy-domein (D-09): `https://tpsventilatie.nl/wp-sitemap.xml`
+  geeft 404; de legacy-properties bestaan voor de performance-export en de Change of Address.
+
+## 6. Opnieuw vastleggen bij milestone-afsluiting
+
+⬜ 09-06 vult hier het volledige recept in (DNS-script, GSC-export, SERP-methode, GBP-transcriptie) en
+verklaart de gates (a)–(d) van D-25 voltooid.

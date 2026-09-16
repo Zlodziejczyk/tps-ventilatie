@@ -1,0 +1,15 @@
+# DNS snapshot tpsklimaattechniek.nl  taken 2026-09-16T17:58:43Z  queried @ns1.domaindiscount24.net
+# registry delegation: ns1.domaindiscount24.net. ns2.domaindiscount24.net. ns3.domaindiscount24.net. 
+# DS:   (empty = DNSSEC off)
+
+tpsklimaattechniek.nl.	300	IN	SOA	ns1.domaindiscount24.net. tech.key-systems.net. 2026091601 10800 3600 604800 28800
+tpsklimaattechniek.nl.	28800	IN	NS	ns1.domaindiscount24.net.
+tpsklimaattechniek.nl.	28800	IN	NS	ns3.domaindiscount24.net.
+tpsklimaattechniek.nl.	28800	IN	NS	ns2.domaindiscount24.net.
+tpsklimaattechniek.nl.	300	IN	A	216.198.79.1
+tpsklimaattechniek.nl.	300	IN	MX	10 mx0101.titan.email.
+tpsklimaattechniek.nl.	300	IN	MX	20 mx0102.titan.email.
+tpsklimaattechniek.nl.	300	IN	TXT	"v=spf1 include:spf0101.titan.email ~all"
+tpsklimaattechniek.nl.	300	IN	TXT	"google-site-verification=eXe-fYdK-V_ZCSunAaB7sVfj-fPiWtqtjlKPnWlwCZk"
+www.tpsklimaattechniek.nl. 300	IN	CNAME	863afab58c3e6cf4.vercel-dns-017.com.
+titan1._domainkey.tpsklimaattechniek.nl. 300 IN	TXT "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCK4Mws0wByIkM2SOla+nzDB8rJMmabthHoo9bCLQ11bjCr/hD+wJJ5E+p9NLyjITbuwAYQyrY22C1yH0anSSLaU5n4NbYWy/22uXAPjWLyFgoq+Rk/mvrkbYrlF4kclBQu02xVPQUpo6WuIpaxB9gb/FKEqLyrBpVMzCS6x9HzNQIDAQAB"
