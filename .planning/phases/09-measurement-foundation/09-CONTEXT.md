@@ -190,6 +190,29 @@ apex. This phase exists to spend that window.
   exist before the property does (D-16). (e) is independent of the Google-side work and can be built in
   parallel, but its first meaningful reading requires (b). **The whole of (a)–(d) gates Phase 10.**
 
+### Executed-state addendum (recorded 2026-09-16 at planning — user decisions taken during execution)
+
+> Gates (a)–(c) of D-25 were executed inline on 2026-09-16, ahead of planning, in the user's Chrome session.
+> Two decisions were made in the process that the plans must carry. They are numbered on from D-25 so the
+> plan-level decision-coverage gate tracks them like any other locked decision.
+
+- **D-26 — Legacy `tpsventilatie.nl` DNS delegation moved from cyberfolks (`ns1/ns2.opeiron.com`) to dd24
+  (`ns1/2/3.domaindiscount24.net`), zone mirrored record-for-record.** D-03 assumed the legacy TXT could be
+  pasted at the legacy registrar's panel; in practice the authoritative zone lived at cyberfolks, nobody on our
+  side holds that login, and Tomasz was unreachable — so the user chose (explicit go, twice) to mirror the
+  zone at dd24 (6×A, MX, SPF, DMARC, DKIM byte-identical, autoconfig CNAME, autodiscover SRV; 33/33 comparisons
+  PASS before the switch) and delegate to dd24's nameservers. The GSC TXT for `sc-domain:tpsventilatie.nl` now
+  lives in that zone; the property verified ~19:40Z. **Supersedes** D-03's registrar split and the REQUIREMENTS
+  out-of-scope row "Moving legacy DNS nameservers". **Rollback:** dd24 → Nameserver tab → external
+  `ns1/2/3.cyberfolks.pl` (cyberfolks keeps its zone; registry TTL ~1 h). **Consequence for Phase 10:** the
+  apex/`www` A-record repoint and the SPF `a` drop (MIG-02) happen at dd24 — no cyberfolks access needed.
+  This phase records the decision, the mirror evidence and the rollback in the baseline; it edits **no** DNS.
+- **D-27 — The baseline directory is `docs/baseline/2026-09-16/`.** D-12 named the context-gathering date;
+  D-17 makes the *capture* date authoritative, and 2026-09-16 is when the pre-migration state was first
+  captured (both zones snapshotted, both Domain properties verified, sitemap processed at 27). Artefacts
+  captured later (SERP baseline, GBP transcription, GSC exports) carry their own `taken:` timestamp in the
+  README manifest. The milestone-close retake gets its own dated directory.
+
 ### Claude's Discretion
 
 - Script and module naming within the existing conventions (`scripts/measure-indexation.ts`,
