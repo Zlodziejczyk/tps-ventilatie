@@ -37,6 +37,7 @@ genuinely rank — starting by un-hiding the 21 service pages Google has never b
 ---
 
 #### Phase 8: Indexation Unlock
+
 **Goal:** Make the 21 built-but-hidden service pages visible to Google, and make that class of regression
 impossible to ship silently again.
 **Requirements:** IDX-01, IDX-02, IDX-03, IDX-04, IDX-05
@@ -45,6 +46,7 @@ impossible to ship silently again.
 kennisbank links all need live, indexable targets.
 
 **Success criteria:**
+
 1. `scripts/assert-seo.ts` asserts sitemap membership ⇔ `isIndexable()` per node plus an indexable floor, and fails if either breaks
 2. Production HTML for all 21 service URLs contains no `noindex` directive
 3. Production `sitemap.xml` returns 27 URLs
@@ -55,6 +57,7 @@ kennisbank links all need live, indexable targets.
 otherwise block its own fix.
 
 #### Phase 9: Measurement Foundation
+
 **Goal:** Be able to prove what the milestone did, and capture the pre-migration state while it still exists.
 **Requirements:** MEAS-01, MEAS-02, MEAS-03, MEAS-04, MEAS-05, MEAS-06
 
@@ -62,13 +65,35 @@ otherwise block its own fix.
 Once Phase 10 repoints it, verifying the old property and baselining its rankings gets much harder.
 
 **Success criteria:**
+
 1. All four properties verified in GSC — both variants of each domain (domain-level where possible)
 2. Sitemap submitted and GSC reports it processed with 27 discovered URLs
 3. Baseline artefact committed: GSC export, ranking snapshot, GBP state, full DNS zone snapshot
 4. Indexing requested for the hub + 4 pillars
 5. Vercel Analytics reporting live traffic
 
+**Plans:** 6 plans in 4 waves (planned 2026-09-16)
+
+**Wave 1**
+
+- [ ] 09-01-PLAN.md — Baseline directory: read-only DNS snapshot script + live snapshots, rescue of the 2026-09-16 evidence (D-26/D-27 records), GBP state (wave 1)
+- [ ] 09-02-PLAN.md — GSC service account + JWT auth, Search Console API client, Search Analytics/sitemap export and the 24-query shortlist (wave 1)
+- [ ] 09-03-PLAN.md — Fifth + legacy URL-prefix properties, ownership delegation, Vercel Web Analytics/Speed Insights + verification env var, `verify-measurement.ts` probe (wave 1)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 09-04-PLAN.md — Pure indexation thresholds (ramp + regressions, proven to bite) and the weekly `measure-indexation.ts` reading (wave 2)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 09-05-PLAN.md — GitHub Actions: weekly measurement cron with alert issues + post-deploy `verify-indexation` on Production deployments, both observed on real runs (wave 3)
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 09-06-PLAN.md — Geolocated SERP baseline with honest zeroes, D-17 completeness gate, analytics-after-24h proof, runbook/REQUIREMENTS/npm-script reconcile (wave 4)
+
 #### Phase 10: Reversible Old-Brand Migration
+
 **Goal:** Retire `tpsventilatie.nl` as a competing brand and pass its equity to the new domain — without
 breaking the owner's email and without closing the door on a revert.
 **Requirements:** MIG-01…MIG-10
@@ -77,6 +102,7 @@ breaking the owner's email and without closing the door on a revert.
 be GSC-verified and baselined (Phase 9).
 
 **Success criteria:**
+
 1. Every one of the 9 legacy URLs reaches its target in exactly one hop, from **both** legacy hostnames
 2. `info@tpsventilatie.nl` verified sending and receiving after cutover; SPF no longer contains `a`
 3. Owner has working webmail and WP-admin routes that do not depend on the apex, verified pre-cutover
@@ -88,10 +114,12 @@ be GSC-verified and baselined (Phase 9).
 with a real point of no return — roughly 3–4 weeks after cutover, reverting becomes a second migration.
 
 #### Phase 11: Local Presence — GBP & Citations
+
 **Goal:** Make Google's entity record for this business correct, consistent, and unambiguous under the new brand.
 **Requirements:** GBP-01…08, NAP-01…05
 
 **Success criteria:**
+
 1. GBP primary category is the correct HVAC/installation category with ≤4 secondaries, website URL on the `www` host
 2. Services list mirrors the taxonomy; service area set from the 8 confirmed areas
 3. A master NAP record exists and Tier-1 + Tier-2 listings match it exactly
@@ -103,12 +131,14 @@ citation cleanup → **then** the name change, alone. Editing name + categories 
 Google as a listing takeover, which is the top suspension trigger.
 
 #### Phase 12: On-Page Depth & Kennisbank
+
 **Goal:** Turn 27 indexable pages into pages that actually compete, and add supporting content.
 **Requirements:** SEO-11…15, BLOG-01, BLOG-03, BLOG-04, BLOG-05
 
 **Independent of Phases 10–11** — could run in parallel if capacity allows.
 
 **Success criteria:**
+
 1. A keyword→page map covers all 27 pages with no two pages targeting the same primary term
 2. Internal linking connects hub → pillar → sub-service, with a gate proving no dead internal links
 3. `/projecten` cases are linked from the service pages they evidence
@@ -116,17 +146,18 @@ Google as a listing takeover, which is the top suspension trigger.
 5. Articles appear in the sitemap via `policy.ts` — not a parallel list — and emit valid Article JSON-LD
 
 #### Phase 13: Brand Tail
+
 **Goal:** Remove the last places the old brand lives, once everything else is verified stable.
 **Requirements:** BRND-01, BRND-02
 
 **Success criteria:**
+
 1. Footer social icons and JSON-LD `sameAs` carry the owner's IG/FB URLs
 2. Repo and Vercel project renamed to `tpsklimaattechniek`
 3. Post-rename verification passes: custom domains still attached, `/api/lead` still delivers, env vars intact
 
 **Why last:** the rename has zero SEO value and real collateral risk — it changes the `*.vercel.app`
 domain and 404s previously shared preview URLs. It must never be able to jeopardise the rest.
-
 
 ## Progress
 
