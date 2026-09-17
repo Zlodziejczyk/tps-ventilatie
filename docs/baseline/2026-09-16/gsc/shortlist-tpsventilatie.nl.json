@@ -1,0 +1,129 @@
+{
+  "property": "sc-domain:tpsventilatie.nl",
+  "startDate": "2025-05-19",
+  "endDate": "2026-09-16",
+  "country": "nld",
+  "taken": "2026-09-17T08:24:03.216Z",
+  "entries": [
+    {
+      "query": "klimaattechniek Zoetermeer",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "airconditioning",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "airco laten installeren",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "airco onderhoud",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "airco storing",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "airco advies Zoetermeer",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "warmtepomp",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "warmtepomp laten installeren",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "warmtepomp onderhoud",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "warmtepomp storing",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "warmtepomp advies regio Den Haag",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "wtw unit",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "wtw-unit vervangen",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "wtw onderhoud",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "wtw inregelen",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "wtw storing",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "wtw unit aanleggen",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "mechanische ventilatie",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "mechanische ventilatie vervangen",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "mechanische ventilatie onderhoud",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "mechanische ventilatie storing",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "mechanische ventilatie aanleggen",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "tps klimaattechniek",
+      "rows": [],
+      "zero": true
+    },
+    {
+      "query": "tps ventilatie",
+      "rows": [],
+      "zero": true
+    }
+  ]
+}

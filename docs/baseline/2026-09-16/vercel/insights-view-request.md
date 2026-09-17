@@ -31,3 +31,7 @@ Both pages produced the pair `script.js` + `view` (4 requests for 2 loads). The 
 ## Deviation from the plan's evidence format
 
 The plan named `web-analytics-enabled.png` / `speed-insights-enabled.png` (dashboard screenshots). The owner chose the CLI route and skipped the Chrome login for vercel.com, so the evidence is machine output instead: `web-analytics-enabled.json` (project API excerpt) and `speed-insights-enabled.txt` (metrics query). Both carry a `taken` timestamp.
+
+## Speed Insights vitals beacon (observed later in the same session)
+
+`POST /9b5146f14b1d5ad9/vitals` → **503** on the third page (`/contact`, after scrolling `/diensten/airconditioning`). The Speed Insights *script* loaded with 200 on every page; the metrics query (see `speed-insights-enabled.txt`) shows production LCP samples for 2026-09-16, so collection was working earlier the same day. A single 503 on the vitals endpoint is recorded here as observed, not explained (Hobby data-point limit or a transient); 09-06 re-checks the metric after ≥ 24 h.
