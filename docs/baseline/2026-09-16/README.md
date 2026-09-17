@@ -29,7 +29,7 @@ Directory aangemaakt: 2026-09-16 · eerste vastlegging: 2026-09-16T17:58Z · laa
 
 ## 2. Manifest
 
-Eén rij per bestand. `taken` is UTC. Rijen met ⬜ worden door het genoemde plan ingevuld of verwijderd.
+Eén rij per bestand. `taken` is UTC. Een rij met ⏳ wacht op een tijdvenster en wordt door 09-06 ingevuld zodra dat venster open is.
 
 | bestand | wat bewijst het | taken (UTC) | bron | opnieuw maken |
 |---|---|---|---|---|
@@ -59,7 +59,9 @@ Eén rij per bestand. `taken` is UTC. Rijen met ⬜ worden door het genoemde pla
 | `vercel/web-analytics-enabled.json` | Project-API-uittreksel: `webAnalytics.enabledAt` 2026-09-16T22:18:46Z (ingeschakeld door de eigenaar via `vercel project web-analytics enable`), Speed Insights `dataReceivedAt` 2026-08-23, productie-deployment 2026-09-16T22:24:48Z **ná** het inschakelen (D-24) — vervangt de geplande dashboard-screenshot (eigenaar koos de CLI-route) | 2026-09-16T22:50:05Z | `vercel api /v9/projects/{id}` (CLI 59.19.1) | `npx vercel@latest api "/v9/projects/prj_vL6mnZFhKHcxBjmyeCtrhJEKob0Q?teamId=team_YrD4rsBlATPg7g02y1QThOhg"` |
 | `vercel/speed-insights-enabled.txt` | Speed Insights rapporteert: p75-LCP-query over 7 dagen levert echte productie-samples (avg 1,18 s) — was al aan sinds 2026-08-23 | 2026-09-16T22:50:05Z | `vercel metrics vercel.speed_insights.lcp_ms` (CLI 59.19.1) | `npx vercel@latest metrics vercel.speed_insights.lcp_ms --aggregation p75 --since 7d --prod` |
 | `vercel/insights-view-request.md` | Browser-beacon-bewijs (MEAS-06): `POST /2fd128cc8fe7c492/view` → 200 op twee pagina's (het project-unieke pad; niet `/_vercel/insights/view`), REST-telling `visitors 2 / pageviews 5` op 2026-09-16/17, MCP-404 en de Speed-Insights-`vitals`-503 als waargenomen genoteerd | 2026-09-16T22:5xZ (zie `taken:` in het bestand) | Chrome `read_network_requests` + `vercel api /v1/query/web-analytics/visits/count` | pagina laden in Chrome, netwerkverzoeken filteren op het script-pad; telling via de REST-call in het bestand |
-| ⬜ 09-06 · `serp/serp-baseline.md`, `serp/serp-example-footer.png`, `vercel/analytics-after-24h.md` | Geolokaliseerde SERP-nulmeting voor 24 queries × 2 domeinen met eerlijke nullen (D-13); Analytics rapporteert na ≥24 uur (MEAS-06) | — | — | — |
+| `serp/serp-baseline.md` | Geolokaliseerde SERP-nulmeting (D-13): 24 queries × 2 domeinen, positie in de top 20 of `niet in top 20`, local-pack-kolom; **17/24 vastgelegd op 2026-09-17** (Google gaf daarna een 403 — de resterende 7 rijen staan expliciet als `niet vastgelegd` en worden aangevuld) | 2026-09-17T09:00Z–10:58Z (zie `taken:` in het bestand) | Chrome (google.nl, `pws=0`, `uule` Zoetermeer) | de methode-sectie in het bestand: zelfde URL-template, zelfde `uule`, footer-controle, p.1 + p.2 |
+| `serp/serp-example-footer.png` | Footer-controle van de eerste SERP: **"Zoetermeer - Op basis van je IP-adres"** — de uule-locatie is actief | 2026-09-17T09:00:09Z | Chrome | eerste query laden, naar de voet scrollen, screenshot |
+| `vercel/analytics-after-24h.md` | Web Analytics rapporteert ≥ 24 uur na inschakelen (MEAS-06): positieve bezoekers-/paginaweergaven-telling via de REST-count + rapportagevenster | ⏳ na 2026-09-17T22:18Z (24 h na `enabledAt`) | `vercel api /v1/query/web-analytics/visits/count` | idem |
 
 **Diff-hint bij de DNS-bestanden.** Wie de pre-switch snapshot vergelijkt met de post-switch snapshot
 ziet drie soorten ruis die géén inhoudelijk verschil zijn: (1) TTL 14400 → 28800 en een nieuw
@@ -153,5 +155,13 @@ D-03 (de gebruiker plaatst met de hand een TXT-record bij **beide** registrars) 
 
 ## 6. Opnieuw vastleggen bij milestone-afsluiting
 
-⬜ 09-06 vult hier het volledige recept in (DNS-script, GSC-export, SERP-methode, GBP-transcriptie) en
-verklaart de gates (a)–(d) van D-25 voltooid.
+Herhaal bij milestone-afsluiting in een **nieuwe** datummap `docs/baseline/<datum>/` (D-12, D-27) — nooit in deze map:
+
+1. **DNS** — `bash scripts/snapshot-dns.sh tpsklimaattechniek.nl tpsventilatie.nl --out docs/baseline/<datum>/dns` (alleen lezen; diff tegen de bestanden hier). Controleer dat beide `google-site-verification`-TXT-records nog bestaan (D-07).
+2. **Search Console** — `npx tsx scripts/export-gsc-performance.ts --out docs/baseline/<datum>/gsc` (of `npm run baseline:gsc -- --out …`); vereist de service-accountsleutel via `.env.local`. Verwacht: sitemap `submitted === 27` (of het dan geldende `INDEXABLE_FLOOR`), `errors === 0`, en nu wél Search-Analytics-rijen.
+3. **SERP** — exact de methode uit `serp/serp-baseline.md`: zelfde URL-template, zelfde `uule` (letterlijke `+`), `gl=nl&hl=nl&pws=0`, footer-controle "Zoetermeer", p.1 + p.2 (Google negeert `num=20`), 10–20 s tussen pagina's; queries uit `gsc/serp-queries.json` van de nieuwe export. Vergelijk rij voor rij met deze tabel.
+4. **Google Business Profile** — Business Profile Manager → profiel → *Edit profile* → velden overnemen in `gbp/gbp-state.md` (zelfde labels als D-15), plus een screenshot van het kennispaneel op google.nl.
+5. **Vercel** — `npm run verify:measurement -- https://www.tpsklimaattechniek.nl` groen; analytics-telling via `vercel api /v1/query/web-analytics/visits/count` in `vercel/analytics-<datum>.md`.
+6. **Indexatie** — de wekelijkse metingen in `docs/measurements/gsc/` zijn het tijdreeksbewijs; `npm run measure` levert een extra dagmeting.
+
+D-25 gates: (a) DNS vastgelegd vóór en na de wissel ✅ (09-01), (b) GSC machinebewijs 27/0 + eigenaarschap gedelegeerd ✅ (09-02/09-03), (c) wekelijkse meting + post-deploy-probe geautomatiseerd en bewezen ✅ (09-04/09-05), (d) SERP-nulmeting + analytics-na-24h — **lopend** (09-06: 17/24 SERP-rijen vastgelegd; analytics-venster opent 2026-09-17T22:18Z). Phase 10 is ontgrendeld zodra (d) is afgerond en de completeness-gate groen is.
