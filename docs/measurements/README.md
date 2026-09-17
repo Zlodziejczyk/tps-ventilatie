@@ -69,3 +69,13 @@ Vóór 2026-09-30 geldt geen trede; de regressie-meldingen (`lost-indexation`, `
 
 Exit-codes: `0` schoon · `1` één of meer meldingen · `2` gebruiks- of authenticatiefout (bijv. de
 service-account is geen *Full user* op de property).
+
+## Automatisch (GitHub Actions)
+
+Sinds Phase 9 (09-05) draait de meting zonder mens:
+
+- **Wekelijks** — `.github/workflows/measure-indexation.yml` start elke **maandag 06:17 UTC** (08:17 Nederlandse zomertijd, 07:17 wintertijd) en voert `scripts/measure-indexation.ts` uit. Een groene run commit de nieuwe dagmeting als `github-actions[bot]` in `docs/measurements/gsc/` (`chore(measure): weekly GSC indexation reading`). Slaat een drempel aan (exit 1), dan opent de run **één** issue met het label `indexation-alert` (of reageert op het openstaande issue) en wordt de run rood. Handmatig starten: Actions → measure-indexation → *Run workflow*, of `gh workflow run measure-indexation.yml`; met de invoer `simulate_breach=true` bewijs je alleen het alarmpad (label `[SIMULATED]`, er wordt geen meting gecommit).
+- **Na elke productie-deploy** — `.github/workflows/verify-indexation.yml` reageert op Vercel's `deployment_status` voor *Production* en draait `scripts/verify-indexation.ts` tegen `CANONICAL_ORIGIN` (wat wij serveren, D-22/D-23). Rood = een geserveerde regressie (pagina donker, redirect, noindex) en levert hetzelfde `indexation-alert`-issue op. De twee workflows stellen twee verschillende vragen; als ze het oneens zijn, is dát het signaal om als eerste te onderzoeken.
+- **60-dagenregel** — GitHub schakelt een geplande workflow op een publieke repository uit na **60** dagen zonder activiteit in de repository. De wekelijkse bot-commit is zelf activiteit, dus dit gebeurt normaal niet; blijft de maandagmeting toch uit, dan: Actions → measure-indexation → *Enable workflow*, of één handmatige dispatch.
+- **Sleutel roteren** — de workflow gebruikt precies één secret, `GSC_SERVICE_ACCOUNT_JSON` (de JSON-sleutel van `gsc-measure@tps-klimaattechniek-seo.iam.gserviceaccount.com`). Roteren: Cloud Console → IAM → Service accounts → gsc-measure → Keys → *Add key* (JSON) → `gh secret set GSC_SERVICE_ACCOUNT_JSON < nieuwe-sleutel.json` → het lokale bestand `~/.config/tps-klimaattechniek/gsc-service-account.json` vervangen → de oude sleutel in de Console verwijderen. Aanbevolen direct na Phase 9 (de eerste sleutel is tijdens de uitvoering handmatig verplaatst).
+- **Wekelijkse rebuild** — de bot-push naar `main` laat Vercel dezelfde code opnieuw bouwen: een gratis wekelijkse bouwcontrole, bewust geaccepteerd. Wordt dat ooit storend, dan is `ignoreCommand` in `vercel.json` de uitschakelknop (bijv. overslaan als alleen `docs/measurements/` wijzigde).
