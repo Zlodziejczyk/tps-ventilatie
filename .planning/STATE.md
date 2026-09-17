@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Rebrand Migration & SEO Ranking Push
 status: executing
-last_updated: "2026-09-17T08:37:06.698Z"
+last_updated: "2026-09-17T08:37:07.549Z"
 last_activity: 2026-09-17
 progress:
   total_phases: 6
@@ -25,7 +25,7 @@ See: .planning/PROJECT.md (updated 2026-08-19)
 ## Current Position
 
 Phase: 09 (measurement-foundation) — EXECUTING
-Plan: 3 of 6
+Plan: 4 of 6
 Status: Ready to execute
 Last activity: 2026-09-17
 
@@ -92,6 +92,7 @@ Last activity: 2026-09-17
 | Phase 05 P03 | ~18 min | 3 tasks | 4 files |
 | Phase 09 P01 | 13 min | 3 tasks | 14 files |
 | Phase 09 P02 | 55 | 2 tasks | 19 files |
+| Phase 09 P03 | 75 | 3 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -109,6 +110,7 @@ Recent decisions affecting current work:
 - [Phase 09]: 09-01: GBP fields transcribed verbatim from page text (knowledge panel + editprofile iframe on www.google.com); provenance screenshots from business.google.com; knowledge-panel screenshot deferred to 09-06 — The Chrome extension can read www.google.com but is denied screenshots there and refuses www.google.nl; the user must grant site access before the 09-06 SERP baseline
 - [Phase 09]: 09-01: requirement IDs (MEAS-03/04) are marked complete at phase close via phase.complete, not per plan — MEAS-03/04 span plans 09-01/02/03/06; a half-captured baseline must not read as done (the Phase 8 lesson)
 - [Phase 09]: 09-02: service-account key created only after the OWNER overrode iam.disableServiceAccountKeyCreation at project scope (legacy constraint); key lives at ~/.config/tps-klimaattechniek/gsc-service-account.json (0600) + GitHub secret GSC_SERVICE_ACCOUNT_JSON; day-one export shows 0 Search Analytics rows on both properties — re-run in 09-06 — Claude does not edit org security policy (prohibited action); the downloaded key was invisible to the session shell (macOS TCC on ~/Downloads) and was hand-delivered by the owner — its contents passed through the assistant context, so a rotation (new key → gh secret set → delete a96286e54ca9) is the recorded follow-up; zero rows one day after property verification is a timing statement (RESEARCH Pitfall 9)
+- [Phase 09]: 09-03: Vercel 'enabled' evidence is API/CLI output (web-analytics-enabled.json, speed-insights-enabled.txt) instead of dashboard PNGs; production was rebuilt via the CLI-opened PR #1 merge (main @ 56d239c), so the phase branch merged origin/main (33baec3) before the 09-05 fast-forward; beacons post to the project-unique /2fd128cc8fe7c492/view — The owner chose the CLI route and skipped the vercel.com browser login; the API shows enabledAt 2026-09-16T22:18:46Z before the 22:24:48Z rebuild, the browser beacon returned 200 and the REST count is positive (2 visitors / 5 pageviews) — stronger proof than a screenshot; the merge (not rebase) keeps the pushed branch history intact
 
 ### Roadmap Evolution
 
@@ -159,10 +161,10 @@ Items acknowledged and deferred at v1.0 milestone close (2026-08-12):
 
 ## Session Continuity
 
-Last session: 2026-09-17T08:37:06.694Z
+Last session: 2026-09-17T08:37:07.545Z
 
 Last session: 2026-07-01 — Phase 6 executed end-to-end (6/6 plans, 3 waves, inline sequential per OneDrive constraint).
-Stopped at: Completed 09-02-PLAN.md
+Stopped at: Completed 09-03-PLAN.md
 POST-EXECUTION FIXES (2026-07-01, after owner visual review — screenshot audit added): (a) hero H1 gradient shipped as blue blocks — signature-gradient's `background` shorthand defeats bg-clip-text; fixed with a dedicated `gradient-text` @utility using background-image (commit 7a24d54); (b) ImageBand reframed to a content-cropped home-hero-crop.jpg (blank wall removed via sharp) + pillar cards gained hover depth + aurora opacity bumped (commit 10fa4e4). Verified via Playwright screenshots (desktop 1440 + mobile 390) — all good. LESSON: green Vercel build ≠ visually correct; always screenshot-audit after UI deploy (see memory visual-verify-after-ui-deploy).
 WTW/MV BRANDS DONE (owner 2026-07-02→03): WTW = Zehnder (preferred)/Duco/Itho Daalderop, MV = Zehnder/Duco added to BRANDS + wired to the Vervangen nodes; erkendInstallateur:true (owner confirmed 2026-07-03 → verified badge renders on WTW/MV pillar pages, commit 4387d1a). Neutral fallback gone on homepage pillar grid + pillar pages. Verified on preview. Brand-mark square colors are approximate tints — owner WAIVED the official-color/logo swap (accepted as final, no open item).
 FINALIZED 2026-07-03 — owner reviewed the homepage and approved; no open items for Phase 6. Merged branch → main (FF, commit 5ab3c5e); Vercel production deploy READY + verified on tps-ventilatie.vercel.app.
