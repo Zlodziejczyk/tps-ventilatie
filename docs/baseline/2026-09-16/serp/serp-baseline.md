@@ -44,4 +44,4 @@ aantal queries: 24 (gelezen uit `gsc/serp-queries.json`, niet overgetypt)
 | 23 | tps klimaattechniek | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
 | 24 | tps ventilatie | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
 
-**Totalen:** tpsklimaattechniek.nl `niet in top 20` bij **16/24** queries; tpsventilatie.nl `niet in top 20` bij **15/24**; TPS in het local pack bij **3/24**. De nullen zijn de vóór-kant van de milestone-claim (D-13).
+**Totalen (17 van 24 queries vastgelegd, 7 nog niet — zie opmerking):** tpsklimaattechniek.nl `niet in top 20` bij **16/17** vastgelegde queries; tpsventilatie.nl `niet in top 20` bij **15/17**; TPS in het local pack bij **3/17**. De nullen zijn de vóór-kant van de milestone-claim (D-13).
