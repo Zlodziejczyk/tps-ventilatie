@@ -35,3 +35,5 @@ The plan named `web-analytics-enabled.png` / `speed-insights-enabled.png` (dashb
 ## Speed Insights vitals beacon (observed later in the same session)
 
 `POST /9b5146f14b1d5ad9/vitals` → **503** on the third page (`/contact`, after scrolling `/diensten/airconditioning`). The Speed Insights *script* loaded with 200 on every page; the metrics query (see `speed-insights-enabled.txt`) shows production LCP samples for 2026-09-16, so collection was working earlier the same day. A single 503 on the vitals endpoint is recorded here as observed, not explained (Hobby data-point limit or a transient); 09-06 re-checks the metric after ≥ 24 h.
+
+**Hercontrole 2026-09-17T12:03Z (09-06):** `npx vercel@59.19.1 metrics vercel.speed_insights.lcp_ms --aggregation p75 --since 1d --prod` → periode 2026-09-16 12:00 – 2026-09-17 13:00 UTC, interval 1 h, filter `environment:production`: **avg 956 ms, min 552 ms (09-16 22:00), max 1,38 s (09-16 16:00)** — er komen dus ook ná de waargenomen 503 LCP-samples binnen; de 503 was een eenmalige, voorbijgaande fout van de ingest-endpoint, geen configuratieprobleem.
