@@ -1,0 +1,461 @@
+{
+  "taken": "2026-09-17T08:28:42.931Z",
+  "property": "sc-domain:tpsklimaattechniek.nl",
+  "floor": 27,
+  "sitemap": {
+    "submitted": 27,
+    "errors": 0,
+    "lastDownloaded": "2026-09-16T17:30:55.965Z"
+  },
+  "urls": [
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-16T17:33:19Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/airconditioning",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-16T17:35:30Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/installatie",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T13:04:31Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/installatie",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/installatie",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/onderhoud",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T10:37:48Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/onderhoud",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/onderhoud",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/reparatie-storing",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T13:13:56Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/reparatie-storing",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/reparatie-storing",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/advies",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T12:46:10Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/advies",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/advies",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-16T17:35:30Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/installatie",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T12:56:48Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/installatie",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/installatie",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/onderhoud",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T13:04:31Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/onderhoud",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/onderhoud",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/reparatie-storing",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-17T03:14:39Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/reparatie-storing",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/reparatie-storing",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/advies",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T17:57:04Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/advies",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/advies",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/reparatie-storing",
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/wtw",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-16T17:37:35Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/wtw/vervangen",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-17T04:39:35Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/vervangen",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/vervangen",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/wtw/onderhoud-reinigen",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T13:07:36Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/onderhoud-reinigen",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/onderhoud-reinigen",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/wtw/inregelen",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-06T01:56:56Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/inregelen",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/inregelen",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/wtw/storing",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T10:49:06Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/storing",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/storing",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/wtw/aanleggen",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T09:53:59Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/aanleggen",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/aanleggen",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-16T17:37:35Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/vervangen",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T12:50:15Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/vervangen",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/vervangen",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/onderhoud-reinigen",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T14:18:37Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/onderhoud-reinigen",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/onderhoud-reinigen",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/storing",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T13:01:54Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/storing",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/storing",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/aanleggen",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-17T03:10:11Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/aanleggen",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/aanleggen",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-16T23:04:25Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/reparatie-storing"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/tarieven",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-05T05:53:09Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/tarieven",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/tarieven",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/tarieven?tab=mv",
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/projecten",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-05T19:26:05Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/projecten",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/projecten",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/over-ons",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-08-23T12:45:14Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/over-ons",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/over-ons",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    },
+    {
+      "url": "https://www.tpsklimaattechniek.nl/contact",
+      "verdict": "PASS",
+      "coverageState": "Submitted and indexed",
+      "robotsTxtState": "ALLOWED",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawlTime": "2026-09-05T21:41:37Z",
+      "pageFetchState": "SUCCESSFUL",
+      "googleCanonical": "https://www.tpsklimaattechniek.nl/contact",
+      "userCanonical": "https://www.tpsklimaattechniek.nl/contact",
+      "referringUrls": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "crawledAs": "MOBILE"
+    }
+  ]
+}
