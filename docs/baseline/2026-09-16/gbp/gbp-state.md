@@ -78,5 +78,7 @@ Het kennispaneel en het bewerkscherm draaien op `www.google.com`; de Chrome-exte
 geen screenshot maken (site-permissie niet verleend), maar kon de paginatekst wél lezen. Alle waarden in de
 tabel hierboven zijn daarom **letterlijk uit de paginatekst overgenomen** (`#rhs`-kennispaneel en de
 `editprofile/info`-iframe, 2026-09-16 ±20:35Z), niet uit het geheugen. Een screenshot van het publieke
-kennispaneel kan in 09-06 worden toegevoegd zodra `www.google.nl` voor de extensie is toegestaan (die
-permissie is toch nodig voor de SERP-nulmeting).
+kennispaneel is in 09-06 toegevoegd, nadat `www.google.nl` voor de extensie was toegestaan:
+`knowledge-panel-2026-09-17T115543Z.png` (google.nl, merkquery `tps ventilatie` uit de SERP-nulmeting,
+2026-09-17T11:55:43Z; ingelogd profiel, dus mét het "Je bedrijf op Google"-beheerderspaneel erboven — het
+publieke paneel rechts toont 4,9 ★ / 38 reviews, adres, telefoon en openingstijden, gelijk aan de tabel hierboven).

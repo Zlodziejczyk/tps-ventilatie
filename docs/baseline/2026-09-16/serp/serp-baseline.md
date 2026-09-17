@@ -1,6 +1,6 @@
 # SERP-nulmeting — 24 queries × 2 domeinen (D-13)
 
-taken: 2026-09-17T09:00Z – 10:58Z (q1–q17 p.1) en 11:22Z – 11:33Z (q17 p.2, q18–q23; na opheffing van Google's 403-blokkade); q24 nog niet vastgelegd — Google gaf om 11:33Z opnieuw een 403
+taken: 2026-09-17T09:00Z – 10:58Z (q1–q17 p.1), 11:22Z – 11:33Z (q17 p.2, q18–q23) en 11:54Z (q24) — de twee onderbrekingen zijn Google's 403-blokkades (±20 min wachten)
 aantal queries: 24 (gelezen uit `gsc/serp-queries.json`, niet overgetypt)
 
 ## Methode
@@ -42,6 +42,6 @@ aantal queries: 24 (gelezen uit `gsc/serp-queries.json`, niet overgetypt)
 | 21 | mechanische ventilatie storing | niet in top 20 | niet in top 20 | geen local pack | p.1 telde 9 organische resultaten |
 | 22 | mechanische ventilatie aanleggen | niet in top 20 | niet in top 20 | geen local pack | p.1 telde 7 organische resultaten |
 | 23 | tps klimaattechniek | 1 | 6 | geen local pack |  |
-| 24 | tps ventilatie | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
+| 24 | tps ventilatie | 2 | 1 | geen local pack | p.1 telde 7 organische resultaten |
 
-**Totalen (23 van 24 queries vastgelegd, 1 nog niet — zie opmerking):** tpsklimaattechniek.nl `niet in top 20` bij **21/23** vastgelegde queries; tpsventilatie.nl `niet in top 20` bij **20/23**; TPS in het local pack bij **5/23**. De nullen zijn de vóór-kant van de milestone-claim (D-13).
+**Totalen (24 van 24 queries vastgelegd):** tpsklimaattechniek.nl `niet in top 20` bij **21/24** vastgelegde queries; tpsventilatie.nl `niet in top 20` bij **20/24**; TPS in het local pack bij **5/24**. De nullen zijn de vóór-kant van de milestone-claim (D-13).
