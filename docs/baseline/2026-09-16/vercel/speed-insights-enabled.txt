@@ -1,0 +1,19 @@
+taken: 2026-09-16T22:50:05Z
+command: npx vercel@59.19.1 metrics vercel.speed_insights.lcp_ms --aggregation p75 --since 7d --prod  (team pushly-projects, project tps-ventilatie)
+meaning: Speed Insights is enabled AND receiving production data — the metric query returns real LCP samples; the project API shows speedInsights.dataReceivedAt = 2026-08-23T00:46:34Z, so Speed Insights was already collecting before Phase 9 (only Web Analytics was newly enabled on 2026-09-16).
+
+<claude-code-hint v="1" type="plugin" value="vercel@claude-plugins-official" />
+Vercel CLI 59.19.1 (Node.js 26.0.0)
+Retrieving project…
+Querying metrics...
+> Metric: vercel.speed_insights.lcp_ms p75
+> Period: 2026-09-09 20:00 to 2026-09-17 00:00 (UTC)
+> Interval: 4h
+> Filter: environment:production
+> Project: tps-ventilatie (pushly-projects)
+
+    avg          min                   max          
+  1.18s  552ms at 09-16 20:00  1.6s at 09-16 08:00  
+
+sparklines:
+  ·······································█·▇▁

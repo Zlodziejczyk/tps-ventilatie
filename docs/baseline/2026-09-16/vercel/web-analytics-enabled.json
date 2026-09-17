@@ -1,0 +1,28 @@
+{
+  "taken": "2026-09-16T22:50:05Z",
+  "source": "GET https://api.vercel.com/v9/projects/{projectId}?teamId={teamId} (Vercel CLI 59.19.1 `vercel api`, team pushly-projects, plan hobby)",
+  "projectId": "prj_vL6mnZFhKHcxBjmyeCtrhJEKob0Q",
+  "name": "tps-ventilatie",
+  "webAnalytics": {
+    "id": "IRpYfQMIp0NmnyRqLrIRejOzb",
+    "enabledAt": 1789597126364,
+    "hasData": true
+  },
+  "speedInsights": {
+    "id": "RsXMCnVLzHFNG9USQojrcZzKXxG",
+    "hasData": true,
+    "dataReceivedAt": 1787445994142
+  },
+  "latestProductionDeployment": {
+    "url": "tps-ventilatie-5suh5lnso-pushly-projects.vercel.app",
+    "createdAt": 1789597488487,
+    "readyState": "READY",
+    "gitCommitSha": "56d239c032f7d360d623a42ce033c65ee62e7058",
+    "gitCommitMessage": "Merge pull request #1 from Zlodziejczyk/vercel/vercel-web-analytics-integrati-siu8xv"
+  },
+  "iso": {
+    "webAnalyticsEnabledAt": "2026-09-16T22:18:46.364Z",
+    "speedInsightsDataReceivedAt": "2026-08-23T00:46:34.142Z",
+    "productionCreatedAt": "2026-09-16T22:24:48.487Z"
+  }
+}
