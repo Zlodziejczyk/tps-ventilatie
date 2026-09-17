@@ -7,7 +7,7 @@
 > **Geen wachtwoorden/tokens in dit document.** De GSC-token hoort in een Vercel
 > environment variable, niet hier.
 
-Last updated: 2026-06-05 (Phase 3 — SEO infrastructure)
+Last updated: 2026-09-17 (Phase 9 — Measurement Foundation: §2/§3 uitgevoerd, §6 geautomatiseerd, §7 nieuw)
 
 ---
 
@@ -35,30 +35,43 @@ JSON-LD so Google consolidates the signals.
 - [ ] Voeg, zodra beschikbaar, de GBP-URL + social-URLs toe — die voeden later de
       JSON-LD `sameAs` (nu bewust leeg gelaten, A-3).
 
-## 2. Google Search Console (GSC) — SEO-09
+## 2. Google Search Console — uitgevoerd (Phase 9)
 
-- [ ] **Verificatie-token instellen:** Vercel → Project `tps-app` → Settings →
-      Environment Variables → voeg **`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`** toe met de
-      `content`-waarde uit GSC → Settings → Ownership verification → **HTML tag**.
-      *(Publiek token, geen secret. Leeg = de meta-tag wordt simpelweg weggelaten.)*
-- [ ] Redeploy, bekijk de paginabron en bevestig dat
-      `<meta name="google-site-verification" content="…">` aanwezig is.
-- [ ] Voltooi de verificatie in GSC.
-- [ ] **Sitemap indienen:** GSC → Sitemaps → dien **`https://tpsventilatie.nl/sitemap.xml`**
-      in. (Bevat nu de 4 statische pagina's; service-pagina's komen er automatisch bij
-      zodra Phase 4 ze publiceert.)
-- [ ] **Optionele upgrade:** een DNS-TXT-record voor een **domein-brede** GSC-property
-      (vangt http/https + www/apex in één property). Aanbevolen maar niet vereist.
+Dit is gedaan op 2026-09-16 (Phase 9, plannen 09-01 t/m 09-03); er is hier niets meer aan te vinken.
 
-## 3. Vercel — Analytics + Speed Insights — SEO-09
+- **Vijf properties, allemaal geverifieerd.** Twee Domain-properties — `sc-domain:tpsklimaattechniek.nl`
+  en `sc-domain:tpsventilatie.nl` — geverifieerd via een DNS-TXT-record bij dd24 (beide zones staan
+  sinds 2026-09-16 bij dd24, zie D-26 in `docs/baseline/2026-09-16/README.md`). Daaronder drie
+  URL-prefix-properties: `https://www.tpsklimaattechniek.nl/` (via DNS geërfd **én** via de HTML-tag),
+  `https://tpsventilatie.nl/` en `https://www.tpsventilatie.nl/` (via DNS geërfd; status in
+  `docs/baseline/2026-09-16/gsc/legacy-url-prefix-status.md`).
+- **Sitemap** `https://www.tpsklimaattechniek.nl/sitemap.xml` is ingediend en verwerkt: **27** URL's,
+  0 fouten (machinebewijs: `docs/baseline/2026-09-16/gsc/sitemap-tpsklimaattechniek.nl.json`). Voor de
+  5 nieuwe URL's is indexering aangevraagd; alle 27 staan op 2026-09-17 als "Submitted and indexed"
+  (`docs/measurements/gsc/2026-09-17.json`).
+- **Waar het token staat.** De HTML-tag-waarde staat als Vercel-omgevingsvariabele
+  `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (Production); productie serveert precies één
+  `<meta name="google-site-verification">`. Het is een publiek token, geen secret.
+- **Eigenaarschap.** Thomas (`tpsventilatie@gmail.com`) is gedelegeerd Owner op alle vijf properties;
+  het service-account `gsc-measure@tps-klimaattechniek-seo.iam.gserviceaccount.com` heeft Full-rechten
+  op de twee Domain-properties (voor de metingen van §7). Rollen: `docs/baseline/2026-09-16/gsc/users-and-permissions.md`.
 
-De code is gewired (`<Analytics />` + `<SpeedInsights />` in `app/layout.tsx`); zet de
-verzameling aan.
+**De `google-site-verification`-TXT-records op beide domeinen worden nooit verwijderd — ook niet na
+Phase 10, ook niet als de legacy-site verdwijnt.** Zonder die records vervallen de Domain-properties en
+de daarvan afgeleide URL-prefix-properties na Google's respijtperiode; `scripts/verify-measurement.ts`
+controleert de aanwezigheid van beide records bij elke run (D-07).
 
-- [ ] Vercel Dashboard → Project `tps-app` → **Analytics** → Enable.
-- [ ] Vercel Dashboard → Project `tps-app` → **Speed Insights** → Enable.
-- [ ] Cookieless / privacy-vriendelijk → géén cookie-consent-banner nodig (LEAD-06).
-      GA4 is bewust uitgesteld (zou consent + privacy-policy-verwerkersvermelding vergen).
+## 3. Vercel Web Analytics + Speed Insights — uitgevoerd (Phase 9)
+
+Ingeschakeld en bewezen rapporterend op 2026-09-16 (09-03); er is hier niets meer aan te vinken.
+
+- **Web Analytics** staat aan sinds 2026-09-16T22:18Z en telt: de browser-beacon
+  (`POST …/view` → 200) en de API-telling (2 bezoekers / 5 paginaweergaven binnen het eerste uur) staan
+  in `docs/baseline/2026-09-16/vercel/`. **Speed Insights** verzamelde al sinds 2026-08-23 (metrics-query
+  in `docs/baseline/2026-09-16/vercel/speed-insights-enabled.txt`).
+- **Rapportagevenster** op het Hobby-plan: 1 maand voor Web Analytics. Wie een langere geschiedenis wil,
+  exporteert periodiek (of upgradet). Cookieloos → geen consent-banner nodig (LEAD-06).
+- **GA4** blijft bewust uit (zou consent + verwerkersvermelding in het privacybeleid vergen).
 
 ## 4. AI-crawler opt-out (optioneel) — documentatie, niet afgedwongen
 
@@ -126,9 +139,35 @@ raakt. Bij twijfel: gewoon draaien, het duurt een paar seconden.
 > `X-Robots-Tag: noindex` op álle pagina's. Dat is normaal — het script meldt dat het
 > die header daar overslaat en controleert hem alleen op de productie-URL.
 
-**Waarom handmatig?** Dit project heeft geen CI. Het automatisch laten meelopen na
-elke productie-deploy is een bewuste keuze voor **Phase 9 (Measurement Foundation)**,
-niet iets dat hier vergeten is.
+**Automatisch sinds Phase 9.** Dit script draait nu vanzelf na elke productie-deploy:
+`.github/workflows/verify-indexation.yml` reageert op Vercel's `deployment_status` (Production,
+success) en voert dezelfde vier controles uit tegen `https://www.tpsklimaattechniek.nl`. Een rode run
+opent (of vult aan) één GitHub-issue met het label `indexation-alert`. Handmatig draaien blijft
+mogelijk en nuttig bij twijfel.
+
+
+## 7. Wekelijkse indexatiemeting (GitHub Actions)
+
+Sinds Phase 9 (09-04/09-05) vraagt de repository elke **maandag 06:17 UTC** (08:17 zomertijd) aan Google
+zelf wat het van elke sitemap-URL vindt: `.github/workflows/measure-indexation.yml` draait
+`scripts/measure-indexation.ts` (URL-inspectie per URL + het sitemap-aantal), schrijft de meting als
+`docs/measurements/gsc/<datum>.json` en commit die als `github-actions[bot]`. Slaat een drempel aan,
+dan wordt de run rood en verschijnt één issue met het label `indexation-alert`.
+
+- **Wat de meldingen betekenen en welke drempels gelden** (de ladder ≥10 / ≥20 / ≥25 geïndexeerd vanaf
+  week 2 / 4 / 8 na 2026-09-16, verloren indexatie, robots niet ALLOWED, canonical-afwijking):
+  `docs/measurements/README.md`. **Een drempel wordt nooit verlaagd om groen te krijgen** — zoek de
+  pagina die vastzit.
+- **Twee vragen, twee scripts.** `verify-indexation.ts` (§6) controleert wat wij serveren; de wekelijkse
+  meting controleert wat Google concludeerde. Zijn ze het oneens, onderzoek dat als eerste.
+- **60-dagenregel.** GitHub zet een geplande workflow op een publieke repository uit na 60 dagen zonder
+  activiteit. De wekelijkse bot-commit voorkomt dat; blijft de meting toch uit: Actions →
+  measure-indexation → *Enable workflow* (of `gh workflow run measure-indexation.yml`).
+- **Sleutel roteren.** Het enige secret is `GSC_SERVICE_ACCOUNT_JSON`: nieuwe JSON-sleutel in de Google
+  Cloud Console → `gh secret set GSC_SERVICE_ACCOUNT_JSON < bestand` → lokaal bestand vervangen → oude
+  sleutel verwijderen (recept in `docs/measurements/README.md`).
+- **Handmatig draaien / alarmpad testen:** `npm run measure` lokaal (sleutel via `.env.local`), of in
+  GitHub Actions → *Run workflow*; met `simulate_breach=true` bewijs je het alarmpad zonder meting.
 
 ---
 

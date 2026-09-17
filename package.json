@@ -7,7 +7,11 @@
     "prebuild": "tsx scripts/validate-taxonomy.ts && tsx scripts/assert-registry.ts && tsx scripts/assert-site-shape.ts && tsx scripts/assert-no-forbidden-claims.ts && tsx scripts/assert-gate-blocks.ts && tsx scripts/assert-metadata-seam.ts && tsx scripts/assert-seo.ts && bash scripts/check-radius-literals.sh",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "measure": "tsx scripts/measure-indexation.ts",
+    "verify:measurement": "tsx scripts/verify-measurement.ts",
+    "baseline:gsc": "tsx scripts/export-gsc-performance.ts",
+    "snapshot:dns": "bash scripts/snapshot-dns.sh"
   },
   "dependencies": {
     "@upstash/ratelimit": "^2.0.8",

@@ -95,7 +95,7 @@ Acknowledged, not in this milestone.
 |---|---|
 | Per-town/per-neighbourhood pages | Thin-content anti-feature; data-gated on Search Console evidence we don't have yet |
 | Deleting the WordPress install | Explicitly excluded — the client may revert; rollback must stay a DNS-only operation |
-| Moving legacy DNS nameservers | Unnecessary risk to a live mail configuration |
+| Moving legacy DNS nameservers | Superseded on 2026-09-16 by Phase 9 D-26: the tpsventilatie.nl delegation moved from cyberfolks to dd24 with a record-for-record mirrored zone (33/33 verified), mail untouched; rollback recipe in `docs/baseline/2026-09-16/README.md` |
 | Upstash rate-limiting on `/api/lead` | Declined again; honeypot-only remains accepted |
 | Re-chasing SEO-10 mobile CWV | Accepted as throttle-bound and field-monitored at v1.0 |
 | A second GBP listing for the new brand | Would split 34 reviews and create a duplicate — rename, never recreate |
