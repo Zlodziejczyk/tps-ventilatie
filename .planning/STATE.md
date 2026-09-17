@@ -3,7 +3,7 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Rebrand Migration & SEO Ranking Push
 status: executing
-last_updated: "2026-09-17T08:55:43.445Z"
+last_updated: "2026-09-17T12:01:14.809Z"
 last_activity: 2026-09-17
 progress:
   total_phases: 6
@@ -165,15 +165,15 @@ Items acknowledged and deferred at v1.0 milestone close (2026-08-12):
 
 ## Session Continuity
 
-Last session: 2026-09-17T08:55:43.440Z
+Last session: 2026-09-17T12:01:14.804Z
 
 Last session: 2026-07-01 — Phase 6 executed end-to-end (6/6 plans, 3 waves, inline sequential per OneDrive constraint).
-Stopped at: Completed 09-05-PLAN.md
+Stopped at: 09-06 in progress: Task 1 (SERP 24/24) + Task 3 done; Task 2 time-gated — analytics-after-24h from 2026-09-17T22:18Z, GSC re-export + completeness gate from 2026-09-19T17:30Z
 POST-EXECUTION FIXES (2026-07-01, after owner visual review — screenshot audit added): (a) hero H1 gradient shipped as blue blocks — signature-gradient's `background` shorthand defeats bg-clip-text; fixed with a dedicated `gradient-text` @utility using background-image (commit 7a24d54); (b) ImageBand reframed to a content-cropped home-hero-crop.jpg (blank wall removed via sharp) + pillar cards gained hover depth + aurora opacity bumped (commit 10fa4e4). Verified via Playwright screenshots (desktop 1440 + mobile 390) — all good. LESSON: green Vercel build ≠ visually correct; always screenshot-audit after UI deploy (see memory visual-verify-after-ui-deploy).
 WTW/MV BRANDS DONE (owner 2026-07-02→03): WTW = Zehnder (preferred)/Duco/Itho Daalderop, MV = Zehnder/Duco added to BRANDS + wired to the Vervangen nodes; erkendInstallateur:true (owner confirmed 2026-07-03 → verified badge renders on WTW/MV pillar pages, commit 4387d1a). Neutral fallback gone on homepage pillar grid + pillar pages. Verified on preview. Brand-mark square colors are approximate tints — owner WAIVED the official-color/logo swap (accepted as final, no open item).
 FINALIZED 2026-07-03 — owner reviewed the homepage and approved; no open items for Phase 6. Merged branch → main (FF, commit 5ab3c5e); Vercel production deploy READY + verified on tps-ventilatie.vercel.app.
 DEPLOYMENT MODEL (owner-clarified 2026-07-03): main + Vercel = PRE-PROD work env, NO public domain attached. `tpsventilatie.nl` is the OLD LiteSpeed site (NOT Vercel) and will be SCRAPPED. The real launch domain = `tpsklimaattechniek.nl`, attached only when the whole site is fully finalized. At domain-attach: switch CANONICAL_ORIGIN (lib/constants.ts, currently https://tpsventilatie.nl) → tpsklimaattechniek.nl (feeds canonicals/sitemap/robots/JSON-LD/OG). See memory [[tps-deploy-and-integrations]].
 NEXT (owner-driven, non-blocking): (1) continue finishing the site on main/Vercel pre-prod; (2) optional behavioral spot-check (compact submit → /api/lead 200 + WhatsApp; pillar Offerte pre-select+scroll); (3) Phase 7 (UI/UX & a11y remediation) deletes the retired section files; (4) at full finalize: attach tpsklimaattechniek.nl + swap CANONICAL_ORIGIN.
-Resume file: None
+Resume file: .planning/phases/09-measurement-foundation/.continue-here.md
 
 Session resumed: 2026-06-29 — restored context; frontier = Phase 5 planning (CONTEXT.md ready, decision gate resolved to hybrid). Phase 4 editorial gate remains async/owner-blocked on Thomas's whole-site sign-off (preview r6znbcg6f).
