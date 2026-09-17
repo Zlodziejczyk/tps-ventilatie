@@ -1,0 +1,62 @@
+# Post-deploy indexation probe (Phase 9, D-22/D-23) — the automation Phase 8 deferred.
+#
+# WHAT IT DOES. After every SUCCESSFUL Production deployment (Vercel's GitHub app
+# sets a deployment_status) it runs scripts/verify-indexation.ts against
+# CANONICAL_ORIGIN — the host customers and Google see — and asserts what we
+# SERVE: a sitemap with INDEXABLE_FLOOR URLs, every URL a direct 200, no noindex,
+# self-canonical. The weekly measure-indexation workflow asks the other question
+# (what did Google conclude?); a disagreement between the two is the most
+# valuable signal either can produce (D-23).
+#
+# WHAT RED MEANS. A served regression on production: a page went dark, a redirect
+# crept in, a noindex shipped. The run opens or comments on the indexation-alert
+# issue. Never lower INDEXABLE_FLOOR to make it green.
+#
+# The probe target is derived from lib/constants.ts at run time, never typed
+# here, and it is deliberately NOT the deployment's unique *.vercel.app host:
+# that host carries a platform noindex header and is not what anyone indexes.
+name: verify-indexation
+
+on:
+  deployment_status:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  probe:
+    if: github.event.deployment_status.state == 'success' && (github.event.deployment.environment == 'Production' || github.event.deployment_status.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Probe production (what do we serve?)
+        shell: bash
+        run: |
+          URL=$(npx tsx -e "import { CANONICAL_ORIGIN } from '@/lib/constants'; console.log(CANONICAL_ORIGIN)")
+          echo "probing $URL"
+          for i in 1 2 3; do
+            npx tsx scripts/verify-indexation.ts "$URL" 2>&1 | tee probe-output.txt && exit 0
+            echo "attempt $i failed — waiting 30 s for alias propagation"
+            sleep 30
+          done
+          exit 1
+      - name: Open or update the alert issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          BODY=probe-output.txt
+          [ -s "$BODY" ] || echo "verify-indexation failed before producing output" > "$BODY"
+          EXISTING=$(gh issue list --label indexation-alert --state open --json number --jq '.[0].number')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file "$BODY"
+          else
+            gh issue create --label indexation-alert --title "Post-deploy indexation probe failed (${{ github.sha }})" --body-file "$BODY"
+          fi

@@ -1,0 +1,88 @@
+# Weekly GSC indexation measurement (Phase 9, D-21) — the first CI on this repository.
+#
+# WHAT IT DOES. Every Monday 06:17 UTC (and on manual dispatch) it runs
+# scripts/measure-indexation.ts, which asks Google's URL Inspection API what it
+# concluded about each sitemap URL, commits the dated reading under
+# docs/measurements/gsc/ as github-actions[bot], and — when a threshold trips
+# (exit 1) — opens or comments on ONE issue labelled indexation-alert, then fails
+# the run so the red is visible in the Actions tab.
+#
+# WHAT RED MEANS. A flag from scripts/gsc/thresholds.ts — below-ramp,
+# lost-indexation, robots-not-allowed, canonical-mismatch, count-vs-floor — or
+# simulated-breach when dispatched with simulate_breach=true (no reading is
+# committed in that case). The vocabulary is in docs/measurements/README.md.
+# Never make a red run green by lowering a threshold: find the page that is stuck.
+#
+# RE-ARMING. GitHub disables scheduled workflows on public repositories after 60
+# days without repository activity. If the weekly reading stops appearing:
+# Actions → measure-indexation → Enable, or dispatch it once by hand
+# (gh workflow run measure-indexation.yml). The weekly bot commit is itself activity.
+#
+# SECRETS. Exactly one: GSC_SERVICE_ACCOUNT_JSON (the service-account key,
+# rotated with `gh secret set GSC_SERVICE_ACCOUNT_JSON < new-key.json`). The
+# script never prints token material and nothing here echoes env values. The
+# bot's push uses GITHUB_TOKEN, so it cannot retrigger Actions; Vercel's GitHub
+# app still rebuilds main from it — an accepted weekly build of identical code.
+name: measure-indexation
+
+on:
+  schedule:
+    - cron: "17 6 * * 1" # Monday 06:17 UTC — off the top-of-hour load spike
+  workflow_dispatch:
+    inputs:
+      simulate_breach:
+        description: "prove the alert path — no reading is committed"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: measure-indexation
+  cancel-in-progress: false
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - id: measure
+        name: Measure indexation (what did Google conclude?)
+        # explicit bash → `bash --noprofile --norc -eo pipefail`, so the pipeline
+        # reports the script's exit code, not tee's
+        shell: bash
+        continue-on-error: true
+        env:
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          MEASURE_SIMULATE_BREACH: ${{ inputs.simulate_breach && '1' || '' }}
+        run: npx tsx scripts/measure-indexation.ts 2>&1 | tee measure-output.txt
+      - name: Commit the dated reading
+        if: ${{ !inputs.simulate_breach }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/measurements/gsc
+          git diff --cached --quiet || git commit -m "chore(measure): weekly GSC indexation reading"
+          git push
+      - name: Open or update the alert issue
+        if: steps.measure.outcome == 'failure'
+        run: |
+          set -euo pipefail
+          TITLE="Indexation measurement flagged ($(date -u +%F))"
+          if [ "${{ inputs.simulate_breach }}" = "true" ]; then TITLE="[SIMULATED] $TITLE"; fi
+          EXISTING=$(gh issue list --label indexation-alert --state open --json number --jq '.[0].number')
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file measure-output.txt
+          else
+            gh issue create --label indexation-alert --title "$TITLE" --body-file measure-output.txt
+          fi
+          exit 1
