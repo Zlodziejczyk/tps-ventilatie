@@ -72,17 +72,17 @@ Once Phase 10 repoints it, verifying the old property and baselining its ranking
 4. Indexing requested for the hub + 4 pillars
 5. Vercel Analytics reporting live traffic
 
-**Plans:** 1/6 plans executed
+**Plans:** 4/6 plans executed
 
 **Wave 1**
 
 - [x] 09-01-PLAN.md — Baseline directory: read-only DNS snapshot script + live snapshots, rescue of the 2026-09-16 evidence (D-26/D-27 records), GBP state (wave 1)
-- [ ] 09-02-PLAN.md — GSC service account + JWT auth, Search Console API client, Search Analytics/sitemap export and the 24-query shortlist (wave 1)
-- [ ] 09-03-PLAN.md — Fifth + legacy URL-prefix properties, ownership delegation, Vercel Web Analytics/Speed Insights + verification env var, `verify-measurement.ts` probe (wave 1)
+- [x] 09-02-PLAN.md — GSC service account + JWT auth, Search Console API client, Search Analytics/sitemap export and the 24-query shortlist (wave 1)
+- [x] 09-03-PLAN.md — Fifth + legacy URL-prefix properties, ownership delegation, Vercel Web Analytics/Speed Insights + verification env var, `verify-measurement.ts` probe (wave 1)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 09-04-PLAN.md — Pure indexation thresholds (ramp + regressions, proven to bite) and the weekly `measure-indexation.ts` reading (wave 2)
+- [x] 09-04-PLAN.md — Pure indexation thresholds (ramp + regressions, proven to bite) and the weekly `measure-indexation.ts` reading (wave 2)
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -171,7 +171,7 @@ domain and 404s previously shared preview URLs. It must never be able to jeopard
 | 6. Homepage conversion uplift | v1.0 | 6/6 | Complete | 2026-07-01 |
 | 7. UI/UX & Accessibility Remediation | v1.0 | 12/12 | Complete | 2026-07-07 |
 | 8. Indexation Unlock | v1.1 | 5/5 | Complete    | 2026-08-20 |
-| 9. Measurement Foundation | v1.1 | 1/6 | In Progress|  |
+| 9. Measurement Foundation | v1.1 | 4/6 | In Progress|  |
 | 10. Reversible Old-Brand Migration | v1.1 | 0/? | Not started | — |
 | 11. Local Presence — GBP & Citations | v1.1 | 0/? | Not started | — |
 | 12. On-Page Depth & Kennisbank | v1.1 | 0/? | Not started | — |
