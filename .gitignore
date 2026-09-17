@@ -53,3 +53,8 @@ iCloud Photos/
 gsc-service-account*.json
 *.serviceaccount.json
 secrets/
+
+# Google service-account keys must never enter the repo (Phase 9, D-19)
+.config/
+tps-klimaattechniek-seo-*.json
+*service-account*.json

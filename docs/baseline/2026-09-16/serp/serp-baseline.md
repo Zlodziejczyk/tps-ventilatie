@@ -1,6 +1,6 @@
 # SERP-nulmeting — 24 queries × 2 domeinen (D-13)
 
-taken: 2026-09-17T09:00Z – 10:58Z (eerste 17 queries; vervolg zodra Google's 403-blokkade is opgeheven)
+taken: 2026-09-17T09:00Z – 10:58Z (q1–q17 p.1) en 11:22Z – 11:33Z (q17 p.2, q18–q23; na opheffing van Google's 403-blokkade); q24 nog niet vastgelegd — Google gaf om 11:33Z opnieuw een 403
 aantal queries: 24 (gelezen uit `gsc/serp-queries.json`, niet overgetypt)
 
 ## Methode
@@ -14,7 +14,7 @@ aantal queries: 24 (gelezen uit `gsc/serp-queries.json`, niet overgetypt)
 - **num=20 wordt door Google genegeerd** (max. 10 organische resultaten per pagina, 2025+): de top 20 is daarom pagina 1 (`start=0`) plus pagina 2 (`start=10`); een positie op p.2 = 10 + positie binnen p.2 (bij 9 organische resultaten op p.1: 9 + positie, zie *opmerking*). Pagina 2 is alleen geladen als een van beide domeinen niet op p.1 stond.
 - **Organische positie:** 1-gebaseerde volgorde van de resultaten met een `h3`-kop binnen `#rso` (ads, "Mensen vragen ook", video-carrousels en het local pack tellen niet mee); per URL ontdubbeld. Gesponsorde resultaten (o.a. Werkspot-advertenties die "TPS Ventilatie" noemen) zijn genegeerd.
 - **Local pack:** aanwezig als de SERP een blok "Plaatsen"/"Bedrijven" bevat; *ja* = een TPS-vermelding in dat blok.
-- **Tempo:** ±5–15 s tussen pagina's; bij Google's "ongebruikelijk verkeer"-pagina is gewacht en niets gescript.
+- **Tempo:** ±5–15 s tussen pagina's bij q1–17. Google toonde twee keer een reCAPTCHA (door de eigenaar opgelost; niets gescript) en gaf na q17 p.1 een harde 403; na ±20 min wachten is met ±20 s tussen pagina's verder vastgelegd (welke pagina's wanneer: zie *taken*; een nieuwe 403 wordt in de tabel als `niet vastgelegd (Google 403)` gemeld).
 - Eén rij per query; zie de totalen onderaan. Herhalen bij milestone-afsluiting met exact deze template.
 
 | # | query | tpsklimaattechniek.nl | tpsventilatie.nl | local pack | opmerking |
@@ -35,13 +35,13 @@ aantal queries: 24 (gelezen uit `gsc/serp-queries.json`, niet overgetypt)
 | 14 | wtw onderhoud | niet in top 20 | niet in top 20 | ja | p.1 telde 9 organische resultaten |
 | 15 | wtw inregelen | niet in top 20 | 16 (p.2) | geen local pack | p.1 telde 8 organische resultaten |
 | 16 | wtw storing | niet in top 20 | niet in top 20 | geen local pack | p.1 telde 9 organische resultaten |
-| 17 | wtw unit aanleggen | niet in top 20 | niet in top 20 | geen local pack | p.1 telde 7 organische resultaten; p.2 niet vastgelegd (Google 403) — alleen p.1 gecontroleerd |
-| 18 | mechanische ventilatie | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
-| 19 | mechanische ventilatie vervangen | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
-| 20 | mechanische ventilatie onderhoud | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
-| 21 | mechanische ventilatie storing | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
-| 22 | mechanische ventilatie aanleggen | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
-| 23 | tps klimaattechniek | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
+| 17 | wtw unit aanleggen | niet in top 20 | niet in top 20 | geen local pack | p.1 telde 7 organische resultaten |
+| 18 | mechanische ventilatie | niet in top 20 | niet in top 20 | ja | p.1 telde 6 organische resultaten |
+| 19 | mechanische ventilatie vervangen | niet in top 20 | niet in top 20 | geen local pack | p.1 telde 8 organische resultaten |
+| 20 | mechanische ventilatie onderhoud | niet in top 20 | niet in top 20 | ja | p.1 telde 9 organische resultaten |
+| 21 | mechanische ventilatie storing | niet in top 20 | niet in top 20 | geen local pack | p.1 telde 9 organische resultaten |
+| 22 | mechanische ventilatie aanleggen | niet in top 20 | niet in top 20 | geen local pack | p.1 telde 7 organische resultaten |
+| 23 | tps klimaattechniek | 1 | 6 | geen local pack |  |
 | 24 | tps ventilatie | niet vastgelegd (Google 403) | niet vastgelegd (Google 403) | niet vastgelegd |  |
 
-**Totalen (17 van 24 queries vastgelegd, 7 nog niet — zie opmerking):** tpsklimaattechniek.nl `niet in top 20` bij **16/17** vastgelegde queries; tpsventilatie.nl `niet in top 20` bij **15/17**; TPS in het local pack bij **3/17**. De nullen zijn de vóór-kant van de milestone-claim (D-13).
+**Totalen (23 van 24 queries vastgelegd, 1 nog niet — zie opmerking):** tpsklimaattechniek.nl `niet in top 20` bij **21/23** vastgelegde queries; tpsventilatie.nl `niet in top 20` bij **20/23**; TPS in het local pack bij **5/23**. De nullen zijn de vóór-kant van de milestone-claim (D-13).
