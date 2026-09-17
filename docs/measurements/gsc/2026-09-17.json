@@ -1,5 +1,5 @@
 {
-  "taken": "2026-09-17T08:28:42.931Z",
+  "taken": "2026-09-17T08:46:12.546Z",
   "property": "sc-domain:tpsklimaattechniek.nl",
   "floor": 27,
   "sitemap": {
@@ -18,6 +18,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -33,6 +36,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -81,6 +87,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/reparatie-storing",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/airconditioning/reparatie-storing",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -114,6 +123,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -183,9 +195,6 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/advies",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/advies",
-      "sitemap": [
-        "https://www.tpsklimaattechniek.nl/sitemap.xml"
-      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/reparatie-storing",
         "https://www.tpsklimaattechniek.nl/"
@@ -202,6 +211,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -253,6 +265,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/inregelen",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/inregelen",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -268,9 +283,6 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/storing",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/wtw/storing",
-      "sitemap": [
-        "https://www.tpsklimaattechniek.nl/sitemap.xml"
-      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -358,6 +370,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/storing",
       "userCanonical": "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/storing",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -406,6 +421,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/tarieven",
       "userCanonical": "https://www.tpsklimaattechniek.nl/tarieven",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/tarieven?tab=mv",
         "https://www.tpsklimaattechniek.nl/"
@@ -437,6 +455,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/over-ons",
       "userCanonical": "https://www.tpsklimaattechniek.nl/over-ons",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
@@ -452,6 +473,9 @@
       "pageFetchState": "SUCCESSFUL",
       "googleCanonical": "https://www.tpsklimaattechniek.nl/contact",
       "userCanonical": "https://www.tpsklimaattechniek.nl/contact",
+      "sitemap": [
+        "https://www.tpsklimaattechniek.nl/sitemap.xml"
+      ],
       "referringUrls": [
         "https://www.tpsklimaattechniek.nl/"
       ],
