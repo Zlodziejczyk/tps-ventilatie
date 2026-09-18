@@ -171,7 +171,7 @@ domain and 404s previously shared preview URLs. It must never be able to jeopard
 | 6. Homepage conversion uplift | v1.0 | 6/6 | Complete | 2026-07-01 |
 | 7. UI/UX & Accessibility Remediation | v1.0 | 12/12 | Complete | 2026-07-07 |
 | 8. Indexation Unlock | v1.1 | 5/5 | Complete    | 2026-08-20 |
-| 9. Measurement Foundation | v1.1 | 6/6 | Complete   | 2026-09-18 |
+| 9. Measurement Foundation | v1.1 | 6/6 | Complete    | 2026-09-18 |
 | 10. Reversible Old-Brand Migration | v1.1 | 0/? | Not started | — |
 | 11. Local Presence — GBP & Citations | v1.1 | 0/? | Not started | — |
 | 12. On-Page Depth & Kennisbank | v1.1 | 0/? | Not started | — |

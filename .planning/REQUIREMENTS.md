@@ -20,12 +20,12 @@
 
 ### Measurement & Search Console (MEAS)
 
-- [ ] **MEAS-01**: Both new-domain variants (`tpsklimaattechniek.nl`, `www.`) are verified in Google Search Console
-- [ ] **MEAS-02**: Both legacy-domain variants are verified in GSC **while legacy DNS still resolves to WordPress** (verification becomes materially harder after the repoint)
-- [ ] **MEAS-03**: Sitemap submitted; indexing manually requested for the hub + 4 pillar pages
-- [ ] **MEAS-04**: Pre-migration baseline captured — GSC performance export, ranking snapshot for top queries, GBP state (name/categories/URL/review count/rating), and a full DNS zone snapshot
-- [ ] **MEAS-05**: Indexation coverage is reviewed weekly against defined warning thresholds (indexed count, "Crawled – currently not indexed", "Discovered – currently not indexed")
-- [ ] **MEAS-06**: Vercel Analytics enabled and reporting
+- [x] **MEAS-01**: Both new-domain variants (`tpsklimaattechniek.nl`, `www.`) are verified in Google Search Console
+- [x] **MEAS-02**: Both legacy-domain variants are verified in GSC **while legacy DNS still resolves to WordPress** (verification becomes materially harder after the repoint)
+- [x] **MEAS-03**: Sitemap submitted; indexing manually requested for the hub + 4 pillar pages
+- [x] **MEAS-04**: Pre-migration baseline captured — GSC performance export, ranking snapshot for top queries, GBP state (name/categories/URL/review count/rating), and a full DNS zone snapshot
+- [x] **MEAS-05**: Indexation coverage is reviewed weekly against defined warning thresholds (indexed count, "Crawled – currently not indexed", "Discovered – currently not indexed")
+- [x] **MEAS-06**: Vercel Analytics enabled and reporting
 
 ### Old-Brand Migration (MIG) — reversible by construction
 
@@ -113,12 +113,12 @@ Populated during roadmap creation.
 | IDX-03 | Phase 8 | Complete |
 | IDX-04 | Phase 8 | Complete |
 | IDX-05 | Phase 8 | Complete |
-| MEAS-01 | Phase 9 | Pending |
-| MEAS-02 | Phase 9 | Pending |
-| MEAS-03 | Phase 9 | Pending |
-| MEAS-04 | Phase 9 | Pending |
-| MEAS-05 | Phase 9 | Pending |
-| MEAS-06 | Phase 9 | Pending |
+| MEAS-01 | Phase 9 | Complete |
+| MEAS-02 | Phase 9 | Complete |
+| MEAS-03 | Phase 9 | Complete |
+| MEAS-04 | Phase 9 | Complete |
+| MEAS-05 | Phase 9 | Complete |
+| MEAS-06 | Phase 9 | Complete |
 | MIG-01 | Phase 10 | Pending |
 | MIG-02 | Phase 10 | Pending |
 | MIG-03 | Phase 10 | Pending |
@@ -153,11 +153,13 @@ Populated during roadmap creation.
 | BLOG-05 | Phase 12 | Pending |
 | BRND-01 | Phase 13 | Pending |
 | BRND-02 | Phase 13 | Pending |
+| BLOG-02 | — (Future Requirements) | Deferred |
 
 **Coverage:**
 - v1.1 requirements: 45 total
 - Mapped to phases: 45
 - Unmapped: 0 ✓
+- Listed for traceability only, outside the 45: BLOG-02 (per-town location pages) — deferred to a future milestone, gated on GSC showing converting queries. Recorded here so `phase.complete` stops reporting it as missing from this table.
 
 ## Open Questions
 

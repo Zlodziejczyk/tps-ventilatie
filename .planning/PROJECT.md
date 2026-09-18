@@ -37,6 +37,8 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 - Post-milestone: `/projecten` showcase (7 cases, 21 owner photos) + unified photo treatment, merged to main.
 - **Public since 2026-08-12** on `https://www.tpsklimaattechniek.nl` (DOM-V2-01 done — `CANONICAL_ORIGIN` flipped, brand favicon shipped, apex 308→www, verified in production 2026-08-15).
 
+**✅ Phase 9 complete 2026-09-18 — the milestone is now measurable, not just assertable.** All five Search Console properties are verified (both new-domain variants and all three legacy ones, the latter captured **while the old DNS still pointed at WordPress**, which is why this phase had to precede the migration), with the client added as delegated Owner on every one. A dated, machine-derived baseline lives in `docs/baseline/2026-09-16/` — 39 files behind a completeness gate that fails if any file on disk is missing from the manifest: DNS zones before and after the nameserver switch, Search Analytics exports (20 rows by query on the new domain, 130 over 16 months on the legacy one), a 24-query geolocated SERP snapshot, and the Google Business Profile state. **The zeroes are recorded as data** — 21 of 24 SERP queries and 22 of 24 shortlist entries are honest absences — because an absence that is written down is falsifiable and one that is skipped is not. Two independent instruments now keep reading: a Monday cron asks Google what it concluded about all 27 URLs and commits the answer, and a post-deploy probe asks what we serve; they deliberately share no data, so a disagreement between them is the most valuable signal either can produce. Every alert path was observed firing on a simulated breach before being trusted. Vercel Web Analytics is enabled **and proven to report** (5 visitors / 17 pageviews in the first full day), the distinction the requirement draws and the probe encodes. **Phase 10 is unblocked.** One owner action is outstanding: rotate the Search Console service-account key.
+
 **✅ RESOLVED 2026-08-20 (Phase 8) — the surface is live and indexable.** Production `sitemap.xml` now serves **27 URLs**; all 21 service pages plus the `/diensten` hub return HTTP 200 with `index, follow` and no `noindex` anywhere, verified on live HTTP responses by the committed probe `scripts/verify-indexation.ts`. The `/diensten` hub was authored (170-word orientation intro, the 4-step TPS traject, 5 routing FAQs) and published as the 27th page. `isIndexable()` is now one predicate — `status === "published"` for every node type — so indexability is purely data. **The root cause is the durable lesson:** the SEO build gate hardcoded `sitemapEntries().length === 5` and deep-equalled a fixed URL list, so it actively *enforced* the broken state and would have blocked its own fix; when it failed, the expected number was bumped to match reality (commit `82d897b`) instead of the assumption being questioned. Two sibling guards had been silently RED for weeks because nothing executed them. All eight guards are now build-blocking in `prebuild` (1.7s), assert relationships and named floors rather than snapshots, and each ships with a perturbation proof that it fails when the world breaks.
 
 **The state that was fixed (recorded 2026-08-19):** the entire service surface was **invisible to Google**. `sitemap.xml` carries only 5 URLs (`/`, `/tarieven`, `/projecten`, `/over-ons`, `/contact`); `/diensten` and every pillar + sub-service page serves `<meta name="robots" content="noindex, follow">`. Cause is mechanical, not a bug: `lib/seo/policy.ts:isIndexable()` gates hub/pillar/service on `status === "published"`, and the registry holds **21 × `review` + 8 × `draft`, 0 × `published`** — the Phase-4 Task-3 batch flip was never executed even though owner editorial sign-off cleared 2026-08-05. The 22-page SEO surface v1.0 was built to create has never been indexable.
@@ -46,6 +48,10 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 ## Requirements
 
 ### Validated
+
+<!-- Validated in Phase 9: Measurement Foundation (2026-09-18) -->
+- ✓ **Search Console end-to-end** — five properties verified, sitemap submitted (Google's own record: 27 submitted, 0 errors), indexing requested for the hub + 4 pillars, coverage measured weekly against named thresholds with alerting, and a pre-migration baseline captured — Validated in Phase 9: Measurement Foundation
+- ✓ **Vercel Analytics enabled and reporting** — enabled 2026-09-16, confirmed reporting live traffic 33 h later; the probe treats the script endpoints as necessary-but-not-sufficient and only the visits count as proof — Validated in Phase 9: Measurement Foundation
 
 <!-- Pre-existing (proposal baseline) -->
 - ✓ Static Next.js 16 brochure site on Vercel; home/diensten/tarieven/over-ons/contact/privacy; Navbar + Footer; GHL contact form; "Atmospheric Clarity" design system; Framer Motion + WebGL aurora — baseline
@@ -76,7 +82,6 @@ Built with Next.js 16 (App Router, **hybrid**: statically prerendered pages + on
 - [ ] **Off-site NAP & citation cleanup** — KvK, directories, socials, dealer/supplier listings, Google Maps duplicates.
 - [ ] **On-page SEO depth pass** — keyword→page map, title/meta rewrite, internal-linking architecture, schema enrichment, competitor content-gap fill.
 - [ ] **Blog / kennisbank (BLOG-01)** — light MDX engine + 3–5 evergreen, locally-framed articles with internal links to pillars.
-- [ ] **Search Console end-to-end** — verify property, submit sitemap, request indexing, monitor coverage + queries as milestone success evidence.
 - [ ] **IG/FB footer icons + JSON-LD `sameAs`** — owner supplies URLs; entity signal supporting the rebrand.
 - [ ] **Rename repo + Vercel project** `tps-ventilatie` → `tpsklimaattechniek` — last place the old brand lives internally.
 
@@ -145,4 +150,4 @@ This document evolves at phase transitions and milestone boundaries.
 **After each milestone** (via `/gsd-complete-milestone`): full review of all sections; Core Value check; audit Out of Scope; update Context with current state.
 
 ---
-*Last updated: 2026-08-20 — Phase 8 (Indexation Unlock) complete; the service surface is live and indexable in production*
+*Last updated: 2026-09-18 — Phase 9 (Measurement Foundation) complete; the pre-migration baseline is captured and the site measures itself weekly, so Phase 10's migration can be proven rather than asserted*
