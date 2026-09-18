@@ -54,7 +54,9 @@ gsc-service-account*.json
 *.serviceaccount.json
 secrets/
 
-# Google service-account keys must never enter the repo (Phase 9, D-19)
-.config/
+# Google service-account keys must never enter the repo (Phase 9, D-18). `/.config/` is
+# anchored to the repo root — a stray key copy landed there once; the two filename
+# patterns below stay unanchored on purpose, because a key is a key at any depth.
+/.config/
 tps-klimaattechniek-seo-*.json
 *service-account*.json

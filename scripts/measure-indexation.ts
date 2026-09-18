@@ -137,16 +137,27 @@ async function main(): Promise<void> {
     process.exit(2);
   }
 
-  // (4) Google's record of the sitemap (D-10).
-  const sitemapRaw = await getSitemap(accessToken, property, `${CANONICAL_ORIGIN}/sitemap.xml`);
-  const sitemap = {
-    submitted: sitemapRaw.contents?.find((c) => c.type === "web")?.submitted ?? 0,
-    errors: sitemapRaw.errors ?? 0,
-    lastDownloaded: sitemapRaw.lastDownloaded,
-  };
+  // (4) Google's record of the sitemap (D-10). NEVER fatal: the 27 inspections above are
+  // the expensive, perishable part of this run. A transient 5xx here used to crash main(),
+  // discarding them AND raising a false indexation alert — and the missing reading then blinded
+  // next week's regression check across the gap. Record the gap in the reading instead.
+  let sitemap: Reading["sitemap"];
+  try {
+    const sitemapRaw = await getSitemap(accessToken, property, `${CANONICAL_ORIGIN}/sitemap.xml`);
+    sitemap = {
+      submitted: sitemapRaw.contents?.find((c) => c.type === "web")?.submitted ?? 0,
+      errors: sitemapRaw.errors ?? 0,
+      lastDownloaded: sitemapRaw.lastDownloaded,
+    };
+  } catch (error) {
+    console.error(`note: sitemaps.get failed (${(error as Error).message}) — reading written without the sitemap block`);
+  }
 
-  // (5) Optional analytics count.
-  const visits = await visits7d();
+  // (5) Optional analytics count — same rule: a Vercel outage must not cost us the reading.
+  const visits = await visits7d().catch((error: unknown) => {
+    console.error(`note: Vercel visits count unreachable (${(error as Error).message}) — analytics omitted`);
+    return undefined;
+  });
 
   // (6) Previous reading, (7) the current one.
   const prev = previousReading(out, todayIso);
@@ -154,7 +165,7 @@ async function main(): Promise<void> {
     taken: now.toISOString(),
     property,
     floor: INDEXABLE_FLOOR,
-    sitemap,
+    ...(sitemap !== undefined ? { sitemap } : {}),
     ...(visits !== undefined ? { analytics: { visits7d: visits } } : {}),
     urls: readings,
   };
@@ -186,8 +197,9 @@ async function main(): Promise<void> {
   for (const flag of flags) console.log(`FLAG [${flag.code}]${flag.url ? ` ${flag.url}` : ""} — ${flag.message}`);
   const indexed = readings.filter(isIndexed).length;
   const rung = rungInForce(todayIso);
+  const sitemapLine = sitemap ? `sitemap submitted ${sitemap.submitted} (${sitemap.errors} errors)` : "sitemap unavailable this run";
   console.log(
-    `\nindexed ${indexed}/${INDEXABLE_FLOOR}, sitemap submitted ${sitemap.submitted} (${sitemap.errors} errors), ` +
+    `\nindexed ${indexed}/${INDEXABLE_FLOOR}, ${sitemapLine}, ` +
       `previous reading: ${prev ? prev.taken : "none"}, ramp rung in force: ${rung ? `≥${rung.min} from week ${rung.fromWeek}` : "none yet (before week 2)"}`,
   );
   if (flags.length > 0) {
