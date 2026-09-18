@@ -29,7 +29,7 @@ Directory aangemaakt: 2026-09-16 · eerste vastlegging: 2026-09-16T17:58Z · laa
 
 ## 2. Manifest
 
-Eén rij per bestand. `taken` is UTC. Een rij met ⏳ wacht op een tijdvenster en wordt door 09-06 ingevuld zodra dat venster open is.
+Eén rij per bestand. `taken` is UTC.
 
 | bestand | wat bewijst het | taken (UTC) | bron | opnieuw maken |
 |---|---|---|---|---|
@@ -68,7 +68,7 @@ Eén rij per bestand. `taken` is UTC. Een rij met ⏳ wacht op een tijdvenster e
 | `vercel/insights-view-request.md` | Browser-beacon-bewijs (MEAS-06): `POST /2fd128cc8fe7c492/view` → 200 op twee pagina's (het project-unieke pad; niet `/_vercel/insights/view`), REST-telling `visitors 2 / pageviews 5` op 2026-09-16/17, MCP-404 en de Speed-Insights-`vitals`-503 als waargenomen genoteerd; hercontrole 2026-09-17T12:03Z: LCP-samples komen ook ná de 503 binnen (avg 956 ms/1 d) | 2026-09-16T22:5xZ (zie `taken:` in het bestand) | Chrome `read_network_requests` + `vercel api /v1/query/web-analytics/visits/count` | pagina laden in Chrome, netwerkverzoeken filteren op het script-pad; telling via de REST-call in het bestand |
 | `serp/serp-baseline.md` | Geolokaliseerde SERP-nulmeting (D-13): 24 queries × 2 domeinen, positie in de top 20 of `niet in top 20`, local-pack-kolom; **24/24 vastgelegd op 2026-09-17** (in drie runs; Google gaf tweemaal een 403 van ±20 min). Merkquery's: `tps klimaattechniek` → nieuw domein 1 / legacy 6, `tps ventilatie` → legacy 1 / nieuw 2; alle 22 generieke query's: beide domeinen `niet in top 20`; TPS in het local pack bij 5/24 | 2026-09-17T09:00Z–11:54Z (zie `taken:` in het bestand) | Chrome (google.nl, `pws=0`, `uule` Zoetermeer) | de methode-sectie in het bestand: zelfde URL-template, zelfde `uule`, footer-controle, p.1 + p.2 |
 | `serp/serp-example-footer.png` | Footer-controle van de eerste SERP: **"Zoetermeer - Op basis van je IP-adres"** — de uule-locatie is actief | 2026-09-17T09:00:09Z | Chrome | eerste query laden, naar de voet scrollen, screenshot |
-| `vercel/analytics-after-24h.md` | Web Analytics rapporteert ≥ 24 uur na inschakelen (MEAS-06): positieve bezoekers-/paginaweergaven-telling via de REST-count + rapportagevenster | ⏳ na 2026-09-17T22:18Z (24 h na `enabledAt`) | `vercel api /v1/query/web-analytics/visits/count` | idem |
+| `vercel/analytics-after-24h.md` | Web Analytics rapporteert **33 uur** na inschakelen (MEAS-06): REST-count **bezoekers 5 / paginaweergaven 17** over de UTC-dagen 2026-09-17 t/m 2026-09-18, **7 / 22** over 7 dagen en sinds inschakelen; rapportagevenster Hobby = 1 maand (daarom als bestand vastgelegd); plus de probe-uitvoer mét visits-count-check (groen) | 2026-09-18T07:34:34Z | `vercel api /v1/query/web-analytics/visits/count` (CLI 59.19.1) + `scripts/verify-measurement.ts` met `VERCEL_TOKEN` | dezelfde REST-call met nieuwe datums; probe met een kortlevend token |
 
 **Diff-hint bij de DNS-bestanden.** Wie de pre-switch snapshot vergelijkt met de post-switch snapshot
 ziet drie soorten ruis die géén inhoudelijk verschil zijn: (1) TTL 14400 → 28800 en een nieuw
@@ -171,4 +171,4 @@ Herhaal bij milestone-afsluiting in een **nieuwe** datummap `docs/baseline/<datu
 5. **Vercel** — `npm run verify:measurement -- https://www.tpsklimaattechniek.nl` groen; analytics-telling via `vercel api /v1/query/web-analytics/visits/count` in `vercel/analytics-<datum>.md`.
 6. **Indexatie** — de wekelijkse metingen in `docs/measurements/gsc/` zijn het tijdreeksbewijs; `npm run measure` levert een extra dagmeting.
 
-D-25 gates: (a) DNS vastgelegd vóór en na de wissel ✅ (09-01), (b) GSC machinebewijs 27/0 + eigenaarschap gedelegeerd ✅ (09-02/09-03), (c) wekelijkse meting + post-deploy-probe geautomatiseerd en bewezen ✅ (09-04/09-05), (d) SERP-nulmeting + analytics-na-24h — **lopend** (09-06: SERP-nulmeting 24/24 vastgelegd ✅; analytics-venster opent 2026-09-17T22:18Z). Phase 10 is ontgrendeld zodra (d) is afgerond en de completeness-gate groen is.
+D-25 gates: (a) DNS vastgelegd vóór en na de wissel ✅ (09-01), (b) GSC machinebewijs 27/0 + eigenaarschap gedelegeerd ✅ (09-02/09-03), (c) wekelijkse meting + post-deploy-probe geautomatiseerd en bewezen ✅ (09-04/09-05), (d) SERP-nulmeting 24/24 ✅ + analytics-na-24h ✅ (09-06, 2026-09-17/18). De completeness-gate (D-17) draait na de D-16 her-export van de Search-Analytics-data (≥ 72 h na verificatie, vanaf 2026-09-19T17:30Z); Phase 10 is ontgrendeld zodra die gate groen is.
