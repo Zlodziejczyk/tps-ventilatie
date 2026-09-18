@@ -1,9 +1,9 @@
 {
   "property": "sc-domain:tpsventilatie.nl",
-  "startDate": "2025-05-19",
-  "endDate": "2026-09-16",
+  "startDate": "2025-05-20",
+  "endDate": "2026-09-17",
   "country": "nld",
-  "taken": "2026-09-17T08:24:03.216Z",
+  "taken": "2026-09-18T10:22:42.917Z",
   "entries": [
     {
       "query": "klimaattechniek Zoetermeer",
@@ -37,8 +37,18 @@
     },
     {
       "query": "warmtepomp",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "http://tpsventilatie.nl/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 8
+        }
+      ],
+      "zero": false
     },
     {
       "query": "warmtepomp laten installeren",
@@ -47,8 +57,18 @@
     },
     {
       "query": "warmtepomp onderhoud",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "http://tpsventilatie.nl/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 10.333333333333334
+        }
+      ],
+      "zero": false
     },
     {
       "query": "warmtepomp storing",
@@ -72,8 +92,27 @@
     },
     {
       "query": "wtw onderhoud",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "http://tpsventilatie.nl/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 9
+        },
+        {
+          "keys": [
+            "https://tpsventilatie.nl/wtw-unit-onderhoud-reinigen/"
+          ],
+          "clicks": 0,
+          "impressions": 10,
+          "ctr": 0,
+          "position": 49.5
+        }
+      ],
+      "zero": false
     },
     {
       "query": "wtw inregelen",
@@ -92,18 +131,48 @@
     },
     {
       "query": "mechanische ventilatie",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "http://tpsventilatie.nl/"
+          ],
+          "clicks": 0,
+          "impressions": 29,
+          "ctr": 0,
+          "position": 8.551724137931036
+        }
+      ],
+      "zero": false
     },
     {
       "query": "mechanische ventilatie vervangen",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "http://tpsventilatie.nl/"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 4.5
+        }
+      ],
+      "zero": false
     },
     {
       "query": "mechanische ventilatie onderhoud",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "http://tpsventilatie.nl/"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 21.5
+        }
+      ],
+      "zero": false
     },
     {
       "query": "mechanische ventilatie storing",
@@ -122,8 +191,90 @@
     },
     {
       "query": "tps ventilatie",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "https://tpsventilatie.nl/"
+          ],
+          "clicks": 2,
+          "impressions": 3,
+          "ctr": 0.6666666666666666,
+          "position": 1.6666666666666665
+        },
+        {
+          "keys": [
+            "http://tpsventilatie.nl/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 1.3333333333333333
+        },
+        {
+          "keys": [
+            "https://tpsventilatie.nl/contact/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 1.6666666666666665
+        },
+        {
+          "keys": [
+            "https://tpsventilatie.nl/mechanische-ventilatie-dakventilator/"
+          ],
+          "clicks": 0,
+          "impressions": 1,
+          "ctr": 0,
+          "position": 1
+        },
+        {
+          "keys": [
+            "https://tpsventilatie.nl/mechanische-ventilatie-onderhoud-reinigen/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 1.6666666666666665
+        },
+        {
+          "keys": [
+            "https://tpsventilatie.nl/mechanische-ventilatie-vervangen/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 1.6666666666666665
+        },
+        {
+          "keys": [
+            "https://tpsventilatie.nl/over-ons/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 1.6666666666666665
+        },
+        {
+          "keys": [
+            "https://tpsventilatie.nl/wtw-unit-inregelen/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 1.6666666666666665
+        },
+        {
+          "keys": [
+            "https://tpsventilatie.nl/wtw-unit-onderhoud-reinigen/"
+          ],
+          "clicks": 0,
+          "impressions": 3,
+          "ctr": 0,
+          "position": 4.666666666666666
+        }
+      ],
+      "zero": false
     }
   ]
 }

@@ -1,7 +1,152 @@
 {
   "property": "sc-domain:tpsklimaattechniek.nl",
   "startDate": "2026-08-12",
-  "endDate": "2026-09-16",
-  "taken": "2026-09-17T08:24:03.216Z",
-  "rows": []
+  "endDate": "2026-09-17",
+  "taken": "2026-09-18T10:22:42.917Z",
+  "rows": [
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/"
+      ],
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 9.066666666666666
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten"
+      ],
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 6.8
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/airconditioning"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 11
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/airconditioning/installatie"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 89.5
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/airconditioning/onderhoud"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 93
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 5
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/aanleggen"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 85
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/onderhoud-reinigen"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 86
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/storing"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 64
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/mechanische-ventilatie/vervangen"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 95
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/warmtepompen"
+      ],
+      "clicks": 0,
+      "impressions": 1,
+      "ctr": 0,
+      "position": 80
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/advies"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 91
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/onderhoud"
+      ],
+      "clicks": 0,
+      "impressions": 4,
+      "ctr": 0,
+      "position": 81.25
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/warmtepompen/reparatie-storing"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 85
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/diensten/wtw/aanleggen"
+      ],
+      "clicks": 0,
+      "impressions": 7,
+      "ctr": 0,
+      "position": 54.57142857142857
+    },
+    {
+      "keys": [
+        "https://www.tpsklimaattechniek.nl/over-ons"
+      ],
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 11
+    }
+  ]
 }

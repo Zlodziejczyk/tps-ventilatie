@@ -1,9 +1,9 @@
 {
   "property": "sc-domain:tpsklimaattechniek.nl",
   "startDate": "2026-08-12",
-  "endDate": "2026-09-16",
+  "endDate": "2026-09-17",
   "country": "nld",
-  "taken": "2026-09-17T08:24:03.216Z",
+  "taken": "2026-09-18T10:22:42.917Z",
   "entries": [
     {
       "query": "klimaattechniek Zoetermeer",
@@ -87,8 +87,18 @@
     },
     {
       "query": "wtw unit aanleggen",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "https://www.tpsklimaattechniek.nl/diensten/wtw/aanleggen"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 72.5
+        }
+      ],
+      "zero": false
     },
     {
       "query": "mechanische ventilatie",
@@ -122,8 +132,27 @@
     },
     {
       "query": "tps ventilatie",
-      "rows": [],
-      "zero": true
+      "rows": [
+        {
+          "keys": [
+            "https://www.tpsklimaattechniek.nl/"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 4.5
+        },
+        {
+          "keys": [
+            "https://www.tpsklimaattechniek.nl/diensten"
+          ],
+          "clicks": 0,
+          "impressions": 2,
+          "ctr": 0,
+          "position": 9
+        }
+      ],
+      "zero": false
     }
   ]
 }
