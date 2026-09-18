@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Rebrand Migration & SEO Ranking Push
-status: executing
-last_updated: "2026-09-17T12:01:14.809Z"
-last_activity: 2026-09-17
+status: verifying
+last_updated: "2026-09-18T10:26:32.620Z"
+last_activity: 2026-09-18
 progress:
   total_phases: 6
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 11
-  completed_plans: 10
-  percent: 17
+  completed_plans: 11
+  percent: 33
 ---
 
 # Project State
@@ -26,8 +26,8 @@ See: .planning/PROJECT.md (updated 2026-08-19)
 
 Phase: 09 (measurement-foundation) — EXECUTING
 Plan: 6 of 6
-Status: Ready to execute
-Last activity: 2026-09-17
+Status: Phase complete — ready for verification
+Last activity: 2026-09-18
 
 **Phase sequence:** 8 Indexation Unlock → 9 Measurement Foundation → 10 Reversible Old-Brand Migration
 → 11 Local Presence (GBP & Citations) → 12 On-Page Depth & Kennisbank → 13 Brand Tail
@@ -95,6 +95,7 @@ Last activity: 2026-09-17
 | Phase 09 P03 | 75 | 3 tasks | 12 files |
 | Phase 09 P04 | 25 | 2 tasks | 4 files |
 | Phase 09 P05 | 22 | 3 tasks | 4 files |
+| Phase 09 P06 | 195min | 3 tasks | 21 files |
 
 ## Accumulated Context
 
@@ -115,6 +116,7 @@ Recent decisions affecting current work:
 - [Phase 09]: 09-03: Vercel 'enabled' evidence is API/CLI output (web-analytics-enabled.json, speed-insights-enabled.txt) instead of dashboard PNGs; production was rebuilt via the CLI-opened PR #1 merge (main @ 56d239c), so the phase branch merged origin/main (33baec3) before the 09-05 fast-forward; beacons post to the project-unique /2fd128cc8fe7c492/view — The owner chose the CLI route and skipped the vercel.com browser login; the API shows enabledAt 2026-09-16T22:18:46Z before the 22:24:48Z rebuild, the browser beacon returned 200 and the REST count is positive (2 visitors / 5 pageviews) — stronger proof than a screenshot; the merge (not rebase) keeps the pushed branch history intact
 - [Phase 09]: 09-04: ramp anchored on 2026-09-16 (rungs 2026-09-30 / 10-14 / 11-11); first real reading 2026-09-17: 27/27 'Submitted and indexed', sitemap 27/0, no flags; robots-not-allowed only flags with a lastCrawlTime, lost-indexation only against a previous reading — The anchor is the day both Domain properties were verified; the thresholds were observed failing on fabricated readings before the first real run (the only kind of invariant this project trusts); an uncrawled URL has no robots verdict yet, and the first reading has nothing to lose against
 - [Phase 09]: 09-05: CI lives on main with least-privilege tokens: weekly measure-indexation (cron + simulate_breach dispatch, bot-committed readings, one indexation-alert issue) and verify-indexation on every Production deployment_status — both observed red and green on real runs; RESEARCH A3 confirmed (the bot push rebuilds production, accepted); local main was reset to origin/main before the fast-forward (nothing lost) — An automation nobody has seen fail is an assumption (D-21); the simulated dispatch opened and closed issue #2, the real dispatch committed e410ca0, and the probe ran 27/27 on two deployment_status events; the stale local main carried only commits the phase branch already contained (merge-base check) so a hard reset was the safe way back to a fast-forward
+- [Phase 09]: 09-06: the D-16 Search Analytics re-export was taken at 41 h after verification instead of the planned >= 72 h — A read-only probe export at 2026-09-18T10:19Z showed Google had already returned rows (new domain 20 by query / 16 by page; legacy 130 by query / 10 by page, dataState final through 2026-09-17). The 72 h figure existed only to outrun the day-one lag of RESEARCH Pitfall 9, which was demonstrably over; one extra finalized day cannot change a 16-month baseline. Owner decided to close the phase on 2026-09-18 rather than wait. The early timing is recorded in the manifest and in 09-06-SUMMARY.md rather than hidden.
 
 ### Roadmap Evolution
 
@@ -165,15 +167,15 @@ Items acknowledged and deferred at v1.0 milestone close (2026-08-12):
 
 ## Session Continuity
 
-Last session: 2026-09-17T12:01:14.804Z
+Last session: 2026-09-18T10:26:32.614Z
 
 Last session: 2026-07-01 — Phase 6 executed end-to-end (6/6 plans, 3 waves, inline sequential per OneDrive constraint).
-Stopped at: 09-06 in progress: Task 1 (SERP 24/24) + Task 3 done; Task 2 time-gated — analytics-after-24h from 2026-09-17T22:18Z, GSC re-export + completeness gate from 2026-09-19T17:30Z
+Stopped at: Completed 09-06-PLAN.md
 POST-EXECUTION FIXES (2026-07-01, after owner visual review — screenshot audit added): (a) hero H1 gradient shipped as blue blocks — signature-gradient's `background` shorthand defeats bg-clip-text; fixed with a dedicated `gradient-text` @utility using background-image (commit 7a24d54); (b) ImageBand reframed to a content-cropped home-hero-crop.jpg (blank wall removed via sharp) + pillar cards gained hover depth + aurora opacity bumped (commit 10fa4e4). Verified via Playwright screenshots (desktop 1440 + mobile 390) — all good. LESSON: green Vercel build ≠ visually correct; always screenshot-audit after UI deploy (see memory visual-verify-after-ui-deploy).
 WTW/MV BRANDS DONE (owner 2026-07-02→03): WTW = Zehnder (preferred)/Duco/Itho Daalderop, MV = Zehnder/Duco added to BRANDS + wired to the Vervangen nodes; erkendInstallateur:true (owner confirmed 2026-07-03 → verified badge renders on WTW/MV pillar pages, commit 4387d1a). Neutral fallback gone on homepage pillar grid + pillar pages. Verified on preview. Brand-mark square colors are approximate tints — owner WAIVED the official-color/logo swap (accepted as final, no open item).
 FINALIZED 2026-07-03 — owner reviewed the homepage and approved; no open items for Phase 6. Merged branch → main (FF, commit 5ab3c5e); Vercel production deploy READY + verified on tps-ventilatie.vercel.app.
 DEPLOYMENT MODEL (owner-clarified 2026-07-03): main + Vercel = PRE-PROD work env, NO public domain attached. `tpsventilatie.nl` is the OLD LiteSpeed site (NOT Vercel) and will be SCRAPPED. The real launch domain = `tpsklimaattechniek.nl`, attached only when the whole site is fully finalized. At domain-attach: switch CANONICAL_ORIGIN (lib/constants.ts, currently https://tpsventilatie.nl) → tpsklimaattechniek.nl (feeds canonicals/sitemap/robots/JSON-LD/OG). See memory [[tps-deploy-and-integrations]].
 NEXT (owner-driven, non-blocking): (1) continue finishing the site on main/Vercel pre-prod; (2) optional behavioral spot-check (compact submit → /api/lead 200 + WhatsApp; pillar Offerte pre-select+scroll); (3) Phase 7 (UI/UX & a11y remediation) deletes the retired section files; (4) at full finalize: attach tpsklimaattechniek.nl + swap CANONICAL_ORIGIN.
-Resume file: .planning/phases/09-measurement-foundation/.continue-here.md
+Resume file: None
 
 Session resumed: 2026-06-29 — restored context; frontier = Phase 5 planning (CONTEXT.md ready, decision gate resolved to hybrid). Phase 4 editorial gate remains async/owner-blocked on Thomas's whole-site sign-off (preview r6znbcg6f).

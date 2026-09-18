@@ -28,7 +28,7 @@ Full phase detail, success criteria, decisions, and deferred items: [`milestones
 genuinely rank — starting by un-hiding the 21 service pages Google has never been allowed to index.
 
 - [x] Phase 8: Indexation Unlock (IDX-01…05) (completed 2026-08-20)
-- [ ] Phase 9: Measurement Foundation (MEAS-01…06)
+- [x] Phase 9: Measurement Foundation (MEAS-01…06) (completed 2026-09-18)
 - [ ] Phase 10: Reversible Old-Brand Migration (MIG-01…10)
 - [ ] Phase 11: Local Presence — GBP & Citations (GBP-01…08, NAP-01…05)
 - [ ] Phase 12: On-Page Depth & Kennisbank (SEO-11…15, BLOG-01/03/04/05)
@@ -72,7 +72,7 @@ Once Phase 10 repoints it, verifying the old property and baselining its ranking
 4. Indexing requested for the hub + 4 pillars
 5. Vercel Analytics reporting live traffic
 
-**Plans:** 5/6 plans executed
+**Plans:** 6/6 plans complete
 
 **Wave 1**
 
@@ -90,7 +90,7 @@ Once Phase 10 repoints it, verifying the old property and baselining its ranking
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 09-06-PLAN.md — Geolocated SERP baseline with honest zeroes, D-17 completeness gate, analytics-after-24h proof, runbook/REQUIREMENTS/npm-script reconcile (wave 4)
+- [x] 09-06-PLAN.md — Geolocated SERP baseline with honest zeroes, D-17 completeness gate, analytics-after-24h proof, runbook/REQUIREMENTS/npm-script reconcile (wave 4)
 
 #### Phase 10: Reversible Old-Brand Migration
 
@@ -171,7 +171,7 @@ domain and 404s previously shared preview URLs. It must never be able to jeopard
 | 6. Homepage conversion uplift | v1.0 | 6/6 | Complete | 2026-07-01 |
 | 7. UI/UX & Accessibility Remediation | v1.0 | 12/12 | Complete | 2026-07-07 |
 | 8. Indexation Unlock | v1.1 | 5/5 | Complete    | 2026-08-20 |
-| 9. Measurement Foundation | v1.1 | 5/6 | In Progress|  |
+| 9. Measurement Foundation | v1.1 | 6/6 | Complete   | 2026-09-18 |
 | 10. Reversible Old-Brand Migration | v1.1 | 0/? | Not started | — |
 | 11. Local Presence — GBP & Citations | v1.1 | 0/? | Not started | — |
 | 12. On-Page Depth & Kennisbank | v1.1 | 0/? | Not started | — |
