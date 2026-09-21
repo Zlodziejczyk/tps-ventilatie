@@ -113,6 +113,36 @@ be GSC-verified and baselined (Phase 9).
 **Hard gates:** the pre-flight checklist (MIG-01…04) completes before any DNS change. This is the phase
 with a real point of no return — roughly 3–4 weeks after cutover, reverting becomes a second migration.
 
+**Plans:** 10 plans in 6 waves
+
+**Wave 1** *(reversible prep — no external effect; runs on `gsd/phase-10-reversible-old-brand-migration`)*
+
+- [ ] 10-01-PLAN.md — Amend MIG-01 to the content mirror, realign ROADMAP criterion 4 and the hard-gate line, correct PROJECT.md §Context, regenerate CLAUDE.md from corrected sources (wave 1)
+- [ ] 10-02-PLAN.md — The credential-free legacy content mirror taken while the old site is still live, with CAPTURE.md, a dated baseline manifest and a privacy gate (wave 1)
+- [ ] 10-03-PLAN.md — Typed 9-entry map + host-gated catch-all, the pure injectable checker, `prebuild` guard #9 with R1–R9 negative proofs, and the `next.config.ts` trailing-slash pin (wave 1)
+- [ ] 10-04-PLAN.md — Owner continuity: webmail + WP-admin routes with the dated certificate caveat, the permanent former-name footer line, and the one Dutch message to Thomas (wave 1)
+
+**Wave 2** *(blocked on 10-03)*
+
+- [ ] 10-05-PLAN.md — `verify-redirects.ts`: exhaustive one-hop live probe on both legacy hostnames, wired into the post-deploy job and gated on the declared cutover so it is never expected-red (wave 2)
+- [ ] 10-06-PLAN.md — Weekly GSC legacy section: Search Analytics + 9 URL inspections, two flag codes with stated derivations, both observed firing (wave 2)
+
+**Wave 3** *(the pre-flight hard gate — blocked on waves 1–2)*
+
+- [ ] 10-07-PLAN.md — Land the map in production (live but inert), attach both legacy hostnames with no Vercel redirect, prove the whole map through a spoofed `Host` header, write the rollback procedure (wave 3)
+
+**Wave 4** *(dd24 session 1 — must be ≥8 h before the flip, D-04/D-05)*
+
+- [ ] 10-08-PLAN.md — TTL to 300 on both hostname records and SPF without `a`, verified at all three nameservers twice, with `earliest_flip_at` recorded (wave 4)
+
+**Wave 5** *(🚪 THE ONE-WAY DOOR — dd24 session 2, one live session, D-07)*
+
+- [ ] 10-09-PLAN.md — Repoint apex + `www` to Vercel, then within minutes: three-nameserver `dig`, the full one-hop probe, certificates at T+2/T+15/T+30, the mail round-trip, the T+30 decision, and declaring the cutover (wave 5)
+
+**Wave 6** *(post-flip, same day)*
+
+- [ ] 10-10-PLAN.md — Change of Address from all three verified legacy properties, the consolidated evidence manifest, the pre-addressed day-28 declaration and the dated 2026-10-30 certificate check (wave 6)
+
 #### Phase 11: Local Presence — GBP & Citations
 
 **Goal:** Make Google's entity record for this business correct, consistent, and unambiguous under the new brand.
