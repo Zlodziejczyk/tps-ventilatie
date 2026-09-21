@@ -106,12 +106,15 @@ be GSC-verified and baselined (Phase 9).
 1. Every one of the 9 legacy URLs reaches its target in exactly one hop, from **both** legacy hostnames
 2. `info@tpsventilatie.nl` verified sending and receiving after cutover; SPF no longer contains `a`
 3. Owner has working webmail and WP-admin routes that do not depend on the apex, verified pre-cutover
-4. WordPress backup stored off-host and restore-tested; WP install left intact
+4. Credential-free public content mirror of the 9 legacy pages committed under `docs/baseline/`, captured while the old site is still live; WordPress install left intact and reachable *(amended by Phase 10 D-02/D-03 — see REQUIREMENTS MIG-01)*
 5. Change of Address submitted for every verified legacy variant
 6. Build gate fails on any redirect chain or non-200 destination
 
-**Hard gates:** the pre-flight checklist (MIG-01…04) completes before any DNS change. This is the phase
-with a real point of no return — roughly 3–4 weeks after cutover, reverting becomes a second migration.
+**Hard gates:** the pre-flight checklist (MIG-01…04) completes before any DNS change — MIG-01 being the
+credential-free content mirror of the 9 live legacy pages (D-02/D-03), MIG-02 the SPF tidy, MIG-03 the
+owner's webmail route and MIG-04 the WP-admin route, each verified while the old site still answers on
+its own IP. This is the phase with a real point of no return — roughly 3–4 weeks after cutover,
+reverting becomes a second migration.
 
 **Plans:** 10 plans in 6 waves
 
