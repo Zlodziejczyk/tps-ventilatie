@@ -1376,7 +1376,7 @@ scheduled. A plan that puts steps 15 and 17 in the same wave is wrong.
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Does the 9-entry map need a 10th entry for `/wp-sitemap.xml`?**
    - **Known:** it returns 200 today and is advertised by the legacy `robots.txt`. The catch-all
