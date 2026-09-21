@@ -120,10 +120,10 @@ with a real point of no return — roughly 3–4 weeks after cutover, reverting 
 - [ ] 10-01-PLAN.md — Amend MIG-01 to the content mirror, realign ROADMAP criterion 4 and the hard-gate line, correct PROJECT.md §Context, regenerate CLAUDE.md from corrected sources (wave 1)
 - [ ] 10-02-PLAN.md — The credential-free legacy content mirror taken while the old site is still live, with CAPTURE.md, a dated baseline manifest and a privacy gate (wave 1)
 - [ ] 10-03-PLAN.md — Typed 9-entry map + host-gated catch-all, the pure injectable checker, `prebuild` guard #9 with R1–R9 negative proofs, and the `next.config.ts` trailing-slash pin (wave 1)
-- [ ] 10-04-PLAN.md — Owner continuity: webmail + WP-admin routes with the dated certificate caveat, the permanent former-name footer line, and the one Dutch message to Thomas (wave 1)
 
-**Wave 2** *(blocked on 10-03)*
+**Wave 2** *(blocked on 10-02 for 10-04; on 10-03 for 10-05 and 10-06)*
 
+- [ ] 10-04-PLAN.md — Owner continuity: webmail + WP-admin routes with the dated certificate caveat, the permanent former-name footer line, and the one Dutch message to Thomas (wave 2)
 - [ ] 10-05-PLAN.md — `verify-redirects.ts`: exhaustive one-hop live probe on both legacy hostnames, wired into the post-deploy job and gated on the declared cutover so it is never expected-red (wave 2)
 - [ ] 10-06-PLAN.md — Weekly GSC legacy section: Search Analytics + 9 URL inspections, two flag codes with stated derivations, both observed firing (wave 2)
 
