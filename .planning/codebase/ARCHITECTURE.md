@@ -88,10 +88,10 @@
 
 ## Pattern Overview
 
-**Overall:** Static Next.js brochure site using App Router with server components as default, `"use client"` added only for interactive/animated components.
+**Overall:** Next.js brochure site on App Router in **hybrid** hosting mode — ~22 pages prerender as static assets, `app/api/lead/route.ts` runs as a serverless function. Server components are the default; `"use client"` is added only for interactive/animated components.
 
 **Key Characteristics:**
-- All pages are statically exported (`output: "export"` in `next.config.ts`) — no server runtime
+- Page routes are prerendered (SSG) and served as static assets; `app/api/lead/route.ts` runs server-side, so a runtime IS present
 - Pages are Server Components that import Client Components for interactivity
 - Shared state is avoided — each interactive component manages its own local state
 - Design tokens defined in `app/globals.css` via Tailwind v4 `@theme inline` — all colors, fonts, radii available as CSS custom properties
@@ -204,17 +204,17 @@
 - Triggers: Request to `/`
 - Responsibilities: Composes all home page sections in order
 
-**Static Export:**
+**Build Configuration:**
 - Location: `next.config.ts`
 - Triggers: `npm run build`
-- Responsibilities: Outputs static HTML/CSS/JS to `out/` directory; images unoptimized (no server)
+- Responsibilities: sets `trailingSlash: false` and `images.formats` (AVIF + WebP, Image Optimization on); from Phase 10 it also sets `skipTrailingSlashRedirect: true` and the legacy-hostname `redirects()` map. Output is the default hybrid build — prerendered pages plus serverless route handlers.
 
 ## Architectural Constraints
 
-- **Static export only:** `output: "export"` in `next.config.ts` — no API routes, no server-side rendering at runtime, no Next.js Image optimization
-- **No server runtime:** All data is hardcoded in components or `lib/constants.ts`; the only network call is the form webhook POST (client-side)
+- **Hybrid hosting:** no `output` key in `next.config.ts` — page routes prerender to static assets while route handlers (`app/api/lead/route.ts`) deploy as serverless functions. API routes, `redirects()` and Next.js Image Optimization are all available (Phase 5 dropped `output: "export"` for exactly this reason).
+- **No database:** All page data is hardcoded in components or `lib/constants.ts`; the only runtime dependency is `/api/lead`, which forwards to the GoHighLevel webhook server-side
 - **`"use client"` boundary:** Any component using React hooks, `usePathname`, Framer Motion animations, or browser APIs requires `"use client"` at the top
-- **`<Suspense>` for `useSearchParams`:** `PricingTabs` uses `useSearchParams` — `TarievenPage` wraps it in `<Suspense>` to satisfy static export requirements
+- **`<Suspense>` for `useSearchParams`:** `PricingTabs` uses `useSearchParams` — `TarievenPage` wraps it in `<Suspense>` because prerendering requires it, not because of any export mode
 - **Global state:** None. Module-level constants only (`SITE`, `NAV_LINKS`, etc.) in `lib/constants.ts`
 - **Circular imports:** None detected
 

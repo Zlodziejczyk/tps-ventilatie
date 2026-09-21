@@ -22,7 +22,7 @@
 ## Frameworks
 
 **Core:**
-- Next.js 16.2.1 - Full-stack React framework; configured for static export (`output: "export"` in `next.config.ts`)
+- Next.js 16.2.1 - Full-stack React framework running in **hybrid** mode (default Next.js output: static pages prerender at build time, route handlers run as serverless functions). `output: "export"` was dropped in Phase 5 so `app/api/lead/route.ts` could run server-side; `next.config.ts` carries no `output` key.
 - React 19.2.4 - UI rendering
 
 **Build/Dev:**
@@ -40,7 +40,7 @@
 - `ogl` ^1.0.11 - Lightweight WebGL library; used exclusively in `components/SoftAurora.tsx` for the aurora canvas background effect
 
 **Infrastructure:**
-- `next` 16.2.1 - Includes image optimization (disabled for static export via `unoptimized: true`), `next/font/google` for font loading, and `next/link`/`next/image` components
+- `next` 16.2.1 - Image Optimization is **on** (no `unoptimized` flag), with `images.formats` opted into AVIF plus WebP; also provides `next/font/google` for font loading and the `next/link`/`next/image` components
 
 ## Configuration
 
@@ -50,7 +50,7 @@
 - When `NEXT_PUBLIC_GHL_WEBHOOK_URL` is absent, `lib/forms.ts` falls back to `console.log` (dev mode)
 
 **Build:**
-- `next.config.ts` — enables static export, disables image optimization
+- `next.config.ts` — sets `trailingSlash: false` and `images.formats` (AVIF + WebP); as of Phase 10 it also sets `skipTrailingSlashRedirect: true` and a `redirects()` map for the legacy hostnames
 - `postcss.config.mjs` — registers `@tailwindcss/postcss` plugin
 - `tsconfig.json` — strict mode, `bundler` module resolution, `@/*` path alias pointing to repo root
 
@@ -65,10 +65,10 @@
 - Run with: `npm run dev`
 
 **Production:**
-- Static export to `out/` directory
+- Hybrid deploy on Vercel: prerendered pages served as static assets, `app/api/lead/route.ts` as a serverless function
 - Deployed to Vercel (project ID `prj_vL6mnZFhKHcxBjmyeCtrhJEKob0Q`, org `team_YrD4rsBlATPg7g02y1QThOhg`)
-- Build command: `npm run build` (generates `out/`)
-- No server-side runtime required — fully static HTML/CSS/JS
+- Build command: `npm run build` (guard chain runs first via `prebuild`)
+- A server-side runtime IS required — `/api/lead` is a route handler, not a static file
 
 ---
 
