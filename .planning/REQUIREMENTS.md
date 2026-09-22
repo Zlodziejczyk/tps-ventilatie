@@ -31,8 +31,8 @@
 
 - [x] **MIG-01**: A credential-free public content mirror of the 9 legacy pages plus their assets is committed under `docs/baseline/<capture-date>/legacy-site-mirror/`, captured by us while the old site is still live — amended 2026-09-21 by Phase 10 D-02/D-03, because the cutover moves two hostname A records and touches neither the files, the database, the vhost nor the subscription, so reversibility is protected by never touching the install and by the cyberfolks subscription staying alive for `info@tpsventilatie.nl`, not by a files-plus-database copy (a copy parked at cyberfolks would sit on the same host and share the same single point of failure anyway); the three slower risks it would have insured against are accepted — the install rots unpatched (WordPress 7.1.1), the cyberfolks subscription ends, or a host-side accident occurs with retention unknown to us
 - [ ] **MIG-02**: The legacy SPF record drops the `a` mechanism (→ `v=spf1 mx include:_spf.cyberfolks.pl -all`) so the mail server stays authorized and Vercel's IP does not become one
-- [ ] **MIG-03**: An alternate webmail route is documented for the owner and verified working **before** cutover
-- [ ] **MIG-04**: An alternate WordPress-admin route is verified working **before** cutover, so the rollback target stays inspectable — satisfied by a credential-free mechanical proof (`curl --resolve tpsventilatie.nl:443:195.78.67.39 .../wp-login.php` returns 200 with a valid certificate and the real WordPress login form), recorded in `docs/baseline/<capture-date>/owner/mig-04-mechanical.md`; amended 2026-09-22 to drop Phase 10 D-22's additional requirement that the owner log in once, because the purpose clause is inspectability of the rollback target and rollback is a two-record DNS revert — no one authenticates to WordPress to perform it, so the owner's credentials were never on the rollback path
+- [x] **MIG-03**: An alternate webmail route is documented for the owner and verified working **before** cutover
+- [x] **MIG-04**: An alternate WordPress-admin route is verified working **before** cutover, so the rollback target stays inspectable — satisfied by a credential-free mechanical proof (`curl --resolve tpsventilatie.nl:443:195.78.67.39 .../wp-login.php` returns 200 with a valid certificate and the real WordPress login form), recorded in `docs/baseline/<capture-date>/owner/mig-04-mechanical.md`; amended 2026-09-22 to drop Phase 10 D-22's additional requirement that the owner log in once, because the purpose clause is inspectability of the rollback target and rollback is a two-record DNS revert — no one authenticates to WordPress to perform it, so the owner's credentials were never on the rollback path
 - [x] **MIG-05**: A typed 9-entry redirect map lives in `lib/seo/redirects.ts` with every destination built from `CANONICAL_ORIGIN`
 - [x] **MIG-06**: A build gate fails on redirect chains, duplicate sources, or any destination not returning a direct 200
 - [ ] **MIG-07**: Both legacy hostnames are attached to Vercel and repointed, and every legacy URL reaches its target in exactly **one** hop
@@ -121,8 +121,8 @@ Populated during roadmap creation.
 | MEAS-06 | Phase 9 | Complete |
 | MIG-01 | Phase 10 | Complete |
 | MIG-02 | Phase 10 | Pending |
-| MIG-03 | Phase 10 | Pending |
-| MIG-04 | Phase 10 | Pending |
+| MIG-03 | Phase 10 | Complete |
+| MIG-04 | Phase 10 | Complete |
 | MIG-05 | Phase 10 | Complete |
 | MIG-06 | Phase 10 | Complete |
 | MIG-07 | Phase 10 | Pending |
