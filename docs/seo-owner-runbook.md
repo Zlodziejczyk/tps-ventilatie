@@ -169,9 +169,81 @@ dan wordt de run rood en verschijnt één issue met het label `indexation-alert`
 - **Handmatig draaien / alarmpad testen:** `npm run measure` lokaal (sleutel via `.env.local`), of in
   GitHub Actions → *Run workflow*; met `simulate_breach=true` bewijs je het alarmpad zonder meting.
 
+## 8. Webmail na de overstap — MIG-03
+
+Bij de overstap wijzen `tpsventilatie.nl` en `www.tpsventilatie.nl` naar Vercel. Alles wat op
+díe twee namen stond is daarna niet meer bereikbaar, en webmail stond erop. De vervangende
+route is de servernaam van de hosting zelf:
+
+```
+https://s161.cyber-folks.pl/webmail/
+```
+
+**Waarom deze route niet kan breken.** `s161.cyber-folks.pl` is de eigen hostnaam van de
+server bij cyberfolks. Er komt geen DNS-record van ons aan te pas, geen certificaat van ons,
+en geen toegang die iemand anders moet verlenen. Daarom is "vóór de overstap geverifieerd"
+hier geen belofte maar een feit: de route gaf **200** terug op 2026-09-22, en de overstap
+verandert er niets aan.
+
+**Twee eerlijke nadelen:**
+
+1. Het is een URL die niemand onthoudt. Hij moet in je favorieten.
+2. Hij verhuist mee als cyberfolks je ooit naar een andere server dan `s161` zet. Gebeurt dat,
+   dan is de nieuwe servernaam op te vragen bij cyberfolks.
+
+**Zet deze nu in je favorieten** — ná de overstap is hij lastiger terug te vinden dan ervoor.
+
+
+## 9. WordPress-beheer na de overstap — MIG-04
+
+De oude WordPress-site blijft gewoon draaien op `195.78.67.39`; we raken de installatie niet
+aan. Alleen de wég ernaartoe verdwijnt, want `tpsventilatie.nl` wijst dan naar de nieuwe site.
+Om er toch in te komen vertel je je eigen computer waar de oude server staat:
+
+```
+195.78.67.39  tpsventilatie.nl www.tpsventilatie.nl
+```
+
+**Waar die regel heen moet:**
+
+- **macOS:** `sudo nano /etc/hosts`, regel onderaan plakken, opslaan met `ctrl+O` en `ctrl+X`.
+- **Windows:** Kladblok *als administrator* openen →
+  `C:\Windows\System32\drivers\etc\hosts` → regel onderaan plakken → opslaan.
+- **Weghalen:** dezelfde regel verwijderen en opslaan. Doe dat zodra je WP-beheer niet meer
+  nodig hebt, anders blijft je computer de oude server gebruiken terwijl de rest van de wereld
+  de nieuwe site ziet.
+
+**Wat je dan moet zien.** `https://tpsventilatie.nl/wp-login.php` geeft het échte
+WordPress-inlogscherm ("Login ‹ TPS Ventilatie — WordPress"), niet onze nieuwe site.
+Geverifieerd op 2026-09-22: **200**, met een geldig certificaat.
+
+**Waarom zo, en niet met een nieuwe naam als `oud.tpsventilatie.nl`.** WordPress heeft
+`siteurl = https://tpsventilatie.nl` hard in de database staan. Via een andere naam stuurt
+WordPress je meteen terug naar de apex — en die is na de overstap onze 301. Die `siteurl`
+aanpassen zou werken, maar dan is terugdraaien geen DNS-wijziging meer: je zou én twee
+DNS-records terug moeten zetten én WordPress weer moeten ompunten. De hosts-regel laat de
+installatie ongemoeid, en dáárom blijft terugdraaien één handeling.
+
+> **Let op — het certificaat van de oude server.** Het Let's Encrypt-certificaat op die server
+> heet `mail.tpsventilatie.nl` en dekt daarnaast `tpsventilatie.nl` en `www.tpsventilatie.nl`
+> — precies de twee namen die wij verhuizen. Het verloopt op **2026-10-29** (gemeten
+> 2026-09-22). Na de overstap kan die server zichzelf niet meer vernieuwen, want de
+> validatie loopt over diezelfde namen. Vanaf die datum geeft deze beheerroute dus een
+> certificaatwaarschuwing.
+>
+> Dat is **geen reden om terug te draaien** — het is een bekende datum, geen storing. Wil je
+> na die datum nog bij WP-beheer, gebruik dan de servernaam uit §8-stijl
+> (`s161.cyber-folks.pl`, certificaat geldig tot 2026-12-24) of draai de twee DNS-records
+> tijdelijk terug; dan valideert de oude server weer en vernieuwt het certificaat vanzelf.
+> Klik nooit "toch doorgaan" weg met een `-k` of `--insecure` in een script: een ontbrekend of
+> ongeldig certificaat is juist één van de signalen waar we op letten.
+
 ---
 
 ### Samenvatting — wat hangt waarvan af
 - **JSON-LD `geo` + GBP-pin + Phase-5 maps-embed** delen dezelfde geverifieerde coördinaat (§5).
 - **Sitemap-inhoud groeit vanzelf** zodra Phase 4 service-pagina's op `published` zet — niets handmatig bijwerken.
 - **`sameAs` (JSON-LD)** blijft leeg tot de eigenaar GBP/social-URLs aanlevert (§1).
+- **Webmail hangt aan `s161.cyber-folks.pl`** — niet aan `tpsventilatie.nl`, en dus niet aan de overstap (§8).
+- **WP-beheer hangt aan de hosts-regel** op je eigen computer; `siteurl` blijft bewust ongewijzigd, zodat terugdraaien één DNS-handeling blijft (§9).
+- **Terugdraaien hangt aan TTL 300** tot dag 28 na de overstap *(wordt ingevuld door plan 10-07)*.

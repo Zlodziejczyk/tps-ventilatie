@@ -40,6 +40,7 @@ Eén rij per bestand. `taken` is UTC.
 | bestand | wat bewijst het | taken (UTC) | bron | opnieuw maken |
 |---|---|---|---|---|
 | `legacy-site-mirror/` (94 bestanden, 2,2 MB) | De **inhoud** van `tpsventilatie.nl` zoals die werd geserveerd terwijl de oude site nog live op `195.78.67.39` stond (MIG-01 zoals gewijzigd door D-02/D-03): de 10 publieke URL's (root + 9 gemapte pagina's), hun Oxygen-CSS, plugin-assets en de mediabibliotheek-afbeeldingen inclusief `srcset`-varianten. Opent offline vanaf `index.html`; `robots.txt` is gerespecteerd, dus `/wp-admin/` zit er niet in | 2026-09-22T12:05:48Z – 2026-09-22T12:08:26Z | `wget` 1.25.0, commando in `legacy-site-mirror/CAPTURE.md` | **alleen zolang de oude site nog draait** — het commando in `CAPTURE.md` reproduceert de boom precies, maar **vanaf de A-record-omschakeling (plan 10-09) is dit niet meer opnieuw te maken**; het is dan het enige bewijs van de inhoud-vóór-de-omschakeling |
+| `owner/mig-04-mechanical.md` | De mechanische helft van MIG-04, bewezen terwijl de oude site nog op de apex stond: `curl --resolve tpsventilatie.nl:443:195.78.67.39 .../wp-login.php` geeft **200**, certificaatverificatie **0** (geldig, dus zonder `-k`) en het echte WordPress-inlogscherm (`<title>Login ‹ TPS Ventilatie — WordPress`, markers `loginform`/`wp-login`/`wp-submit`). Plus de certificaatmeting op `mail.tpsventilatie.nl:993`: `CN=mail.tpsventilatie.nl`, SANs mail + apex + www, `notAfter` **2026-10-29** | 2026-09-22T14:12Z | `curl --resolve` + `openssl s_client`, met de hand | het commando staat in het bestand en blijft werken zolang de installatie op `195.78.67.39` draait — `--resolve` is DNS-onafhankelijk, dus dit overleeft de overstap |
 | `legacy-site-mirror/CAPTURE.md` | Het recept en de eerlijke afbakening: het letterlijke `wget`-commando met vlag-voor-vlag-motivering, de `wget`-versie, het UTC-tijdstip, de gemeten omvang, de vier verwachte 404's (themalettertypen die ook voor bezoekers 404'en), en waarom `--reject-regex '(wp-json\|xmlrpc)'` is toegevoegd. Plus wat de spiegel **niet** is: geen installatie, geen database, kan geen site herstellen | 2026-09-22T12:08:26Z | met de hand, tijdens plan 10-02 | n.v.t. (verslagdocument — het beschrijft de vastlegging hierboven) |
 
 ## 3. Wat hier nog bij komt
@@ -62,8 +63,16 @@ in het manifest hierboven en een eigen `taken:`:
   eist minimaal 180 dagen redirects, en Google hercontroleert de verificatie periodiek: verdwijnt het
   record, dan verliest de property stilletjes haar verificatie. Hetzelfde geldt voor het record op
   `tpsklimaattechniek.nl`.
-- **De WordPress-installatie wordt niet aangeraakt.** Dat — plus het cyberfolks-abonnement dat in leven
-  blijft voor `info@tpsventilatie.nl` — is wat de omschakeling omkeerbaar houdt; niet de spiegel in deze
-  map (D-02). De rollback is en blijft het terugzetten van twee A-records.
+- **De WordPress-installatie wordt niet aangeraakt.** Dat — plus een cyberfolks-abonnement dat in leven
+  blijft — is wat de omschakeling omkeerbaar houdt; niet de spiegel in deze map (D-02). De rollback is en
+  blijft het terugzetten van twee A-records.
+  > **Bijgesteld 2026-09-22 (eigenaar).** D-02 ging ervan uit dat het abonnement vanzelf blijft bestaan
+  > "omdat `info@tpsventilatie.nl` nodig is". Die mailbox blijkt **niet in gebruik**: Thomas werkt vanaf
+  > een Gmail-adres. Daarmee is de tweede pijler onder de omkeerbaarheid zwakker dan D-02 aannam — er is
+  > geen dagelijkse reden meer om dat abonnement aan te houden, en als het afloopt vertrekt de
+  > WordPress-installatie ermee. Geaccepteerd risico, bewust: de terugdraaitermijn is 28 dagen en het
+  > abonnement loopt nu. **Wel te controleren vóór de dag-28-verklaring (10-10):** draait de oude
+  > installatie op dat moment nog? Zo niet, dan is "omkeerbaar" niet meer waar en moet de verklaring dat
+  > zeggen in plaats van het te herhalen.
 - **De spiegel wordt niet bijgewerkt.** Net als alles in `2026-09-16/` is dit bewijs van "zo was het".
   Een nieuwe vastlegging hoort in een nieuwe gedateerde map.
