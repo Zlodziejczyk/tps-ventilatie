@@ -116,13 +116,13 @@ owner's webmail route and MIG-04 the WP-admin route, each verified while the old
 its own IP. This is the phase with a real point of no return — roughly 3–4 weeks after cutover,
 reverting becomes a second migration.
 
-**Plans:** 2/10 plans executed
+**Plans:** 3/10 plans executed
 
 **Wave 1** *(reversible prep — no external effect; runs on `gsd/phase-10-reversible-old-brand-migration`)*
 
 - [x] 10-01-PLAN.md — Amend MIG-01 to the content mirror, realign ROADMAP criterion 4 and the hard-gate line, correct PROJECT.md §Context, regenerate CLAUDE.md from corrected sources (wave 1)
 - [x] 10-02-PLAN.md — The credential-free legacy content mirror taken while the old site is still live, with CAPTURE.md, a dated baseline manifest and a privacy gate (wave 1)
-- [ ] 10-03-PLAN.md — Typed 9-entry map + host-gated catch-all, the pure injectable checker, `prebuild` guard #9 with R1–R9 negative proofs, and the `next.config.ts` trailing-slash pin (wave 1)
+- [x] 10-03-PLAN.md — Typed 9-entry map + host-gated catch-all, the pure injectable checker, `prebuild` guard #9 with R1–R9 negative proofs, and the `next.config.ts` trailing-slash pin (wave 1)
 
 **Wave 2** *(blocked on 10-02 for 10-04; on 10-03 for 10-05 and 10-06)*
 
@@ -205,7 +205,7 @@ domain and 404s previously shared preview URLs. It must never be able to jeopard
 | 7. UI/UX & Accessibility Remediation | v1.0 | 12/12 | Complete | 2026-07-07 |
 | 8. Indexation Unlock | v1.1 | 5/5 | Complete    | 2026-08-20 |
 | 9. Measurement Foundation | v1.1 | 6/6 | Complete    | 2026-09-18 |
-| 10. Reversible Old-Brand Migration | v1.1 | 2/10 | In Progress|  |
+| 10. Reversible Old-Brand Migration | v1.1 | 3/10 | In Progress|  |
 | 11. Local Presence — GBP & Citations | v1.1 | 0/? | Not started | — |
 | 12. On-Page Depth & Kennisbank | v1.1 | 0/? | Not started | — |
 | 13. Brand Tail | v1.1 | 0/? | Not started | — |

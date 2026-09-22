@@ -33,8 +33,8 @@
 - [ ] **MIG-02**: The legacy SPF record drops the `a` mechanism (→ `v=spf1 mx include:_spf.cyberfolks.pl -all`) so the mail server stays authorized and Vercel's IP does not become one
 - [ ] **MIG-03**: An alternate webmail route is documented for the owner and verified working **before** cutover
 - [ ] **MIG-04**: An alternate WordPress-admin route is verified working **before** cutover, so the rollback target stays inspectable
-- [ ] **MIG-05**: A typed 9-entry redirect map lives in `lib/seo/redirects.ts` with every destination built from `CANONICAL_ORIGIN`
-- [ ] **MIG-06**: A build gate fails on redirect chains, duplicate sources, or any destination not returning a direct 200
+- [x] **MIG-05**: A typed 9-entry redirect map lives in `lib/seo/redirects.ts` with every destination built from `CANONICAL_ORIGIN`
+- [x] **MIG-06**: A build gate fails on redirect chains, duplicate sources, or any destination not returning a direct 200
 - [ ] **MIG-07**: Both legacy hostnames are attached to Vercel and repointed, and every legacy URL reaches its target in exactly **one** hop
 - [ ] **MIG-08**: `info@tpsventilatie.nl` is verified sending **and** receiving after cutover
 - [ ] **MIG-09**: A Change of Address request is submitted for every verified legacy variant, from a domain-level property
@@ -123,8 +123,8 @@ Populated during roadmap creation.
 | MIG-02 | Phase 10 | Pending |
 | MIG-03 | Phase 10 | Pending |
 | MIG-04 | Phase 10 | Pending |
-| MIG-05 | Phase 10 | Pending |
-| MIG-06 | Phase 10 | Pending |
+| MIG-05 | Phase 10 | Complete |
+| MIG-06 | Phase 10 | Complete |
 | MIG-07 | Phase 10 | Pending |
 | MIG-08 | Phase 10 | Pending |
 | MIG-09 | Phase 10 | Pending |
