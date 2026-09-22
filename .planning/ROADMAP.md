@@ -116,7 +116,7 @@ owner's webmail route and MIG-04 the WP-admin route, each verified while the old
 its own IP. This is the phase with a real point of no return — roughly 3–4 weeks after cutover,
 reverting becomes a second migration.
 
-**Plans:** 4/10 plans executed
+**Plans:** 5/10 plans executed
 
 **Wave 1** *(reversible prep — no external effect; runs on `gsd/phase-10-reversible-old-brand-migration`)*
 
@@ -127,7 +127,7 @@ reverting becomes a second migration.
 **Wave 2** *(blocked on 10-02 for 10-04; on 10-03 for 10-05 and 10-06)*
 
 - [x] 10-04-PLAN.md — Owner continuity: webmail + WP-admin routes with the dated certificate caveat, the permanent former-name footer line, and the one Dutch message to Thomas (wave 2)
-- [ ] 10-05-PLAN.md — `verify-redirects.ts`: exhaustive one-hop live probe on both legacy hostnames, wired into the post-deploy job and gated on the declared cutover so it is never expected-red (wave 2)
+- [x] 10-05-PLAN.md — `verify-redirects.ts`: exhaustive one-hop live probe on both legacy hostnames, wired into the post-deploy job and gated on the declared cutover so it is never expected-red (wave 2)
 - [ ] 10-06-PLAN.md — Weekly GSC legacy section: Search Analytics + 9 URL inspections, two flag codes with stated derivations, both observed firing (wave 2)
 
 **Wave 3** *(the pre-flight hard gate — blocked on waves 1–2)*
@@ -205,7 +205,7 @@ domain and 404s previously shared preview URLs. It must never be able to jeopard
 | 7. UI/UX & Accessibility Remediation | v1.0 | 12/12 | Complete | 2026-07-07 |
 | 8. Indexation Unlock | v1.1 | 5/5 | Complete    | 2026-08-20 |
 | 9. Measurement Foundation | v1.1 | 6/6 | Complete    | 2026-09-18 |
-| 10. Reversible Old-Brand Migration | v1.1 | 4/10 | In Progress|  |
+| 10. Reversible Old-Brand Migration | v1.1 | 5/10 | In Progress|  |
 | 11. Local Presence — GBP & Citations | v1.1 | 0/? | Not started | — |
 | 12. On-Page Depth & Kennisbank | v1.1 | 0/? | Not started | — |
 | 13. Brand Tail | v1.1 | 0/? | Not started | — |
