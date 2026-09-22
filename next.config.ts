@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
-import { toCatchAllRedirect, toNextRedirects, toTrailingSlashRedirect } from "@/lib/seo/redirects";
+// Relative, not the `@/` alias — see the IMPORT DISCIPLINE note in lib/seo/redirects.ts.
+// Aliases in the next.config.ts module graph resolve against the compiled config's location,
+// not the importing file's, and fail at build time in a way no local check reproduces.
+import { toCatchAllRedirect, toNextRedirects, toTrailingSlashRedirect } from "./lib/seo/redirects";
 
 const nextConfig: NextConfig = {
   // Hybrid hosting (Phase 5, QA-01): default Next.js mode — static pages

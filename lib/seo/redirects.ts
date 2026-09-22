@@ -13,8 +13,17 @@
 // imports it, and Next evaluates the config in its own module graph — pulling in
 // `lib/seo/policy.ts` would drag the entire taxonomy registry into that graph for no reason.
 // That constraint is why the origin is joined locally below rather than through absoluteUrl().
+//
+// AND THE IMPORT BELOW IS RELATIVE ON PURPOSE — do not "fix" it to the `@/` alias this repo
+// uses everywhere else. Next compiles next.config.ts to next.config.compiled.js at the REPO
+// ROOT and rewrites tsconfig path aliases relative to that root, but the resulting require
+// still executes from THIS file's directory. `@/lib/constants` therefore becomes
+// `./lib/constants` resolved against `lib/seo/`, i.e. `lib/seo/lib/constants`, and the build
+// dies with `Cannot find module './lib/constants'` before it renders a single page.
+// Observed on Vercel 2026-09-22 (deployment H6oAA2rK). Local `tsx` runs resolve the alias
+// correctly, so nothing catches this except a real build.
 
-import { CANONICAL_ORIGIN } from "@/lib/constants";
+import { CANONICAL_ORIGIN } from "../constants";
 
 // Both legacy hostnames, as ONE anchored regex alternation. Three facts make this shape
 // non-negotiable, all verified in the Next.js v16.2.1 source:
