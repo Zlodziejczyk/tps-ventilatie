@@ -101,7 +101,15 @@ export function Footer() {
       {/* Bottom bar — separated by tonal layering (a surface-token step + spacing),
           not a 1px hairline, per the Atmospheric-Clarity design system. */}
       <div className="max-w-7xl mx-auto mt-16 rounded-2xl bg-surface-container px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant">
-        <div>&copy; {new Date().getFullYear()} {SITE.name}. {SITE.tagline}.</div>
+        <div>
+          <div>&copy; {new Date().getFullYear()} {SITE.name}. {SITE.tagline}.</div>
+          {/* D-26 — permanent and unconditional: no query parameter, no client state, no
+              dismissal. A 301 does not reveal its origin (the Referer on a redirected
+              request is the original referrer, usually Google), so this line is the entity
+              signal that carries the old brand's recognition to the new name. Both halves
+              read from SITE; neither is a typed literal. */}
+          <div>{SITE.name} is de nieuwe naam van {SITE.formerName}.</div>
+        </div>
         <div className="flex gap-6">
           <span>KvK: {SITE.kvk}</span>
           <span>BTW: {SITE.btw}</span>

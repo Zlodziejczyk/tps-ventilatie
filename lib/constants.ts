@@ -5,6 +5,12 @@ export const SITE = {
   // "TPS klimaattechniek" (name ≠ legal entity, D-01).
   legalName: "TPS services",
   tagline: "Specialist in gezond binnenklimaat",
+  // The retired brand (Phase 10, D-26). Kept as data so the footer's continuity line —
+  // and any future entity signal — read the old name from one place instead of re-typing
+  // a brand string. Do not remove it after the migration: the old-name → new-name
+  // association is exactly what the 301s are asking Google to learn, and a 301 does not
+  // reveal its own origin.
+  formerName: "TPS Ventilatie",
   phone: "+31 6 29403450",
   phoneDisplay: "06 - 29 40 34 50",
   email: "info@tpsventilatie.nl",
