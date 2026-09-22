@@ -29,7 +29,7 @@
 
 ### Old-Brand Migration (MIG) — reversible by construction
 
-- [ ] **MIG-01**: A credential-free public content mirror of the 9 legacy pages plus their assets is committed under `docs/baseline/<capture-date>/legacy-site-mirror/`, captured by us while the old site is still live — amended 2026-09-21 by Phase 10 D-02/D-03, because the cutover moves two hostname A records and touches neither the files, the database, the vhost nor the subscription, so reversibility is protected by never touching the install and by the cyberfolks subscription staying alive for `info@tpsventilatie.nl`, not by a files-plus-database copy (a copy parked at cyberfolks would sit on the same host and share the same single point of failure anyway); the three slower risks it would have insured against are accepted — the install rots unpatched (WordPress 7.1.1), the cyberfolks subscription ends, or a host-side accident occurs with retention unknown to us
+- [x] **MIG-01**: A credential-free public content mirror of the 9 legacy pages plus their assets is committed under `docs/baseline/<capture-date>/legacy-site-mirror/`, captured by us while the old site is still live — amended 2026-09-21 by Phase 10 D-02/D-03, because the cutover moves two hostname A records and touches neither the files, the database, the vhost nor the subscription, so reversibility is protected by never touching the install and by the cyberfolks subscription staying alive for `info@tpsventilatie.nl`, not by a files-plus-database copy (a copy parked at cyberfolks would sit on the same host and share the same single point of failure anyway); the three slower risks it would have insured against are accepted — the install rots unpatched (WordPress 7.1.1), the cyberfolks subscription ends, or a host-side accident occurs with retention unknown to us
 - [ ] **MIG-02**: The legacy SPF record drops the `a` mechanism (→ `v=spf1 mx include:_spf.cyberfolks.pl -all`) so the mail server stays authorized and Vercel's IP does not become one
 - [ ] **MIG-03**: An alternate webmail route is documented for the owner and verified working **before** cutover
 - [ ] **MIG-04**: An alternate WordPress-admin route is verified working **before** cutover, so the rollback target stays inspectable
@@ -119,7 +119,7 @@ Populated during roadmap creation.
 | MEAS-04 | Phase 9 | Complete |
 | MEAS-05 | Phase 9 | Complete |
 | MEAS-06 | Phase 9 | Complete |
-| MIG-01 | Phase 10 | Pending |
+| MIG-01 | Phase 10 | Complete |
 | MIG-02 | Phase 10 | Pending |
 | MIG-03 | Phase 10 | Pending |
 | MIG-04 | Phase 10 | Pending |
