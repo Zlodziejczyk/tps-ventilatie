@@ -104,8 +104,8 @@ be GSC-verified and baselined (Phase 9).
 **Success criteria:**
 
 1. Every one of the 9 legacy URLs reaches its target in exactly one hop, from **both** legacy hostnames
-2. `info@tpsventilatie.nl` verified sending and receiving after cutover; SPF no longer contains `a`
-3. Owner has working webmail and WP-admin routes that do not depend on the apex, verified pre-cutover
+2. The legacy mail path is proven unaffected by the cutover — MX, `mail` A, SPF, DKIM and DMARC unchanged, the mail host still accepting connections, and inbound delivery confirmed bounce-free from an address we control; SPF no longer contains `a` *(amended by Phase 10 2026-09-22 — the mailbox is not in use, see REQUIREMENTS MIG-08)*
+3. Owner has working webmail and WP-admin routes that do not depend on the apex, both verified pre-cutover by us without credentials *(amended by Phase 10 2026-09-22 — see REQUIREMENTS MIG-04)*
 4. Credential-free public content mirror of the 9 legacy pages committed under `docs/baseline/`, captured while the old site is still live; WordPress install left intact and reachable *(amended by Phase 10 D-02/D-03 — see REQUIREMENTS MIG-01)*
 5. Change of Address submitted for every verified legacy variant
 6. Build gate fails on any redirect chain or non-200 destination

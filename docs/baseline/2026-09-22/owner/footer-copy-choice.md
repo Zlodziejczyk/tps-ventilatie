@@ -1,39 +1,37 @@
-# Footertekst — keuze van de eigenaar (D-26)
+# Footertekst — keuze (D-26)
 
-**gevraagd op:** 2026-09-22
-**status:** NOG GEEN ANTWOORD. Niet blokkerend voor de overstap; register B staat live op de
-preview en is wat er wordt gepubliceerd als er geen andere keuze komt.
+**besloten:** 2026-09-22 · **keuze: register B** · **status:** GESLOTEN
 
-## Wat er nu staat
-
-Register **B**, gerenderd in de footer van elke pagina:
+## De gekozen regel
 
 > TPS klimaattechniek is de nieuwe naam van TPS Ventilatie.
 
-Preview: https://tps-ventilatie-git-gsd-phase-10-reversib-4ce964-pushly-projects.vercel.app/
-(onderaan, in de grijze balk naast KvK/BTW — geverifieerd gerenderd op 2026-09-22.)
+Staat live op de preview, onderaan elke pagina, in de bestaande grijze balk naast KvK/BTW:
+https://tps-ventilatie-git-gsd-phase-10-reversib-4ce964-pushly-projects.vercel.app/
 
-## De drie voorstellen
+## Wie deze keuze maakt
 
-| # | Tekst | Toon |
-|---|---|---|
-| A | *TPS klimaattechniek — voorheen TPS Ventilatie* | Minimaal, bijna een juridische voetnoot |
-| B | *TPS klimaattechniek is de nieuwe naam van TPS Ventilatie.* | Gewone zin; duidelijkste signaal voor Google — **aanbevolen** |
-| C | *Bekend van TPS Ventilatie — sinds 2026 TPS klimaattechniek.* | Warmst; spreekt terugkerende klanten aan |
+D-26 noemt dit "de redactionele poort van de eigenaar". Die poort is hier vervuld door
+**Pushly.nl (Oskar)**, het bureau dat de site bouwt en beheert — niet door de klant. Er is
+bewust géén losse goedkeuringsronde bij Thomas gevraagd (besluit 2026-09-22: eigenaarspoorten
+in deze fase tot nul terugbrengen). De regel is feitelijk en niet interpretabel, dus er valt
+redactioneel weinig te kiezen; hij kan later in één commit worden aangepast als Thomas hem
+anders wil.
 
-**Waarom B aanbevolen is.** Het is een expliciete "X is de nieuwe naam van Y"-uitspraak. Dat
-is precies de koppeling die deze migratie aan Google wil overbrengen, en het is ook voor een
-mens die op de oude naam zoekt niet voor tweeërlei uitleg vatbaar.
+## De afgewezen alternatieven
 
-**Waarom de regel er onvoorwaardelijk staat.** Een 301 verraadt zijn eigen herkomst niet — de
-`Referer` van een doorgestuurd verzoek is de oorspronkelijke verwijzer, meestal Google, niet
-het oude domein. Er is dus niets om op te conditioneren; de regel staat er voor iedereen, of
-altijd niet.
+| # | Tekst | Toon | Waarom niet |
+|---|---|---|---|
+| A | *TPS klimaattechniek — voorheen TPS Ventilatie* | Minimaal, bijna een voetnoot | Een gedachtestreepje is geen uitspraak; zwakker koppelingssignaal |
+| C | *Bekend van TPS Ventilatie — sinds 2026 TPS klimaattechniek.* | Warmst | Mooier voor terugkerende klanten, maar "bekend van" zegt niet dat het dezelfde onderneming ís |
 
-**Plaatsing.** Alleen de footer, voorlopig. Een alinea op `/over-ons` is een optie die open
-blijft; RESEARCH Open Question 4 adviseert voorlopig alleen de footer.
+**Waarom B.** Het is een expliciete "X is de nieuwe naam van Y"-uitspraak — precies de
+entiteitskoppeling die deze migratie aan Google wil overbrengen, en voor een mens die op de
+oude naam zoekt niet voor tweeërlei uitleg vatbaar.
 
-## Antwoord
+**Waarom onvoorwaardelijk.** Een 301 verraadt zijn eigen herkomst niet: de `Referer` van een
+doorgestuurd verzoek is de oorspronkelijke verwijzer, meestal Google, niet het oude domein.
+Er is dus niets om op te conditioneren — de regel staat er voor iedereen, of voor niemand.
 
-_(nog niet ontvangen — datum en keuze hier invullen; is het niet B, dan wordt de string in
-`components/Footer.tsx` aangepast en gepusht vóórdat dit plan sluit)_
+**Plaatsing.** Alleen de footer. Een alinea op `/over-ons` blijft een open optie
+(RESEARCH Open Question 4 adviseert voorlopig alleen de footer).
