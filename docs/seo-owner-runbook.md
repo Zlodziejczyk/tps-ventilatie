@@ -134,10 +134,24 @@ raakt. Bij twijfel: gewoon draaien, het duurt een paar seconden.
 | `expected a direct 200, got 3xx` | Een URL in de sitemap wordt doorgestuurd in plaats van direct geserveerd. |
 | `emits noindex in its own metadata` | Een pagina staat in de sitemap maar zegt tegen Google dat hij niet geïndexeerd mag worden — precies de tegenstrijdigheid die Phase 8 heeft opgelost. Meestal staat de `status` van die pagina niet (meer) op `published`. |
 | `canonical points at …, not at itself` | De pagina verwijst als "origineel" naar een andere URL. |
+| `expected 301, got 308` | Een oud adres wordt doorgestuurd met de verkeerde code. Een **308** betekent bijna altijd dat Next's eigen "slash weghalen"-regel vóór onze doorstuurregels draait; dan kost elk oud adres **twee** stappen in plaats van één. De bouw blijft hierbij gewoon groen — alleen deze meting ziet het. Niet wegpoetsen: zoek uit waarom de volgorde is verschoven. |
 
 > Op een Vercel *preview*-URL (`*.vercel.app`) zet Vercel zelf een
 > `X-Robots-Tag: noindex` op álle pagina's. Dat is normaal — het script meldt dat het
 > die header daar overslaat en controleert hem alleen op de productie-URL.
+
+**Sinds Phase 10 zijn er twee meetingen na elke deploy.** Naast `verify-indexation.ts` draait nu ook
+`scripts/verify-redirects.ts`. Die stelt een andere vraag: *komen de negen oude adressen van
+`tpsventilatie.nl` elk in precies één stap op de nieuwe site uit — vanaf beide oude hostnamen?* Eén stap,
+niet twee: elke extra tussenstap kost vindbaarheid.
+
+**Vóór de omschakeling meldt die tweede meting dat hij wordt overgeslagen. Dat is normaal en goed.**
+Zolang de oude adressen nog naar de oude WordPress-server wijzen, valt er niets door te sturen; een
+meting die dan rood staat zou een alarm zijn dat niemand meer serieus neemt tegen de tijd dat het echt
+iets betekent. Hij wordt vanzelf een echte controle op het moment dat de omschakeling wordt vastgelegd.
+
+Een rode run opent hetzelfde `indexation-alert`-issue als de eerste meting — één workflow, één issue,
+geen tweede alarmkanaal. Handmatig draaien: `npx tsx scripts/verify-redirects.ts`.
 
 **Automatisch sinds Phase 9.** Dit script draait nu vanzelf na elke productie-deploy:
 `.github/workflows/verify-indexation.yml` reageert op Vercel's `deployment_status` (Production,
@@ -244,6 +258,7 @@ installatie ongemoeid, en dáárom blijft terugdraaien één handeling.
 - **JSON-LD `geo` + GBP-pin + Phase-5 maps-embed** delen dezelfde geverifieerde coördinaat (§5).
 - **Sitemap-inhoud groeit vanzelf** zodra Phase 4 service-pagina's op `published` zet — niets handmatig bijwerken.
 - **`sameAs` (JSON-LD)** blijft leeg tot de eigenaar GBP/social-URLs aanlevert (§1).
+- **De doorstuurmeting hangt aan de vastgelegde omschakeldatum** — daarvoor slaat hij zichzelf over; daarna is hij een echte controle (§6).
 - **Webmail hangt aan `s161.cyber-folks.pl`** — niet aan `tpsventilatie.nl`, en dus niet aan de overstap (§8).
 - **WP-beheer hangt aan de hosts-regel** op je eigen computer; `siteurl` blijft bewust ongewijzigd, zodat terugdraaien één DNS-handeling blijft (§9).
 - **Terugdraaien hangt aan TTL 300** tot dag 28 na de overstap *(wordt ingevuld door plan 10-07)*.

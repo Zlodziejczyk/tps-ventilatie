@@ -15,6 +15,26 @@
 # The probe target is derived from lib/constants.ts at run time, never typed
 # here, and it is deliberately NOT the deployment's unique *.vercel.app host:
 # that host carries a platform noindex header and is not what anyone indexes.
+#
+# THREE QUESTIONS, NOT TWO (Phase 10, D-17). This job now asks two of them:
+#   1. what do we serve on the canonical host?      — verify-indexation.ts
+#   2. what do we serve on the LEGACY hostnames?    — verify-redirects.ts
+# and the weekly measure-indexation workflow asks the third (what did Google
+# conclude?). Keep them separate. verify-indexation.ts derives its URLs from the
+# canonical sitemap, which the legacy hostnames are not in and never will be — so
+# it stays green through a completely broken legacy map. The redirect probe is a
+# SIBLING with a different lifetime: it gets retired once the legacy domain stops
+# mattering (D-25), while the indexation probe is permanent.
+#
+# WHY THE REDIRECT STEP IS NOT EXPECTED-RED. It is gated inside the script on
+# LEGACY_CUTOVER_DATE, not here in YAML and not by letting the step fail softly.
+# (The YAML key that would do that is deliberately not named here: the plan's
+# verification asserts its absence by grep, so writing it would false-positive.)
+# Until plan
+# 10-09 declares the cutover it prints an explicit skip and exits 0, so the step is
+# green from the day it merges and becomes a real assertion at exactly the moment
+# it can mean something. A gate everybody expects to be red gets ignored when it is
+# red for a real reason — that is how three build guards rotted for weeks.
 name: verify-indexation
 
 on:
@@ -46,6 +66,10 @@ jobs:
             sleep 30
           done
           exit 1
+      - name: Probe the legacy hostnames (one hop?) — skips until the cutover is declared
+        shell: bash
+        run: |
+          npx tsx scripts/verify-redirects.ts 2>&1 | tee -a probe-output.txt
       - name: Open or update the alert issue
         if: failure()
         env:
