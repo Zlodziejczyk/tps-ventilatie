@@ -34,6 +34,14 @@ import {
   isIndexable,
   sitemapEntries,
 } from "@/lib/seo/policy";
+import {
+  LEGACY_REDIRECTS,
+  toCatchAllRedirect,
+  toNextRedirects,
+  toTrailingSlashRedirect,
+  type LegacyRedirect,
+} from "@/lib/seo/redirects";
+import { checkRedirectInvariants } from "@/lib/seo/redirect-invariants";
 
 function codes(violations: { code: string }[]): string {
   return violations.map((v) => v.code).join(", ") || "(none)";
@@ -208,4 +216,137 @@ console.log(
     `invariant: relational break (P1), dropped entry (P2), orphan entry (P3), a page going dark under the real ` +
     `INDEXABLE_FLOOR (P4) each caught by code, and the real surface is clean at the floor ` +
     `(P5, ${indexableNow} indexable / ${realEntries.length} entries, floor ${INDEXABLE_FLOOR}).`,
+);
+
+// ── (R1)-(R9) The legacy redirect map (Phase 10, D-17) ─────────────────────
+//
+// Same discipline as above: every perturbation is addressed BY PREDICATE and asserts
+// its OWN violation code. R1-R4 are the ones worth the file — they encode the two
+// findings that would otherwise have been discovered by Google: an un-gated catch-all
+// that 301s the live site to itself, and a normalisation rule in the wrong position
+// that silently costs every legacy URL a second hop while every build stays green.
+
+const realEmitted: unknown[] = [
+  ...toNextRedirects(),
+  toCatchAllRedirect(),
+  toTrailingSlashRedirect(),
+];
+
+// (R1) Strip the host gate from the catch-all — found by predicate on its source, never
+//      by array position. This is the catastrophic one.
+const r1Emitted = structuredClone(realEmitted) as Record<string, unknown>[];
+const r1CatchAll = r1Emitted.find((rule) => rule.source === "/:path*");
+assert(r1CatchAll, "the clone must contain the catch-all");
+delete r1CatchAll.has;
+const r1 = checkRedirectInvariants({ emitted: r1Emitted, skipTrailingSlashRedirect: true });
+assert.ok(
+  r1.some((v) => v.code === "catchall-not-host-gated"),
+  `R1: an un-gated catch-all must yield catchall-not-host-gated, got: ${codes(r1)}`,
+);
+
+// (R2) The plausible "simplification" of the host pattern — dropping the alternation so it
+//      no longer matches the www form, which is half the legacy traffic.
+const r2 = checkRedirectInvariants({
+  emitted: realEmitted,
+  hostPattern: "tpsventilatie\\.nl",
+  skipTrailingSlashRedirect: true,
+});
+assert.ok(
+  r2.some((v) => v.code === "host-pattern-scope"),
+  `R2: a pattern that misses the www form must yield host-pattern-scope, got: ${codes(r2)}`,
+);
+
+// (R3) Move the normalisation rule off the last position — the exact thing Next.js does on
+//      its own when skipTrailingSlashRedirect is unset.
+const r3Emitted = structuredClone(realEmitted) as Record<string, unknown>[];
+const r3Index = r3Emitted.findIndex((rule) => rule.source === "/:path+/");
+assert(r3Index !== -1, "the clone must contain the normalisation rule");
+const [r3Rule] = r3Emitted.splice(r3Index, 1);
+r3Emitted.unshift(r3Rule);
+const r3 = checkRedirectInvariants({ emitted: r3Emitted, skipTrailingSlashRedirect: true });
+assert.ok(
+  r3.some((v) => v.code === "normalisation-not-last"),
+  `R3: normalisation ahead of the legacy rules must yield normalisation-not-last, got: ${codes(r3)}`,
+);
+
+// (R4) The array is correct but the config key is off — the silent half of the same finding.
+//      Without this proof, R3 alone would let someone delete the config line and stay green.
+const r4 = checkRedirectInvariants({ emitted: realEmitted, skipTrailingSlashRedirect: false });
+assert.ok(
+  r4.some((v) => v.code === "normalisation-not-last"),
+  `R4: skipTrailingSlashRedirect off must yield normalisation-not-last, got: ${codes(r4)}`,
+);
+
+// (R5) Duplicate a source — the second rule is dead and invisible.
+const r5Map = [...LEGACY_REDIRECTS, { ...LEGACY_REDIRECTS[1] }];
+const r5 = checkRedirectInvariants({
+  map: r5Map,
+  emitted: realEmitted,
+  skipTrailingSlashRedirect: true,
+});
+assert.ok(
+  r5.some((v) => v.code === "duplicate-source"),
+  `R5: a duplicated source must yield duplicate-source, got: ${codes(r5)}`,
+);
+
+// (R6) Point a destination at another entry's source — a chain, which is what MIG-06 exists
+//      to stop. Predicate-addressed: take any entry that is not the root and aim it at the
+//      root-adjacent source of another.
+const r6Map = structuredClone(LEGACY_REDIRECTS) as LegacyRedirect[];
+const r6Victim = r6Map.find((entry) => entry.from !== "/" && entry.to !== "/");
+const r6Target = r6Map.find((entry) => entry.from !== "/" && entry.from !== r6Victim?.from);
+assert(r6Victim && r6Target, "the clone must contain two distinct non-root entries");
+r6Victim.to = r6Target.from.replace(/\/$/, "");
+const r6 = checkRedirectInvariants({
+  map: r6Map,
+  emitted: realEmitted,
+  skipTrailingSlashRedirect: true,
+});
+assert.ok(
+  r6.some((v) => v.code === "destination-is-a-source"),
+  `R6: a destination that is itself a source must yield destination-is-a-source, got: ${codes(r6)}`,
+);
+
+// (R7) Drop the why from the one judgement call — found by its confidence, not its slug, so
+//      the proof survives the map changing which entry is the judgement.
+const r7Map = structuredClone(LEGACY_REDIRECTS) as LegacyRedirect[];
+const r7Target = r7Map.find((entry) => entry.confidence === "judgement");
+assert(r7Target, "the clone must contain a judgement entry");
+delete r7Target.why;
+const r7 = checkRedirectInvariants({
+  map: r7Map,
+  emitted: realEmitted,
+  skipTrailingSlashRedirect: true,
+});
+assert.ok(
+  r7.some((v) => v.code === "judgement-without-why"),
+  `R7: a judgement call with no reasoning must yield judgement-without-why, got: ${codes(r7)}`,
+);
+
+// (R8) Leak a metadata key onto an emitted object — Next would fail the build with its own
+//      terse message; we want ours, which says where the key belongs.
+const r8Emitted = structuredClone(realEmitted) as Record<string, unknown>[];
+const r8Target = r8Emitted.find((rule) => rule.source === "/over-ons/");
+assert(r8Target, "the clone must contain the over-ons rule");
+r8Target.confidence = "certain";
+const r8 = checkRedirectInvariants({ emitted: r8Emitted, skipTrailingSlashRedirect: true });
+assert.ok(
+  r8.some((v) => v.code === "emitted-invalid-key"),
+  `R8: a metadata key on an emitted object must yield emitted-invalid-key, got: ${codes(r8)}`,
+);
+
+// (R9) The control. Unperturbed reality must yield exactly zero violations — without this,
+//      every proof above could be passing because the checker is simply always angry.
+const r9 = checkRedirectInvariants({ emitted: realEmitted, skipTrailingSlashRedirect: true });
+assert.equal(
+  r9.length,
+  0,
+  `R9 (control): the real redirect map must yield zero violations, got: ${codes(r9)}`,
+);
+
+console.log(
+  `✅ Redirect gates provably bite — un-gated catch-all (R1), a host pattern that misses the www form (R2), ` +
+    `normalisation off the last position (R3) and skipTrailingSlashRedirect turned off (R4) each caught by code; ` +
+    `plus duplicate source (R5), a chain (R6), a judgement with no reasoning (R7) and a leaked metadata key (R8). ` +
+    `The real map is clean at the control (R9, ${LEGACY_REDIRECTS.length} entries / ${realEmitted.length} emitted rules).`,
 );
