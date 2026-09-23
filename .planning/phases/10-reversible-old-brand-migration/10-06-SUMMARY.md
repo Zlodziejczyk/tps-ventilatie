@@ -123,13 +123,14 @@ completed: 2026-09-23
 
 ## User Setup Required
 
-**The OneDrive mount can no longer hydrate cloud-only files, and the project moved to local disk.**
+**OneDrive was paused, so the repo's git broke; work moved to local disk.**
 
-- Every read of a dehydrated OneDrive file fails with `Operation timed out` — in the repo this surfaced as `fatal: mmap failed` on `git commit` / `status` / `diff`, with 3040 of 3062 loose objects and `.git/logs/HEAD` stranded.
-- It is **mount-wide, not repo-specific**: an unrelated `.docx` elsewhere in OneDrive-Personal fails identically. Launching the OneDrive app (it was not running) did not restore hydration.
-- **This needs the owner to open OneDrive and resolve it** — it looks like a sign-in or account-level problem and cannot be fixed from a shell.
+- **Cause (owner, 2026-09-23): syncing was paused for 24 h.** A paused OneDrive still presents cloud-only files as placeholders but will not fetch their content, so every read of one blocks until it times out. Nothing is wrong with the account.
+- In the repo that surfaced as `fatal: mmap failed: Operation timed out` on `git commit` / `status` / `diff`, with 3040 of 3062 loose objects and `.git/logs/HEAD` unreadable. `git log` still worked, which makes it look intermittent.
+- It was **mount-wide, not repo-specific** — an unrelated `.docx` elsewhere in OneDrive-Personal failed identically. That is the cheap test that separates "OneDrive is not serving files" from "this repo is damaged".
+- **It resolves by itself when the pause expires**, or immediately on *Resume syncing*. No repair of the OneDrive copy is needed; it will simply be behind this branch.
 - No work was lost: everything committed was already on GitHub, and the one uncommitted file was copied out before anything else was attempted.
-- **The live working copy is now `~/dev/tps-klimaattechniek`.**
+- **The live working copy is now `~/dev/tps-klimaattechniek`**, and on current evidence it should stay there — see *Next Phase Readiness* for the build timings. The OneDrive copy still has an uncommitted `10-09-PLAN.md` whose content is now committed as `aabf822`; discard it there (`git checkout --` that file) before pulling, or just abandon that copy.
 
 ## Next Phase Readiness
 
