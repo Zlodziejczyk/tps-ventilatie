@@ -22,6 +22,12 @@
 // this = "did Google agree?". A disagreement between them is the highest-value
 // signal this phase can produce — do not merge them.
 //
+// AND SINCE PHASE 10 (D-25) IT ASKS A SECOND QUESTION: what did Google do with the
+// RETIRED domain? Search Analytics for the legacy property plus a URL Inspection over
+// every address in the redirect map, reported under its own heading so a legacy
+// consolidation signal is never mistaken for a new-domain indexation regression. The
+// whole section is additive and non-fatal — see (5) for why that is not optional.
+//
 // OUTPUT: <out>/<today UTC>.json (committed by the weekly workflow, D-21), then the
 // flags from scripts/gsc/thresholds.ts against the newest earlier reading. With
 // --simulate-breach nothing is written and a labelled simulated-breach flag is
@@ -34,11 +40,29 @@ import { CANONICAL_ORIGIN } from "@/lib/constants";
 import { sitemapEntries } from "@/lib/seo/policy";
 import { INDEXABLE_FLOOR } from "@/lib/seo/invariants";
 import { getAccessToken } from "./gsc/auth";
-import { GscApiError, PROPERTY_NEW, getSitemap, inspectUrl } from "./gsc/api";
-import { evaluateReading, isIndexed, rungInForce, type MeasurementFlag, type Reading, type UrlReading } from "./gsc/thresholds";
+import { LEGACY_REDIRECTS } from "@/lib/seo/redirects";
+import { GscApiError, PROPERTY_LEGACY, PROPERTY_NEW, getSitemap, inspectUrl, querySearchAnalytics } from "./gsc/api";
+import {
+  evaluateReading,
+  isIndexed,
+  nextZeroStreak,
+  rungInForce,
+  LEGACY_ZERO_WEEKS,
+  type LegacyBlock,
+  type LegacyUrlReading,
+  type MeasurementFlag,
+  type Reading,
+  type UrlReading,
+} from "./gsc/thresholds";
 
 const DEFAULT_OUT = join("docs", "measurements", "gsc");
 const INSPECT_SPACING_MS = 150; // 27 sequential calls vs 600/min — quota is not a concern, attribution is
+// The retired domain's origin. The PATHS come from LEGACY_REDIRECTS and are never re-typed;
+// only the scheme+host is literal here, because the map stores that as an anchored REGEX
+// (LEGACY_HOST_PATTERN) which cannot be used to build a URL. A Domain property covers the
+// apex and the www form alike, so one origin inspects the whole legacy surface.
+const LEGACY_ORIGIN = "https://tpsventilatie.nl";
+const LEGACY_LOOKBACK_DAYS = 28; // matches the window the zero-streak threshold is derived against
 const VERCEL_PROJECT_ID = "prj_vL6mnZFhKHcxBjmyeCtrhJEKob0Q";
 const VERCEL_TEAM_ID = "team_YrD4rsBlATPg7g02y1QThOhg";
 const VISITS_COUNT_URL = "https://api.vercel.com/v1/query/web-analytics/visits/count";
@@ -95,6 +119,70 @@ async function visits7d(): Promise<number | undefined> {
   const data = (typeof body.data === "object" && body.data !== null ? body.data : body) as Record<string, unknown>;
   const key = ["total", "visitors", "pageviews", "count", "devices"].find((k) => typeof data[k] === "number");
   return key ? (data[key] as number) : undefined;
+}
+
+// The retired domain's side of the reading (D-25). EVERYTHING here is wrapped: the 27
+// inspections that ran before it are the expensive, perishable part of the run, and a
+// transient legacy 5xx must never discard them or raise a false indexation alert (the
+// commit 61de3b7 lesson). On total failure this returns undefined and the reading is
+// written WITHOUT a legacy block — a gap, which thresholds.ts refuses to read as a zero.
+async function legacySection(token: string, prev: Reading | undefined): Promise<LegacyBlock | undefined> {
+  try {
+    // Derived from the map, never a second list: a parallel list drifts and would agree
+    // with any bug. inspectionUrl must sit under the property named in siteUrl, so these
+    // are inspected with the LEGACY property, not the new one.
+    const legacyUrls: LegacyUrlReading[] = [];
+    for (const entry of LEGACY_REDIRECTS) {
+      const url = `${LEGACY_ORIGIN}${entry.from}`;
+      try {
+        const result = await inspectUrl(token, PROPERTY_LEGACY, url);
+        legacyUrls.push({
+          url,
+          verdict: result.verdict,
+          coverageState: result.coverageState,
+          googleCanonical: result.googleCanonical,
+          // The late coverage for the HTTP watch D-19 declined: a detached Vercel domain
+          // or a lapsed certificate shows up here rather than nowhere.
+          pageFetchState: result.pageFetchState,
+        });
+      } catch (error) {
+        const status = error instanceof GscApiError ? error.status : 0;
+        legacyUrls.push({ url, error: status ? `HTTP ${status}` : (error as Error).message });
+      }
+      await sleep(INSPECT_SPACING_MS);
+    }
+
+    // Is Search still sending anyone to the old domain? byProperty gives one total row
+    // rather than a per-page breakdown — the question is about the property, not a page.
+    const end = new Date(Date.now() - 86_400_000); // Google's data lags ~1 day
+    const start = new Date(end.getTime() - (LEGACY_LOOKBACK_DAYS - 1) * 86_400_000);
+    const analytics = await querySearchAnalytics(token, PROPERTY_LEGACY, {
+      startDate: start.toISOString().slice(0, 10),
+      endDate: end.toISOString().slice(0, 10),
+      aggregationType: "byProperty",
+      type: "web",
+    });
+    const row = analytics.rows?.[0];
+    const impressions28d = row?.impressions ?? 0;
+
+    return {
+      property: PROPERTY_LEGACY,
+      impressions28d,
+      clicks28d: row?.clicks ?? 0,
+      zeroStreak: nextZeroStreak(prev, impressions28d),
+      urls: legacyUrls,
+    };
+  } catch (error) {
+    // Note the SHAPE of this failure deliberately: if Search Analytics is unreachable we
+    // drop the whole block rather than record impressions28d: 0. A fabricated zero would
+    // be indistinguishable from real silence and would march the zero-streak toward a
+    // flag that means the opposite of what happened.
+    console.error(
+      `note: the legacy section failed (${(error as Error).message}) — reading written WITHOUT the legacy block. ` +
+        `That is a GAP, not a zero, and the evaluator will not flag on it`,
+    );
+    return undefined;
+  }
 }
 
 async function main(): Promise<void> {
@@ -159,8 +247,14 @@ async function main(): Promise<void> {
     return undefined;
   });
 
-  // (6) Previous reading, (7) the current one.
+  // (6) Previous reading — read before the legacy section because the zero streak is a
+  //     transition from it (nextZeroStreak), not a fresh count.
   const prev = previousReading(out, todayIso);
+
+  // (7) The retired domain (D-25). Additive and non-fatal by construction.
+  const legacy = await legacySection(accessToken, prev);
+
+  // (8) The current reading.
   const reading: Reading = {
     taken: now.toISOString(),
     property,
@@ -168,6 +262,7 @@ async function main(): Promise<void> {
     ...(sitemap !== undefined ? { sitemap } : {}),
     ...(visits !== undefined ? { analytics: { visits7d: visits } } : {}),
     urls: readings,
+    ...(legacy !== undefined ? { legacy } : {}),
   };
   if (simulateBreach) {
     console.log(`simulated breach requested — no reading written (would have been ${join(out, `${todayIso}.json`)})`);
@@ -177,7 +272,7 @@ async function main(): Promise<void> {
     console.log(`reading written: ${join(out, `${todayIso}.json`)}`);
   }
 
-  // (8) Evaluate and report.
+  // (9) Evaluate and report.
   const flags: MeasurementFlag[] = evaluateReading(prev, reading, todayIso);
   if (simulateBreach) {
     flags.push({
@@ -193,6 +288,29 @@ async function main(): Promise<void> {
     const canonicalOk = u.error ? "–" : !u.googleCanonical || u.googleCanonical === u.url ? "yes" : `NO → ${u.googleCanonical}`;
     console.log(`| ${u.url} | ${u.error ?? u.verdict} | ${u.error ? "–" : u.coverageState} | ${u.lastCrawlTime ?? "–"} | ${canonicalOk} |`);
   }
+
+  // Its OWN heading, deliberately. Folded into the table above, a legacy consolidation
+  // signal and a new-domain indexation regression would read as the same alert.
+  console.log("");
+  console.log(`— legacy (${PROPERTY_LEGACY.replace(/^sc-domain:/, "")}) —`);
+  if (legacy) {
+    console.log("");
+    console.log("| url | verdict | coverageState | pageFetchState | googleCanonical |");
+    console.log("|---|---|---|---|---|");
+    for (const u of legacy.urls) {
+      console.log(
+        `| ${u.url} | ${u.error ?? u.verdict ?? "–"} | ${u.error ? "–" : (u.coverageState ?? "–")} | ` +
+          `${u.error ? "–" : (u.pageFetchState ?? "–")} | ${u.error ? "–" : (u.googleCanonical ?? "–")} |`,
+      );
+    }
+    console.log(
+      `\n${LEGACY_LOOKBACK_DAYS}-day impressions ${legacy.impressions28d}, clicks ${legacy.clicks28d}, ` +
+        `zero streak ${legacy.zeroStreak ?? 0}/${LEGACY_ZERO_WEEKS} — a streak is not authorisation to retire the redirect map`,
+    );
+  } else {
+    console.log("no legacy block in this reading — a GAP, not a zero (see the note above)");
+  }
+
   console.log("");
   for (const flag of flags) console.log(`FLAG [${flag.code}]${flag.url ? ` ${flag.url}` : ""} — ${flag.message}`);
   const indexed = readings.filter(isIndexed).length;
