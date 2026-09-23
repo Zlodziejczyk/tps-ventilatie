@@ -8,9 +8,11 @@
 # the run so the red is visible in the Actions tab.
 #
 # WHAT RED MEANS. A flag from scripts/gsc/thresholds.ts — below-ramp,
-# lost-indexation, robots-not-allowed, canonical-mismatch, count-vs-floor — or
-# simulated-breach when dispatched with simulate_breach=true (no reading is
-# committed in that case). The vocabulary is in docs/measurements/README.md.
+# lost-indexation, robots-not-allowed, canonical-mismatch, count-vs-floor,
+# legacy-canonical-not-moved, legacy-traffic-zero — or simulated-breach when
+# dispatched with simulate_breach=true (no reading is committed in that case).
+# The vocabulary is in docs/measurements/README.md. The two legacy codes were
+# added in Phase 10 (D-25); they ride this same run and need nothing new here.
 # Never make a red run green by lowering a threshold: find the page that is stuck.
 #
 # RE-ARMING. GitHub disables scheduled workflows on public repositories after 60

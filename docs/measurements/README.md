@@ -36,6 +36,15 @@ GitHub-Actions-run opent (of vult aan) dan een issue met het label `indexation-a
 | `canonical-mismatch` | Google koos een andere canonical dan de URL zelf | Google vouwt de pagina samen met een andere. Controleer op dubbele content, verkeerde `<link rel="canonical">` of redirects |
 | `count-vs-floor` | Het aantal URL's in de meting is niet gelijk aan `INDEXABLE_FLOOR` | De sitemap-oppervlakte en de vloer zijn het oneens — een bevinding, geen getal om aan te passen |
 | `simulated-breach` | Bewust opgewekt met `--simulate-breach` (of `MEASURE_SIMULATE_BREACH=1`) | Niets: dit bewijst alleen dat de alarmroute werkt. Er wordt dan géén meting weggeschreven |
+| `legacy-canonical-not-moved` | Google noemt voor een oude URL nog steeds een adres op **tpsventilatie.nl** als canonical, acht weken of langer na de omschakeling | Controleer dat juist díe URL nog in één stap doorverwijst (`scripts/verify-redirects.ts`), dat de *Change of Address* voor de betreffende property nog actief is, en dat de bestemming indexeerbaar is. **Verhoog de week-drempel niet om het stil te krijgen** — de URL wordt met naam genoemd omdat er iets vastzit |
+| `legacy-traffic-zero` | Vier wekelijkse metingen op rij geen enkele vertoning op het oude domein | **Niets automatisch.** Dit opent een gesprek over het opruimen van de redirect-tabel; het is géén toestemming. De tabel gaat nooit weg vóór de **180 dagen** die Google minimaal eist na een *Change of Address*, en dat blijft een apart besluit |
+
+Sinds Phase 10 vraagt de wekelijkse run óók wat Google met de **negen oude adressen** heeft gedaan: hoeveel
+vertoningen het oude domein nog krijgt, en welk adres Google per oude URL als canonical kiest. Dat staat in
+de uitvoer onder een eigen kopje — `— legacy (tpsventilatie.nl) —` — en in de meting onder `legacy`. Die
+scheiding is met opzet: een signaal over het oude domein mag nooit worden aangezien voor een terugval op het
+nieuwe. Ontbreekt het `legacy`-blok in een meting, dan is dat een **gat, geen nul**: er wordt dan niets
+gemeld, want "niet gemeten" is iets anders dan "geen verkeer".
 
 **Verlaag nooit een drempel om groen te krijgen — zoek uit welke pagina vastzit.** Dat is de les van
 Phase 8: de vorige gate werd "gerepareerd" door het verwachte getal aan te passen, en daardoor bleef de
